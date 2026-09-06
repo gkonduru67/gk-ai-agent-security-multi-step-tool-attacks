@@ -1,0 +1,102 @@
+{
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 22,
+    "total": 22
+  },
+  "claim_boundary": {
+    "allowed": [
+      "required, integration/factory, and authorization-lexicon Python source identities were frozen",
+      "optimal guardrail statically reads user_authorized and user_confirmed_safe context booleans",
+      "sandbox guardrail context construction does not include those fields in inspected source",
+      "no tool/target/payload-digest/expiry/revocation/consumption/single-use binding was established in inspected source",
+      "http.post accepts ctx, url, and data and has no authorization argument",
+      "authorization interface is present but transport is not established"
+    ],
+    "prohibited": [
+      "claim runtime authorization transport",
+      "claim structured authorization validation",
+      "claim flags are user-authentic or integrity protected",
+      "claim authorization enforcement",
+      "claim HTTP or Sandbox runtime behavior from static inspection",
+      "claim robust security findings"
+    ]
+  },
+  "classification": "READ_ONLY_AUTHORIZATION_CONTRACT_SOURCE_AND_INTERFACE_QUALIFICATION",
+  "created_at_utc": "2026-08-22T21:52:15.250085+00:00",
+  "execution_boundaries": {
+    "AST_parsed": 31,
+    "Gym_instantiated": false,
+    "HTTP_executed": false,
+    "Sandbox_instantiated": false,
+    "attack_optimization": false,
+    "authorization_tokens_issued": 0,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "guardrail_decisions": 0,
+    "models_used": false,
+    "parent_modified": false,
+    "predicates_executed": false,
+    "project_modules_imported": false,
+    "source_files_read": 31,
+    "sources_modified": false,
+    "tools_executed": false
+  },
+  "findings": {
+    "carrier": {
+      "observed": "generic guardrail context Mapping",
+      "proposal_object": "NO_AUTHORIZATION_FIELD_ESTABLISHED",
+      "runtime_state": "NO_AUTHORIZATION_STATE_ESTABLISHED",
+      "sandbox_population": "NOT_ESTABLISHED_FOR_user_authorized_or_user_confirmed_safe",
+      "tool_args": "NO_STRUCTURED_AUTHORIZATION_FIELD_ESTABLISHED"
+    },
+    "classification": "AUTHORIZATION_INTERFACE_PRESENT_BUT_TRANSPORT_NOT_ESTABLISHED",
+    "consumed_state": "NOT_ESTABLISHED",
+    "current_authoritative_component_reads_authorization_evidence": {
+      "component": "aicomp_sdk/guardrails/optimal.py Guardrail.decide",
+      "field": "context.user_authorized boolean",
+      "semantic_limit": "truthiness-only early allow",
+      "value": true
+    },
+    "decision_causally_connected_to_structured_authorization_validation": "NOT_ESTABLISHED",
+    "destination_binding": "NOT_ESTABLISHED",
+    "expiry_representation": "NOT_ESTABLISHED",
+    "payload_digest_binding": "NOT_ESTABLISHED",
+    "revoked_state": "NOT_ESTABLISHED",
+    "router_preserves_authorization_unchanged": "NOT_ESTABLISHED",
+    "single_use_consumption": "NOT_ESTABLISHED",
+    "tool_name_binding": "NOT_ESTABLISHED",
+    "validation_stage": "EARLY_GUARDRAIL_ALLOW_IF_FLAG_PRESENT_BUT_PRODUCER_AND_TRANSPORT_NOT_ESTABLISHED"
+  },
+  "next_gate": "REVIEWED_HARDENED_AUTHORIZATION_CONTRACT_DESIGN",
+  "outcome": "AUTHORIZATION_INTERFACE_PRESENT_BUT_TRANSPORT_NOT_ESTABLISHED",
+  "scientific_verdict": {
+    "authorization_enforcement": "NOT_ESTABLISHED",
+    "authorization_interface": "PRESENT_AS_UNVALIDATED_CONTEXT_BOOLEANS",
+    "authorization_transport": "NOT_ESTABLISHED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "runtime_behavior": "NOT_EVALUATED",
+    "structured_validation": "NOT_ESTABLISHED"
+  },
+  "source_scope": {
+    "candidate_consumer_files": 7,
+    "integration_factory_files": 4,
+    "lexical_files": 19,
+    "required": [
+      "aicomp_sdk/core/env/api.py",
+      "aicomp_sdk/core/env/gym.py",
+      "aicomp_sdk/core/env/sandbox.py",
+      "aicomp_sdk/guardrails/base.py",
+      "aicomp_sdk/guardrails/optimal.py",
+      "aicomp_sdk/hooks/registry.py",
+      "aicomp_sdk/hooks/types.py",
+      "aicomp_sdk/core/tools/http.py",
+      "aicomp_sdk_exfil_v2_1/lineage_aware_exfil_guardrail_v2_1.py"
+    ],
+    "selected_files": 31
+  },
+  "status": "INDEPENDENT_AUTHORIZATION_TRANSPORT_CONTRACT_QUALIFICATION_COMPLETE_PASS",
+  "version": "INDEPENDENT_AUTHORIZATION_TRANSPORT_CONTRACT_QUALIFICATION_v1.0"
+}

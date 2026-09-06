@@ -1,0 +1,109 @@
+{
+  "P2M_R1A_parent_verified": true,
+  "claim_boundary": {
+    "allowed": [
+      "five producer design contracts",
+      "proposed insertion points and schemas",
+      "ordering/failure/replay/snapshot requirements",
+      "design feasibility and requirement traceability"
+    ],
+    "prohibited": [
+      "implementation existence",
+      "runtime wiring",
+      "actual fs.read behavior",
+      "source retrieval success",
+      "secret capture",
+      "protected-value lineage",
+      "authorization transport correctness",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_DESIGN_AND_FEASIBILITY_SPECIFICATION",
+  "created_at_utc": "2026-08-21T09:15:48.724077+00:00",
+  "design_contract_count": 5,
+  "design_ids": [
+    "P2N-01",
+    "P2N-02",
+    "P2N-03",
+    "P2N-04",
+    "P2N-05"
+  ],
+  "execution_boundaries": {
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "effects_observed": false,
+    "fixture_contents_read": false,
+    "gym_executed": false,
+    "implementation_created": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "sandbox_executed": false,
+    "sdk_modules_imported": false,
+    "source_modified": false,
+    "source_value_exported": false,
+    "source_value_previewed": false,
+    "tools_executed": false
+  },
+  "feasibility": {
+    "blocking_reason": "five producer contracts exist only as design specifications",
+    "controlled_actual_fs_read_eligible": false,
+    "immutable_baseline_policy": "packaged OptimalGuardrail remains unmodified",
+    "implementation_authorized": false,
+    "implementation_files_proposed": [
+      "aicomp_sdk/core/env/sandbox.py",
+      "aicomp_sdk/core/tools/fs.py",
+      "new trusted helper module name NOT_ESTABLISHED"
+    ],
+    "overall": "DESIGN_FEASIBLE_BUT_NOT_IMPLEMENTED"
+  },
+  "five_gaps_preserved": [
+    "after_tool runtime caller",
+    "raw_output_sha256 producer",
+    "protected_value_sha256_or_bound_digest producer",
+    "runtime event-sequence allocator",
+    "canonical_source_path producer"
+  ],
+  "mandatory_separations": {
+    "digest_presence_vs_derivation_correctness": "PRESERVED",
+    "post_hook_output_vs_serialized_output_text": "PRESERVED",
+    "proposal_vs_outcome_event_identity": "PRESERVED",
+    "raw_handler_vs_post_hook_output": "PRESERVED",
+    "raw_output_digest_vs_protected_bound_digest": "PRESERVED",
+    "source_category_vs_canonical_source_path": "PRESERVED"
+  },
+  "next_gate": "EX6_P2B_P2N_R1_INDEPENDENT_DESIGN_QUALIFICATION",
+  "proposed_schema": {
+    "digest_domain_tags": {
+      "protected_binding": "P2N.PROTECTED_BINDING.V1",
+      "raw_output": "P2N.RAW_OUTPUT.V1"
+    },
+    "event_identity": {
+      "event_kind": "proposal|outcome",
+      "event_sequence": "strictly monotonic int",
+      "trace_identity": "nonempty str"
+    },
+    "schema_version": "P2N_TRUSTED_OUTCOME_V1_PROPOSED",
+    "trusted_tool_outcome_required_fields": {
+      "canonical_source_path": "str for fs.read",
+      "completion_sequence": "int",
+      "protected_value_sha256_or_bound_digest": "64 uppercase hex for qualifying successful protected read",
+      "raw_output_sha256": "64 uppercase hex",
+      "success": "bool"
+    },
+    "value_export_policy": "raw protected value and previews prohibited in evidence artifacts"
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "authorization_transport_correctness": "NOT_ESTABLISHED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation": "NOT_IMPLEMENTED",
+    "producer_design_contracts": "ESTABLISHED_AS_DESIGN_ONLY",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "runtime_behavior": "NOT_EVALUATED",
+    "secret_capture": "NOT_ESTABLISHED"
+  },
+  "status": "P2N_TRUSTED_OUTCOME_BRIDGE_AND_DIGEST_PRODUCER_DESIGN_COMPLETE_PASS",
+  "version": "EX6_P2B_P2N_TRUSTED_OUTCOME_BRIDGE_AND_DIGEST_PRODUCER_DESIGN_v1.0"
+}

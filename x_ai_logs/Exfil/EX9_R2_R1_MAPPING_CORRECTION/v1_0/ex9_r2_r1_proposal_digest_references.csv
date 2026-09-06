@@ -1,0 +1,164 @@
+relative_path,function,line,source
+aicomp_sdk\core\env\trusted_outcome_transport_v1.py,compute_protected_value_bound_digest_v1,53,"def compute_protected_value_bound_digest_v1(trace_identity: str, proposal_digest: str, outcome_event_identity: str, canonical_source_path: str, raw_output_sha256: str) -> str:
+    fields = [trace_identity, proposal_digest, outcome_event_identity, canonical_source_path, raw_output_sha256]
+    if not all((isinstance(x, str) and x for x in fields)):
+        raise ValueError('all binding fields must be nonempty strings')
+    if len(raw_output_sha256) != 64 or any((c not in '0123456789ABCDEF' for c in raw_output_sha256)):
+        raise ValueError('raw_output_sha256 must be 64 uppercase hexadecimal characters')
+    payload = b''.join((_frame(b'S', unicodedata.normalize('NFC', x).encode('utf-8')) for x in fields))
+    return hashlib.sha256(_PROTECTED_DOMAIN + b'\x00' + payload).hexdigest().upper()"
+aicomp_sdk\core\env\trusted_outcome_transport_v1.py,acknowledge,107,"def acknowledge(self, *, trace_identity: str, proposal_digest: str, tool_name: str, success: bool, canonical_source_path: str, post_hook_output: object) -> dict[str, object]:
+    outcome_identity = self.sequence_state.allocate(trace_identity, 'outcome')
+    raw_digest = compute_raw_output_sha256_v1(post_hook_output)
+    bound_digest = compute_protected_value_bound_digest_v1(trace_identity, proposal_digest, outcome_identity, canonical_source_path, raw_digest)
+    outcome = {'success': bool(success), 'completion_sequence': int(outcome_identity.rsplit(':', 1)[1]), 'canonical_source_path': canonical_source_path, 'raw_output_sha256': raw_digest, 'protected_value_sha256_or_bound_digest': bound_digest}
+    self.adapter.after_tool(outcome)
+    self.sequence_state.consume_outcome(outcome_identity)
+    return outcome"
+aicomp_sdk\guardrails\trusted_context_adapter.py,before_decide,76,"def before_decide(self, tool_name: str, tool_args: Mapping[str, Any], context: Mapping[str, Any], *, trace_identity: str, proposal_event_identity: Mapping[str, Any]) -> Decision:
+    if not isinstance(tool_name, str) or not tool_name or (not isinstance(tool_args, Mapping)) or (not isinstance(context, Mapping)) or (not isinstance(trace_identity, str)) or (not trace_identity):
+        return Decision.deny(self.REASON_MALFORMED)
+    try:
+        event_key = self._validate_event_identity(proposal_event_identity, trace_identity, expected_kind='proposal')
+        proposal_record = {'schema_tag': _SCHEMA_TAG, 'tool_name': tool_name, 'canonical_tool_args': dict(tool_args), 'trace_identity': trace_identity, 'proposal_event_identity': dict(proposal_event_identity)}
+        proposal_digest = self._digest_v1(proposal_record)
+    except (TypeError, ValueError):
+        return Decision.deny(self.REASON_MALFORMED)
+    inner_decision = self._inner.decide(tool_name, tool_args, context)
+    if inner_decision.action != DecisionAction.ALLOW:
+        return inner_decision
+    if tool_name not in _PROTECTED_ACTION_TOOLS:
+        self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'grant_id': None}
+        return inner_decision
+    target_digest = self._target_digest(tool_name, tool_args)
+    grant_id = self._find_eligible_grant(tool_name, target_digest, proposal_digest, trace_identity)
+    if grant_id is None:
+        return Decision.deny(self.REASON_GRANT)
+    self._consume_grant(grant_id)
+    self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'grant_id': grant_id}
+    return inner_decision"
+aicomp_sdk\guardrails\trusted_context_adapter.py,after_tool,147,"def after_tool(self, *, proposal_digest: str, event_identity: Mapping[str, Any], trace_identity: str, tool_name: str, tool_args_digest: str, trusted_tool_outcome: Mapping[str, Any]) -> None:
+    if not all((isinstance(value, str) and value for value in (proposal_digest, trace_identity, tool_name, tool_args_digest))) or not isinstance(trusted_tool_outcome, Mapping):
+        raise ValueError(self.REASON_MALFORMED)
+    pending = self._pending_proposals_by_digest.get(proposal_digest)
+    if not pending or pending['trace_identity'] != trace_identity:
+        raise ValueError(self.REASON_REPLAY)
+    event_key = self._validate_event_identity(event_identity, trace_identity, expected_kind='outcome')
+    if event_key in self._seen_event_identities:
+        raise ValueError(self.REASON_REPLAY)
+    success = trusted_tool_outcome.get('success')
+    completion_sequence = trusted_tool_outcome.get('completion_sequence')
+    if not isinstance(success, bool) or not isinstance(completion_sequence, int):
+        raise ValueError(self.REASON_MALFORMED)
+    if completion_sequence != event_key[1]:
+        raise ValueError(self.REASON_MALFORMED)
+    self._seen_event_identities.add(event_key)
+    self._monotonic_sequence_by_trace[trace_identity] = event_key[1]
+    if tool_name == 'fs.read' and success:
+        record = self._qualify_protected_read(trace_identity, event_identity, trusted_tool_outcome)
+        if record is not None:
+            self._protected_read_records.append(record)
+    del self._pending_proposals_by_digest[proposal_digest]"
+aicomp_sdk\guardrails\trusted_context_adapter.py,_validate_grant,264,"def _validate_grant(self, record: Mapping[str, Any], issuer_capability: bytes) -> dict[str, Any]:
+    if not isinstance(record, Mapping) or not isinstance(issuer_capability, bytes):
+        raise TypeError('invalid grant input')
+    required = {'grant_id', 'issuer_id', 'issuer_trust_domain', 'issued_at_or_sequence', 'expires_at_or_sequence', 'authorized_tool', 'authorized_target_digest', 'authorized_proposal_digest', 'nonce', 'trace_identity'}
+    if set(record) != required:
+        raise ValueError('grant fields differ from frozen schema')
+    grant = dict(record)
+    if not all((isinstance(grant[name], str) and grant[name] for name in required - {'issued_at_or_sequence', 'expires_at_or_sequence'})):
+        raise ValueError('invalid grant string field')
+    issued = grant['issued_at_or_sequence']
+    expires = grant['expires_at_or_sequence']
+    if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or (expires <= issued):
+        raise ValueError('invalid grant lifetime')
+    key = (grant['issuer_id'], grant['issuer_trust_domain'])
+    expected = self._issuer_capabilities.get(key)
+    if expected is None or not hmac.compare_digest(expected, issuer_capability):
+        raise ValueError(self.REASON_ISSUER)
+    grant['record_digest'] = self._digest_v1(grant)
+    return grant"
+aicomp_sdk\guardrails\trusted_context_adapter.py,_find_eligible_grant,318,"def _find_eligible_grant(self, tool_name: str, target_digest: str, proposal_digest: str, trace_identity: str) -> str | None:
+    for grant_id in sorted(self._trusted_grants_by_id):
+        grant = self._trusted_grants_by_id[grant_id]
+        if grant_id not in self._consumed_grant_ids and grant['authorized_tool'] == tool_name and (grant['authorized_target_digest'] == target_digest) and (grant['authorized_proposal_digest'] == proposal_digest) and (grant['trace_identity'] == trace_identity):
+            return grant_id
+    return None"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,before_decide,77,"def before_decide(self, tool_name: str, tool_args: Mapping[str, Any], context: Mapping[str, Any], *, trace_identity: str, proposal_event_identity: Mapping[str, Any]) -> Decision:
+    if not isinstance(tool_name, str) or not tool_name or (not isinstance(tool_args, Mapping)) or (not isinstance(context, Mapping)) or (not isinstance(trace_identity, str)) or (not trace_identity):
+        return Decision.deny(self.REASON_MALFORMED)
+    try:
+        event_key = self._validate_event_identity(proposal_event_identity, trace_identity, expected_kind='proposal')
+        proposal_record = {'schema_tag': _SCHEMA_TAG, 'tool_name': tool_name, 'canonical_tool_args': dict(tool_args), 'trace_identity': trace_identity, 'proposal_event_identity': dict(proposal_event_identity)}
+        proposal_digest = self._digest_v1(proposal_record)
+        tool_args_digest = self._digest_v1(dict(tool_args))
+    except (TypeError, ValueError):
+        return Decision.deny(self.REASON_MALFORMED)
+    if event_key in self._seen_event_identities:
+        return Decision.deny(self.REASON_REPLAY)
+    self._seen_event_identities.add(event_key)
+    self._monotonic_sequence_by_trace[trace_identity] = event_key[1]
+    inner_decision = self._inner.decide(tool_name, tool_args, context)
+    if inner_decision.action != DecisionAction.ALLOW:
+        return inner_decision
+    if tool_name not in _PROTECTED_ACTION_TOOLS:
+        self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'tool_args_digest': tool_args_digest, 'grant_id': None}
+        return inner_decision
+    target_digest = self._target_digest(tool_name, tool_args)
+    grant_id = self._find_eligible_grant(tool_name, target_digest, proposal_digest, trace_identity, event_key[1])
+    if grant_id is None:
+        return Decision.deny(self.REASON_GRANT)
+    self._consume_grant(grant_id)
+    self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'tool_args_digest': tool_args_digest, 'grant_id': grant_id}
+    return inner_decision"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,after_tool,156,"def after_tool(self, *, proposal_digest: str, event_identity: Mapping[str, Any], trace_identity: str, tool_name: str, tool_args_digest: str, trusted_tool_outcome: Mapping[str, Any]) -> None:
+    if not all((isinstance(value, str) and value for value in (proposal_digest, trace_identity, tool_name, tool_args_digest))) or not isinstance(trusted_tool_outcome, Mapping):
+        raise ValueError(self.REASON_MALFORMED)
+    pending = self._pending_proposals_by_digest.get(proposal_digest)
+    if not pending or pending['trace_identity'] != trace_identity:
+        raise ValueError(self.REASON_REPLAY)
+    if pending['tool_name'] != tool_name:
+        raise ValueError(self.REASON_MALFORMED)
+    if pending['tool_args_digest'] != tool_args_digest:
+        raise ValueError(self.REASON_MALFORMED)
+    event_key = self._validate_event_identity(event_identity, trace_identity, expected_kind='outcome')
+    if event_key in self._seen_event_identities:
+        raise ValueError(self.REASON_REPLAY)
+    success = trusted_tool_outcome.get('success')
+    completion_sequence = trusted_tool_outcome.get('completion_sequence')
+    if not isinstance(success, bool) or not isinstance(completion_sequence, int):
+        raise ValueError(self.REASON_MALFORMED)
+    if completion_sequence != event_key[1]:
+        raise ValueError(self.REASON_MALFORMED)
+    self._seen_event_identities.add(event_key)
+    self._monotonic_sequence_by_trace[trace_identity] = event_key[1]
+    if tool_name == 'fs.read' and success:
+        record = self._qualify_protected_read(trace_identity, event_identity, trusted_tool_outcome)
+        if record is not None:
+            self._protected_read_records.append(record)
+    del self._pending_proposals_by_digest[proposal_digest]"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,_validate_grant,295,"def _validate_grant(self, record: Mapping[str, Any], issuer_capability: bytes) -> dict[str, Any]:
+    if not isinstance(record, Mapping) or not isinstance(issuer_capability, bytes):
+        raise TypeError('invalid grant input')
+    required = {'grant_id', 'issuer_id', 'issuer_trust_domain', 'issued_at_or_sequence', 'expires_at_or_sequence', 'authorized_tool', 'authorized_target_digest', 'authorized_proposal_digest', 'nonce', 'trace_identity'}
+    if set(record) != required:
+        raise ValueError('grant fields differ from frozen schema')
+    grant = dict(record)
+    if not all((isinstance(grant[name], str) and grant[name] for name in required - {'issued_at_or_sequence', 'expires_at_or_sequence'})):
+        raise ValueError('invalid grant string field')
+    issued = grant['issued_at_or_sequence']
+    expires = grant['expires_at_or_sequence']
+    if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or (expires <= issued):
+        raise ValueError('invalid grant lifetime')
+    key = (grant['issuer_id'], grant['issuer_trust_domain'])
+    expected = self._issuer_capabilities.get(key)
+    if expected is None or not hmac.compare_digest(expected, issuer_capability):
+        raise ValueError(self.REASON_ISSUER)
+    grant['record_digest'] = self._digest_v1(grant)
+    return grant"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,_find_eligible_grant,349,"def _find_eligible_grant(self, tool_name: str, target_digest: str, proposal_digest: str, trace_identity: str, current_sequence: int) -> str | None:
+    for grant_id in sorted(self._trusted_grants_by_id):
+        grant = self._trusted_grants_by_id[grant_id]
+        if grant_id not in self._consumed_grant_ids and grant['authorized_tool'] == tool_name and (grant['authorized_target_digest'] == target_digest) and (grant['authorized_proposal_digest'] == proposal_digest) and (grant['trace_identity'] == trace_identity) and (grant['issued_at_or_sequence'] <= current_sequence) and (current_sequence < grant['expires_at_or_sequence']):
+            return grant_id
+    return None"

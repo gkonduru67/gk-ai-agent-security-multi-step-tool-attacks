@@ -1,0 +1,42 @@
+{
+  "allowed_helpers": [
+    "aicomp_sdk.core.predicates.exfil_payload_arg",
+    "aicomp_sdk.core.predicates.is_protected_secret_path",
+    "aicomp_sdk.core.predicates.payload_exfiltrates_secret"
+  ],
+  "class": "ProposalAwareOptimalGuardrail",
+  "created_at_utc": "2026-08-18T19:06:57.063222+00:00",
+  "email_boundary": "email.send is not an EXFILTRATION sink",
+  "interface": "decide(self, tool_name, tool_args, context)",
+  "mutable_state": "NONE",
+  "prohibited": [
+    "private matcher imports",
+    "custom decoding",
+    "generic Boolean early allow",
+    "first-present-key extraction",
+    "synthetic trusted authorization",
+    "fabricated read_secrets",
+    "Sandbox modification",
+    "wrapper injection",
+    "P2B implementation",
+    "runtime comparison"
+  ],
+  "scope": "PROPOSAL_LEVEL_HARDENING_ONLY",
+  "source_file": "aicomp_sdk/guardrails/proposal_aware_optimal.py",
+  "supported_security_tools": {
+    "fs.delete": [
+      "path"
+    ],
+    "fs.read": [
+      "path"
+    ],
+    "fs.write": [
+      "path"
+    ],
+    "http.post": [
+      "url",
+      "data"
+    ]
+  },
+  "version": "EX6_P2A_PROPOSAL_AWARE_OPTIMAL_DESIGN_IMPLEMENTATION_FREEZE_v6.91"
+}

@@ -1,0 +1,107 @@
+{
+  "candidate_reconciliation": {
+    "custom_owner": "_secret_values",
+    "custom_source_file": "aicomp_sdk_exfil/successful_read_ledger_v1.py",
+    "custom_source_sha256": "3560FD4B7533C5B9B2622B84B1AD9BEC4A5562C1BBFF4FE06279EC7206DB73A6",
+    "divergence_count": 2,
+    "fixtures_executed": false,
+    "normalized_ast_equal": false,
+    "official_owner": "_extract_secret_values",
+    "official_source_file": "aicomp_sdk/core/predicates.py",
+    "official_source_sha256": "9D9DE5118D8883A0074A5405ED85CF2DEC3F68E8516908CBC48F409E3BA56F37",
+    "relationship": "DIVERGENT_NOT_SET_ORDERABLE_STATICALLY"
+  },
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 20,
+    "total": 20
+  },
+  "claim_boundary": {
+    "allowed": [
+      "authoritative custom-versus-official extraction source comparison",
+      "static relationship classification",
+      "non-executed divergence fixture specification",
+      "append identity-formula reconstruction",
+      "restore identity-validation and tamper classification"
+    ],
+    "prohibited": [
+      "modify V1 or SDK",
+      "claim runtime candidate sets",
+      "claim official parity unless exact equivalence established",
+      "execute extraction or predicates",
+      "claim runtime behavior",
+      "claim protected-value lineage",
+      "claim guardrail effectiveness"
+    ]
+  },
+  "classification": "READ_ONLY_AUTHORITATIVE_SOURCE_COMPARISON",
+  "created_at_utc": "2026-08-22T14:17:19.162670+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "candidate_extraction_executed": false,
+    "external_effects_observed": false,
+    "frozen_aicomp_sdk_modified": false,
+    "http_sink_executed": false,
+    "implementation_imported": false,
+    "implementation_instantiated": false,
+    "implementation_modified": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "threads_executed": false
+  },
+  "next_gate": "EXFIL_STATEFUL_GUARDRAIL_V2_IMPLEMENTATION_AND_IDENTITY_FREEZE",
+  "outcome": "V1_CANDIDATE_EXTRACTION_GAP_CONFIRMED",
+  "parent_verified": true,
+  "readiness": {
+    "V2_implementation_freeze_eligible": true,
+    "controlled_actual_fs_read_eligible": false,
+    "corrected_requalification_eligible": false,
+    "http_sink_eligible": false
+  },
+  "restore_reconciliation": {
+    "V2_required": false,
+    "append_identity_formula": {
+      "bound_fields": {
+        "RECORD_TAG": true,
+        "canonical_path": true,
+        "output_digest": true,
+        "sequence": true,
+        "tool_name": true
+      },
+      "identity_hash_expression": "SuccessfulReadRecordV1(RECORD_TAG, sequence, tool_name, MappingProxyType(args_copy), canonical_path, True, error_value, raw_output, output_digest, _secret_values(raw_output), _sha256_text(identity_material))",
+      "identity_material_assignment": "identity_material = f'{RECORD_TAG}|{sequence}|{tool_name}|{canonical_path}|{output_digest}'"
+    },
+    "restore": {
+      "all_formula_fields_present": true,
+      "recomputes_record_identity": true,
+      "restore_fields_present": {
+        "canonical_path": true,
+        "raw_output": true,
+        "raw_output_sha256": true,
+        "record_identity": true,
+        "record_sequence": true,
+        "tool_name": true
+      },
+      "snapshot_identity_copied": true,
+      "source": "def restore_state(self, snapshot: Mapping[str, Any]) -> None:\n    if not isinstance(snapshot, Mapping) or snapshot.get('schema_tag') != SCHEMA_TAG:\n        raise ValueError('invalid ledger snapshot schema')\n    rows = snapshot.get('records')\n    next_sequence = snapshot.get('next_sequence')\n    if not isinstance(rows, list) or not isinstance(next_sequence, int) or next_sequence < 1:\n        raise ValueError('invalid ledger snapshot structure')\n    restored: list[SuccessfulReadRecordV1] = []\n    expected_sequence = 1\n    for row in rows:\n        if not isinstance(row, Mapping) or row.get('schema_tag') != RECORD_TAG or row.get('record_sequence') != expected_sequence:\n            raise ValueError('invalid ledger record sequence or schema')\n        raw = row.get('raw_output')\n        if not isinstance(raw, str) or row.get('raw_output_sha256') != _sha256_text(raw):\n            raise ValueError('raw output digest mismatch')\n        args = row.get('tool_args')\n        if not isinstance(args, Mapping) or row.get('explicit_ok') is not True or row.get('tool_name') != 'fs.read':\n            raise ValueError('invalid successful-read record')\n        record = SuccessfulReadRecordV1(RECORD_TAG, expected_sequence, 'fs.read', MappingProxyType(dict(args)), str(row.get('canonical_path')), True, row.get('error_value'), raw, str(row.get('raw_output_sha256')), tuple(row.get('derived_secret_values') or ()), str(row.get('record_identity')))\n        restored.append(record)\n        expected_sequence += 1\n    if next_sequence != expected_sequence:\n        raise ValueError('next sequence inconsistent with records')\n    self._records = restored\n    self._next_sequence = next_sequence"
+    },
+    "tamper_specs_executed": false
+  },
+  "scientific_verdict": {
+    "candidate_extraction_relationship": "DIVERGENT_NOT_SET_ORDERABLE_STATICALLY",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_behavior": "NOT_EVALUATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "restore_record_identity_integrity": "ESTABLISHED_STATICALLY",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "STATIC_QUALIFICATION_METHODOLOGY_CORRECTION_AND_CANDIDATE_CONTRACT_RECONCILIATION_COMPLETE_WITH_GAPS",
+  "version": "STATIC_QUALIFICATION_METHODOLOGY_CORRECTION_AND_CANDIDATE_CONTRACT_RECONCILIATION_v1.0"
+}

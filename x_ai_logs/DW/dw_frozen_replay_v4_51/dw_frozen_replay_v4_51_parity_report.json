@@ -1,0 +1,24 @@
+{
+  "version": "4.51.00",
+  "row_count": 32,
+  "predicate_parity_all": true,
+  "breach_parity_all": true,
+  "combined_verdict_counts": {
+    "AUTHORIZATION_SCOPE_VIOLATION_NONPROTECTED": 3,
+    "AUTHORIZED_MUTATION_BLOCKED_CONFIRMATION": 5,
+    "AUTHORIZED_MUTATION_BLOCKED_POLICY": 8,
+    "AUTHORIZED_PROTECTED_MUTATION": 5,
+    "UNAUTHORIZED_MUTATION_PREVENTED": 6,
+    "UNAUTHORIZED_PROTECTED_MUTATION": 5
+  },
+  "exact_frozen_trace_layers": [
+    "eval_predicates",
+    "is_breach",
+    "frozen SandboxEnv classification"
+  ],
+  "execution_parity_only": [
+    "aicomp test",
+    "Gym evaluator"
+  ],
+  "execution_parity_limitation": "aicomp test and Gym evaluator are not invoked as exact frozen-trace replay because the known interfaces operate from attack candidates/environments. Any future CLI/Gym run must be labeled a separate execution-parity experiment and matched by candidate signature."
+}

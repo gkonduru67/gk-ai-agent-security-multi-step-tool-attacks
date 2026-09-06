@@ -1,0 +1,174 @@
+{
+  "schema": "UTA_AGENT_DECISION_CONTRACT_PREFLIGHT_V1",
+  "version": "UTA_GUARDRAIL_BOUNDARY_PREFLIGHT_1_v7.60A.2",
+  "created_utc": "2026-08-04T23:07:56.917759+00:00",
+  "status": "PASS",
+  "scientific_scope": "SDK agent decision contract only; no Sandbox or guardrail behavior tested",
+  "project_root": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks",
+  "sdk_types_source": {
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\agents\\types.py",
+    "sha256": "448A728BB39466BC5E21A85580AE549B78CBB8148F5D52B9DEB8C8FEFA6AD6E4"
+  },
+  "runtime": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "agent_decision": {
+    "repr": "aicomp_sdk.agents.types.ToolCallDecision | aicomp_sdk.agents.types.FinalResponseDecision",
+    "runtime_type": "types.UnionType",
+    "origin": "<class 'types.UnionType'>",
+    "member_count": 2,
+    "members": [
+      {
+        "qualified_name": "aicomp_sdk.agents.types.ToolCallDecision",
+        "repr": "<class 'aicomp_sdk.agents.types.ToolCallDecision'>",
+        "runtime_type": "builtins.type",
+        "is_class": true,
+        "signature": "(call: 'ToolCall', assistant_message: 'str | None' = None) -> None",
+        "parameters": {
+          "call": {
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "required": true,
+            "default": null,
+            "annotation": "'ToolCall'"
+          },
+          "assistant_message": {
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "required": false,
+            "default": "None",
+            "annotation": "'str | None'"
+          }
+        }
+      },
+      {
+        "qualified_name": "aicomp_sdk.agents.types.FinalResponseDecision",
+        "repr": "<class 'aicomp_sdk.agents.types.FinalResponseDecision'>",
+        "runtime_type": "builtins.type",
+        "is_class": true,
+        "signature": "(text: 'str') -> None",
+        "parameters": {
+          "text": {
+            "kind": "POSITIONAL_OR_KEYWORD",
+            "required": true,
+            "default": null,
+            "annotation": "'str'"
+          }
+        }
+      }
+    ]
+  },
+  "tool_call": {
+    "qualified_name": "aicomp_sdk.agents.types.ToolCall",
+    "signature": "(call_id: 'str', tool_name: 'str', arguments: 'JsonObject') -> None",
+    "constructed_instance_type": "aicomp_sdk.agents.types.ToolCall",
+    "constructed_instance": {
+      "call_id": "uta-boundary-preflight-call",
+      "tool_name": "fs.write",
+      "arguments": {
+        "path": "uta_boundary_preflight.txt",
+        "content": "UTA_BOUNDARY_PREFLIGHT_SYNTHETIC"
+      }
+    }
+  },
+  "call_decision": {
+    "resolution": {
+      "strategy": "concrete union member accepting call",
+      "selected": "aicomp_sdk.agents.types.ToolCallDecision",
+      "signature": "(call: 'ToolCall', assistant_message: 'str | None' = None) -> None",
+      "attempts": [
+        {
+          "candidate": "aicomp_sdk.agents.types.ToolCallDecision",
+          "is_class": true,
+          "signature": "(call: 'ToolCall', assistant_message: 'str | None' = None) -> None",
+          "parameters": {
+            "call": {
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "required": true,
+              "default": null,
+              "annotation": "'ToolCall'"
+            },
+            "assistant_message": {
+              "kind": "POSITIONAL_OR_KEYWORD",
+              "required": false,
+              "default": "None",
+              "annotation": "'str | None'"
+            }
+          }
+        }
+      ]
+    },
+    "construction": {
+      "template": "call_and_message",
+      "kwargs_keys": [
+        "call",
+        "assistant_message"
+      ],
+      "attempts": []
+    },
+    "instance_type": "aicomp_sdk.agents.types.ToolCallDecision",
+    "instance": {
+      "call": {
+        "call_id": "uta-boundary-preflight-call",
+        "tool_name": "fs.write",
+        "arguments": {
+          "path": "uta_boundary_preflight.txt",
+          "content": "UTA_BOUNDARY_PREFLIGHT_SYNTHETIC"
+        }
+      },
+      "assistant_message": null
+    }
+  },
+  "completion_decision": {
+    "resolution": {
+      "strategy": "first concrete union member constructible as no-tool completion",
+      "selected": "aicomp_sdk.agents.types.ToolCallDecision",
+      "signature": "(call: 'ToolCall', assistant_message: 'str | None' = None) -> None",
+      "template": "call_none_and_assistant_message",
+      "kwargs": {
+        "call": null,
+        "assistant_message": "Contract preflight complete"
+      },
+      "attempts": [
+        {
+          "candidate": "aicomp_sdk.agents.types.ToolCallDecision",
+          "signature": "(call: 'ToolCall', assistant_message: 'str | None' = None) -> None",
+          "template": "assistant_message_only",
+          "exception_type": "TypeError",
+          "exception": "ToolCallDecision.__init__() missing 1 required positional argument: 'call'"
+        }
+      ]
+    },
+    "construction": {
+      "template": "call_none_and_assistant_message",
+      "kwargs": {
+        "call": null,
+        "assistant_message": "Contract preflight complete"
+      }
+    },
+    "instance_type": "aicomp_sdk.agents.types.ToolCallDecision",
+    "instance": {
+      "call": null,
+      "assistant_message": "Contract preflight complete"
+    }
+  },
+  "union_isinstance": {
+    "supported": true,
+    "error": null,
+    "call_decision_result": true,
+    "completion_decision_result": true,
+    "interpretation": "Required when supported; informational when runtime union isinstance raises TypeError"
+  },
+  "checks": {
+    "agent_decision_runtime_representation_recorded": true,
+    "concrete_union_members_recorded": true,
+    "concrete_call_decision_type_resolved": true,
+    "concrete_completion_decision_type_resolved": true,
+    "tool_call_type_resolved": true,
+    "call_decision_constructed_outside_sandbox": true,
+    "completion_decision_constructed_outside_sandbox": true,
+    "isinstance_against_union_supported": true,
+    "call_decision_isinstance_union": true,
+    "completion_decision_isinstance_union": true
+  },
+  "next_gate": "Run preflight_2_sandbox only if status is PASS"
+}

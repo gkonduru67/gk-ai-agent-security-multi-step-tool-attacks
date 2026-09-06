@@ -1,0 +1,52 @@
+[
+  {
+    "event": "fs.read_invocation",
+    "layer": 2,
+    "tool_args": {
+      "path": "secret.txt"
+    },
+    "tool_name": "fs.read"
+  },
+  {
+    "event": "tool_result",
+    "layer": 3,
+    "result": {
+      "error": null,
+      "fields": [
+        "error",
+        "ok",
+        "output"
+      ],
+      "ok": true,
+      "output": "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6\nCONTROL_LINE=123456\n",
+      "raw_repr": "(True, 'CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6\\nCONTROL_LINE=123456\\n', None)",
+      "shape": "frozen_sdk_toolcallresult_3tuple"
+    },
+    "sources": [
+      "file"
+    ]
+  },
+  {
+    "constructor_signature": "(stage: 'HookStage', tool_name: 'str | None' = None, tool_args: 'dict[str, Any] | None' = None, tool_output: 'str | None' = None, guardrail_decision: 'Any | None' = None, trace: 'Any | None' = None, context: 'dict[str, Any]' = <factory>, metadata: 'dict[str, Any]' = <factory>, hook_state: 'dict[str, Any]' = <factory>, modified_args: 'dict[str, Any] | None' = None, modified_output: 'str | None' = None, injected_content: 'str | None' = None, should_block: 'bool' = False) -> None",
+    "event": "hook_context",
+    "layer": 4,
+    "stage": "HookStage.POST_TOOL_CALL",
+    "tool_args": {
+      "path": "secret.txt"
+    },
+    "tool_name": "fs.read",
+    "tool_output": "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6\nCONTROL_LINE=123456\n",
+    "trusted_context": {
+      "error": null,
+      "ok": true
+    }
+  },
+  {
+    "event": "hook_result",
+    "layer": 5,
+    "metadata": {
+      "successful_protected_read_recorded_v21": true
+    },
+    "should_block": null
+  }
+]

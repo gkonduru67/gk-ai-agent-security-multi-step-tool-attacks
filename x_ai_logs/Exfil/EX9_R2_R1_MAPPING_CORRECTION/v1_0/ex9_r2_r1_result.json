@@ -1,0 +1,189 @@
+{
+  "EX9_R2_parent_verified": true,
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 24,
+    "total": 24
+  },
+  "claim_boundary": {
+    "allowed": [
+      "corrected argument mapping to the authoritative acknowledge signature",
+      "post_hook_output type and source-body usage classification",
+      "tool_args and error-metadata disposition under the current transport interface",
+      "proposal_digest caller responsibility and handling context",
+      "implementation compatibility decision"
+    ],
+    "prohibited": [
+      "implementation creation",
+      "SDK source modification",
+      "runtime acknowledgement behavior",
+      "actual fs.read",
+      "Sandbox or Gym execution",
+      "HTTP sink",
+      "predicate or breach execution",
+      "model execution",
+      "protected-value lineage",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_SOURCE_AND_REQUIREMENTS_RECONCILIATION",
+  "correction": {
+    "corrected_destination_count": 6,
+    "error_metadata_disposition": "NO_SEPARATE_ERROR_PARAMETER;SUCCESS_FALSE_AND_POST_HOOK_OUTPUT_ARE_AVAILABLE",
+    "invalid_historical_destinations": [
+      "acknowledge.proposal_identity",
+      "acknowledge.raw_output",
+      "acknowledge.tool_args"
+    ],
+    "post_hook_output_schema": "OPAQUE_VALUE_PASSTHROUGH",
+    "proposal_digest_disposition": "CALLER_PROVIDED_PRECOMPUTED_TRUSTED_DIGEST",
+    "tool_args_disposition": "NOT_REQUIRED_BY_CURRENT_TRANSPORT_INTERFACE_OR_BODY"
+  },
+  "created_at_utc": "2026-08-21T20:55:33.075048+00:00",
+  "decision": "NEW_TRUSTED_HOOK_ADAPTER_REQUIRED_WITH_CURRENT_TRANSPORT",
+  "execution_boundaries": {
+    "EX9_R2_artifacts_modified": false,
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "Sandbox_interact_executed": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "http_sink_executed": false,
+    "implementation_created": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "source_modified": false,
+    "threads_executed": false
+  },
+  "freeze": {
+    "authoritative_acknowledge_signature": {
+      "keyword_only": [
+        {
+          "annotation": "str",
+          "name": "trace_identity"
+        },
+        {
+          "annotation": "str",
+          "name": "proposal_digest"
+        },
+        {
+          "annotation": "str",
+          "name": "tool_name"
+        },
+        {
+          "annotation": "bool",
+          "name": "success"
+        },
+        {
+          "annotation": "str",
+          "name": "canonical_source_path"
+        },
+        {
+          "annotation": "object",
+          "name": "post_hook_output"
+        }
+      ],
+      "positional": [],
+      "return_annotation": "dict[str, object]"
+    },
+    "corrected_mapping": [
+      {
+        "destination": "acknowledge.tool_name",
+        "destination_exists": true,
+        "source": "HookContext.tool_name",
+        "status": "DIRECT"
+      },
+      {
+        "destination": "acknowledge.post_hook_output",
+        "destination_exists": true,
+        "source": "HookContext.tool_output",
+        "status": "DIRECT_OPAQUE"
+      },
+      {
+        "destination": "acknowledge.success",
+        "destination_exists": true,
+        "source": "HookContext.context.ok",
+        "status": "CONTEXT_EXTRACTION"
+      },
+      {
+        "destination": "acknowledge.canonical_source_path",
+        "destination_exists": true,
+        "source": "trusted ToolEvent.source",
+        "status": "TRUSTED_ENRICHMENT_REQUIRED"
+      },
+      {
+        "destination": "acknowledge.trace_identity",
+        "destination_exists": true,
+        "source": "trusted trace identity",
+        "status": "TRUSTED_ENRICHMENT_REQUIRED"
+      },
+      {
+        "destination": "acknowledge.proposal_digest",
+        "destination_exists": true,
+        "source": "trusted proposal digest",
+        "status": "TRUSTED_DERIVATION_REQUIRED"
+      }
+    ],
+    "decision": "NEW_TRUSTED_HOOK_ADAPTER_REQUIRED_WITH_CURRENT_TRANSPORT",
+    "error_metadata_disposition": "NO_SEPARATE_ERROR_PARAMETER;SUCCESS_FALSE_AND_POST_HOOK_OUTPUT_ARE_AVAILABLE",
+    "freeze_id": "EX9.ACK.INTEGRATION.CORRECTED.MAPPING.REQUIREMENTS.V1",
+    "implementation_created": false,
+    "parent_freeze_id": "EX9.ACK.INTEGRATION.REQUIREMENTS.FEASIBILITY.V1",
+    "parent_mechanical_result": "38_OF_38_PRESERVED",
+    "post_hook_output": {
+      "annotation": "object",
+      "observed_content_access": {
+        "attributes": [],
+        "forwarded_calls": [
+          {
+            "call": "compute_raw_output_sha256_v1",
+            "expression": "compute_raw_output_sha256_v1(post_hook_output)",
+            "line": 109
+          }
+        ],
+        "subscript_keys": []
+      },
+      "schema_classification": "OPAQUE_VALUE_PASSTHROUGH"
+    },
+    "proposal_digest": {
+      "annotation": "str",
+      "disposition": "CALLER_PROVIDED_PRECOMPUTED_TRUSTED_DIGEST",
+      "sdk_reference_count": 10
+    },
+    "removed_historical_destinations": [
+      "acknowledge.proposal_identity",
+      "acknowledge.raw_output",
+      "acknowledge.tool_args"
+    ],
+    "runtime_behavior": "NOT_EVALUATED",
+    "status": "CORRECTED_REQUIREMENTS_FROZEN",
+    "tool_args_disposition": "NOT_REQUIRED_BY_CURRENT_TRANSPORT_INTERFACE_OR_BODY"
+  },
+  "next_gate": "ACKNOWLEDGEMENT_INTEGRATION_IMPLEMENTATION_AND_IDENTITY_FREEZE",
+  "parent_mechanical_result": {
+    "checks": "38_OF_38",
+    "preserved_immutable": true,
+    "semantic_mapping_correction_required": true
+  },
+  "readiness": {
+    "acknowledgement_integration_implementation_gate_eligible": true,
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_behavior": "NOT_EVALUATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "transport_mapping_requirements": "CORRECTED_AND_FROZEN"
+  },
+  "status": "EX9_R2_R1_TRANSPORT_ARGUMENT_MAPPING_AND_REQUIREMENTS_CORRECTION_COMPLETE_PASS",
+  "version": "EX9_R2_R1_TRANSPORT_ARGUMENT_MAPPING_AND_REQUIREMENTS_CORRECTION_v1.0"
+}

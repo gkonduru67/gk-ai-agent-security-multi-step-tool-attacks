@@ -1,0 +1,75 @@
+{
+  "construction": {
+    "Sandbox_modification": false,
+    "creates": [
+      "TrustedPostToolHookAdapterV1",
+      "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper",
+      "TrustedOutcomeTransportV1"
+    ],
+    "factory": "build_trusted_acknowledgement_integration_v1",
+    "frozen_source_modification": false,
+    "module": "aicomp_sdk/core/env/trusted_acknowledgement_integration_factory_v1.py",
+    "packaged_guardrail_modification": false,
+    "wires": "HookRegistry POST_TOOL_CALL -> hook adapter -> transport -> wrapper -> TrustedGuardrailContextAdapterV1_1"
+  },
+  "digest_retrieval": "NEW_NON_MUTATING_WRAPPER_STATE_PROVIDER_OR_PUBLIC_READ_ONLY_ADAPTER_VIEW_REQUIRED",
+  "lifecycle": {
+    "exception": "adapter exception propagates; no success record and no consumption",
+    "registration": "exactly one POST_TOOL_CALL callback; duplicate append registry requires local installation guard",
+    "replay": "reject reused proposal/outcome/acknowledgement/consumption identities",
+    "reset": "new hook adapter and wrapper clear only their owned mutable state; frozen adapter/transport reset remains separately owned",
+    "restore": "validate schema and restore deterministically without duplicate registration",
+    "retry": "failed V1.1 acknowledgement propagates; allocated outcome stays unconsumed; retry uses a new acknowledgement identity under reviewed sequence policy",
+    "snapshot": "hook adapter installation state + wrapper replay identities + trusted state-provider binding identity"
+  },
+  "outcome_identity_conversion": {
+    "kind": "outcome",
+    "required_fields": [
+      "trace_identity",
+      "sequence",
+      "kind"
+    ],
+    "schema_tag": "EX9.TRUSTED.EVENT.IDENTITY.V1",
+    "sequence_rule": "event sequence equals trusted_tool_outcome.completion_sequence",
+    "trace_rule": "event trace_identity equals acknowledgement trace_identity"
+  },
+  "proposed_artifacts": {
+    "factory": {
+      "file": "aicomp_sdk/core/env/trusted_acknowledgement_integration_factory_v1.py",
+      "function": "build_trusted_acknowledgement_integration_v1"
+    },
+    "hook_adapter": {
+      "class": "TrustedPostToolHookAdapterV1",
+      "file": "aicomp_sdk/core/env/trusted_post_tool_hook_adapter_v1.py"
+    },
+    "transport_wrapper": {
+      "class": "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper",
+      "file": "aicomp_sdk/core/env/trusted_outcome_transport_v1_to_context_adapter_v1_1_wrapper.py"
+    }
+  },
+  "wrapper_input_schema": {
+    "V1_1_call": {
+      "event_identity": "converted outcome_identity using frozen schema",
+      "proposal_digest": "exact incoming proposal_digest",
+      "tool_args_digest": "exact pending proposal digest from trusted state provider",
+      "tool_name": "exact incoming tool_name",
+      "trace_identity": "exact incoming trace_identity",
+      "trusted_tool_outcome": "validated incoming outcome mapping"
+    },
+    "incoming_positional_outcome": {
+      "required_fields": [
+        "proposal_digest",
+        "outcome_identity",
+        "trace_identity",
+        "tool_name",
+        "success",
+        "canonical_source_path",
+        "post_hook_output",
+        "raw_output_sha256",
+        "protected_value_sha256_or_bound_digest",
+        "completion_sequence"
+      ],
+      "type": "Mapping[str, Any]"
+    }
+  }
+}

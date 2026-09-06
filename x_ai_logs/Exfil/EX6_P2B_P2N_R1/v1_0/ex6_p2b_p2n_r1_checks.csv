@@ -1,0 +1,81 @@
+check_id,category,expected,observed,passed
+Q01,identity,5 designs,5,True
+Q02,identity,P2N-01;P2N-02;P2N-03;P2N-04;P2N-05,P2N-01;P2N-02;P2N-03;P2N-04;P2N-05,True
+Q03,identity,after_tool runtime caller;raw_output_sha256 producer;protected_value_sha256_or_bound_digest producer;runtime event-sequence allocator;canonical_source_path producer,after_tool runtime caller;raw_output_sha256 producer;protected_value_sha256_or_bound_digest producer;runtime event-sequence allocator;canonical_source_path producer,True
+P2N-01-proposed_host,contract_completeness,proposed_host nonempty,aicomp_sdk/core/env/sandbox.py::SandboxEnv.interact,True
+P2N-01-insertion_point,contract_completeness,insertion_point nonempty,"after POST_TOOL_CALL output is finalized; before serialization, recorded ToolEvent insertion, and runtime-history insertion",True
+P2N-01-inputs,contract_completeness,inputs nonempty,proposal_digest; outcome_event_identity; trace_identity; tool_name; tool_args_digest; trusted_tool_outcome,True
+P2N-01-outputs,contract_completeness,outputs nonempty,adapter acknowledgement or fail-closed exception; no source value export,True
+P2N-01-ordering,contract_completeness,ordering nonempty,PRE_TOOL_CALL -> guardrail/before_decide -> tool call -> POST_TOOL_CALL -> trusted metadata production -> after_tool -> serialization -> trace event -> runtime history,True
+P2N-01-failure_behavior,contract_completeness,failure_behavior nonempty,"if bridge metadata is absent, malformed, replayed, or rejected, do not claim protected-read recording; record an explicit host failure path without silently treating the outcome as trusted",True
+P2N-01-replay_behavior,contract_completeness,replay_behavior nonempty,one acknowledgement per pending proposal digest and outcome event identity,True
+P2N-01-snapshot_restore,contract_completeness,snapshot_restore nonempty,bridge sequence state and adapter state must snapshot/restore together,True
+P2N-01-feasibility,contract_completeness,feasibility nonempty,FEASIBLE_WITH_HOST_CHANGE_NOT_IMPLEMENTED,True
+P2N-01-notimpl,claim_boundary,feasibility contains NOT_IMPLEMENTED,FEASIBLE_WITH_HOST_CHANGE_NOT_IMPLEMENTED,True
+P2N-02-proposed_host,contract_completeness,proposed_host nonempty,aicomp_sdk/core/env/sandbox.py::SandboxEnv.interact,True
+P2N-02-insertion_point,contract_completeness,insertion_point nonempty,after POST_TOOL_CALL output finalization and before serialize_tool_output(output),True
+P2N-02-inputs,contract_completeness,inputs nonempty,post-hook-finalized output plus explicit type tag and canonical byte encoding,True
+P2N-02-outputs,contract_completeness,outputs nonempty,uppercase SHA-256 only,True
+P2N-02-ordering,contract_completeness,ordering nonempty,hash the authoritative post-hook-finalized value; do not hash serialized output_text unless separately named,True
+P2N-02-failure_behavior,contract_completeness,failure_behavior nonempty,unsupported/noncanonical output type blocks digest production and protected-read acknowledgement,True
+P2N-02-replay_behavior,contract_completeness,replay_behavior nonempty,same canonical value and type tag must reproduce the same digest,True
+P2N-02-snapshot_restore,contract_completeness,snapshot_restore nonempty,stateless computation; no mutable digest state,True
+P2N-02-feasibility,contract_completeness,feasibility nonempty,FEASIBLE_WITH_CANONICALIZATION_SPEC_NOT_IMPLEMENTED,True
+P2N-02-notimpl,claim_boundary,feasibility contains NOT_IMPLEMENTED,FEASIBLE_WITH_CANONICALIZATION_SPEC_NOT_IMPLEMENTED,True
+P2N-03-proposed_host,contract_completeness,proposed_host nonempty,new trusted host helper called only for successful qualifying fs.read outcomes,True
+P2N-03-insertion_point,contract_completeness,insertion_point nonempty,after canonical path and successful output are available; before after_tool,True
+P2N-03-inputs,contract_completeness,inputs nonempty,domain tag; trace identity; proposal digest; outcome event identity; canonical source path; raw_output_sha256,True
+P2N-03-outputs,contract_completeness,outputs nonempty,bound digest only; never raw protected value,True
+P2N-03-ordering,contract_completeness,ordering nonempty,"requires successful fs.read, protected-path classification, canonical source path, and raw-output digest",True
+P2N-03-failure_behavior,contract_completeness,failure_behavior nonempty,missing prerequisite prevents protected-value digest and protected-read record,True
+P2N-03-replay_behavior,contract_completeness,replay_behavior nonempty,bound digest includes event/proposal identity so cross-event reuse differs or is rejected,True
+P2N-03-snapshot_restore,contract_completeness,snapshot_restore nonempty,stateless digest computation; event allocator and pending proposal state remain snapshot-bound,True
+P2N-03-feasibility,contract_completeness,feasibility nonempty,FEASIBLE_AS_VALUE_FREE_BINDING_NOT_IMPLEMENTED,True
+P2N-03-notimpl,claim_boundary,feasibility contains NOT_IMPLEMENTED,FEASIBLE_AS_VALUE_FREE_BINDING_NOT_IMPLEMENTED,True
+P2N-04-proposed_host,contract_completeness,proposed_host nonempty,SandboxEnv trusted host state or dedicated trusted sequence component,True
+P2N-04-insertion_point,contract_completeness,insertion_point nonempty,allocate proposal identity before before_decide; allocate outcome identity immediately after finalized tool outcome and before after_tool,True
+P2N-04-inputs,contract_completeness,inputs nonempty,trace identity; event kind; monotonic counter,True
+P2N-04-outputs,contract_completeness,outputs nonempty,proposal/outcome event identity and completion_sequence equal to outcome event sequence,True
+P2N-04-ordering,contract_completeness,ordering nonempty,strictly monotonic per trace; no duplicate or rollback except through authenticated snapshot restore,True
+P2N-04-failure_behavior,contract_completeness,failure_behavior nonempty,"nonmonotonic, duplicate, wrong-kind, or cross-trace identity fails closed before inner guardrail/recording",True
+P2N-04-replay_behavior,contract_completeness,replay_behavior nonempty,consumed outcome identity cannot be reused,True
+P2N-04-snapshot_restore,contract_completeness,snapshot_restore nonempty,counter and consumed identities included in snapshot/restore/reset,True
+P2N-04-feasibility,contract_completeness,feasibility nonempty,FEASIBLE_WITH_TRUSTED_STATE_CHANGE_NOT_IMPLEMENTED,True
+P2N-04-notimpl,claim_boundary,feasibility contains NOT_IMPLEMENTED,FEASIBLE_WITH_TRUSTED_STATE_CHANGE_NOT_IMPLEMENTED,True
+P2N-05-proposed_host,contract_completeness,proposed_host nonempty,aicomp_sdk/core/tools/fs.py trusted result metadata or host-side resolver sharing the exact fs resolver contract,True
+P2N-05-insertion_point,contract_completeness,insertion_point nonempty,derive from the resolved sandbox path for a successful fs.read before after_tool,True
+P2N-05-inputs,contract_completeness,inputs nonempty,filesystem_root; requested path; resolved path,True
+P2N-05-outputs,contract_completeness,outputs nonempty,normalized workspace-relative POSIX path with a single leading slash,True
+P2N-05-ordering,contract_completeness,ordering nonempty,derive after path-escape validation and before protected-path classification/after_tool,True
+P2N-05-failure_behavior,contract_completeness,failure_behavior nonempty,"path outside root, non-relative conversion, ambiguity, or normalization mismatch prevents trusted acknowledgement",True
+P2N-05-replay_behavior,contract_completeness,replay_behavior nonempty,same resolved sandbox object maps deterministically; requested aliases converge to one canonical path,True
+P2N-05-snapshot_restore,contract_completeness,snapshot_restore nonempty,stateless derivation from restored filesystem root and request,True
+P2N-05-feasibility,contract_completeness,feasibility nonempty,FEASIBLE_WITH_SINGLE_AUTHORITATIVE_RESOLVER_NOT_IMPLEMENTED,True
+P2N-05-notimpl,claim_boundary,feasibility contains NOT_IMPLEMENTED,FEASIBLE_WITH_SINGLE_AUTHORITATIVE_RESOLVER_NOT_IMPLEMENTED,True
+Q10,ordering,declared bridge order is complete and monotonic,PRE_TOOL_CALL -> guardrail/before_decide -> tool call -> POST_TOOL_CALL -> trusted metadata production -> after_tool -> serialization -> trace event -> runtime history,True
+Q11,fail_closed,absent/malformed/replayed/rejected handled,"if bridge metadata is absent, malformed, replayed, or rejected, do not claim protected-read recording; record an explicit host failure path without silently treating the outcome as trusted",True
+Q12,replay,single acknowledgement,one acknowledgement per pending proposal digest and outcome event identity,True
+Q13,snapshot,bridge and adapter state snapshot together,bridge sequence state and adapter state must snapshot/restore together,True
+Q20,digest_representation,post-hook value selected; serialized value excluded,post-hook-finalized output plus explicit type tag and canonical byte encoding | hash the authoritative post-hook-finalized value; do not hash serialized output_text unless separately named,True
+Q21,digest_canonicalization,type tag plus canonical bytes,post-hook-finalized output plus explicit type tag and canonical byte encoding,True
+Q22,digest_fail_closed,unsupported type blocks digest,unsupported/noncanonical output type blocks digest production and protected-read acknowledgement,True
+Q30,provenance,all bound identity inputs,domain tag; trace identity; proposal digest; outcome event identity; canonical source path; raw_output_sha256,True
+Q31,value_free,raw protected value not exported,bound digest only; never raw protected value,True
+Q32,prerequisites,all lineage prerequisites,"requires successful fs.read, protected-path classification, canonical source path, and raw-output digest",True
+Q40,sequence,proposal/outcome allocation points,allocate proposal identity before before_decide; allocate outcome identity immediately after finalized tool outcome and before after_tool,True
+Q41,sequence,strict monotonicity per trace,strictly monotonic per trace; no duplicate or rollback except through authenticated snapshot restore,True
+Q42,replay,consumed outcome cannot be reused,consumed outcome identity cannot be reused,True
+Q43,snapshot,counter and consumed identities snapshot/restore/reset,counter and consumed identities included in snapshot/restore/reset,True
+Q50,path,resolved sandbox path is authority,derive from the resolved sandbox path for a successful fs.read before after_tool,True
+Q51,path,canonical output form,normalized workspace-relative POSIX path with a single leading slash,True
+Q52,path_fail_closed,escape/ambiguity/mismatch fail closed,"path outside root, non-relative conversion, ambiguity, or normalization mismatch prevents trusted acknowledgement",True
+Q60,schema,canonical_source_path;completion_sequence;protected_value_sha256_or_bound_digest;raw_output_sha256;success,canonical_source_path;completion_sequence;protected_value_sha256_or_bound_digest;raw_output_sha256;success,True
+Q61,schema,event kinds proposal|outcome,"{'event_kind': 'proposal|outcome', 'event_sequence': 'strictly monotonic int', 'trace_identity': 'nonempty str'}",True
+Q62,schema,value-free evidence policy,raw protected value and previews prohibited in evidence artifacts,True
+Q70,traceability,AZ-001;AZ-002;AZ-003;AZ-004;AZ-005;AZ-006;AZ-007,AZ-001;AZ-002;AZ-003;AZ-004;AZ-005;AZ-006;AZ-007,True
+Q71,traceability,PV-002;PV-003;PV-004,PV-002;PV-003;PV-004,True
+Q72,traceability,DESIGNED_NOT_IMPLEMENTED only,DESIGNED_NOT_IMPLEMENTED,True
+Q73,traceability,known design IDs only,P2N-01;P2N-02;P2N-03;P2N-04;P2N-05,True
+Q80,claim_boundary,all required prohibited claims,actual fs.read behavior;authorization transport correctness;guardrail effectiveness;implementation existence;protected-value lineage;real exfiltration prevention;runtime wiring;secret capture;source retrieval success,True
+Q81,feasibility,"feasible design, no implementation/read authorization","{'blocking_reason': 'five producer contracts exist only as design specifications', 'controlled_actual_fs_read_eligible': False, 'immutable_baseline_policy': 'packaged OptimalGuardrail remains unmodified', 'implementation_authorized': False, 'implementation_files_proposed': ['aicomp_sdk/core/env/sandbox.py', 'aicomp_sdk/core/tools/fs.py', 'new trusted helper module name NOT_ESTABLISHED'], 'overall': 'DESIGN_FEASIBLE_BUT_NOT_IMPLEMENTED'}",True
+Q82,baseline,packaged baseline unmodified,packaged OptimalGuardrail remains unmodified,True

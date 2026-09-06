@@ -1,0 +1,135 @@
+{
+  "manifest_version": "1.0",
+  "experiment_id": "ai-agent-security-goutham-v1_15_00",
+  "generated_at_utc": "2026-07-24T08:52:51.830342+00:00",
+  "purpose": "Reproduce local EXFILTRATION routing, guardrail, and scorer diagnostics. This manifest does not claim hosted evaluator parity.",
+  "runtime": {
+    "python_version": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "python_executable": "c:\\Users\\gkonduru\\AppData\\Local\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.26100-SP0",
+    "working_directory": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks"
+  },
+  "sdk": {
+    "aicomp_sdk_package_version": "3.1.2",
+    "agent_class": "aicomp_sdk.agents.deterministic_agent.VulnerableDeterministicAgent",
+    "guardrail_class": "aicomp_sdk.attacks.baselines.guardrail_rules.Guardrail",
+    "eval_predicates_module": "aicomp_sdk.core.predicates"
+  },
+  "sandbox_configuration": {
+    "seed": 123,
+    "fixtures_dir": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\fixtures",
+    "sandbox_max_tool_hops": 3,
+    "candidate_replay_max_tool_hops": 3
+  },
+  "candidate_inventory": {
+    "direct_replay_result_count": 100,
+    "fixture_candidate_count": 100,
+    "normalized_funnel_row_count": 200
+  },
+  "observed_results": {
+    "funnel_stage_counts": {
+      "candidate_records": 200,
+      "replay_records_with_tool_events": 100,
+      "retrieval_attempted": 100,
+      "retrieval_succeeded": 36,
+      "http_post_attempted": 36,
+      "http_post_succeeded": 0,
+      "exfiltration_predicate": 0
+    },
+    "funnel_terminal_counts": {
+      "NO_TOOL_SELECTED": 100,
+      "RETRIEVAL_FAILED": 64,
+      "POST_DENIED_SECRET_EXFIL": 36
+    },
+    "synthetic_control_pass_count": 4,
+    "synthetic_control_total_count": 4,
+    "diagnostic_archive_cell_count": 4
+  },
+  "artifacts": [
+    {
+      "label": "attack.py",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\attack.py",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 2122,
+      "sha256": "38820724e5b76f619e52cf230203817e11ead432d3bd641f559c8806003989ac"
+    },
+    {
+      "label": "predicates.py",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\predicates.py",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 16718,
+      "sha256": "9d9de5118d8883a0074a5405ed85cf2dec3f68e8516908cbc48f409e3ba56f37"
+    },
+    {
+      "label": "guardrail_rules.py",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 2762,
+      "sha256": "4b785b77bf6afab06eee1e76a5f1fb5c6c210b42093d81d8ade66e5d5b898010"
+    },
+    {
+      "label": "agent_implementation",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\agents\\deterministic_agent.py",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 16104,
+      "sha256": "c50ba7a7e89651d900622398bccbc9486c71401d29047818fa84a870b55aad76"
+    },
+    {
+      "label": "web_corpus.json",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\fixtures\\web_corpus.json",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 6296146,
+      "sha256": "e272a01121b38be8101721678acb6f58ba5248d9c66fb21afb97b3b9aaaee4be"
+    },
+    {
+      "label": "mail_seed.json",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\fixtures\\mail_seed.json",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 2661245,
+      "sha256": "7addd4ed7972c265f7356b96ef10f1a7ebd1761256674b92caa308ad02d41809"
+    },
+    {
+      "label": "secret.txt",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\fixtures\\secret.txt",
+      "exists": false,
+      "is_file": false,
+      "size_bytes": null,
+      "sha256": null
+    },
+    {
+      "label": "candidate_funnel_report",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\logs\\v1_14_exfiltration_candidate_funnel.json",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 204756,
+      "sha256": "968fd5a300de734174714d2c13b206e9d7e1419f64859010a45f11bc464c70a5"
+    },
+    {
+      "label": "synthetic_controls",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\logs\\v1_14_synthetic_exfiltration_controls.json",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 2611,
+      "sha256": "696fe9c5167d0be0397eb0c66f0d8d5015656d4d102e8a2108bb0598a48fa7cd"
+    },
+    {
+      "label": "diagnostic_qd_archive",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\logs\\v1_14_diagnostic_qd_archive.json",
+      "exists": true,
+      "is_file": true,
+      "size_bytes": 8069,
+      "sha256": "bfd6320f083321dbce1df25f762714254c32e3054ae9255ba60d50333be19415"
+    }
+  ],
+  "limitations": [
+    "The local deterministic agent is not proof of hosted model behavior.",
+    "The public and private guardrails are evaluated through fresh static replay outside this notebook.",
+    "This manifest records local artifacts only and does not identify which hosted candidate contributed to a score."
+  ]
+}

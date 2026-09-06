@@ -1,0 +1,9 @@
+id,statement,status
+PC-001,Create dedicated TrustedProposalCaptureAdapterV1 in aicomp_sdk/core/env/trusted_proposal_capture_adapter_v1.py; do not merge proposal-time and post-tool responsibilities.,REQUIRED
+PC-002,Capture adapter delegates to authoritative V1.1 before_decide exactly once and returns its result unmodified after successful provider append.,REQUIRED
+PC-003,Map all five provider record fields from the exact authoritative before_decide result; never reconstruct from post-tool data.,REQUIRED
+PC-004,Call pending_proposal_view.append(record) before any tool execution; append failure propagates and fails closed.,REQUIRED
+PC-005,Keep capture adapter and post-tool hook adapter as distinct classes and files.,REQUIRED
+PC-006,Factory binds the authoritative guardrail entry to capture_adapter.before_decide and binds all downstream dependencies exactly as frozen.,REQUIRED
+PC-007,"Final planned inventory is five files, five new classes, and one factory function.",REQUIRED
+PC-008,"Implementation identity freeze remains static and executes no SDK modules, Sandbox, Gym, tools, fs.read, HTTP, predicates, breach, models, or threads.",REQUIRED

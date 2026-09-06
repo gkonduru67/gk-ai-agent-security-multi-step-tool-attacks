@@ -1,0 +1,56 @@
+{
+  "M0_runner_development_authorized": false,
+  "SDK_imported": false,
+  "Sandbox_constructed": false,
+  "attack_optimization_authorized": false,
+  "claim_boundaries": {
+    "Sandbox": "NOT_CONSTRUCTED",
+    "fresh_model_generation": "NOT_PERFORMED",
+    "parent_response_replay": "NOT_PERFORMED",
+    "source_contract_only": "INSPECTED",
+    "tool_execution": "NONE"
+  },
+  "classification": "EX6F_1D_BYPASSED_REQUIRED_PARSER_WRAPPER_LOW_LEVEL_NULL_IS_CONTRACT_POSSIBLE",
+  "execution_type": "READ_ONLY_LINE_BOUND_PARSER_CONTRACT_INSPECTION",
+  "findings": {
+    "EX6F_1D_wrong_abstraction_layer": true,
+    "GPTOSSAgent_next_action": {
+      "delegates_to_HFChatTemplateAgent": true
+    },
+    "GptOssHarmonyResponseParser_parse": {
+      "calls_low_level_helper": true,
+      "calls_normalize_parsed_response": true,
+      "expects_HFGenerationResponse": true,
+      "uses_response_text": true
+    },
+    "HFChatTemplateAgent_next_action": {
+      "calls_normalize_parsed_response": false
+    },
+    "HFChatTemplateAgent_parse_response": {
+      "calls_normalize_parsed_response": true,
+      "expects_HFGenerationResponse_or_text": true
+    },
+    "low_level_parser": {
+      "constructs_FinalResponseDecision": false,
+      "constructs_ToolCallDecision": false,
+      "expects": "dict[str, Any] | None",
+      "explicit_null_return_possible": true
+    },
+    "normalize_parsed_response": {
+      "constructs_FinalResponseDecision": true,
+      "constructs_ToolCallDecision": true
+    },
+    "reasoning_content_required_in_inspected_bodies": false
+  },
+  "hardened_policy_implementation_authorized": false,
+  "harness_trick": "NOT_DEMONSTRATED",
+  "model_called": false,
+  "parent_generation_evidence_preserved": true,
+  "parent_result_classification": "TEXT_ONLY_PARSE_NON_FINAL_DECISION",
+  "parser_replay_runner_development_authorized": true,
+  "schema": "EX6F_1D_A_V6_66",
+  "security_finding": "NOT_ESTABLISHED",
+  "server_contacted": false,
+  "tool_execution": false,
+  "version": "EX6F_1D_A_GPT_OSS_PARSER_CONTRACT_RECONCILIATION_v6.66"
+}

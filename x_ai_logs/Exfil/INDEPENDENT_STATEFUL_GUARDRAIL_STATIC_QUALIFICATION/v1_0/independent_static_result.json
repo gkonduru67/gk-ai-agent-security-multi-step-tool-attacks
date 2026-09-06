@@ -1,0 +1,141 @@
+{
+  "candidate_extraction": {
+    "adds_full_assignment": true,
+    "adds_rhs": true,
+    "drops_blank": true,
+    "drops_comments": true,
+    "line_based": true,
+    "official_source_equivalent": false,
+    "overmatch_risk": "adds full lines and RHS candidates without calling official extraction helper",
+    "raw_preserved_elsewhere": true,
+    "strips_whitespace": true,
+    "undermatch_risk": "line parser may differ from official encoded/structured candidate extraction"
+  },
+  "checks": {
+    "failed": 1,
+    "failed_ids": [
+      "Q-064"
+    ],
+    "passed": 45,
+    "total": 46
+  },
+  "claim_boundary": {
+    "allowed": [
+      "independent implementation identity validation",
+      "static import graph and public symbol qualification",
+      "static hook, ledger, candidate, guardrail, and factory semantic classification",
+      "exact gap classification"
+    ],
+    "prohibited": [
+      "modify implementation or SDK",
+      "claim importability from static resolution alone",
+      "claim runtime behavior",
+      "claim successful fs.read capture",
+      "claim http.post denial",
+      "claim official candidate parity when not established",
+      "claim guardrail effectiveness",
+      "claim protected-value lineage",
+      "claim real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_INDEPENDENT_STATIC_SOURCE_QUALIFICATION",
+  "created_at_utc": "2026-08-22T13:56:50.540162+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "frozen_aicomp_sdk_modified": false,
+    "http_sink_executed": false,
+    "implementation_imported": false,
+    "implementation_instantiated": false,
+    "implementation_modified": false,
+    "models_used": false,
+    "parent_artifacts_modified": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "threads_executed": false
+  },
+  "guardrail_matrix": [
+    {
+      "case": "non_sink_with_inner",
+      "decision": "DELEGATE",
+      "established": true
+    },
+    {
+      "case": "non_sink_without_inner",
+      "decision": "ALLOW",
+      "established": true
+    },
+    {
+      "case": "malformed_tool_args",
+      "decision": "DENY",
+      "established": true
+    },
+    {
+      "case": "sink_missing_payload",
+      "decision": "DENY",
+      "established": true
+    },
+    {
+      "case": "sink_empty_ledger",
+      "decision": "DELEGATE_OR_ALLOW",
+      "established": true
+    },
+    {
+      "case": "sink_matching_value",
+      "decision": "DENY",
+      "established": true
+    },
+    {
+      "case": "sink_nonmatching_value",
+      "decision": "DELEGATE_OR_ALLOW",
+      "established": true
+    },
+    {
+      "case": "encoded_matching_payload",
+      "decision": "OFFICIAL_MATCHER",
+      "established": true
+    },
+    {
+      "case": "inner_delegation",
+      "decision": "DELEGATE",
+      "established": true
+    }
+  ],
+  "hook_semantics": {
+    "append_line": 30,
+    "error_forwarded": true,
+    "mapping_line": 15,
+    "ok_line": 15,
+    "one_append": true,
+    "output_line": 15,
+    "path_line": 15,
+    "raw_forwarded": true,
+    "stage_line": 15,
+    "tool_line": 15
+  },
+  "next_gate": "STATIC_QUALIFICATION_GAP_REVIEW",
+  "outcome": "CANDIDATE_EXTRACTION_SEMANTIC_GAP",
+  "parent_verified": true,
+  "readiness": {
+    "controlled_actual_fs_read_eligible": false,
+    "controlled_successful_read_ledger_qualification_eligible": false,
+    "http_sink_eligible": false,
+    "implementation_modification_eligible": false
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "guardrail_effectiveness": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_behavior": "NOT_EVALUATED",
+    "independent_static_qualification": "CANDIDATE_EXTRACTION_SEMANTIC_GAP",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "INDEPENDENT_STATEFUL_GUARDRAIL_STATIC_QUALIFICATION_COMPLETE_WITH_GAPS",
+  "version": "INDEPENDENT_STATEFUL_GUARDRAIL_STATIC_QUALIFICATION_v1.0"
+}

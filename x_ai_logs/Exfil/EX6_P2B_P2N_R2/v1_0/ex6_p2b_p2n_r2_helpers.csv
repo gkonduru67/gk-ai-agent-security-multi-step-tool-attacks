@@ -1,0 +1,6 @@
+helper_id,helper_name,proposed_file,inputs,outputs,failure,status
+HLP-001,canonicalize_post_hook_output_v1,aicomp_sdk/core/env/trusted_outcome_transport_v1.py,post-hook-finalized output; explicit type tag,canonical bytes,unsupported/noncanonical type raises fail-closed error,PROPOSED_NOT_IMPLEMENTED
+HLP-002,compute_raw_output_sha256_v1,aicomp_sdk/core/env/trusted_outcome_transport_v1.py,canonical bytes,64 uppercase hex SHA-256,no digest on canonicalization failure,PROPOSED_NOT_IMPLEMENTED
+HLP-003,compute_protected_value_bound_digest_v1,aicomp_sdk/core/env/trusted_outcome_transport_v1.py,domain tag; trace; proposal digest; outcome identity; canonical path; raw digest,64 uppercase hex bound digest,missing prerequisite blocks digest and acknowledgement,PROPOSED_NOT_IMPLEMENTED
+HLP-004,canonical_source_path_v1,aicomp_sdk/core/tools/fs_trusted_result_v1.py,filesystem root; requested path; resolved path,workspace-relative POSIX path with one leading slash,"outside root, ambiguity, or normalization mismatch fails closed",PROPOSED_NOT_IMPLEMENTED
+HLP-005,snapshot_trusted_transport_state_v1,aicomp_sdk/core/env/trusted_outcome_transport_v1.py,sequence and consumed-identity state,deterministic JSON-compatible snapshot,unrecognized snapshot schema rejected,PROPOSED_NOT_IMPLEMENTED

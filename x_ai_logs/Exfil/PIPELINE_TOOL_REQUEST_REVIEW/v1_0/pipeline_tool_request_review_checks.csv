@@ -1,0 +1,13 @@
+check_id,category,passed,observed,expected,failure_layer
+PT-001,parent_capture,True,"{""artifact"": ""raw_response_capture_result.json"", ""path"": ""C:\\x_ai_logs\\Exfil\\RAW_RESPONSE_CAPTURE_PROBE\\v1_0\\raw_response_capture_result.json"", ""size_bytes"": 3674, ""sha256"": ""3F055F4CE9B51B5006D9508CD51F1A5BDD763DEA64DA37EA09537816EA09B014""}",{'expected': 'capture result sha (if provided)'},FIXTURE
+PT-002,file_analyzed,True,"{""file"": ""benign_pipeline_EX_v6.py"", ""builds_tools_array"": true, ""posts_chat_completions"": true, ""uses_chat_template"": true}",file analyzed,ADAPTER_PARSE
+PT-003,file_analyzed,True,"{""file"": ""benign_pipeline_v6.py"", ""builds_tools_array"": false, ""posts_chat_completions"": true, ""uses_chat_template"": true}",file analyzed,ADAPTER_PARSE
+PT-004,file_analyzed,True,"{""file"": ""benign_pipeline_EX_v6.py"", ""builds_tools_array"": true, ""posts_chat_completions"": true, ""uses_chat_template"": true}",file analyzed,ADAPTER_PARSE
+PT-005,file_analyzed,True,"{""file"": ""gpt_oss_agent.py"", ""builds_tools_array"": false, ""posts_chat_completions"": false, ""uses_chat_template"": true}",file analyzed,ADAPTER_PARSE
+PT-006,file_analyzed,True,"{""file"": ""types.py"", ""builds_tools_array"": false, ""posts_chat_completions"": false, ""uses_chat_template"": true}",file analyzed,ADAPTER_PARSE
+PT-007,file_analyzed,True,"{""file"": ""tool_specs.py"", ""builds_tools_array"": false, ""posts_chat_completions"": false, ""uses_chat_template"": false}",file analyzed,ADAPTER_PARSE
+PT-008,file_analyzed,True,"{""file"": ""factory.py"", ""builds_tools_array"": false, ""posts_chat_completions"": false, ""uses_chat_template"": false}",file analyzed,ADAPTER_PARSE
+PT-009,file_analyzed,True,"{""file"": ""protocol.py"", ""builds_tools_array"": false, ""posts_chat_completions"": false, ""uses_chat_template"": false}",file analyzed,ADAPTER_PARSE
+PT-010,file_analyzed,True,"{""file"": ""types.py"", ""builds_tools_array"": false, ""posts_chat_completions"": false, ""uses_chat_template"": false}",file analyzed,ADAPTER_PARSE
+PT-011,tools_advertising_present,True,"{""any_tools_array"": true, ""any_chat_completions"": true, ""any_chat_template"": true, ""request_builder_file"": ""benign_pipeline_EX_v6.py""}",diagnosis recorded (tools array vs chat template),ROUTING
+PT-012,read_only_scope,True,"{""model_executed"": false, ""sandbox_instantiated"": false, ""baseline_modified"": false, ""attack_optimization"": false, ""request_sent"": false, ""read_only"": true, ""files_read"": 9}",source inspection only; no model/sandbox/request,SCOPE_VIOLATION

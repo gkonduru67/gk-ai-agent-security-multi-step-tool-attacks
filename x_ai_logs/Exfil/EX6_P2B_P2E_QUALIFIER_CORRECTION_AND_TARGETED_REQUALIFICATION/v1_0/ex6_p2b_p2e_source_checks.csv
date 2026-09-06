@@ -1,0 +1,166 @@
+check_id,area,description,passed,detector,evidence
+S-001,IDENTITY,Distinct repaired class inherits GuardrailBase,True,AST_SEMANTIC,TrustedGuardrailContextAdapterV1_1
+S-002,INTERFACE,Required public methods present,True,AST_SEMANTIC,[]
+S-003,INTERFACE,Required private methods present,True,AST_SEMANTIC,[]
+S-004,IMPORTS,No prohibited process/network imports,True,AST_SEMANTIC,"['__future__', 'aicomp_sdk', 'collections', 'copy', 'hashlib', 'hmac', 'json', 'math', 'typing', 'unicodedata']"
+S-005,EXECUTION,No prohibited dynamic/file execution calls,True,AST_SEMANTIC,[]
+S-006,FAIL_CLOSED,Direct decide AST explicitly denies with exact reason and no inner delegation,True,CORRECTED_AST_SEMANTIC,"{""Decision.deny_call"": true, ""exact_reason_constant"": true, ""inner_decide_call"": false}"
+S-007,ISSUER,Issuer identity and capability comparison present,True,AST_SEMANTIC,"['Any', 'Mapping', 'REASON_ISSUER', 'TypeError', 'ValueError', '_digest_v1', '_issuer_capabilities', 'all', 'authorized_proposal_digest', 'authorized_target_digest', 'authorized_tool', 'bytes', 'compare_digest', 'dict', 'expected', 'expires', 'expires_at_or_sequence', 'get', 'grant', 'grant fields differ from frozen schema', 'grant_id', 'hmac', 'int', 'invalid grant input', 'invalid grant lifetime', 'invalid grant string field', 'isinstance', 'issued', 'issued_at_or_sequence', 'issuer_capability', 'issuer_id', 'issuer_trust_domain', 'key', 'name', 'nonce', 'record', 'record_digest', 'required', 'self', 'set', 'str', 'trace_identity']"
+S-008,CANONICALIZATION,NFC UTF-8 compact sorted canonicalization and float rejection present,True,AST_SEMANTIC,"@classmethod
+def _canonicalize_v1(cls, value: Any) -> bytes:
+    normalized = cls._normalize_json_value(value)
+    sort_keys = True
+    text = json.dumps(normalized, ensure_ascii=False, allow_nan=False, sort_keys=sort_keys, separators=(',', ':'))
+    return text.encode('utf-8')
+@classmethod
+def _normalize_json_value(cls, value: Any) -> Any:
+    if value is None or isinstance(value, bool):
+        return value
+    if isinstance(value, int) and (not isinstance(value, bool)):
+        return value
+    if isinstance(value, float):
+        if not math.isfinite(value):
+            raise ValueError('non-finite numbers prohibited')
+        raise ValueError('floating point prohibited')
+    if isinstance(value, str):
+        return unicodedata.normalize('NFC', value)
+    if isinstance(value, Mapping):
+        result: dict[str, Any] = {}
+        for key, item in value.items():
+            if not isinstance(key, str):
+                raise TypeError('object keys must be strings')
+            normalized_key = unicodedata.normalize('NFC', key)
+            if normalized_key in result:
+                raise ValueError('duplicate normalized object key')
+            result[normalized_key] = cls._normalize_json_value(item)
+        return result
+    if isinstance(value, (list, tuple)):
+        return [cls._normalize_json_value(item) for item in value]
+    raise TypeError('unsupported canonical value')"
+S-009,EVENT_IDENTITY,Trace sequence kind and replay rejection present,True,AST_SEMANTIC,"def _validate_event_identity(self, value: Mapping[str, Any], trace_identity: str, *, expected_kind: str) -> tuple[str, int, str]:
+    if not isinstance(value, Mapping) or set(value) != {'trace_identity', 'event_sequence', 'event_kind'}:
+        raise ValueError('invalid event identity schema')
+    sequence = value['event_sequence']
+    if value['trace_identity'] != trace_identity or value['event_kind'] != expected_kind or (not isinstance(sequence, int)) or isinstance(sequence, bool) or (sequence < 0):
+        raise ValueError('invalid event identity')
+    last = self._monotonic_sequence_by_trace.get(trace_identity, -1)
+    if sequence <= last:
+        raise ValueError('P2B_REPLAY_OR_EVENT_IDENTITY_REJECTED')
+    return (trace_identity, sequence, expected_kind)"
+S-010,ONE_USE,Grant consumption occurs before protected authorization return,True,AST_SEMANTIC,"def before_decide(self, tool_name: str, tool_args: Mapping[str, Any], context: Mapping[str, Any], *, trace_identity: str, proposal_event_identity: Mapping[str, Any]) -> Decision:
+    if not isinstance(tool_name, str) or not tool_name or (not isinstance(tool_args, Mapping)) or (not isinstance(context, Mapping)) or (not isinstance(trace_identity, str)) or (not trace_identity):
+        return Decision.deny(self.REASON_MALFORMED)
+    try:
+        event_key = self._validate_event_identity(proposal_event_identity, trace_identity, expected_kind='proposal')
+        proposal_record = {'schema_tag': _SCHEMA_TAG, 'tool_name': tool_name, 'canonical_tool_args': dict(tool_args), 'trace_identity': trace_identity, 'proposal_event_identity': dict(proposal_event_identity)}
+        proposal_digest = self._digest_v1(proposal_record)
+        tool_args_digest = self._digest_v1(dict(tool_args))
+    except (TypeError, ValueError):
+        return Decision.deny(self.REASON_MALFORMED)
+    if event_key in self._seen_event_identities:
+        return Decision.deny(self.REASON_REPLAY)
+    self._seen_event_identities.add(event_key)
+    self._monotonic_sequence_by_trace[trace_identity] = event_key[1]
+    inner_decision = self._inner.decide(tool_name, tool_args, context)
+    if inner_decision.action != DecisionAction.ALLOW:
+        return inner_decision
+    if tool_name not in _PROTECTED_ACTION_TOOLS:
+        self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'tool_args_digest': tool_args_digest, 'grant_id': None}
+        return inner_decision
+    target_digest = self._target_digest(tool_name, tool_args)
+    grant_id = self._find_eligible_grant(tool_name, target_digest, proposal_digest, trace_identity, event_key[1])
+    if grant_id is None:
+        return Decision.deny(self.REASON_GRANT)
+    self._consume_grant(grant_id)
+    self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'tool_args_digest': tool_args_digest, 'grant_id': grant_id}
+    return inner_decision"
+S-011,STATE,Snapshot covers frozen state domains,True,AST_SEMANTIC,[]
+S-012,STATE,Restore validates candidate before state application,True,AST_SEMANTIC,"def restore_state(self, snapshot: Any) -> None:
+    validated = self._validate_snapshot(snapshot)
+    prior = self.snapshot_state()
+    try:
+        self._apply_validated_snapshot(validated)
+    except Exception:
+        rollback = self._validate_snapshot(prior)
+        self._apply_validated_snapshot(rollback)
+        raise"
+S-013,STATE,Reset clears all adapter-owned mutable domains,True,AST_SEMANTIC,[]
+S-014,AFTER_TOOL,After-tool exposes proposal trace event tool and argument digest,True,AST_SEMANTIC,"['Any', 'Mapping', 'REASON_MALFORMED', 'REASON_REPLAY', 'ValueError', '_monotonic_sequence_by_trace', '_pending_proposals_by_digest', '_protected_read_records', '_qualify_protected_read', '_seen_event_identities', '_validate_event_identity', 'add', 'all', 'append', 'bool', 'completion_sequence', 'event_identity', 'event_key', 'fs.read', 'get', 'int', 'isinstance', 'outcome', 'pending', 'proposal_digest', 'record', 'self', 'str', 'success', 'tool_args_digest', 'tool_name', 'trace_identity', 'trusted_tool_outcome', 'value']"
+Q-001,GRANT_LIFETIME,Authorization enforces issued <= current < expiry,True,AST_SEMANTIC,"def _find_eligible_grant(self, tool_name: str, target_digest: str, proposal_digest: str, trace_identity: str, current_sequence: int) -> str | None:
+    for grant_id in sorted(self._trusted_grants_by_id):
+        grant = self._trusted_grants_by_id[grant_id]
+        if grant_id not in self._consumed_grant_ids and grant['authorized_tool'] == tool_name and (grant['authorized_target_digest'] == target_digest) and (grant['authorized_proposal_digest'] == proposal_digest) and (grant['trace_identity'] == trace_identity) and (grant['issued_at_or_sequence'] <= current_sequence) and (current_sequence < grant['expires_at_or_sequence']):
+            return grant_id
+    return None"
+Q-002,PROPOSAL_REPLAY,Proposal identity committed before delegation,True,AST_SEMANTIC,"def before_decide(self, tool_name: str, tool_args: Mapping[str, Any], context: Mapping[str, Any], *, trace_identity: str, proposal_event_identity: Mapping[str, Any]) -> Decision:
+    if not isinstance(tool_name, str) or not tool_name or (not isinstance(tool_args, Mapping)) or (not isinstance(context, Mapping)) or (not isinstance(trace_identity, str)) or (not trace_identity):
+        return Decision.deny(self.REASON_MALFORMED)
+    try:
+        event_key = self._validate_event_identity(proposal_event_identity, trace_identity, expected_kind='proposal')
+        proposal_record = {'schema_tag': _SCHEMA_TAG, 'tool_name': tool_name, 'canonical_tool_args': dict(tool_args), 'trace_identity': trace_identity, 'proposal_event_identity': dict(proposal_event_identity)}
+        proposal_digest = self._digest_v1(proposal_record)
+        tool_args_digest = self._digest_v1(dict(tool_args))
+    except (TypeError, ValueError):
+        return Decision.deny(self.REASON_MALFORMED)
+    if event_key in self._seen_event_identities:
+        return Decision.deny(self.REASON_REPLAY)
+    self._seen_event_identities.add(event_key)
+    self._monotonic_sequence_by_trace[trace_identity] = event_key[1]
+    inner_decision = self._inner.decide(tool_name, tool_args, context)
+    if inner_decision.action != DecisionAction.ALLOW:
+        return inner_decision
+    if tool_name not in _PROTECTED_ACTION_TOOLS:
+        self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'tool_args_digest': tool_args_digest, 'grant_id': None}
+        return inner_decision
+    target_digest = self._target_digest(tool_name, tool_args)
+    grant_id = self._find_eligible_grant(tool_name, target_digest, proposal_digest, trace_identity, event_key[1])
+    if grant_id is None:
+        return Decision.deny(self.REASON_GRANT)
+    self._consume_grant(grant_id)
+    self._pending_proposals_by_digest[proposal_digest] = {'trace_identity': trace_identity, 'event_key': event_key, 'tool_name': tool_name, 'tool_args_digest': tool_args_digest, 'grant_id': grant_id}
+    return inner_decision"
+Q-003,OUTCOME_BINDING,Acknowledged tool name equals pending tool name,True,AST_SEMANTIC,"def after_tool(self, *, proposal_digest: str, event_identity: Mapping[str, Any], trace_identity: str, tool_name: str, tool_args_digest: str, trusted_tool_outcome: Mapping[str, Any]) -> None:
+    if not all((isinstance(value, str) and value for value in (proposal_digest, trace_identity, tool_name, tool_args_digest))) or not isinstance(trusted_tool_outcome, Mapping):
+        raise ValueError(self.REASON_MALFORMED)
+    pending = self._pending_proposals_by_digest.get(proposal_digest)
+    if not pending or pending['trace_identity'] != trace_identity:
+        raise ValueError(self.REASON_REPLAY)
+    if pending['tool_name'] != tool_name:
+        raise ValueError(self.REASON_MALFORMED)
+    if pending['tool_args_digest'] != tool_args_digest:
+        raise ValueError(self.REASON_MALFORMED)
+    event_key = self._validate_event_identity(event_identity, trace_identity, expected_kind='outcome')
+    if event_key in self._seen_event_identities:
+        raise ValueError(self.REASON_REPLAY)
+    success = trusted_tool_outcome.get('success')
+    completion_sequence = trusted_tool_outcome.get('completion_sequence')
+    if not isinstance(success, bool) or not isinstance(completion_sequence, int):
+        raise ValueError(self.REASON_MALFORMED)
+    if completion_sequence != event_key[1]:
+        raise ValueError(self.REASON_MALFORMED)
+    self._seen_event_identities.add(event_key)
+    self._monotonic_sequence_by_trace[trace_identity] = event_key[1]
+    if tool_name == 'fs.read' and success:
+        record = self._qualify_protected_read(trace_identity, event_identity, trusted_tool_outcome)
+        if record is not None:
+            self._protected_read_records.append(record)
+    del self._pending_proposals_by_digest[proposal_digest]"
+Q-004,ARGUMENT_BINDING,"AST proves digest assignment, pending storage, mismatch comparison, and fail-closed raise",True,CORRECTED_AST_SEMANTIC,"{""digest_assignment"": true, ""mismatch_raises_ValueError"": true, ""pending_dict_storage"": true, ""pending_digest_inequality_comparison"": true}"
+Q-005,READ_QUALIFICATION,Protected path classifier gates read record,True,AST_SEMANTIC,"def _qualify_protected_read(self, trace_identity: str, event_identity: Mapping[str, Any], outcome: Mapping[str, Any]) -> dict[str, Any] | None:
+    path = outcome.get('canonical_source_path')
+    raw_output_sha256 = outcome.get('raw_output_sha256')
+    protected_digest = outcome.get('protected_value_sha256_or_bound_digest')
+    if not all((isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest))):
+        return None
+    if not is_protected_secret_path(path):
+        return None
+    return {'event_identity': dict(event_identity), 'trace_identity': trace_identity, 'tool_name': 'fs.read', 'canonical_source_path': path, 'tool_success': True, 'raw_output_sha256': raw_output_sha256, 'protected_value_sha256_or_bound_digest': protected_digest, 'completion_sequence': outcome['completion_sequence']}"
+Q-006,RESTORE_ATOMICITY,Restore has prior snapshot and rollback exception path,True,AST_SEMANTIC,"def restore_state(self, snapshot: Any) -> None:
+    validated = self._validate_snapshot(snapshot)
+    prior = self.snapshot_state()
+    try:
+        self._apply_validated_snapshot(validated)
+    except Exception:
+        rollback = self._validate_snapshot(prior)
+        self._apply_validated_snapshot(rollback)
+        raise"

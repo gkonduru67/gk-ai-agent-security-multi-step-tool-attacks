@@ -1,0 +1,98 @@
+{
+  "adapter_v1_1_after_tool_signature": {
+    "keyword_only": [
+      {
+        "annotation": "str",
+        "name": "proposal_digest"
+      },
+      {
+        "annotation": "Mapping[str, Any]",
+        "name": "event_identity"
+      },
+      {
+        "annotation": "str",
+        "name": "trace_identity"
+      },
+      {
+        "annotation": "str",
+        "name": "tool_name"
+      },
+      {
+        "annotation": "str",
+        "name": "tool_args_digest"
+      },
+      {
+        "annotation": "Mapping[str, Any]",
+        "name": "trusted_tool_outcome"
+      }
+    ],
+    "positional": [],
+    "return": "None"
+  },
+  "compatible_after_tool_interfaces": [],
+  "decision": "NEW_HOOK_ADAPTER_PLUS_TRANSPORT_WRAPPER_REQUIRED",
+  "direct_compatibility": false,
+  "freeze_id": "EX9.TRANSPORT.ADAPTER.INTERFACE.RECONCILIATION.V1",
+  "implementation_created": false,
+  "mapping": [
+    {
+      "adapter_parameter": "proposal_digest",
+      "source": "acknowledge.proposal_digest",
+      "status": "AVAILABLE"
+    },
+    {
+      "adapter_parameter": "event_identity",
+      "source": "acknowledge local outcome_identity",
+      "status": "AVAILABLE_REQUIRES_IDENTITY_SCHEMA_CONVERSION"
+    },
+    {
+      "adapter_parameter": "trace_identity",
+      "source": "acknowledge.trace_identity",
+      "status": "AVAILABLE"
+    },
+    {
+      "adapter_parameter": "tool_name",
+      "source": "acknowledge.tool_name",
+      "status": "AVAILABLE"
+    },
+    {
+      "adapter_parameter": "tool_args_digest",
+      "source": "pending proposal record or new trusted transport input",
+      "status": "NOT_AVAILABLE_TO_CURRENT_TRANSPORT"
+    },
+    {
+      "adapter_parameter": "trusted_tool_outcome",
+      "source": "acknowledge local outcome mapping",
+      "status": "AVAILABLE"
+    }
+  ],
+  "parent_mapping_freeze_id": "EX9.ACK.INTEGRATION.CORRECTED.MAPPING.REQUIREMENTS.V1",
+  "runtime_behavior": "NOT_EVALUATED",
+  "status": "FROZEN",
+  "transport_adapter_parameter": {
+    "annotation": "NOT_ANNOTATED",
+    "name": "adapter"
+  },
+  "transport_after_tool_call": {
+    "keywords": {},
+    "positional": [
+      "outcome"
+    ],
+    "positional_count": 1
+  },
+  "transport_construction_sites": [],
+  "transport_constructor_signature": {
+    "keyword_only": [],
+    "positional": [
+      {
+        "annotation": "NOT_ANNOTATED",
+        "name": "adapter"
+      },
+      {
+        "annotation": "NOT_ANNOTATED",
+        "name": "sequence_state"
+      }
+    ],
+    "return": "NOT_ANNOTATED"
+  }
+}

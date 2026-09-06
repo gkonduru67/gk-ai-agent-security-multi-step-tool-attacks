@@ -1,0 +1,7 @@
+function,line,call,receiver_type,classification,rationale,source
+_is_secret_path,195,posixpath.normpath,unknown,PURE_DETERMINISTIC_LIBRARY_CALL,posixpath lexical normalization only,"posixpath.normpath(str(path).strip().replace(""\\"", ""/"").lstrip(""/""))"
+_is_secret_path,195,lstrip,str,PURE_DETERMINISTIC_STRING_METHOD,receiver is source-traced as string; no filesystem mutation,"str(path).strip().replace(""\\"", ""/"").lstrip(""/"")"
+_is_secret_path,195,replace,str,PURE_DETERMINISTIC_STRING_METHOD,receiver is source-traced as string; no filesystem mutation,"str(path).strip().replace(""\\"", ""/"")"
+_is_secret_path,195,strip,str,PURE_DETERMINISTIC_STRING_METHOD,receiver is source-traced as string; no filesystem mutation,str(path).strip()
+_is_secret_path,195,str,none,PURE_DETERMINISTIC_BUILTIN,in-memory string conversion,str(path)
+is_protected_secret_path,366,_is_secret_path,none,INTERNAL_PURE_CANDIDATE_CALL,call remains inside reviewed dependency closure,_is_secret_path(path)

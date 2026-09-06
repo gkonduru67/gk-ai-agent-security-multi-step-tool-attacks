@@ -1,0 +1,19 @@
+﻿line,terms,line_sha256,text
+11,target,F0CD2E8E4EFB45F91A5C0F1B5CBB79348DA94F3E5953A761E48980A7F73E0B8E,"    """"""Persistent taint-tracking baseline with ultra-dangerous target blocking."""""""
+23,secret,4727C8E33A4EA56E61282D0C6860B29735B88F22BCD995EE54C8CC4B401CF598,"            ""secret"","
+35,context|tool_name|tool_args,219C2F4E7A5F819B6C313F3BEE84C0BC69402EF1A1E26DFEC4706CB048EEB2DD,"        self, tool_name: str, tool_args: Mapping[str, Any], context: Mapping[str, Any]"
+37,authoriz|user|context,736C306FE06535010210319B2DEBB83EF5CC6ABB2A5CCBAACB3C72E887CAE91F,"        if context.get(""user_confirmed_safe"", False) or context.get(""user_authorized"", False):"
+38,authoriz|explicit|allow|user,B3472874913572C4E3DB6A1FDFAFDD229CB3763638D602B068A690E766F5DBE7,"            return Decision.allow(""User explicitly authorized this operation"")"
+40,target|tool_args,FC3ECD3B9333F197F54CEAE19BAB2E32ACC735A7A8FEFD0DB0B0ED087E1EF478,        target = self._extract_target(tool_args)
+41,target,42570D46BB5F21A16DDD267A4F165FA63DAF3D77AD9D202D28ECD065DC10C6BA,        if self._is_ultra_dangerous(target):
+42,deny|sensitive|target|tool_name,59A08991D067BB32C289F01E3EEBECC095F7689C1302632EDE7B091390290135,"            return Decision.deny(f""Blocked {tool_name} on sensitive target '{target}'"")"
+44,context,AFEEE74E4E02BB8B700312EA130E9546BEAA90FB75A9DA3BEA41CFE71BA46C0C,"        recent_sources = context.get(""recent_sources"", [])"
+46,tool_name,149665C97148C96870E2776EA637C45E0FD7DDBC68B241004E8D61D031CEC6E2,        if tainted and tool_name in self.dangerous_operations:
+47,deny|tool_name,9BA22FA0B67C489E7EFE96A11C96227D54DD20A7E3B30850BB031481688C4A2F,"            return Decision.deny(f""Blocked {tool_name} after accessing untrusted source"")"
+49,allow,86B95182D65FAE8F9B213F3973B5DF102D55AE6DC73629CCF07F5DB717F12979,"        return Decision.allow(""Operation allowed"")"
+51,target|tool_args,01896062705070D980F2600FDD15232EBA73EC61DE086D3EDD7F6A6EB183FEF5,"    def _extract_target(self, tool_args: Mapping[str, Any]) -> str:"
+53,tool_args,BE7538E3C567F376D02CC97D3178CE03463A7F9F1F55A53ED0E1EDB37D0FDDBF,            if key in tool_args:
+54,tool_args,4BB1A70694BEB8D7A9EDFB058B10B5BA0C74CFBD8450B444F0924D16D204227B,                return str(tool_args[key]).lower()
+57,target,D14133153C296204AC85577543425140EF6563019C30C785230262912177425A,"    def _is_ultra_dangerous(self, target: str) -> bool:"
+58,target,61CC5500F5952C24814B26F1D2325BBD1230CDD68844AA341D3698DF80BD2DEC,        return bool(target) and any(
+59,target,FFD734D86A206AE4EB24DC3CE99BD52B52DD890DC9DCD5702B8DBFFCEDB7EE71,            pattern in target.lower() for pattern in self.ultra_dangerous_patterns

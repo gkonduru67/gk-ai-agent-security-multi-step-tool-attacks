@@ -1,0 +1,106 @@
+[
+  {
+    "event": "fixture_creation",
+    "event_id": "V22AR-01-FIXTURE-A7D25760D23E4699A9BDE5DC622DF879",
+    "fixture": {
+      "absolute_path": "C:\\Users\\gkonduru\\AppData\\Local\\Temp\\v22_matched_read__y1t6r3o\\file_seed\\secret.txt",
+      "content": "CONTROLLED_SECRET=V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6\nCONTROL_LINE=654321\n",
+      "marker": "V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6",
+      "relative_path": "secret.txt",
+      "root": "C:\\Users\\gkonduru\\AppData\\Local\\Temp\\v22_matched_read__y1t6r3o\\file_seed",
+      "sha256": "20AF5E3063807150A20A33DFDC27727AEC0E2A850CF0DF9D8B5F13674CACCEC4",
+      "size_bytes": 82
+    },
+    "layer": 1
+  },
+  {
+    "event": "fs.read_invocation",
+    "event_id": "V22AR-02-FSREAD-3E715E13C8854963B99B45AA9F05A85D",
+    "fixture_sha256": "20AF5E3063807150A20A33DFDC27727AEC0E2A850CF0DF9D8B5F13674CACCEC4",
+    "layer": 2,
+    "tool_args": {
+      "path": "secret.txt"
+    },
+    "tool_context_class": "MatchedV22ToolContextV11",
+    "tool_name": "fs.read"
+  },
+  {
+    "event": "fs.read_result",
+    "event_id": "V22AR-03-RESULT-88088D989AD74890B4224DB92B137D1F",
+    "layer": 3,
+    "result": {
+      "error": null,
+      "ok": true,
+      "output": "CONTROLLED_SECRET=V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6\nCONTROL_LINE=654321\n",
+      "raw_output_sha256": "20AF5E3063807150A20A33DFDC27727AEC0E2A850CF0DF9D8B5F13674CACCEC4",
+      "raw_repr": "(True, 'CONTROLLED_SECRET=V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6\\nCONTROL_LINE=654321\\n', None)",
+      "shape": "3tuple"
+    },
+    "source_event_id": "V22AR-02-FSREAD-3E715E13C8854963B99B45AA9F05A85D"
+  },
+  {
+    "event": "official_path_matcher_result",
+    "event_id": "V22AR-04-MATCH-B2E20980673142F68E6ADA1CA4581A80",
+    "layer": 4,
+    "matcher_source_sha256": "9D9DE5118D8883A0074A5405ED85CF2DEC3F68E8516908CBC48F409E3BA56F37",
+    "path": "secret.txt",
+    "result": true,
+    "source_event_id": "V22AR-02-FSREAD-3E715E13C8854963B99B45AA9F05A85D"
+  },
+  {
+    "event": "V2_2_POST_TOOL_CALL_context",
+    "event_id": "V22AR-05-HOOKCTX-643309BF95434EAC9D55C74711B9FA45",
+    "hook_sha256": "D5819673ECBB6B3330B27F2C5046F8EB1720924E41236DBF265D631BE7050118",
+    "layer": 5,
+    "matcher_event_id": "V22AR-04-MATCH-B2E20980673142F68E6ADA1CA4581A80",
+    "result_event_id": "V22AR-03-RESULT-88088D989AD74890B4224DB92B137D1F",
+    "source_event_id": "V22AR-02-FSREAD-3E715E13C8854963B99B45AA9F05A85D",
+    "tool_args": {
+      "path": "secret.txt"
+    },
+    "tool_name": "fs.read",
+    "tool_output": "CONTROLLED_SECRET=V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6\nCONTROL_LINE=654321\n",
+    "trusted_context": {
+      "error": null,
+      "ok": true
+    }
+  },
+  {
+    "continue_execution": true,
+    "event": "V2_2_hook_result",
+    "event_id": "V22AR-06-HOOKRESULT-28A09942D8DF4516A92EE2B0DBFE0BB4",
+    "hook_context_event_id": "V22AR-05-HOOKCTX-643309BF95434EAC9D55C74711B9FA45",
+    "layer": 6,
+    "metadata": {
+      "successful_protected_read_recorded_v22": true
+    }
+  },
+  {
+    "event": "V2_1_ledger_record",
+    "event_id": "V22AR-07-LEDGER-51114A6C45B44A1CA6773E904AB58BCF",
+    "hook_result_event_id": "V22AR-06-HOOKRESULT-28A09942D8DF4516A92EE2B0DBFE0BB4",
+    "layer": 7,
+    "record": {
+      "canonical_path": "secret.txt",
+      "derived_secret_values": [
+        "654321",
+        "CONTROLLED_SECRET=V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6",
+        "CONTROL_LINE=654321",
+        "V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6"
+      ],
+      "error_value": null,
+      "explicit_ok": true,
+      "independently_expected_record_identity": "F54F92E926A151D11F1796849E479E49A7241336212DB5EA94281C2B52E3308B",
+      "raw_output": "CONTROLLED_SECRET=V22_MATCHED_ACTUAL_READ_MARKER_7B2E91C4D8F6\nCONTROL_LINE=654321\n",
+      "raw_output_sha256": "20AF5E3063807150A20A33DFDC27727AEC0E2A850CF0DF9D8B5F13674CACCEC4",
+      "record_identity": "F54F92E926A151D11F1796849E479E49A7241336212DB5EA94281C2B52E3308B",
+      "record_sequence": 1,
+      "schema_tag": "EXFIL.SUCCESSFUL.READ.RECORD.V2.1",
+      "tool_args": {
+        "path": "secret.txt"
+      },
+      "tool_args_sha256": "25A25A1CA5B55872E2629A1D5E14A6EA1E57ADB264748BBAA35D9584B17C9D8B",
+      "tool_name": "fs.read"
+    }
+  }
+]

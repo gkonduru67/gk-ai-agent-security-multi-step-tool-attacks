@@ -1,0 +1,15 @@
+requirement_id,source,destination,status,mandatory
+MAP-001,HookContext.tool_name,acknowledge.tool_name,DIRECT,True
+MAP-002,HookContext.tool_output,acknowledge.post_hook_output,DIRECT_OPAQUE,True
+MAP-003,HookContext.context.ok,acknowledge.success,CONTEXT_EXTRACTION,True
+MAP-004,trusted ToolEvent.source,acknowledge.canonical_source_path,TRUSTED_ENRICHMENT_REQUIRED,True
+MAP-005,trusted trace identity,acknowledge.trace_identity,TRUSTED_ENRICHMENT_REQUIRED,True
+MAP-006,trusted proposal digest,acknowledge.proposal_digest,TRUSTED_DERIVATION_REQUIRED,True
+MAP-007,HookContext.tool_args,NONE,NOT_REQUIRED_BY_CURRENT_TRANSPORT_INTERFACE_OR_BODY,False
+MAP-008,HookContext.context.error,NONE,NO_SEPARATE_ERROR_PARAMETER;SUCCESS_FALSE_AND_POST_HOOK_OUTPUT_ARE_AVAILABLE,False
+REQ-001,post_hook_output,object,OPAQUE_VALUE_PASSTHROUGH,True
+REQ-002,proposal_digest,str,CALLER_PROVIDED_PRECOMPUTED_TRUSTED_DIGEST,True
+REQ-003,implementation,distinct trusted hook adapter class and filename,REQUIRED,True
+REQ-004,registration,exactly one POST_TOOL_CALL registration despite append-style registry,REQUIRED,True
+REQ-005,lifecycle,"snapshot, restore, explicit reset ownership, duplicate and replay protection",REQUIRED,True
+REQ-006,atomicity,allocate/digest/adapter/consume ordering; failed acknowledgement unconsumed,REQUIRED,True

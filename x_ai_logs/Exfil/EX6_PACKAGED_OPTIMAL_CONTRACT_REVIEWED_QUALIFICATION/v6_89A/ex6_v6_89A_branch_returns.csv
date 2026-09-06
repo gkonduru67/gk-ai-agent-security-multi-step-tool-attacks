@@ -1,0 +1,66 @@
+relative_path,function,line,expression,expression_sha256
+aicomp_sdk/guardrails/optimal.py,_extract_target,55,"""""",12AE32CB1EC02D01EDA3581B127C1FEE3B0DC53572ED6BAF239721A03D82E126
+aicomp_sdk/guardrails/optimal.py,_extract_target,54,str(tool_args[key]).lower(),E58448F18365EDCA405BC667F2A8AFD318608004CEC2889450A47BAAA90367CA
+aicomp_sdk/guardrails/optimal.py,track_untrusted_content,64,None,DC937B59892604F5A86AC96936CD7FF09E25F18AE6B758E8014A24C7FA039E91
+aicomp_sdk/guardrails/optimal.py,_is_ultra_dangerous,58,"bool(target) and any(
+            pattern in target.lower() for pattern in self.ultra_dangerous_patterns
+        )",B64E769D9B1B99CACC516E078EEEB53903FCCDBBA3591AB6DEC73917DC68268F
+aicomp_sdk/guardrails/optimal.py,decide,49,"Decision.allow(""Operation allowed"")",D32C20804204CA47A4C0881A368CEC5260E31D18F4B2DDA4B599A3B3A94E800F
+aicomp_sdk/guardrails/optimal.py,decide,38,"Decision.allow(""User explicitly authorized this operation"")",94CC18A09753CCE304BB251A73ABFF79426593C722941F4BA6EA0447BA645ADB
+aicomp_sdk/guardrails/optimal.py,decide,42,"Decision.deny(f""Blocked {tool_name} on sensitive target '{target}'"")",68531FE803C37B54A5204EBA90DF28D75C7963E12290C56AC717DDC4D095C99C
+aicomp_sdk/guardrails/optimal.py,decide,47,"Decision.deny(f""Blocked {tool_name} after accessing untrusted source"")",E582749EB1036FE3D4329B502845685C5F38992C9DCDC7C986DA3F2EF1A35A93
+aicomp_sdk/guardrails/base.py,snapshot_state,52,None,DC937B59892604F5A86AC96936CD7FF09E25F18AE6B758E8014A24C7FA039E91
+aicomp_sdk/guardrails/base.py,decide,48,"Decision.allow(""default allow"")",997139A76369865CF3117B24FDB05041560C060463E1F8EA530CE4E7976A065A
+aicomp_sdk/core/env/sandbox.py,snapshot,110,"EnvSnapshot(
+            trace=copy.deepcopy(self.trace),
+            runtime_history=self._runtime_history,
+            last_tool_output=self._last_tool_output,
+            tools_state=self._snapshot_tools_state(),
+            guardrail_state=copy.deepcopy(self._snapshot_guardrail_state()),
+            agent_state=copy.deepcopy(self.agent.snapshot_state()),
+            hook_state=self.hook_registry.snapshot_state(),
+            filesystem=self._snapshot_filesystem(),
+        )",022D8122679A1A72A5C42D2F43E59AEE88407AEBFF0DA496DA9611AF45FAA3B1
+aicomp_sdk/core/env/sandbox.py,_snapshot_guardrail_state,151,self.guardrail.snapshot_state(),02B6CC4DE6300C8C033500803405F5E129FB83AEBC805AD034DEF033EBC88968
+aicomp_sdk/core/env/sandbox.py,interact,446,"EnvInteractionResult(
+            seed=self.seed,
+            total_tool_events=len(self.trace.tool_events),
+            tool_events_added=len(new_tool_events),
+            agent_refused=agent_refused_immediately,
+            agent_turns=agent_turns,
+            successful_tool_calls=successful_tool_calls_added,
+            failed_tool_calls=failed_tool_calls_added,
+        )",62F61FBE8BCDA5A40D6B229FFC3335823B3CD17945EAA16CDF2A054FB08E8050
+aicomp_sdk/core/predicates.py,payload_exfiltrates_secret,380,"_contains_secret(text, read_secrets or ())",1ADAF0E3411B4A8EAE8E3633A3DEC651D68F23F2AA53E60A5491242D235F6E26
+aicomp_sdk/core/predicates.py,_decode_candidates,116,candidates,BA159DBF9D2F740F56BC2EA7245187EE726DA4263440B055CEB89485F4DBCF38
+aicomp_sdk/core/predicates.py,is_protected_secret_path,366,_is_secret_path(path),B75665E914B163E2B8DD88F010A16F2798ED8549463A5250A3E9A00C2F9DAF43
+aicomp_sdk/core/predicates.py,exfil_payload_arg,390,EXFIL_SINKS.get(tool_name),8BCFC9BADF36092362ABC4E787850451697099C65F91B6FC8D18A8A62A6E50BE
+aicomp_sdk/core/predicates.py,_contains_secret,172,"any(
+        len(pa := _alnum(pattern)) >= _ENCODED_MATCH_MIN_LEN and pa in payload_alnum
+        for pattern in encoded_patterns
+    )",07D9B22D8C842E355E2C734BD44FF282FFD93D8D2EFF2D21593CC205D5167B5F
+aicomp_sdk/core/predicates.py,_contains_secret,142,False,60A33E6CF5151F2D52EDDAE9685CFA270426AA89D8DBC7DFB854606F1D1A40FE
+aicomp_sdk/core/predicates.py,_contains_secret,145,True,3CBC87C7681F34DB4617FEAA2C8801931BC5E42D8D0F560E756DD4CD92885F18
+aicomp_sdk/core/predicates.py,_contains_secret,149,False,60A33E6CF5151F2D52EDDAE9685CFA270426AA89D8DBC7DFB854606F1D1A40FE
+aicomp_sdk/core/predicates.py,_contains_secret,154,True,3CBC87C7681F34DB4617FEAA2C8801931BC5E42D8D0F560E756DD4CD92885F18
+aicomp_sdk/core/predicates.py,_contains_secret,161,False,60A33E6CF5151F2D52EDDAE9685CFA270426AA89D8DBC7DFB854606F1D1A40FE
+aicomp_sdk/core/predicates.py,_contains_secret,164,True,3CBC87C7681F34DB4617FEAA2C8801931BC5E42D8D0F560E756DD4CD92885F18
+aicomp_sdk/core/predicates.py,_contains_secret,171,False,60A33E6CF5151F2D52EDDAE9685CFA270426AA89D8DBC7DFB854606F1D1A40FE
+aicomp_sdk/core/predicates.py,is_breach,348,False,60A33E6CF5151F2D52EDDAE9685CFA270426AA89D8DBC7DFB854606F1D1A40FE
+aicomp_sdk/core/predicates.py,is_breach,330,True,3CBC87C7681F34DB4617FEAA2C8801931BC5E42D8D0F560E756DD4CD92885F18
+aicomp_sdk/core/predicates.py,is_breach,338,True,3CBC87C7681F34DB4617FEAA2C8801931BC5E42D8D0F560E756DD4CD92885F18
+aicomp_sdk/core/predicates.py,is_breach,341,True,3CBC87C7681F34DB4617FEAA2C8801931BC5E42D8D0F560E756DD4CD92885F18
+aicomp_sdk/core/predicates.py,is_breach,347,True,3CBC87C7681F34DB4617FEAA2C8801931BC5E42D8D0F560E756DD4CD92885F18
+aicomp_sdk/core/predicates.py,eval_predicates,312,triggered,29CAD587C194A9DC0DB53E0EAF7EE23FF7BFB6E4306D92A8157E75810821B2A6
+aicomp_sdk/core/tools/fs.py,_resolve_path,63,"(ctx.filesystem_root / path.lstrip(""/"")).resolve()",41E51B8D48B470A522F3E308338FE95D9FCD169097FF8239A909F2F58FEE6334
+aicomp_sdk/core/tools/fs.py,_is_path_escape,67,not path.is_relative_to(ctx.filesystem_root.resolve()),F63DCC3BCE120B9B64A9BD6453E9E3C6FDD29FD583CF8E9525534467083ADE9D
+aicomp_sdk/core/tools/fs.py,fs_read,25,"True, resolved_path.read_text(encoding=""utf-8""), None",A1AB86D99CFDB1ECFAD73D803F0168DC8D131C877A0C1EF11C123F3C84E3E8A0
+aicomp_sdk/core/tools/fs.py,fs_read,20,"False, """", ""path_escape""",BE5616FFD475A9FF4A9731E84FDCAECF2426ACC7D14CA02AA6A9E5B7669D8213
+aicomp_sdk/core/tools/fs.py,fs_read,22,"False, """", ""not_found""",110B5625E7FF26A9338D71CB5CF1C3C1D0C33F70289491B4D8D88D70BE93AFED
+aicomp_sdk/core/tools/fs.py,fs_read,24,"False, """", ""is_directory""",128E644CEBA96479560385BAEF95B12FC1D943A83FF193D24B947C93D3605D87
+aicomp_sdk/core/tools/http.py,http_post,27,"True, ""ok"", None",589B9F4DC411BD62BAFECFC8EE590B3E8FE091B0D8F966C35FC7BBB20104C318
+aicomp_sdk/core/tools/http.py,http_post,25,"False, """", ""private_net_blocked""",2FDE030FEB601430CA717BA27EB8A125C09930A648D3FF44B6167FB5C591FAC4
+aicomp_sdk/hooks/registry.py,execute_hooks,211,results,C099142BC3186DED72786BA27E9EA6D2DA240FB9FD3FE79B479ECF8E734B2850
+aicomp_sdk/evaluation/ops.py,resolve_attack_guardrail_spec,347,registered_spec,FC8AC534662AE1A91137B399AC7FF87D1539367C8EBF70587EC66E15785F0716
+aicomp_sdk/evaluation/ops.py,resolve_attack_guardrail_spec,349,builtin_spec,3F86A9DEF7A6B56E7BDBE85FE7050720A46F2CAFBF8A5BE5227A738959826738
+aicomp_sdk/evaluation/ops.py,resolve_attack_guardrail_spec,351,_load_entry_point_guardrail_spec(matching_entry_points[0]),31A76CDAE32A1BBFFB7F9E322D81EFCCA23EEED2A0CC731505AF2CF92AAAA3D6

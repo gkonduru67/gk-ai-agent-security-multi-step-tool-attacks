@@ -1,0 +1,34 @@
+scenario,order,event,label,sequence,success,identity,trace,canonical_sha256,digest,state
+success,1,snapshot.before,,,,,,,,"{""consumed_outcome_identities"": [], ""counter_by_trace"": {}, ""schema"": ""P2N.TRANSPORT.STATE.V1""}"
+success,2,proposal.allocate,,,,g-trace-success:proposal:1,g-trace-success,,,
+success,3,outcome.allocate,,,,g-trace-success:outcome:2,g-trace-success,,,
+success,4,canonicalize,,,,,,859999A903FD6130EBC534DF8FB62BFD4148117FBC40F213E568E5715C8DDB54,,
+success,5,canonicalize,,,,,,B4CDD2B4B117C2657F9E52D7EC6EB39B610CC21AEEDF40BE1053D60043718F35,,
+success,6,canonicalize,,,,,,36A8BA4C0E098D79D32CB016121AADAB24D203C442A29B01A37A18CE12232C6D,,
+success,7,canonicalize,,,,,,DE7E7ED41A3434D6F8BD7359F07EC750A559A48FDAD9BE0FAF154150CD3039EF,,
+success,8,canonicalize,,,,,,506F5415B2391BA568494B4897739BA7E498DAE3AC186CEBE67184F04A04CD4F,,
+success,9,canonicalize,,,,,,8B2DAE555D3364A0D2471550B3D8AF598BFB195149F8758873B04FCACA92A53F,,
+success,10,raw_digest,,,,,,,E38848242973D080A12C4AD53413153AAC46A7945A1156682FACEB0793FD2124,
+success,11,bound_digest,,,,,,,F19750D14742CB369753EBC2D744D5AD0292F99B4EB09F52142A1280F356703E,
+success,12,adapter.after_tool,success,2,True,,,,,
+success,13,outcome.consume,,,,g-trace-success:outcome:2,,,,
+success,14,snapshot.after,,,,,,,,"{""consumed_outcome_identities"": [""g-trace-success:outcome:2""], ""counter_by_trace"": {""g-trace-success"": 2}, ""schema"": ""P2N.TRANSPORT.STATE.V1""}"
+failed_result,1,snapshot.before,,,,,,,,"{""consumed_outcome_identities"": [], ""counter_by_trace"": {}, ""schema"": ""P2N.TRANSPORT.STATE.V1""}"
+failed_result,2,proposal.allocate,,,,g-trace-failure:proposal:1,g-trace-failure,,,
+failed_result,3,outcome.allocate,,,,g-trace-failure:outcome:2,g-trace-failure,,,
+failed_result,4,canonicalize,,,,,,2D914498552DE6DC196EBC8BE2170D9CC8E06B469C277FF24C594206B81844BD,,
+failed_result,5,canonicalize,,,,,,9F8AF9AACCF78F9CFC9D5AC900B068D059BE3805383A43B6FA8BFE0F2D11DFEC,,
+failed_result,6,canonicalize,,,,,,3E86F18225A0B83D71763AE597B8381C38BD369A222A593FF2EE5DA45169CB86,,
+failed_result,7,raw_digest,,,,,,,FD1B7B70B62F184C88E92FEC971CDE72881C1BCE4A62611DE4514099738CB758,
+failed_result,8,bound_digest,,,,,,,CC1464F2A7FF0C049FAA21560AD91CFE0A1A6450C0CDD8636640EE86A9F4EFD8,
+failed_result,9,adapter.after_tool,failed_result,2,False,,,,,
+failed_result,10,outcome.consume,,,,g-trace-failure:outcome:2,,,,
+failed_result,11,snapshot.after,,,,,,,,"{""consumed_outcome_identities"": [""g-trace-failure:outcome:2""], ""counter_by_trace"": {""g-trace-failure"": 2}, ""schema"": ""P2N.TRANSPORT.STATE.V1""}"
+adapter_error,1,snapshot.before,,,,,,,,"{""consumed_outcome_identities"": [], ""counter_by_trace"": {}, ""schema"": ""P2N.TRANSPORT.STATE.V1""}"
+adapter_error,2,proposal.allocate,,,,g-trace-retry-error:proposal:1,g-trace-retry-error,,,
+adapter_error,3,outcome.allocate,,,,g-trace-retry-error:outcome:2,g-trace-retry-error,,,
+adapter_error,4,canonicalize,,,,,,3C291A114BE57F231F2966C73B8807E05E3BBD074D960B23A05DAB523B1EC014,,
+adapter_error,5,raw_digest,,,,,,,BEE81F8BA473AC93C63760ED799BC6737F12F009B4486DD2F26578D570826273,
+adapter_error,6,bound_digest,,,,,,,A1932026E56060B0DE864C0D15E014F9453BFB4903D7E1608099A9EC2DA71DE1,
+adapter_error,7,adapter.after_tool.raise,,2,,,,,,
+adapter_error,8,snapshot.after,,,,,,,,"{""consumed_outcome_identities"": [], ""counter_by_trace"": {""g-trace-retry-error"": 2}, ""schema"": ""P2N.TRANSPORT.STATE.V1""}"

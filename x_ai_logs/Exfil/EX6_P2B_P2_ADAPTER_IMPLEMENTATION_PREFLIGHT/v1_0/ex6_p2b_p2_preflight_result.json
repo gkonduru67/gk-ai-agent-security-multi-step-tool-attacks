@@ -1,0 +1,228 @@
+{
+  "P1A_parent_verified": true,
+  "adapter_source_created": false,
+  "all_six_implementation_decisions_frozen": true,
+  "claim_boundary": {
+    "allowed": [
+      "P1A identity verification",
+      "frozen-source identity verification",
+      "implementation-specific decision freeze",
+      "static SDK integration inventory",
+      "non-overwriting source implementation plan",
+      "P2 source-creation eligibility recommendation"
+    ],
+    "prohibited": [
+      "adapter implementation exists",
+      "adapter imports successfully",
+      "runtime compatibility",
+      "deferred requirement satisfaction",
+      "guardrail effectiveness",
+      "security improvement",
+      "policy superiority",
+      "real exfiltration prevention",
+      "Sandbox parity",
+      "Gym parity",
+      "hosted parity",
+      "attack success reduction"
+    ]
+  },
+  "classification": "READ_ONLY_IMPLEMENTATION_DECISION_AND_INTERFACE_PREFLIGHT",
+  "created_at_utc": "2026-08-20T20:00:07.893266+00:00",
+  "execution_boundaries": {
+    "adapter_created": false,
+    "breach_executed": false,
+    "effects_observed": false,
+    "guardrail_executed": false,
+    "gym_executed": false,
+    "predicates_executed": false,
+    "sandbox_executed": false,
+    "sdk_imported": false,
+    "tools_executed": false
+  },
+  "implementation_decisions": {
+    "canonical_serialization": {
+      "array_order": "preserved",
+      "booleans_and_null": "lowercase JSON tokens",
+      "character_encoding": "UTF-8",
+      "decision": "CANONICAL_JSON_V1",
+      "digest": "SHA-256 over exact UTF-8 bytes",
+      "duplicate_object_keys": "PROHIBITED_FAIL_CLOSED",
+      "floating_point": "PROHIBITED_FAIL_CLOSED",
+      "integers": "base-10, no leading plus or leading zeros except zero",
+      "non_finite_numbers": "PROHIBITED_FAIL_CLOSED",
+      "normalization": "Unicode NFC for strings",
+      "object_key_order": "lexicographic Unicode code-point order",
+      "schema_tag": "aicomp.trusted-context.v1",
+      "separators": [
+        ",",
+        ":"
+      ],
+      "unsupported_values": "PROHIBITED_FAIL_CLOSED",
+      "whitespace": "none"
+    },
+    "event_identity_authority": {
+      "adapter_behavior": [
+        "reject duplicates",
+        "reject unknown identities",
+        "reject out-of-order acknowledgement",
+        "reject cross-trace reuse",
+        "do not derive event identity from agent prose"
+      ],
+      "decision": "TRUSTED_EXECUTION_BOUNDARY_ASSIGNS_TRACE_SCOPED_SEQUENCE",
+      "identity_fields": [
+        "trace_identity",
+        "event_sequence",
+        "event_kind"
+      ],
+      "uniqueness": "trace_identity plus strictly increasing non-negative integer event_sequence"
+    },
+    "grant_consumption": {
+      "decision": "CONSUME_AT_AUTHORIZATION_RELEASE_BEFORE_TOOL_EXECUTION",
+      "rationale": "fail-closed replay resistance; benign retry impact remains a future measured trade-off",
+      "restore_after_downstream_error": false,
+      "restore_after_failure": false,
+      "restore_after_timeout": false,
+      "trigger": "correctly bound protected action is released as allowed by adapter"
+    },
+    "integration": {
+      "decision": "STANDALONE_GUARDRAIL_WRAPPER_WITH_EXPLICIT_TRUSTED_CHANNEL_API",
+      "frozen_source_edits": false,
+      "runtime_integration": "WITHHELD_TO_SEPARATE_INTEGRATION_AND_PARITY_GATE",
+      "sandbox_edit_in_P2": false
+    },
+    "protected_value_derivation": {
+      "boundary": "hash equality alone does not establish provenance or derivation",
+      "decision": "TRUSTED_RUNTIME_COMPARISON_WITH_REDACTED_EVIDENCE",
+      "derivation_check": "runtime component compares candidate sink payload/officially normalized candidate with the protected read value according to a separately frozen matcher contract",
+      "evidence_artifacts": [
+        "source event identity",
+        "sink proposal digest",
+        "protected value SHA-256",
+        "raw sink payload SHA-256",
+        "derivation classification"
+      ],
+      "publication": "no raw protected value",
+      "runtime_provenance": "trusted after_tool record binds fs.read success, canonical source path, trace identity, event identity, raw output bytes, and output digest"
+    },
+    "trusted_issuer_boundary": {
+      "capability_rule": "issuer capability is provided out-of-band by the trusted host and is never serialized into agent-visible context or snapshots",
+      "decision": "EXPLICIT_CONSTRUCTOR_CONFIGURED_ISSUER_REGISTRY",
+      "grant_creation_api": "register_trusted_grant(record, issuer_capability)",
+      "issuer_identity": "immutable issuer_id plus issuer_trust_domain",
+      "prohibited_sources": [
+        "model output",
+        "prompt content",
+        "generic context dictionaries",
+        "arbitrary hook metadata",
+        "recent_sources-only labels"
+      ],
+      "unknown_or_mismatched_issuer": "FAIL_CLOSED"
+    }
+  },
+  "implementation_eligibility": "ELIGIBLE_FOR_P2_ADAPTER_SOURCE_CREATION_AFTER_PREFLIGHT_REVIEW",
+  "implementation_plan": {
+    "class": "TrustedGuardrailContextAdapter",
+    "frozen_files_not_modified": [
+      "aicomp_sdk/guardrails/optimal.py",
+      "aicomp_sdk/guardrails/proposal_aware_optimal.py"
+    ],
+    "must_not_exist_before_creation": true,
+    "planned_private_helpers": [
+      "_canonicalize_v1",
+      "_digest_v1",
+      "_validate_grant",
+      "_validate_event_identity",
+      "_qualify_protected_read",
+      "_consume_grant",
+      "_validate_snapshot"
+    ],
+    "planned_public_methods": [
+      "__init__",
+      "register_trusted_grant",
+      "before_decide",
+      "decide",
+      "after_tool",
+      "snapshot_state",
+      "restore_state",
+      "reset_state"
+    ],
+    "runtime_execution_in_source_creation_gate": false,
+    "source_creation_gate": "P2_SOURCE_IMPLEMENTATION_AFTER_PREFLIGHT_FREEZE_AND_REVIEW",
+    "source_file": "aicomp_sdk/guardrails/trusted_context_adapter.py"
+  },
+  "implementation_plan_distinct_and_non_overwriting": true,
+  "integration_map": {
+    "checks": {
+      "api_interact_declared": true,
+      "guardrail_decide_declared": true,
+      "guardrail_restore_declared": true,
+      "guardrail_snapshot_declared": true,
+      "literal_after_tool_in_sdk": false,
+      "literal_before_decide_in_sdk": false,
+      "sandbox_guardrail_restore_helper": true,
+      "sandbox_guardrail_snapshot_helper": true,
+      "sandbox_interact_declared": true
+    },
+    "conclusion": "WRAPPER_LIFECYCLE_STATICALLY_AVAILABLE_BUT_TRUSTED_CHANNEL_RUNTIME_INTEGRATION_NOT_ESTABLISHED",
+    "implementation_boundary": "Adapter source will expose explicit trusted before_decide and after_tool methods plus GuardrailBase-compatible decide/snapshot_state/restore_state. No claim is made that current Sandbox invokes the new trusted methods.",
+    "sandbox_modification_plan": "NONE_IN_P2_SOURCE_CREATION; integration adapter/harness changes require a later separately frozen gate if static SDK calls do not expose trusted channels."
+  },
+  "next_gate": "EX6_P2B_P2A_ADAPTER_SOURCE_IMPLEMENTATION",
+  "requirement_plan_summary": {
+    "implemented": 0,
+    "planned": 10,
+    "runtime_validated": 0,
+    "satisfied": 0,
+    "total": 10
+  },
+  "sdk_source_inventory": [
+    {
+      "artifact": "sandbox.py",
+      "ast_parse": "PASS",
+      "label": "sandbox",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\sandbox.py",
+      "sha256": "B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0",
+      "size_bytes": 19906,
+      "symbol_count": 19
+    },
+    {
+      "artifact": "base.py",
+      "ast_parse": "PASS",
+      "label": "guardrail_base",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\base.py",
+      "sha256": "EC95F45A9BF4202514725690617C91E88F3F1AE889AC7828D423DAAFEA527708",
+      "size_bytes": 1606,
+      "symbol_count": 11
+    },
+    {
+      "artifact": "api.py",
+      "ast_parse": "PASS",
+      "label": "api",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\api.py",
+      "sha256": "60F1E4424EC3DEE73186F87ED1184D2CA1DBC4C2A0022004DECEC8B6E94C7CB1",
+      "size_bytes": 5114,
+      "symbol_count": 31
+    },
+    {
+      "artifact": "optimal.py",
+      "ast_parse": "PASS",
+      "label": "optimal",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\optimal.py",
+      "sha256": "6724FEDF7BBF3E67DFCDD564BA8A73463E0F783D5C84E0A70DCEFF40C1BC61ED",
+      "size_bytes": 2502,
+      "symbol_count": 6
+    },
+    {
+      "artifact": "proposal_aware_optimal.py",
+      "ast_parse": "PASS",
+      "label": "proposal_aware",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\proposal_aware_optimal.py",
+      "sha256": "918FFD61CDB9A406C965F06CF2BEC34C297AB231E26B6FC083AE34B00C37D452",
+      "size_bytes": 3621,
+      "symbol_count": 2
+    }
+  ],
+  "source_artifacts_modified": false,
+  "status": "P2B_P2_ADAPTER_IMPLEMENTATION_PREFLIGHT_COMPLETE_PASS",
+  "version": "EX6_P2B_P2_ADAPTER_IMPLEMENTATION_PREFLIGHT_v1.0"
+}

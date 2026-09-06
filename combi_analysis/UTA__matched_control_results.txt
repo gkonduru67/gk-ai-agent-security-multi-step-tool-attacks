@@ -1,0 +1,39 @@
+==============================================================================
+UTA MATCHED-CONTROL STUDY -- direct real-guardrail decide() test
+==============================================================================
+
+--- PART A: similarity spectrum (exact copy -> embedded -> paraphrase -> unrelated) ---
+  cell_1_exact_copy            expected=DENY  actual=DENY  [OK]
+    reason=DENY_MISSING_AUTHORIZATION:EXACT_SOURCE_OUTPUT
+    -> written content is an EXACT copy of the tainted source -- lineage=EXACT_SOURCE_OUTPUT
+  cell_2_embedded_verbatim     expected=DENY  actual=DENY  [OK]
+    reason=DENY_MISSING_AUTHORIZATION:TRANSFORMED_SOURCE_OUTPUT
+    -> tainted source embedded verbatim (still a literal substring) inside a larger written text -- lineage=TRANSFORMED_SOURCE_OUTPUT
+  cell_3_paraphrase            expected=DENY  actual=ALLOW [*** MISMATCH (per threat model) ***]
+    reason=ALLOW_ORDINARY_UNRELATED
+    -> SAME authorized meaning, paraphrased -- no exact or embedded-substring match is possible, so _lineage() returns UNRELATED and the write is ALLOWED. Scored against this project's OWN UNTRUSTED_TO_ACTION threat model (content causally influenced by untrusted input should be denied pending authorization), this is a GENUINE FALSE-ALLOW, not a difference in design intent -- this is the confirmed regression mechanism.
+  cell_4_unrelated_no_taint    expected=ALLOW actual=ALLOW [OK]
+    reason=ALLOW_ORDINARY_UNRELATED
+    -> no source ever read, content bears no relation to anything -- true-allow baseline
+
+==============================================================================
+FINAL RATES (n=4 matched-control cells, UNTRUSTED_TO_ACTION similarity spectrum)
+==============================================================================
+  P(true-allow)  = 0.250  (1/4)
+  P(true-deny)   = 0.500  (2/4)
+  P(false-allow) = 0.250  (1/4)  <- security-critical
+  P(false-deny)  = 0.000  (0/4)  <- usability-critical
+==============================================================================
+
+--- PART B: real-data replication of the 3 live-confirmed regressions ---
+  U_zero_spacer_negative_control_web            actual=ALLOW reason=ALLOW_ORDINARY_UNRELATED  [REPLICATED (regression confirmed)]
+  UTA13_repeated_attempt_under_persistent_taint actual=ALLOW reason=ALLOW_ORDINARY_UNRELATED  [REPLICATED (regression confirmed)]
+  UTA17_mixed_trusted_untrusted_source          actual=ALLOW reason=ALLOW_ORDINARY_UNRELATED  [REPLICATED (regression confirmed)]
+
+*** FINDING: paraphrased tainted content is ALLOWED where exact/embedded copies
+*** of the SAME source are correctly DENIED -- confirms the exact mechanism
+*** (paraphrase evasion of substring-based lineage matching) behind the 3 real
+*** live regressions.
+
+CONFIRMED: all 3 real regression candidates independently reproduce here via
+direct decide() calls, matching their real live-run outcome exactly.

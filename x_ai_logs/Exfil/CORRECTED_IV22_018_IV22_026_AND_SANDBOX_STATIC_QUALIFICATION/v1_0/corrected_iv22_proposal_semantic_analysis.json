@@ -1,0 +1,40 @@
+{
+  "alias": "args",
+  "condition_lines": [
+    15,
+    17,
+    19,
+    21
+  ],
+  "condition_sources": [
+    "not isinstance(args, Mapping)",
+    "'path' not in args",
+    "not isinstance(args.get('path'), str)",
+    "not args['path'].strip()"
+  ],
+  "final_else": [],
+  "predicate_matches": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "reason_assignments": [
+    [
+      "reason_detail",
+      "TOOL_ARGS_NOT_MAPPING"
+    ],
+    [
+      "reason_detail",
+      "PATH_MISSING"
+    ],
+    [
+      "reason_detail",
+      "PATH_NOT_STRING"
+    ],
+    [
+      "reason_detail",
+      "PATH_EMPTY"
+    ]
+  ]
+}

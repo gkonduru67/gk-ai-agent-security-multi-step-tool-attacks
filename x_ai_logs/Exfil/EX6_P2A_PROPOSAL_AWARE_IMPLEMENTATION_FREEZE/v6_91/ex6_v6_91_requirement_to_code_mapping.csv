@@ -1,0 +1,23 @@
+requirement_id,implementation,status,evidence_symbol
+IF-001,GuardrailBase subclass and exact decide signature,IMPLEMENTED,ProposalAwareOptimalGuardrail.decide
+RO-001,validation precedes security and allow branches,IMPLEMENTED,decide
+RO-002,protected path and outbound proposal checks precede allow,IMPLEMENTED_WITH_P2A_SCOPE,decide
+RO-003,generic authorization Booleans are not read,IMPLEMENTED,decide
+RO-004,deterministic deny reasons and final benign allow,IMPLEMENTED,REASON_*
+AZ-008,model/prompt/metadata do not set trusted grants,IMPLEMENTED_BY_ABSENCE_OF_GRANT_PATH,decide
+TS-001,tool-specific argument branches; no first-present-key extractor,IMPLEMENTED,decide
+TS-002,is_protected_secret_path(path),IMPLEMENTED,decide
+TS-003,url and data retrieved and validated independently,IMPLEMENTED,decide
+TS-004,exfil_payload_arg(tool_name),IMPLEMENTED,decide
+TS-005,email.send not treated as EXFIL payload sink,IMPLEMENTED_BY_OFFICIAL_SINK_HELPER_BOUNDARY,decide
+TS-006,malformed required args denied,IMPLEMENTED,decide
+MH-001,public helpers only,IMPLEMENTED,imports
+MH-002,no private matcher/decoder imports,IMPLEMENTED,imports
+PV-001,recent_sources used only as taint label,IMPLEMENTED,decide
+PV-005,raw data read without normalization or replacement,IMPLEMENTED_AT_DECISION_INPUT_LEVEL,decide
+ST-001,no mutable instance state,IMPLEMENTED_STATELESS,class AST
+ST-002,not required because first version is stateless,NOT_APPLICABLE_STATELESS,class AST
+ST-003,not required because first version is stateless,NOT_APPLICABLE_STATELESS,class AST
+ST-004,stateless policy reset is deterministic under inherited base methods,IMPLEMENTED_STATELESS,class AST
+AZ-001|AZ-002|AZ-003|AZ-004|AZ-005|AZ-006|AZ-007,no trusted grant transport in P2A,WITHHELD_P2B,v6.90A P2A exclusions
+PV-002|PV-003|PV-004,no successful read-value transport in P2A,WITHHELD_P2B,v6.90A P2A exclusions

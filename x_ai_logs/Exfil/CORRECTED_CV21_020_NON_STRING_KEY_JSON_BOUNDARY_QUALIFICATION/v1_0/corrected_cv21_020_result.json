@@ -1,0 +1,85 @@
+{
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 19,
+    "total": 19
+  },
+  "claim_boundary": {
+    "allowed": [
+      "preserve original controlled V2.1 26-of-27 result",
+      "preserve original CV21-020 failure and recorded outcome",
+      "classify five noncanonical JSON controls from frozen runtime evidence",
+      "classify non-string-key rejection as fail-closed behavior",
+      "assign reviewed controlled-ledger disposition"
+    ],
+    "prohibited": [
+      "modify V2.1",
+      "modify original controlled artifacts",
+      "claim original controlled run passed 27 of 27",
+      "claim actual fs.read",
+      "claim hook transport",
+      "claim guardrail effectiveness",
+      "claim protected-value lineage",
+      "claim robust end-to-end security findings"
+    ]
+  },
+  "classification": "READ_ONLY_TARGETED_EXPECTATION_CORRECTION",
+  "corrected_CV21_020": {
+    "corrected_expected": "REJECT_FAIL_CLOSED",
+    "exception_message": "tool_args are not canonically JSON serializable",
+    "exception_type": "ValueError",
+    "implementation_gap": "NOT_DEMONSTRATED",
+    "observed": "REJECT",
+    "recorded_expected": "ACCEPT_JSON_COERCION_OBSERVED"
+  },
+  "created_at_utc": "2026-08-22T16:17:16.194796+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "V2_1_imported": false,
+    "V2_1_instantiated": false,
+    "V2_1_modified": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "guardrail_executed": false,
+    "hook_registered": false,
+    "http_sink_executed": false,
+    "models_used": false,
+    "original_controlled_artifacts_modified": false,
+    "predicates_executed": false,
+    "threads_executed": false
+  },
+  "next_gate": "CONTROLLED_ACTUAL_FS_READ_HOOK_AND_LEDGER_QUALIFICATION",
+  "outcome": "CV21_020_QUALIFIER_EXPECTATION_GAP_CONFIRMED",
+  "preserved_original_result": {
+    "checks_failed": 1,
+    "checks_passed": 26,
+    "checks_total": 27,
+    "failed_ids": [
+      "CV21-020"
+    ],
+    "original_artifacts_modified": false,
+    "recorded_outcome": "V2_1_JSON_BOUNDARY_RUNTIME_GAP"
+  },
+  "readiness": {
+    "controlled_actual_fs_read_eligible": false,
+    "controlled_actual_fs_read_hook_and_ledger_qualification_eligible": true,
+    "http_sink_eligible": false
+  },
+  "reviewed_disposition": "CONTROLLED_V2_1_LEDGER_QUALIFICATION_PASS_AFTER_EXPECTATION_CORRECTION",
+  "scientific_verdict": {
+    "CV21_020": "CV21_020_QUALIFIER_EXPECTATION_GAP_CONFIRMED",
+    "V2_1_JSON_implementation_gap": "NOT_DEMONSTRATED",
+    "V2_1_non_string_key_behavior": "REJECT_FAIL_CLOSED",
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "guardrail_effectiveness": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "hook_transport": "NOT_EVALUATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "CORRECTED_CV21_020_NON_STRING_KEY_JSON_BOUNDARY_QUALIFICATION_COMPLETE_PASS",
+  "version": "CORRECTED_CV21_020_NON_STRING_KEY_JSON_BOUNDARY_QUALIFICATION_v1.0"
+}

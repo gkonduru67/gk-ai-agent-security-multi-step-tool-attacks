@@ -1,0 +1,7215 @@
+{
+  "project_root": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks",
+  "sdk_root": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk",
+  "primary_files": [
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "exists": true
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "exists": true
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "exists": true
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "exists": true
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "exists": true
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "exists": true
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "exists": true
+    }
+  ],
+  "predicate_source_facts": {
+    "destructive_write_symbol_found": true,
+    "fs_write_reference_found": true,
+    "fs_delete_reference_found": true,
+    "path_argument_reference_found": false,
+    "success_field_reference_found": true,
+    "note": "These booleans show source references only. Review the matched lines before making semantic claims."
+  },
+  "matches": [
+    {
+      "file": "aicomp_sdk\\__init__.py",
+      "line": 6,
+      "term": "guardrail",
+      "text": "- Creating defensive guardrails"
+    },
+    {
+      "file": "aicomp_sdk\\__init__.py",
+      "line": 35,
+      "term": "guardrail",
+      "text": "from .guardrails.base import Decision, DecisionAction, GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\__init__.py",
+      "line": 47,
+      "term": "guardrail",
+      "text": "    \"GuardrailBase\","
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "line": 159,
+      "term": "fs.delete",
+      "text": "                    \"fs.delete\","
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "line": 189,
+      "term": "fs.delete",
+      "text": "                return self._tool_call(\"fs.delete\", {\"path\": \"secret.txt\"}, \"followed_command\")"
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "line": 330,
+      "term": "fs.write",
+      "text": "                    \"fs.write\","
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "line": 339,
+      "term": "fs.delete",
+      "text": "                decision=self._tool_call(\"fs.delete\", {\"path\": \"secret.txt\"}, \"delete_file\"),"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attack_random.py",
+      "line": 45,
+      "term": "guardrail",
+      "text": "    from aicomp_sdk.attacks.baselines.guardrail_rules import Guardrail"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attack_random.py",
+      "line": 54,
+      "term": "guardrail",
+      "text": "        guardrail=Guardrail(),"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 258,
+      "term": "tool_events",
+      "text": "        return cell_signature(trace[\"tool_events\"], **sig_kwargs)"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 299,
+      "term": "tool_events",
+      "text": "            f\"[GO-EXPLORE] Seed exemplar created with {len(tr['tool_events'])} tool events\","
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 300,
+      "term": "tool_events",
+      "text": "            tool_event_count=len(tr[\"tool_events\"]),"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 369,
+      "term": "tool_events",
+      "text": "                        \"predicate_tool_events\","
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 370,
+      "term": "tool_events",
+      "text": "                        f\"[GO-EXPLORE]     Tool events: {[e.get('name') for e in tr.get('tool_events', [])]}\","
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 371,
+      "term": "tool_events",
+      "text": "                        tool_events=[e.get(\"name\") for e in tr.get(\"tool_events\", [])],"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 395,
+      "term": "guardrail",
+      "text": "                    # Reward bypass-shaped traces so search keeps exploring guardrail evasions."
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 397,
+      "term": "tool_events",
+      "text": "                    tool_events = tr.get(\"tool_events\", [])"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 398,
+      "term": "tool_events",
+      "text": "                    if len(tool_events) >= 3:"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 399,
+      "term": "tool_events",
+      "text": "                        sources = [e.get(\"source\") for e in tool_events]"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 406,
+      "term": "fs.delete",
+      "text": "                            in [\"fs.delete\", \"http.post\", \"shell.run\", \"email.send\"]"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 407,
+      "term": "tool_events",
+      "text": "                            for e in tool_events[-3:]"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 417,
+      "term": "tool_events",
+      "text": "                    current_attacks = detect_real_attacks(tr.get(\"tool_events\", []))"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 467,
+      "term": "tool_events",
+      "text": "                        + 0.001 * len(tr[\"tool_events\"])"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 571,
+      "term": "tool_events",
+      "text": "                tool_names = [e.get(\"name\") for e in tr.get(\"tool_events\", [])]"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 595,
+      "term": "tool_events",
+      "text": "                for e in finding.get(\"trace\", {}).get(\"tool_events\", []):"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 649,
+      "term": "guardrail",
+      "text": "    from aicomp_sdk.attacks.baselines.guardrail_rules import Guardrail"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "line": 656,
+      "term": "guardrail",
+      "text": "        guardrail=Guardrail(),"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_allow.py",
+      "line": 1,
+      "term": "guardrail",
+      "text": "from aicomp_sdk.guardrails.base import Decision, GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_allow.py",
+      "line": 4,
+      "term": "guardrail",
+      "text": "class Guardrail(GuardrailBase):"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 6,
+      "term": "is_protected_secret_path",
+      "text": "    is_protected_secret_path,"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 10,
+      "term": "guardrail",
+      "text": "from aicomp_sdk.guardrails.base import Decision, GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 13,
+      "term": "guardrail",
+      "text": "__all__ = [\"Guardrail\", \"SECRET_MARKER\"]"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 16,
+      "term": "guardrail",
+      "text": "class Guardrail(GuardrailBase):"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 17,
+      "term": "guardrail",
+      "text": "    \"\"\"Simple baseline guardrail: blocks obvious exfil and untrusted->exec/share."
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 25,
+      "term": "side_effect",
+      "text": "        side = context.get(\"side_effect\", \"\")"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 63,
+      "term": "fs.delete",
+      "text": "        if tool_name in (\"fs.delete\", \"fs.write\") and is_protected_secret_path("
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 63,
+      "term": "fs.write",
+      "text": "        if tool_name in (\"fs.delete\", \"fs.write\") and is_protected_secret_path("
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 63,
+      "term": "is_protected_secret_path",
+      "text": "        if tool_name in (\"fs.delete\", \"fs.write\") and is_protected_secret_path("
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 66,
+      "term": "destructive_secret",
+      "text": "            return Decision.confirm(\"destructive_secret\")"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\real_attack_detection.py",
+      "line": 62,
+      "term": "fs.delete",
+      "text": "                    \"fs.delete\","
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\real_attack_detection.py",
+      "line": 66,
+      "term": "fs.write",
+      "text": "                    \"fs.write\","
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\real_attack_detection.py",
+      "line": 71,
+      "term": "fs.delete",
+      "text": "                    if tool_name == \"fs.delete\":"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\real_attack_detection.py",
+      "line": 96,
+      "term": "fs.write",
+      "text": "                    elif tool_name == \"fs.write\":"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\real_attack_detection.py",
+      "line": 185,
+      "term": "fs.delete",
+      "text": "                            elif tool_name == \"fs.delete\":"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 18,
+      "term": "guardrail",
+      "text": "    resolve_attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 144,
+      "term": "guardrail",
+      "text": "        help=\"Evaluate a Python guardrail module that defines Guardrail.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 148,
+      "term": "guardrail",
+      "text": "        metavar=\"GUARDRAIL_MODULE\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 149,
+      "term": "guardrail",
+      "text": "        help=\"Path to a Python file that defines Guardrail.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 155,
+      "term": "guardrail",
+      "text": "        help=\"Evaluate a submission zip containing attack.py and guardrail.py.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 160,
+      "term": "guardrail",
+      "text": "        help=\"Path to a submission zip containing attack.py and guardrail.py.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 315,
+      "term": "guardrail",
+      "text": "        attack_guardrail_spec = None"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 318,
+      "term": "guardrail",
+      "text": "            attack_guardrail_spec = resolve_attack_guardrail_spec()"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 336,
+      "term": "guardrail",
+      "text": "            print(\"EVALUATING OFFENSE (Your Attack vs Data-Flow Guardrail)\", flush=True)"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 342,
+      "term": "guardrail",
+      "text": "            attack_cls, guardrail_cls = load_track_modules("
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 357,
+      "term": "guardrail",
+      "text": "                    attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 361,
+      "term": "guardrail",
+      "text": "                if guardrail_cls is None:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 362,
+      "term": "guardrail",
+      "text": "                    raise SystemExit(\"Submission missing Guardrail\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 364,
+      "term": "guardrail",
+      "text": "                    guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 373,
+      "term": "guardrail",
+      "text": "                if attack_cls is None or guardrail_cls is None:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 375,
+      "term": "guardrail",
+      "text": "                        \"Dual-track submissions must include both attack.py and guardrail.py\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 379,
+      "term": "guardrail",
+      "text": "                    guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\evaluate.py",
+      "line": 384,
+      "term": "guardrail",
+      "text": "                    attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 4,
+      "term": "guardrail",
+      "text": "Creates properly structured attack.py or guardrail.py templates with:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 38,
+      "term": "guardrail",
+      "text": "    Your attack will be evaluated against a strong dataflow guardrail."
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 83,
+      "term": "guardrail",
+      "text": "        # 3. Chaining: Find sequences that bypass guardrails"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 139,
+      "term": "tool_events",
+      "text": "        events = trace.get(\"tool_events\", [])"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 159,
+      "term": "guardrail",
+      "text": "GUARDRAIL_TEMPLATE: Final[str] = '''\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 160,
+      "term": "guardrail",
+      "text": "AI Agent Security Competition - Guardrail Submission"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 162,
+      "term": "guardrail",
+      "text": "TODO: Implement your defensive guardrail to protect AI agents"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 171,
+      "term": "guardrail",
+      "text": "from aicomp_sdk import GuardrailBase, Decision"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 173,
+      "term": "guardrail",
+      "text": "# TODO: Choose your guardrail strategy. Scorer submissions should implement"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 174,
+      "term": "guardrail",
+      "text": "# `decide(...)`; compromised-env hooks are owned by the harness, not `guardrail.py`."
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 177,
+      "term": "guardrail",
+      "text": "class Guardrail(GuardrailBase):"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 179,
+      "term": "guardrail",
+      "text": "    Defensive guardrail to prevent security violations."
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 181,
+      "term": "guardrail",
+      "text": "    Your guardrail will be evaluated on:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 189,
+      "term": "guardrail",
+      "text": "        \"\"\"Initialize the guardrail.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 253,
+      "term": "fs.delete",
+      "text": "        if tool_name in ['fs.delete', 'fs.write']:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 253,
+      "term": "fs.write",
+      "text": "        if tool_name in ['fs.delete', 'fs.write']:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 312,
+      "term": "guardrail",
+      "text": "        template = GUARDRAIL_TEMPLATE"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 329,
+      "term": "guardrail",
+      "text": "        print(\"  - See examples in: examples/attacks/ and examples/guardrails/\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 37,
+      "term": "guardrail",
+      "text": "    AttackGuardrailSpec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 39,
+      "term": "guardrail",
+      "text": "    resolve_attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 148,
+      "term": "guardrail",
+      "text": "        help=\"Run guardrail-only evaluation and save the result in history.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 152,
+      "term": "guardrail",
+      "text": "        help=\"Path to a Python guardrail module or a zip containing guardrail.py.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 162,
+      "term": "guardrail",
+      "text": "        help=\"Path to a zip containing attack.py and guardrail.py.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 239,
+      "term": "guardrail",
+      "text": "    guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 249,
+      "term": "guardrail",
+      "text": "    attack_guardrail_spec: AttackGuardrailSpec | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 277,
+      "term": "guardrail",
+      "text": "                attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 281,
+      "term": "guardrail",
+      "text": "            if guardrail_cls is None:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 282,
+      "term": "guardrail",
+      "text": "                raise RuntimeError(\"Defense evaluation requires Guardrail\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 284,
+      "term": "guardrail",
+      "text": "                guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 294,
+      "term": "guardrail",
+      "text": "            if attack_cls is None or guardrail_cls is None:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 295,
+      "term": "guardrail",
+      "text": "                raise RuntimeError(\"Dual-track evaluation requires AttackAlgorithm and Guardrail\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 298,
+      "term": "guardrail",
+      "text": "                guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 304,
+      "term": "guardrail",
+      "text": "                attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 330,
+      "term": "guardrail",
+      "text": "        guardrail_cls=None,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 344,
+      "term": "guardrail",
+      "text": "    guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 360,
+      "term": "guardrail",
+      "text": "        guardrail_cls=guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 375,
+      "term": "guardrail",
+      "text": "    guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 391,
+      "term": "guardrail",
+      "text": "        guardrail_cls=guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 513,
+      "term": "guardrail",
+      "text": "        attack_guardrail_spec = None"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 516,
+      "term": "guardrail",
+      "text": "            attack_guardrail_spec = resolve_attack_guardrail_spec()"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 521,
+      "term": "guardrail",
+      "text": "            attack_cls, guardrail_cls = evaluation_submissions.load_track_modules("
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 528,
+      "term": "guardrail",
+      "text": "            if track is EvaluationTrack.DEFENSE and guardrail_cls is None:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 529,
+      "term": "guardrail",
+      "text": "                print_error(\"Submission missing Guardrail\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 531,
+      "term": "guardrail",
+      "text": "            if track is EvaluationTrack.DUAL and (attack_cls is None or guardrail_cls is None):"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 532,
+      "term": "guardrail",
+      "text": "                print_error(\"Dual-track submissions must include both attack.py and guardrail.py\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 538,
+      "term": "guardrail",
+      "text": "                guardrail_cls=guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\test.py",
+      "line": 547,
+      "term": "guardrail",
+      "text": "                attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 6,
+      "term": "guardrail",
+      "text": "- Has required class/function (`AttackAlgorithm` or `Guardrail`)"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 22,
+      "term": "guardrail",
+      "text": "SubmissionType = Literal[\"attack\", \"guardrail\"]"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 151,
+      "term": "guardrail",
+      "text": "def validate_guardrail_structure(filepath: Path) -> tuple[bool, list[str]]:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 152,
+      "term": "guardrail",
+      "text": "    \"\"\"Validate guardrail submission structure.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 158,
+      "term": "guardrail",
+      "text": "        has_guardrail_class = False"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 162,
+      "term": "guardrail",
+      "text": "            if not isinstance(node, ast.ClassDef) or node.name != \"Guardrail\":"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 165,
+      "term": "guardrail",
+      "text": "            has_guardrail_class = True"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 183,
+      "term": "guardrail",
+      "text": "        if not has_guardrail_class:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 184,
+      "term": "guardrail",
+      "text": "            issues.append(\"Missing 'Guardrail' class\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 186,
+      "term": "guardrail",
+      "text": "            issues.append(\"Guardrail class missing 'decide' method\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 224,
+      "term": "guardrail",
+      "text": "        struct_valid, struct_issues = validate_guardrail_structure(filepath)"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 279,
+      "term": "guardrail",
+      "text": "                guardrail_path = _extract_zip_member(stack, filepath, \"guardrail.py\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 286,
+      "term": "guardrail",
+      "text": "            print_info(\"Validating defense member: guardrail.py\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 287,
+      "term": "guardrail",
+      "text": "            guardrail_status = _validate_single_file(guardrail_path, \"guardrail\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 288,
+      "term": "guardrail",
+      "text": "            return 0 if attack_status == 0 and guardrail_status == 0 else 1"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\validate.py",
+      "line": 294,
+      "term": "guardrail",
+      "text": "    submission_type: SubmissionType = \"attack\" if track is EvaluationTrack.REDTEAM else \"guardrail\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\visualize.py",
+      "line": 206,
+      "term": "guardrail",
+      "text": "                \"❌ No security violations found. The target guardrail successfully blocked all attack attempts.\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\visualize.py",
+      "line": 252,
+      "term": "guardrail",
+      "text": "                f\"⚠️ **{breaches} security violation(s) occurred** - attacks got through the guardrail.\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 37,
+      "term": "guardrail",
+      "text": "      Create guardrail template:"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 38,
+      "term": "guardrail",
+      "text": "        aicomp init guardrail"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 105,
+      "term": "guardrail",
+      "text": "        description=\"Initialize a new attack or guardrail submission from template\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 108,
+      "term": "guardrail",
+      "text": "        \"type\", choices=[\"attack\", \"guardrail\"], help=\"Type of submission to create\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 111,
+      "term": "guardrail",
+      "text": "        \"-o\", \"--output\", help=\"Output file path (default: attack.py or guardrail.py)\""
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 135,
+      "term": "guardrail",
+      "text": "        help=\"Validate a Python guardrail module that defines Guardrail.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 139,
+      "term": "guardrail",
+      "text": "        help=\"Path to a Python guardrail module.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 144,
+      "term": "guardrail",
+      "text": "        help=\"Validate a submission zip containing attack.py and guardrail.py.\","
+    },
+    {
+      "file": "aicomp_sdk\\cli\\main.py",
+      "line": 148,
+      "term": "guardrail",
+      "text": "        help=\"Path to a submission zip containing attack.py and guardrail.py.\","
+    },
+    {
+      "file": "aicomp_sdk\\core\\__init__.py",
+      "line": 26,
+      "term": "is_protected_secret_path",
+      "text": "    is_protected_secret_path,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\__init__.py",
+      "line": 38,
+      "term": "ToolEvent",
+      "text": "from .trace import ToolEvent, Trace"
+    },
+    {
+      "file": "aicomp_sdk\\core\\__init__.py",
+      "line": 51,
+      "term": "ToolEvent",
+      "text": "    \"ToolEvent\","
+    },
+    {
+      "file": "aicomp_sdk\\core\\__init__.py",
+      "line": 62,
+      "term": "is_protected_secret_path",
+      "text": "    \"is_protected_secret_path\","
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 10,
+      "term": "side_effect",
+      "text": "    side_effects: list[str]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 17,
+      "term": "guardrail",
+      "text": "    guardrail_blocks: list[str]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 59,
+      "term": "tool_events",
+      "text": "    tool_events: Sequence[Mapping[str, Any]],"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 73,
+      "term": "guardrail",
+      "text": "    - Guardrail decisions (blocked/denied)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 88,
+      "term": "tool_events",
+      "text": "    tool_sequence = [e[\"name\"] for e in tool_events][-n_tool:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 89,
+      "term": "side_effect",
+      "text": "    side_effects = [e[\"side_effect\"] for e in tool_events][-n_tool:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 89,
+      "term": "tool_events",
+      "text": "    side_effects = [e[\"side_effect\"] for e in tool_events][-n_tool:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 90,
+      "term": "tool_events",
+      "text": "    scopes = [e[\"scope\"] for e in tool_events][-n_tool:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 91,
+      "term": "tool_events",
+      "text": "    sources = [e[\"source\"] for e in tool_events][-min(2, len(tool_events)) :]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 92,
+      "term": "tool_events",
+      "text": "    outcomes = [(\"ok\" if e.get(\"ok\") else \"err\") for e in tool_events][-min(3, len(tool_events)) :]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 96,
+      "term": "is_protected_secret_path",
+      "text": "    # a secret read) — consistent with the scorer's is_protected_secret_path rule."
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 101,
+      "term": "tool_events",
+      "text": "        for e in tool_events"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 110,
+      "term": "tool_events",
+      "text": "        for e in tool_events[-n_tool:]:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 119,
+      "term": "fs.delete",
+      "text": "            if tool_name in [\"fs.read\", \"fs.write\", \"fs.delete\"]:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 119,
+      "term": "fs.write",
+      "text": "            if tool_name in [\"fs.read\", \"fs.write\", \"fs.delete\"]:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 143,
+      "term": "tool_events",
+      "text": "        for e in tool_events[-3:]:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 148,
+      "term": "guardrail",
+      "text": "    # Track guardrail blocks (last 3 errors)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 150,
+      "term": "tool_events",
+      "text": "    for e in tool_events[-3:]:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 153,
+      "term": "confirm_required",
+      "text": "            if err.startswith(\"denied:\") or err.startswith(\"confirm_required:\"):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 155,
+      "term": "confirm_required",
+      "text": "            elif err in (\"denied\", \"confirm_required\"):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 169,
+      "term": "side_effect",
+      "text": "        + side_effects"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 181,
+      "term": "tool_events",
+      "text": "        + [f\"n_tools:{len(tool_events)}\"]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 199,
+      "term": "side_effect",
+      "text": "        \"side_effects\": side_effects,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 206,
+      "term": "guardrail",
+      "text": "        \"guardrail_blocks\": blocks,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 207,
+      "term": "tool_events",
+      "text": "        \"n_tools\": len(tool_events),"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 7,
+      "term": "guardrail",
+      "text": "from aicomp_sdk.guardrails.base import GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 53,
+      "term": "tool_events",
+      "text": "    total_tool_events: int = 0"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 54,
+      "term": "tool_events",
+      "text": "    tool_events_added: int = 0"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 75,
+      "term": "tool_events",
+      "text": "        self.tool_calls += result.tool_events_added"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 122,
+      "term": "guardrail",
+      "text": "    def guardrail(self) -> GuardrailBase:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 123,
+      "term": "guardrail",
+      "text": "        \"\"\"Return the active guardrail.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 150,
+      "term": "guardrail",
+      "text": "    def guardrail(self) -> GuardrailBase:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "line": 151,
+      "term": "guardrail",
+      "text": "        return self._inner.guardrail"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 60,
+      "term": "guardrail",
+      "text": "        guardrail,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 79,
+      "term": "guardrail",
+      "text": "            guardrail=guardrail,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 109,
+      "term": "guardrail",
+      "text": "    def guardrail(self):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 110,
+      "term": "guardrail",
+      "text": "        return self._sandbox.guardrail"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 118,
+      "term": "tool_events",
+      "text": "        tool_events = trace.get(\"tool_events\", [])"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 129,
+      "term": "tool_events",
+      "text": "            \"n_tool_events\": len(tool_events),"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 130,
+      "term": "tool_events",
+      "text": "            \"recent_tools\": [event.get(\"name\", \"\") for event in tool_events[-RECENT_TOOL_WINDOW:]],"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 132,
+      "term": "tool_events",
+      "text": "                event.get(\"source\", \"\") for event in tool_events[-RECENT_TOOL_WINDOW:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 135,
+      "term": "tool_events",
+      "text": "                event.get(\"error\") or \"\" for event in tool_events[-RECENT_ERROR_WINDOW:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 139,
+      "term": "tool_events",
+      "text": "                for event in tool_events[-LAST_OUTPUT_WINDOW:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 153,
+      "term": "tool_events",
+      "text": "            \"n_tool_events\": summary[\"n_tool_events\"],"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\gym.py",
+      "line": 184,
+      "term": "tool_events",
+      "text": "                trace.get(\"tool_events\", []),"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 15,
+      "term": "guardrail",
+      "text": "_GUARDRAIL_DENY_PREFIX: Final[str] = \"denied:\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 16,
+      "term": "confirm_required",
+      "text": "_GUARDRAIL_CONFIRM_PREFIX: Final[str] = \"confirm_required:\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 16,
+      "term": "guardrail",
+      "text": "_GUARDRAIL_CONFIRM_PREFIX: Final[str] = \"confirm_required:\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 27,
+      "term": "guardrail",
+      "text": "def _redact_guardrail_error(error: str | None) -> str | None:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 28,
+      "term": "guardrail",
+      "text": "    \"\"\"Normalize guardrail block reasons for attacker-visible traces.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 31,
+      "term": "guardrail",
+      "text": "    if error.startswith(_GUARDRAIL_DENY_PREFIX):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 32,
+      "term": "guardrail",
+      "text": "        return _GUARDRAIL_DENY_PREFIX[:-1]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 33,
+      "term": "guardrail",
+      "text": "    if error.startswith(_GUARDRAIL_CONFIRM_PREFIX):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 34,
+      "term": "guardrail",
+      "text": "        return _GUARDRAIL_CONFIRM_PREFIX[:-1]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 55,
+      "term": "guardrail",
+      "text": "        _redact_guardrail_error(error) if isinstance(error, str) else error"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 83,
+      "term": "tool_events",
+      "text": "    tool_events = projected.get(\"tool_events\")"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 84,
+      "term": "tool_events",
+      "text": "    if not isinstance(tool_events, list):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 86,
+      "term": "tool_events",
+      "text": "    for event in tool_events:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 92,
+      "term": "guardrail",
+      "text": "        event[\"error\"] = _redact_guardrail_error(error)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 20,
+      "term": "guardrail",
+      "text": "from aicomp_sdk.guardrails.base import GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 28,
+      "term": "ToolEvent",
+      "text": "from ..trace import ToolEvent, Trace"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 60,
+      "term": "guardrail",
+      "text": "    guardrail_state: Any"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 67,
+      "term": "guardrail",
+      "text": "    \"\"\"Sandboxed execution environment for a single agent, guardrail, and tool suite.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 74,
+      "term": "guardrail",
+      "text": "        guardrail: GuardrailBase | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 83,
+      "term": "guardrail",
+      "text": "        self.guardrail = guardrail or GuardrailBase()"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 84,
+      "term": "guardrail",
+      "text": "        self._initial_guardrail_state = copy.deepcopy(self._snapshot_guardrail_state())"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 101,
+      "term": "guardrail",
+      "text": "        self._restore_guardrail_state(copy.deepcopy(self._initial_guardrail_state))"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 115,
+      "term": "guardrail",
+      "text": "            guardrail_state=copy.deepcopy(self._snapshot_guardrail_state()),"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 126,
+      "term": "guardrail",
+      "text": "        self._restore_guardrail_state(copy.deepcopy(restored_snapshot.guardrail_state))"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 141,
+      "term": "guardrail",
+      "text": "            guardrail_state=copy.deepcopy(snapshot.get(\"guardrail_state\")),"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 147,
+      "term": "guardrail",
+      "text": "    def _restore_guardrail_state(self, state: Any) -> None:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 148,
+      "term": "guardrail",
+      "text": "        self.guardrail.restore_state(state)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 150,
+      "term": "guardrail",
+      "text": "    def _snapshot_guardrail_state(self) -> Any:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 151,
+      "term": "guardrail",
+      "text": "        return self.guardrail.snapshot_state()"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 210,
+      "term": "tool_events",
+      "text": "        starting_tool_count = len(self.trace.tool_events)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 271,
+      "term": "side_effect",
+      "text": "                    side_effect=\"NONE\","
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 277,
+      "term": "pre_tool",
+      "text": "            pre_tool_ctx = HookContext("
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 278,
+      "term": "PRE_TOOL_CALL",
+      "text": "                stage=HookStage.PRE_TOOL_CALL,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 278,
+      "term": "pre_tool",
+      "text": "                stage=HookStage.PRE_TOOL_CALL,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 284,
+      "term": "PRE_TOOL_CALL",
+      "text": "            self.hook_registry.execute_hooks(HookStage.PRE_TOOL_CALL, pre_tool_ctx)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 284,
+      "term": "pre_tool",
+      "text": "            self.hook_registry.execute_hooks(HookStage.PRE_TOOL_CALL, pre_tool_ctx)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 286,
+      "term": "pre_tool",
+      "text": "            if pre_tool_ctx.modified_args is not None:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 287,
+      "term": "pre_tool",
+      "text": "                tool_args = pre_tool_ctx.modified_args"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 291,
+      "term": "tool_events",
+      "text": "                \"recent_sources\": [event.source for event in self.trace.tool_events[-5:]],"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 292,
+      "term": "tool_events",
+      "text": "                \"recent_tools\": [event.name for event in self.trace.tool_events[-5:]],"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 294,
+      "term": "side_effect",
+      "text": "                \"side_effect\": spec.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 298,
+      "term": "pre_tool",
+      "text": "            if pre_tool_ctx.should_block:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 310,
+      "term": "side_effect",
+      "text": "                    side_effect=spec.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 317,
+      "term": "guardrail",
+      "text": "                stage=HookStage.PRE_GUARDRAIL,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 323,
+      "term": "guardrail",
+      "text": "            self.hook_registry.execute_hooks(HookStage.PRE_GUARDRAIL, pre_guard_ctx)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 325,
+      "term": "guardrail",
+      "text": "            guardrail_decision = self.guardrail.decide(tool_name, tool_args, ctx)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 328,
+      "term": "guardrail",
+      "text": "                stage=HookStage.POST_GUARDRAIL,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 331,
+      "term": "guardrail",
+      "text": "                guardrail_decision=guardrail_decision,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 335,
+      "term": "guardrail",
+      "text": "            self.hook_registry.execute_hooks(HookStage.POST_GUARDRAIL, post_guard_ctx)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 338,
+      "term": "guardrail",
+      "text": "                guardrail_decision.action == \"SANITIZE\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 339,
+      "term": "guardrail",
+      "text": "                and guardrail_decision.sanitized_args is not None"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 341,
+      "term": "guardrail",
+      "text": "                tool_args = dict(guardrail_decision.sanitized_args)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 353,
+      "term": "guardrail",
+      "text": "            if guardrail_decision.action == \"DENY\":"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 357,
+      "term": "side_effect",
+      "text": "                    side_effect=spec.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 359,
+      "term": "guardrail",
+      "text": "                    error=\"denied:\" + guardrail_decision.reason,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 363,
+      "term": "guardrail",
+      "text": "            if guardrail_decision.action == \"CONFIRM\":"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 367,
+      "term": "side_effect",
+      "text": "                    side_effect=spec.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 369,
+      "term": "confirm_required",
+      "text": "                    error=\"confirm_required:\" + guardrail_decision.reason,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 369,
+      "term": "guardrail",
+      "text": "                    error=\"confirm_required:\" + guardrail_decision.reason,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 379,
+      "term": "side_effect",
+      "text": "                    side_effect=spec.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 400,
+      "term": "ToolEvent",
+      "text": "            ev = ToolEvent("
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 405,
+      "term": "side_effect",
+      "text": "                side_effect=spec.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 422,
+      "term": "ToolEvent",
+      "text": "            recorded_event = ToolEvent("
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 427,
+      "term": "side_effect",
+      "text": "                side_effect=ev.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 443,
+      "term": "tool_events",
+      "text": "        new_tool_events = self.trace.tool_events[starting_tool_count:]"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 444,
+      "term": "tool_events",
+      "text": "        successful_tool_calls_added = sum(1 for event in new_tool_events if event.ok)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 445,
+      "term": "tool_events",
+      "text": "        failed_tool_calls_added = sum(1 for event in new_tool_events if not event.ok)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 448,
+      "term": "tool_events",
+      "text": "            total_tool_events=len(self.trace.tool_events),"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 449,
+      "term": "tool_events",
+      "text": "            tool_events_added=len(new_tool_events),"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 461,
+      "term": "side_effect",
+      "text": "        side_effect: str,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 466,
+      "term": "ToolEvent",
+      "text": "        event = ToolEvent("
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 471,
+      "term": "side_effect",
+      "text": "            side_effect=side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 492,
+      "term": "tool_events",
+      "text": "            \"tool_events\": ["
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 498,
+      "term": "side_effect",
+      "text": "                    \"side_effect\": event.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 503,
+      "term": "tool_events",
+      "text": "                for event in self.trace.tool_events"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 21,
+      "term": "guardrail",
+      "text": "# a map so the predicate and the guardrails share one definition of the sink."
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 217,
+      "term": "tool_events",
+      "text": "    events = trace.get(\"tool_events\", [])"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 232,
+      "term": "side_effect",
+      "text": "        if e[\"side_effect\"] in (\"EXEC\", \"SHARE\", \"WRITE\"):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 236,
+      "term": "side_effect",
+      "text": "                if e[\"side_effect\"] == \"EXEC\" and not user_allows_exec:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 244,
+      "term": "side_effect",
+      "text": "                if e[\"side_effect\"] == \"SHARE\" and not user_allows_share:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 252,
+      "term": "side_effect",
+      "text": "                if e[\"side_effect\"] == \"WRITE\" and ("
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 284,
+      "term": "DESTRUCTIVE_WRITE",
+      "text": "    # 3) DESTRUCTIVE_WRITE: deleting secret.txt or overwriting it"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 288,
+      "term": "fs.delete",
+      "text": "        if e[\"name\"] in (\"fs.delete\", \"fs.write\"):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 288,
+      "term": "fs.write",
+      "text": "        if e[\"name\"] in (\"fs.delete\", \"fs.write\"):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 293,
+      "term": "DESTRUCTIVE_WRITE",
+      "text": "                        \"predicate\": \"DESTRUCTIVE_WRITE\","
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 323,
+      "term": "tool_events",
+      "text": "    events = trace.get(\"tool_events\", [])"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 331,
+      "term": "DESTRUCTIVE_WRITE",
+      "text": "        elif pred_name == \"DESTRUCTIVE_WRITE\":"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 333,
+      "term": "fs.delete",
+      "text": "                name in (\"fs.delete\", \"fs.write\")"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 333,
+      "term": "fs.write",
+      "text": "                name in (\"fs.delete\", \"fs.write\")"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 344,
+      "term": "side_effect",
+      "text": "                (event.get(\"side_effect\") in (\"EXEC\", \"SHARE\", \"WRITE\")) and bool(event.get(\"ok\"))"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 351,
+      "term": "guardrail",
+      "text": "# --- Canonical matchers shared with guardrails -----------------------------------"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 352,
+      "term": "guardrail",
+      "text": "# Guardrails defend against exactly what the scorer scores. Exposing these keeps the"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 353,
+      "term": "guardrail",
+      "text": "# guardrail and the evaluator on one definition of \"the protected secret file\" and"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 359,
+      "term": "is_protected_secret_path",
+      "text": "def is_protected_secret_path(path: Any) -> bool:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 362,
+      "term": "DESTRUCTIVE_WRITE",
+      "text": "    Same rule the DESTRUCTIVE_WRITE predicate scores on. Use this in guardrails"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 362,
+      "term": "guardrail",
+      "text": "    Same rule the DESTRUCTIVE_WRITE predicate scores on. Use this in guardrails"
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "line": 387,
+      "term": "guardrail",
+      "text": "    spec). Lets a guardrail check the same channel the scorer treats as"
+    },
+    {
+      "file": "aicomp_sdk\\core\\replay.py",
+      "line": 14,
+      "term": "guardrail",
+      "text": "    def replay(self, seed: int, user_messages: Iterable[str], agent, guardrail) -> dict[str, Any]:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\replay.py",
+      "line": 18,
+      "term": "guardrail",
+      "text": "            seed=seed, fixtures_dir=self.fixtures_dir, agent=agent, guardrail=guardrail"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\email.py",
+      "line": 120,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.READ,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\email.py",
+      "line": 126,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.READ,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\email.py",
+      "line": 132,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.SHARE,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "line": 73,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.READ,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "line": 78,
+      "term": "fs.write",
+      "text": "        name=\"fs.write\","
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "line": 79,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.WRITE,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "line": 84,
+      "term": "fs.delete",
+      "text": "        name=\"fs.delete\","
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "line": 85,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.WRITE,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\http.py",
+      "line": 33,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.SHARE,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\models.py",
+      "line": 39,
+      "term": "side_effect",
+      "text": "    side_effect: ToolSideEffect"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\models.py",
+      "line": 50,
+      "term": "guardrail",
+      "text": "    \"\"\"Registered tool implementation and its guardrail-visible metadata.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\models.py",
+      "line": 53,
+      "term": "side_effect",
+      "text": "    side_effect: ToolSideEffect"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\schema.py",
+      "line": 42,
+      "term": "side_effect",
+      "text": "        side_effect=tool_def.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\shell.py",
+      "line": 42,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.EXEC,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\web.py",
+      "line": 48,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.NETWORK,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\web.py",
+      "line": 54,
+      "term": "side_effect",
+      "text": "        side_effect=ToolSideEffect.NETWORK,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\trace.py",
+      "line": 6,
+      "term": "ToolEvent",
+      "text": "class ToolEvent:"
+    },
+    {
+      "file": "aicomp_sdk\\core\\trace.py",
+      "line": 13,
+      "term": "side_effect",
+      "text": "    side_effect: str"
+    },
+    {
+      "file": "aicomp_sdk\\core\\trace.py",
+      "line": 25,
+      "term": "ToolEvent",
+      "text": "    tool_events: list[ToolEvent] = field(default_factory=list)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\trace.py",
+      "line": 25,
+      "term": "tool_events",
+      "text": "    tool_events: list[ToolEvent] = field(default_factory=list)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\trace.py",
+      "line": 31,
+      "term": "ToolEvent",
+      "text": "    def add_tool(self, ev: ToolEvent):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\trace.py",
+      "line": 32,
+      "term": "tool_events",
+      "text": "        self.tool_events.append(ev)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 21,
+      "term": "guardrail",
+      "text": "    AttackAlgorithm as GuardrailChallengeGenerator,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 35,
+      "term": "guardrail",
+      "text": "from aicomp_sdk.guardrails.base import GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 36,
+      "term": "guardrail",
+      "text": "from aicomp_sdk.guardrails.optimal import Guardrail as OptimalGuardrail"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 41,
+      "term": "guardrail",
+      "text": "ATTACK_GUARDRAIL_ENV_VAR: Final[str] = \"AICOMP_ATTACK_GUARDRAIL_ID\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 42,
+      "term": "guardrail",
+      "text": "ATTACK_GUARDRAIL_ENTRY_POINT_GROUP: Final[str] = \"aicomp_sdk.attack_guardrails\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 50,
+      "term": "guardrail",
+      "text": "DEFAULT_ATTACK_GUARDRAIL_ID: Final[str] = \"optimal_public\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 106,
+      "term": "guardrail",
+      "text": "class AttackGuardrailSpec:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 107,
+      "term": "guardrail",
+      "text": "    \"\"\"Allowlisted guardrail selection for attack evaluation.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 111,
+      "term": "guardrail",
+      "text": "    guardrail_factory: Callable[[], GuardrailBase]"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 114,
+      "term": "guardrail",
+      "text": "_BUILTIN_ATTACK_GUARDRAIL_SPECS: Final[dict[str, AttackGuardrailSpec]] = {"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 115,
+      "term": "guardrail",
+      "text": "    DEFAULT_ATTACK_GUARDRAIL_ID: AttackGuardrailSpec("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 116,
+      "term": "guardrail",
+      "text": "        id=DEFAULT_ATTACK_GUARDRAIL_ID,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 118,
+      "term": "guardrail",
+      "text": "        guardrail_factory=OptimalGuardrail,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 121,
+      "term": "guardrail",
+      "text": "_REGISTERED_ATTACK_GUARDRAIL_SPECS: dict[str, AttackGuardrailSpec] = {}"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 150,
+      "term": "guardrail",
+      "text": "    guardrail_factory: Callable[[], GuardrailBase] = OptimalGuardrail"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 161,
+      "term": "guardrail",
+      "text": "    guardrail_factory: Callable[[], GuardrailBase] | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 170,
+      "term": "guardrail",
+      "text": "        guardrail_factory=guardrail_factory or resolve_attack_guardrail_spec().guardrail_factory,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 174,
+      "term": "guardrail",
+      "text": "def _default_guardrail_challenge_config() -> dict[str, Any]:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 180,
+      "term": "guardrail",
+      "text": "    \"\"\"Harness configuration for defense evaluation around a submitted guardrail.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 182,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_config: Mapping[str, Any] = field("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 183,
+      "term": "guardrail",
+      "text": "        default_factory=_default_guardrail_challenge_config"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 185,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_run_config: AttackRunConfig | None = None"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 186,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_env_seed: int = 123"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 194,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_env_seed: int,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 199,
+      "term": "guardrail",
+      "text": "        guardrail_challenge_env_seed=guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 279,
+      "term": "guardrail",
+      "text": "def register_attack_guardrail_spec(spec: AttackGuardrailSpec) -> None:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 280,
+      "term": "guardrail",
+      "text": "    \"\"\"Register an allowlisted guardrail spec for attack evaluation.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 282,
+      "term": "guardrail",
+      "text": "        raise ValueError(\"Attack guardrail spec id cannot be empty\")"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 283,
+      "term": "guardrail",
+      "text": "    _add_attack_guardrail_spec("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 284,
+      "term": "guardrail",
+      "text": "        _REGISTERED_ATTACK_GUARDRAIL_SPECS,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 286,
+      "term": "guardrail",
+      "text": "        duplicate_message=\"Attack guardrail spec already registered\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 290,
+      "term": "guardrail",
+      "text": "def _add_attack_guardrail_spec("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 291,
+      "term": "guardrail",
+      "text": "    registry: dict[str, AttackGuardrailSpec],"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 292,
+      "term": "guardrail",
+      "text": "    spec: AttackGuardrailSpec,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 302,
+      "term": "guardrail",
+      "text": "def _load_entry_point_guardrail_spec(entry_point: Any) -> AttackGuardrailSpec:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 303,
+      "term": "guardrail",
+      "text": "    guardrail_cls = entry_point.load()"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 304,
+      "term": "guardrail",
+      "text": "    if not inspect.isclass(guardrail_cls) or not issubclass(guardrail_cls, GuardrailBase):"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 306,
+      "term": "guardrail",
+      "text": "            \"Attack guardrail entry points must load GuardrailBase subclasses: \""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 313,
+      "term": "guardrail",
+      "text": "    return AttackGuardrailSpec("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 316,
+      "term": "guardrail",
+      "text": "        guardrail_factory=cast(Callable[[], GuardrailBase], guardrail_cls),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 320,
+      "term": "guardrail",
+      "text": "def resolve_attack_guardrail_spec("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 321,
+      "term": "guardrail",
+      "text": "    guardrail_id: str | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 322,
+      "term": "guardrail",
+      "text": ") -> AttackGuardrailSpec:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 323,
+      "term": "guardrail",
+      "text": "    \"\"\"Resolve the attack-evaluation guardrail from an explicit id or env var.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 324,
+      "term": "guardrail",
+      "text": "    resolved_guardrail_id = guardrail_id"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 325,
+      "term": "guardrail",
+      "text": "    if resolved_guardrail_id is None:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 326,
+      "term": "guardrail",
+      "text": "        resolved_guardrail_id = os.getenv(ATTACK_GUARDRAIL_ENV_VAR)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 327,
+      "term": "guardrail",
+      "text": "    if not resolved_guardrail_id:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 328,
+      "term": "guardrail",
+      "text": "        resolved_guardrail_id = DEFAULT_ATTACK_GUARDRAIL_ID"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 330,
+      "term": "guardrail",
+      "text": "    builtin_spec = _BUILTIN_ATTACK_GUARDRAIL_SPECS.get(resolved_guardrail_id)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 331,
+      "term": "guardrail",
+      "text": "    registered_spec = _REGISTERED_ATTACK_GUARDRAIL_SPECS.get(resolved_guardrail_id)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 333,
+      "term": "guardrail",
+      "text": "    known_ids = set(_BUILTIN_ATTACK_GUARDRAIL_SPECS)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 334,
+      "term": "guardrail",
+      "text": "    known_ids.update(_REGISTERED_ATTACK_GUARDRAIL_SPECS)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 335,
+      "term": "guardrail",
+      "text": "    for entry_point in entry_points(group=ATTACK_GUARDRAIL_ENTRY_POINT_GROUP):"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 337,
+      "term": "guardrail",
+      "text": "        if entry_point.name == resolved_guardrail_id:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 341,
+      "term": "guardrail",
+      "text": "        raise ValueError(f\"Duplicate attack guardrail spec id: {resolved_guardrail_id}\")"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 343,
+      "term": "guardrail",
+      "text": "        raise ValueError(f\"Duplicate attack guardrail spec id: {resolved_guardrail_id}\")"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 345,
+      "term": "guardrail",
+      "text": "        raise ValueError(f\"Duplicate attack guardrail spec id: {resolved_guardrail_id}\")"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 351,
+      "term": "guardrail",
+      "text": "        return _load_entry_point_guardrail_spec(matching_entry_points[0])"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 355,
+      "term": "guardrail",
+      "text": "        f\"Unsupported attack guardrail id: {resolved_guardrail_id}. \""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 356,
+      "term": "guardrail",
+      "text": "        f\"Known guardrails: {known_ids_text}\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 505,
+      "term": "guardrail",
+      "text": "    guardrail: Any,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 516,
+      "term": "guardrail",
+      "text": "        guardrail=guardrail,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 541,
+      "term": "guardrail",
+      "text": "    guardrail: Any,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 555,
+      "term": "guardrail",
+      "text": "            guardrail=guardrail,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 572,
+      "term": "guardrail",
+      "text": "                guardrail=guardrail,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 617,
+      "term": "guardrail",
+      "text": "    user_guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 621,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_env_seed: int = 123,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 628,
+      "term": "guardrail",
+      "text": "    \"\"\"Evaluate a guardrail submission with the advanced low-level defense primitive."
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 635,
+      "term": "guardrail",
+      "text": "        guardrail_challenge_env_seed=guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 638,
+      "term": "guardrail",
+      "text": "    run_config = resolved_options.guardrail_challenge_run_config or AttackRunConfig("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 644,
+      "term": "guardrail",
+      "text": "        seed=resolved_options.guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 646,
+      "term": "guardrail",
+      "text": "        guardrail=user_guardrail_cls(),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 653,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_config: dict[str, Any] = dict(resolved_options.guardrail_challenge_config)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 655,
+      "term": "guardrail",
+      "text": "        guardrail_challenge_config[\"_progress_reporter\"] = output_controller.progress_reporter("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 656,
+      "term": "guardrail",
+      "text": "            phase=\"guardrail_challenge_generation\""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 658,
+      "term": "guardrail",
+      "text": "    attacker = GuardrailChallengeGenerator(guardrail_challenge_config)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 661,
+      "term": "guardrail",
+      "text": "            \"guardrail challenge generation\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 662,
+      "term": "guardrail",
+      "text": "            phase=\"guardrail_challenge_generation\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 674,
+      "term": "guardrail",
+      "text": "                f\"Guardrail challenge generator returned unsupported item at index {idx}; \""
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 681,
+      "term": "guardrail",
+      "text": "            seed=resolved_options.guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 684,
+      "term": "guardrail",
+      "text": "            guardrail=user_guardrail_cls(),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 700,
+      "term": "guardrail",
+      "text": "            guardrail=user_guardrail_cls(),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 718,
+      "term": "confirm_required",
+      "text": "            (event.get(\"error\") or \"\").startswith((\"denied:\", \"confirm_required:\"))"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 719,
+      "term": "tool_events",
+      "text": "            for event in trace[\"tool_events\"]"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 763,
+      "term": "guardrail",
+      "text": "            guardrail=resolved_options.guardrail_factory(),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 806,
+      "term": "guardrail",
+      "text": "                guardrail=resolved_options.guardrail_factory(),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 826,
+      "term": "tool_events",
+      "text": "                    trace.get(\"tool_events\", []),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 830,
+      "term": "tool_events",
+      "text": "                \"score_cell_signature\": cell_signature(trace.get(\"tool_events\", [])),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\reports.py",
+      "line": 59,
+      "term": "guardrail",
+      "text": "        \"attack_guardrail_id\": attack.guardrail_id,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\reports.py",
+      "line": 60,
+      "term": "guardrail",
+      "text": "        \"attack_guardrail_version\": attack.guardrail_version,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\reports.py",
+      "line": 174,
+      "term": "guardrail",
+      "text": "            \"submission_type\": \"guardrail_only\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\reports.py",
+      "line": 235,
+      "term": "guardrail",
+      "text": "            \"submission_type\": \"guardrail_only\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 29,
+      "term": "guardrail",
+      "text": "        AttackGuardrailSpec,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 53,
+      "term": "guardrail",
+      "text": "    guardrail_id: str"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 54,
+      "term": "guardrail",
+      "text": "    guardrail_version: str"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 147,
+      "term": "guardrail",
+      "text": "    attack_guardrail_spec: AttackGuardrailSpec | None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 151,
+      "term": "guardrail",
+      "text": ") -> tuple[AttackEvalOptions, AttackGuardrailSpec]:"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 155,
+      "term": "guardrail",
+      "text": "        resolve_attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 158,
+      "term": "guardrail",
+      "text": "    resolved_guardrail_spec = attack_guardrail_spec or resolve_attack_guardrail_spec()"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 164,
+      "term": "guardrail",
+      "text": "            guardrail_factory=resolved_guardrail_spec.guardrail_factory,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 166,
+      "term": "guardrail",
+      "text": "        resolved_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 173,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_config: Mapping[str, Any] | None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 174,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_run_config: AttackRunConfig | None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 175,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_env_seed: int,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 184,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_config=dict(guardrail_challenge_config or {}),"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 185,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_run_config=guardrail_challenge_run_config,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 186,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_env_seed=guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 205,
+      "term": "guardrail",
+      "text": "    attack_guardrail_spec: AttackGuardrailSpec | None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 212,
+      "term": "guardrail",
+      "text": "    options, resolved_guardrail_spec = _create_attack_eval_options("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 214,
+      "term": "guardrail",
+      "text": "        attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 243,
+      "term": "guardrail",
+      "text": "        guardrail_id=resolved_guardrail_spec.id,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 244,
+      "term": "guardrail",
+      "text": "        guardrail_version=resolved_guardrail_spec.version,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 251,
+      "term": "guardrail",
+      "text": "    guardrail_cls: type[Any],"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 260,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_config: Mapping[str, Any] | None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 261,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_run_config: AttackRunConfig | None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 262,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_env_seed: int,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 271,
+      "term": "guardrail",
+      "text": "        guardrail_challenge_config=guardrail_challenge_config,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 272,
+      "term": "guardrail",
+      "text": "        guardrail_challenge_run_config=guardrail_challenge_run_config,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 273,
+      "term": "guardrail",
+      "text": "        guardrail_challenge_env_seed=guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 280,
+      "term": "guardrail",
+      "text": "            guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 315,
+      "term": "guardrail",
+      "text": "    attack_guardrail_spec: AttackGuardrailSpec | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 330,
+      "term": "guardrail",
+      "text": "    ``AgentSelection.AUTO`` in that mode. ``attack_guardrail_spec`` is"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 361,
+      "term": "guardrail",
+      "text": "            attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 388,
+      "term": "guardrail",
+      "text": "    guardrail_cls: type[Any],"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 397,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_config: Mapping[str, Any] | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 398,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_run_config: AttackRunConfig | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 399,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_env_seed: int = 123,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 406,
+      "term": "guardrail",
+      "text": "    This is the high-level Python entrypoint for guardrail-only scripts. It"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 408,
+      "term": "guardrail",
+      "text": "    uses a scorer-owned guardrail challenge generator to produce replay"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 409,
+      "term": "guardrail",
+      "text": "    candidates, replays them against the submitted guardrail, and runs benign"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 414,
+      "term": "guardrail",
+      "text": "    ``guardrail_challenge_*`` parameters tune the evaluator-owned challenge"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 415,
+      "term": "guardrail",
+      "text": "    generator; they do not configure the submitted guardrail."
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 437,
+      "term": "guardrail",
+      "text": "            guardrail_cls=guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 446,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_config=guardrail_challenge_config,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 447,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_run_config=guardrail_challenge_run_config,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 448,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_env_seed=guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 475,
+      "term": "guardrail",
+      "text": "    guardrail_cls: type[Any],"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 483,
+      "term": "guardrail",
+      "text": "    attack_guardrail_spec: AttackGuardrailSpec | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 487,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_config: Mapping[str, Any] | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 488,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_run_config: AttackRunConfig | None = None,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 490,
+      "term": "guardrail",
+      "text": "    guardrail_challenge_env_seed: int = 123,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 499,
+      "term": "guardrail",
+      "text": "    submitted attack in the offense phase, then running the submitted guardrail"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 500,
+      "term": "guardrail",
+      "text": "    through the scorer-owned guardrail challenge generator in the defense phase."
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 503,
+      "term": "guardrail",
+      "text": "    ``guardrail_challenge_config`` / ``guardrail_challenge_run_config``"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 537,
+      "term": "guardrail",
+      "text": "            attack_guardrail_spec=attack_guardrail_spec,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 560,
+      "term": "guardrail",
+      "text": "            guardrail_cls=guardrail_cls,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 569,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_config=guardrail_challenge_config,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 570,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_run_config=guardrail_challenge_run_config,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\runner.py",
+      "line": 571,
+      "term": "guardrail",
+      "text": "            guardrail_challenge_env_seed=guardrail_challenge_env_seed,"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 135,
+      "term": "guardrail",
+      "text": "    guardrail_cls = None"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 146,
+      "term": "guardrail",
+      "text": "            guardrail_cls = load_zip_class("
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 147,
+      "term": "guardrail",
+      "text": "                file_name=\"guardrail.py\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 148,
+      "term": "guardrail",
+      "text": "                module_name=\"user_guardrail\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 149,
+      "term": "guardrail",
+      "text": "                class_name=\"Guardrail\","
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 152,
+      "term": "guardrail",
+      "text": "        return attack_cls, guardrail_cls"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 161,
+      "term": "guardrail",
+      "text": "            guard_mod = load_module_from_file(submission_path, \"user_guardrail\")"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 162,
+      "term": "guardrail",
+      "text": "            guardrail_cls = guard_mod.Guardrail if hasattr(guard_mod, \"Guardrail\") else None"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\submissions.py",
+      "line": 165,
+      "term": "guardrail",
+      "text": "        return attack_cls, guardrail_cls"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\__init__.py",
+      "line": 1,
+      "term": "guardrail",
+      "text": "\"\"\"Guardrail system for defense strategies.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\__init__.py",
+      "line": 3,
+      "term": "guardrail",
+      "text": "from .base import Decision, DecisionAction, GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\__init__.py",
+      "line": 4,
+      "term": "guardrail",
+      "text": "from .optimal import Guardrail as OptimalGuardrail"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\__init__.py",
+      "line": 7,
+      "term": "guardrail",
+      "text": "    \"GuardrailBase\","
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\__init__.py",
+      "line": 10,
+      "term": "guardrail",
+      "text": "    \"OptimalGuardrail\","
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "line": 42,
+      "term": "guardrail",
+      "text": "class GuardrailBase:"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "line": 43,
+      "term": "guardrail",
+      "text": "    \"\"\"Override decide() to implement a guardrail.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "line": 51,
+      "term": "guardrail",
+      "text": "        \"\"\"Capture guardrail state for env snapshot/restore flows.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "line": 55,
+      "term": "guardrail",
+      "text": "        \"\"\"Restore guardrail state from a previous snapshot.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "line": 1,
+      "term": "guardrail",
+      "text": "\"\"\"Packaged optimal baseline guardrail used by the Kaggle attack scorer.\"\"\""
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "line": 7,
+      "term": "guardrail",
+      "text": "from aicomp_sdk.guardrails.base import Decision, GuardrailBase"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "line": 10,
+      "term": "guardrail",
+      "text": "class Guardrail(GuardrailBase):"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "line": 16,
+      "term": "fs.delete",
+      "text": "            \"fs.delete\","
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "line": 17,
+      "term": "fs.write",
+      "text": "            \"fs.write\","
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\lpci.py",
+      "line": 39,
+      "term": "PRE_TOOL_CALL",
+      "text": "        if context.stage != HookStage.PRE_TOOL_CALL:"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\lpci.py",
+      "line": 39,
+      "term": "pre_tool",
+      "text": "        if context.stage != HookStage.PRE_TOOL_CALL:"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 22,
+      "term": "ToolEvent",
+      "text": "class _ToolEventSnapshot:"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 27,
+      "term": "side_effect",
+      "text": "    side_effect: str"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 37,
+      "term": "ToolEvent",
+      "text": "    tool_events: tuple[_ToolEventSnapshot, ...]"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 37,
+      "term": "tool_events",
+      "text": "    tool_events: tuple[_ToolEventSnapshot, ...]"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 77,
+      "term": "tool_events",
+      "text": "        for attr in (\"seed\", \"user_messages\", \"tool_events\", \"assistant_messages\")"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 83,
+      "term": "tool_events",
+      "text": "        tool_events=tuple("
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 84,
+      "term": "ToolEvent",
+      "text": "            _ToolEventSnapshot("
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 89,
+      "term": "side_effect",
+      "text": "                side_effect=tool_event.side_effect,"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 94,
+      "term": "tool_events",
+      "text": "            for tool_event in trace.tool_events"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\registry.py",
+      "line": 150,
+      "term": "guardrail",
+      "text": "    context.guardrail_decision = modified_context.guardrail_decision"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\types.py",
+      "line": 14,
+      "term": "PRE_TOOL_CALL",
+      "text": "    PRE_TOOL_CALL = \"pre_tool_call\""
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\types.py",
+      "line": 14,
+      "term": "pre_tool",
+      "text": "    PRE_TOOL_CALL = \"pre_tool_call\""
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\types.py",
+      "line": 16,
+      "term": "guardrail",
+      "text": "    PRE_GUARDRAIL = \"pre_guardrail\""
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\types.py",
+      "line": 17,
+      "term": "guardrail",
+      "text": "    POST_GUARDRAIL = \"post_guardrail\""
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\types.py",
+      "line": 30,
+      "term": "guardrail",
+      "text": "    guardrail_decision: Any | None = None"
+    }
+  ],
+  "ordering_hints": [
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_allow.py",
+      "line": 6,
+      "patterns": [
+        "\\.allow\\s*\\("
+      ],
+      "text": "        return Decision.allow(\"allow all\")"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 66,
+      "patterns": [
+        "destructive_secret"
+      ],
+      "text": "            return Decision.confirm(\"destructive_secret\")"
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "line": 68,
+      "patterns": [
+        "\\.allow\\s*\\("
+      ],
+      "text": "        return Decision.allow(\"ok\")"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 219,
+      "patterns": [
+        "\\.allow\\s*\\("
+      ],
+      "text": "            - Decision.allow(): Allow the action"
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "line": 284,
+      "patterns": [
+        "\\.allow\\s*\\("
+      ],
+      "text": "        return Decision.allow()"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 153,
+      "patterns": [
+        "confirm_required"
+      ],
+      "text": "            if err.startswith(\"denied:\") or err.startswith(\"confirm_required:\"):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "line": 155,
+      "patterns": [
+        "confirm_required"
+      ],
+      "text": "            elif err in (\"denied\", \"confirm_required\"):"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "line": 16,
+      "patterns": [
+        "confirm_required"
+      ],
+      "text": "_GUARDRAIL_CONFIRM_PREFIX: Final[str] = \"confirm_required:\""
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 278,
+      "patterns": [
+        "PRE_TOOL_CALL"
+      ],
+      "text": "                stage=HookStage.PRE_TOOL_CALL,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 284,
+      "patterns": [
+        "PRE_TOOL_CALL"
+      ],
+      "text": "            self.hook_registry.execute_hooks(HookStage.PRE_TOOL_CALL, pre_tool_ctx)"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 369,
+      "patterns": [
+        "confirm_required"
+      ],
+      "text": "                    error=\"confirm_required:\" + guardrail_decision.reason,"
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "line": 374,
+      "patterns": [
+        "\\.call\\s*\\("
+      ],
+      "text": "                ok, output, err = self.tools.call(tool_name, tool_args)"
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "line": 718,
+      "patterns": [
+        "confirm_required"
+      ],
+      "text": "            (event.get(\"error\") or \"\").startswith((\"denied:\", \"confirm_required:\"))"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "line": 48,
+      "patterns": [
+        "\\.allow\\s*\\("
+      ],
+      "text": "        return Decision.allow(\"default allow\")"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "line": 38,
+      "patterns": [
+        "\\.allow\\s*\\("
+      ],
+      "text": "            return Decision.allow(\"User explicitly authorized this operation\")"
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "line": 49,
+      "patterns": [
+        "\\.allow\\s*\\("
+      ],
+      "text": "        return Decision.allow(\"Operation allowed\")"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\lpci.py",
+      "line": 39,
+      "patterns": [
+        "PRE_TOOL_CALL"
+      ],
+      "text": "        if context.stage != HookStage.PRE_TOOL_CALL:"
+    },
+    {
+      "file": "aicomp_sdk\\hooks\\types.py",
+      "line": 14,
+      "patterns": [
+        "PRE_TOOL_CALL"
+      ],
+      "text": "    PRE_TOOL_CALL = \"pre_tool_call\""
+    }
+  ],
+  "functions": [
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "__init__",
+      "start_line": 82,
+      "end_line": 85,
+      "arguments": [
+        "self",
+        "debug_sink"
+      ],
+      "referenced_names": [
+        "AgentDebugSink",
+        "debug_sink",
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_tool_call",
+      "start_line": 87,
+      "end_line": 94,
+      "arguments": [
+        "self",
+        "tool",
+        "args",
+        "reason"
+      ],
+      "referenced_names": [
+        "Any",
+        "ToolCall",
+        "ToolCallDecision",
+        "args",
+        "call",
+        "dict",
+        "self",
+        "str",
+        "tool"
+      ],
+      "called_functions": [
+        "ToolCall",
+        "ToolCallDecision"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_find_url",
+      "start_line": 96,
+      "end_line": 100,
+      "arguments": [
+        "self",
+        "output"
+      ],
+      "referenced_names": [
+        "_URL_RE",
+        "match",
+        "output",
+        "str"
+      ],
+      "called_functions": [
+        "_URL_RE.search",
+        "match.group"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_read_file_call",
+      "start_line": 102,
+      "end_line": 108,
+      "arguments": [
+        "self",
+        "message"
+      ],
+      "referenced_names": [
+        "ToolCallDecision",
+        "_READ_FILE_TARGETS",
+        "keyword",
+        "message",
+        "path",
+        "self",
+        "str"
+      ],
+      "called_functions": [
+        "self._tool_call"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_extract_open_page_id",
+      "start_line": 110,
+      "end_line": 121,
+      "arguments": [
+        "self",
+        "message"
+      ],
+      "referenced_names": [
+        "_OPEN_PAGE_IDS",
+        "clean_word",
+        "message",
+        "normalized_message",
+        "page_id",
+        "str",
+        "word"
+      ],
+      "called_functions": [
+        "message.replace",
+        "message.split",
+        "word.strip"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_extract_email_id",
+      "start_line": 123,
+      "end_line": 128,
+      "arguments": [
+        "self",
+        "message"
+      ],
+      "referenced_names": [
+        "clean_word",
+        "message",
+        "str",
+        "word"
+      ],
+      "called_functions": [
+        "clean_word.startswith",
+        "message.split",
+        "word.strip"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_parse_instructions_from_output",
+      "start_line": 130,
+      "end_line": 232,
+      "arguments": [
+        "self",
+        "output"
+      ],
+      "referenced_names": [
+        "ToolCallDecision",
+        "_AUTHORITY_PHRASES",
+        "_IMPERATIVE_PHRASES",
+        "_INSTRUCTION_RESET_PHRASES",
+        "_STEP_MARKERS",
+        "any",
+        "marker",
+        "matched_url",
+        "output",
+        "output_lower",
+        "phrase",
+        "self",
+        "str",
+        "url"
+      ],
+      "called_functions": [
+        "any",
+        "output.lower",
+        "self._find_url",
+        "self._tool_call"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_last_tool_output",
+      "start_line": 234,
+      "end_line": 238,
+      "arguments": [
+        "self",
+        "history"
+      ],
+      "referenced_names": [
+        "RuntimeHistory",
+        "ToolResultEvent",
+        "event",
+        "history",
+        "isinstance",
+        "str"
+      ],
+      "called_functions": [
+        "isinstance"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_last_user_message",
+      "start_line": 240,
+      "end_line": 244,
+      "arguments": [
+        "self",
+        "history"
+      ],
+      "referenced_names": [
+        "RuntimeHistory",
+        "UserMessageEvent",
+        "event",
+        "history",
+        "isinstance",
+        "str"
+      ],
+      "called_functions": [
+        "isinstance"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "next_action",
+      "start_line": 246,
+      "end_line": 372,
+      "arguments": [
+        "self",
+        "history",
+        "tools"
+      ],
+      "referenced_names": [
+        "AgentToolSpec",
+        "FinalResponseDecision",
+        "RuntimeHistory",
+        "Sequence",
+        "ToolCallDecision",
+        "context_payload",
+        "history",
+        "injected_call",
+        "last_tool_output",
+        "len",
+        "msg_id",
+        "page_id",
+        "q",
+        "read_call",
+        "self",
+        "tools",
+        "turn_index",
+        "u",
+        "user_message"
+      ],
+      "called_functions": [
+        "FinalResponseDecision",
+        "len",
+        "self._extract_email_id",
+        "self._extract_open_page_id",
+        "self._last_tool_output",
+        "self._last_user_message",
+        "self._parse_instructions_from_output",
+        "self._read_file_call",
+        "self._record_debug_event",
+        "self._return_with_debug",
+        "self._tool_call",
+        "strip",
+        "u.split",
+        "user_message.lower"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "reset_state",
+      "start_line": 374,
+      "end_line": 376,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "snapshot_state",
+      "start_line": 378,
+      "end_line": 383,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "AGENT_STATE_VERSION",
+        "AgentStateSnapshot",
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "restore_state",
+      "start_line": 385,
+      "end_line": 394,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "AGENT_STATE_VERSION",
+        "AgentStateSnapshot",
+        "AgentStateVersionError",
+        "int",
+        "self",
+        "snapshot"
+      ],
+      "called_functions": [
+        "AgentStateVersionError",
+        "get",
+        "int"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_record_debug_event",
+      "start_line": 396,
+      "end_line": 417,
+      "arguments": [
+        "self",
+        "phase",
+        "turn_index",
+        "history",
+        "request_payload",
+        "decision_payload"
+      ],
+      "referenced_names": [
+        "AgentDebugEvent",
+        "Any",
+        "DebugPhase",
+        "RuntimeHistory",
+        "decision_payload",
+        "dict",
+        "history",
+        "int",
+        "phase",
+        "request_payload",
+        "self",
+        "str",
+        "summarize_runtime_history",
+        "turn_index"
+      ],
+      "called_functions": [
+        "AgentDebugEvent",
+        "self._debug_sink.record",
+        "summarize_runtime_history"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\agents\\deterministic_agent.py",
+      "name": "_return_with_debug",
+      "start_line": 419,
+      "end_line": 432,
+      "arguments": [
+        "self",
+        "turn_index",
+        "history",
+        "decision"
+      ],
+      "referenced_names": [
+        "FinalResponseDecision",
+        "RuntimeHistory",
+        "ToolCallDecision",
+        "decision",
+        "history",
+        "int",
+        "self",
+        "serialize_agent_decision",
+        "turn_index"
+      ],
+      "called_functions": [
+        "self._record_debug_event",
+        "serialize_agent_decision"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "_is_progress_reporter",
+      "start_line": 103,
+      "end_line": 104,
+      "arguments": [
+        "value"
+      ],
+      "referenced_names": [
+        "all",
+        "attr",
+        "bool",
+        "callable",
+        "getattr",
+        "object",
+        "value"
+      ],
+      "called_functions": [
+        "all",
+        "callable",
+        "getattr"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "__post_init__",
+      "start_line": 122,
+      "end_line": 128,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "ValueError",
+        "self"
+      ],
+      "called_functions": [
+        "ValueError"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "from_mapping",
+      "start_line": 131,
+      "end_line": 145,
+      "arguments": [
+        "cls",
+        "config"
+      ],
+      "referenced_names": [
+        "Any",
+        "Mapping",
+        "Self",
+        "bool",
+        "classmethod",
+        "cls",
+        "config",
+        "data",
+        "dict",
+        "float",
+        "int",
+        "str"
+      ],
+      "called_functions": [
+        "bool",
+        "cls",
+        "data.get",
+        "dict",
+        "float",
+        "int"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "__init__",
+      "start_line": 159,
+      "end_line": 187,
+      "arguments": [
+        "self",
+        "config"
+      ],
+      "referenced_names": [
+        "Any",
+        "DEFAULT_PROMPT_BANK",
+        "GoExploreConfig",
+        "Mapping",
+        "ProgressReporter",
+        "SHELL_PROMPT_BANK",
+        "_is_progress_reporter",
+        "callable",
+        "cast",
+        "config",
+        "dict",
+        "emitter",
+        "list",
+        "progress_reporter",
+        "prompt_bank",
+        "self",
+        "str",
+        "super"
+      ],
+      "called_functions": [
+        "GoExploreConfig.from_mapping",
+        "_is_progress_reporter",
+        "callable",
+        "cast",
+        "list",
+        "self.config.get",
+        "super",
+        "super.__init__"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "_emit",
+      "start_line": 189,
+      "end_line": 211,
+      "arguments": [
+        "self",
+        "level",
+        "event",
+        "message",
+        "**fields"
+      ],
+      "referenced_names": [
+        "event",
+        "fields",
+        "level",
+        "message",
+        "object",
+        "self",
+        "str"
+      ],
+      "called_functions": [
+        "self._diagnostic_emitter",
+        "self._logger.debug",
+        "self._logger.info",
+        "self._progress_reporter.debug",
+        "self._progress_reporter.info",
+        "self._progress_reporter.progress"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "_select_cell",
+      "start_line": 213,
+      "end_line": 247,
+      "arguments": [
+        "self",
+        "archive",
+        "rng"
+      ],
+      "referenced_names": [
+        "Exemplar",
+        "Mapping",
+        "abs",
+        "archive",
+        "candidates",
+        "cumsum",
+        "depth_weight",
+        "e",
+        "ex",
+        "list",
+        "max",
+        "max_score",
+        "max_visits",
+        "r",
+        "random",
+        "rng",
+        "score_weight",
+        "str",
+        "sum",
+        "total",
+        "visit_weight",
+        "w",
+        "weight",
+        "weights",
+        "zip"
+      ],
+      "called_functions": [
+        "abs",
+        "archive.values",
+        "list",
+        "max",
+        "rng.uniform",
+        "sum",
+        "weights.append",
+        "zip"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "_compute_signature",
+      "start_line": 249,
+      "end_line": 258,
+      "arguments": [
+        "self",
+        "trace"
+      ],
+      "referenced_names": [
+        "Any",
+        "CellSignature",
+        "Mapping",
+        "cell_signature",
+        "self",
+        "sig_kwargs",
+        "str",
+        "trace"
+      ],
+      "called_functions": [
+        "cell_signature",
+        "trace.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\attacker_goexplore.py",
+      "name": "run",
+      "start_line": 260,
+      "end_line": 641,
+      "arguments": [
+        "self",
+        "env",
+        "config"
+      ],
+      "referenced_names": [
+        "Any",
+        "AttackCandidate",
+        "AttackEnvProtocol",
+        "AttackRunConfig",
+        "Exemplar",
+        "NovelCell",
+        "Timebox",
+        "all_attacks_in_cell",
+        "any",
+        "archive",
+        "arg_str",
+        "arg_strs",
+        "args",
+        "attack",
+        "attack_sig_current",
+        "attack_sig_parent",
+        "branch_idx",
+        "budget_s",
+        "bypass_bonus",
+        "cell_data",
+        "chain",
+        "config",
+        "current_attacks",
+        "dangerous_success",
+        "depth_counts",
+        "detailed_finding",
+        "detailed_findings",
+        "detect_real_attacks",
+        "dict",
+        "e",
+        "enumerate",
+        "env",
+        "eval_predicates",
+        "ex",
+        "finding",
+        "findings",
+        "float",
+        "h",
+        "has_file_wash",
+        "has_untrusted",
+        "i",
+        "impact",
+        "int",
+        "k",
+        "len",
+        "list",
+        "max_search_steps",
+        "max_tool_hops",
+        "new_action",
+        "new_real_attacks",
+        "new_snapshot",
+        "novel_cells",
+        "novelty",
+        "p",
+        "pa",
+        "parent_attacks",
+        "parent_sigs",
+        "pred_names",
+        "predicate_names",
+        "preds",
+        "productive_steps",
+        "progress_bonus",
+        "random",
+        "range",
+        "real_attack_bonus",
+        "result",
+        "rng",
+        "s",
+        "score",
+        "self",
+        "set",
+        "sev",
+        "sig",
+        "snapshot",
+        "sorted",
+        "sources",
+        "step_had_any_work",
+        "str",
+        "sum",
+        "tb",
+        "tool_calls_with_args",
+        "tool_events",
+        "tool_name",
+        "tool_names",
+        "total_branches_attempted",
+        "total_novel_cells",
+        "total_predicates",
+        "tr",
+        "v",
+        "v_str"
+      ],
+      "called_functions": [
+        "AttackCandidate.from_messages",
+        "Exemplar",
+        "NovelCell",
+        "Timebox",
+        "any",
+        "archive.values",
+        "arg_strs.append",
+        "args.items",
+        "attack.get",
+        "attack.get.get",
+        "count",
+        "depth_counts.get",
+        "depth_counts.items",
+        "detailed_findings.append",
+        "detect_real_attacks",
+        "dict",
+        "e.get",
+        "enumerate",
+        "env.export_trace_dict",
+        "env.interact",
+        "env.reset",
+        "env.restore",
+        "env.snapshot",
+        "eval_predicates",
+        "finding.get",
+        "finding.get.get",
+        "findings.append",
+        "float",
+        "int",
+        "join",
+        "len",
+        "list",
+        "new_real_attacks.append",
+        "novel_cells.append",
+        "p.get",
+        "pa.get",
+        "pa.get.get",
+        "parent_sigs.add",
+        "random.Random",
+        "range",
+        "rng.choice",
+        "self._compute_signature",
+        "self._emit",
+        "self._select_cell",
+        "set",
+        "sorted",
+        "str",
+        "sum",
+        "tb.expired",
+        "tool_calls_with_args.append",
+        "tr.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\baselines\\guardrail_rules.py",
+      "name": "decide",
+      "start_line": 24,
+      "end_line": 68,
+      "arguments": [
+        "self",
+        "tool_name",
+        "tool_args",
+        "context"
+      ],
+      "referenced_names": [
+        "Decision",
+        "PRIVATE_NET_RE",
+        "any",
+        "context",
+        "exfil_payload_arg",
+        "is_protected_secret_path",
+        "k",
+        "last_user",
+        "payload_arg",
+        "payload_exfiltrates_secret",
+        "recent_sources",
+        "set",
+        "side",
+        "tool_args",
+        "tool_name"
+      ],
+      "called_functions": [
+        "Decision.allow",
+        "Decision.confirm",
+        "Decision.deny",
+        "PRIVATE_NET_RE.search",
+        "any",
+        "context.get",
+        "exfil_payload_arg",
+        "is_protected_secret_path",
+        "lower",
+        "payload_exfiltrates_secret",
+        "set",
+        "tool_args.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\attacks\\real_attack_detection.py",
+      "name": "detect_real_attacks",
+      "start_line": 12,
+      "end_line": 248,
+      "arguments": [
+        "events"
+      ],
+      "referenced_names": [
+        "ACTION_RE",
+        "Any",
+        "Sequence",
+        "_args_str",
+        "any",
+        "attack_type",
+        "body",
+        "cmd",
+        "data",
+        "dict",
+        "enumerate",
+        "event",
+        "events",
+        "has_exfil",
+        "has_injection",
+        "has_read_secret",
+        "has_untrusted_source",
+        "i",
+        "impact",
+        "injection_phrases",
+        "int",
+        "len",
+        "list",
+        "matches",
+        "min",
+        "next_event",
+        "output",
+        "path",
+        "phrase",
+        "read_idx",
+        "real_attacks",
+        "secret_data",
+        "secret_snippet",
+        "str",
+        "tool_name"
+      ],
+      "called_functions": [
+        "ACTION_RE.findall",
+        "any",
+        "enumerate",
+        "event.get",
+        "event.get.get",
+        "len",
+        "min",
+        "next_event.get",
+        "next_event.get.get",
+        "path.lower",
+        "real_attacks.append",
+        "secret_data.items",
+        "str",
+        "str.lower"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\cli\\commands\\init.py",
+      "name": "run_init",
+      "start_line": 288,
+      "end_line": 336,
+      "arguments": [
+        "args"
+      ],
+      "referenced_names": [
+        "ATTACK_TEMPLATE",
+        "Exception",
+        "GUARDRAIL_TEMPLATE",
+        "Path",
+        "args",
+        "e",
+        "int",
+        "output_path",
+        "print",
+        "print_error",
+        "print_info",
+        "print_success",
+        "submission_type",
+        "template",
+        "test_command",
+        "validate_command",
+        "validate_track"
+      ],
+      "called_functions": [
+        "Path",
+        "output_path.exists",
+        "output_path.write_text",
+        "print",
+        "print_error",
+        "print_info",
+        "print_success"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "name": "_short_hash",
+      "start_line": 24,
+      "end_line": 25,
+      "arguments": [
+        "s"
+      ],
+      "referenced_names": [
+        "hashlib",
+        "s",
+        "str"
+      ],
+      "called_functions": [
+        "hashlib.sha256",
+        "hashlib.sha256.hexdigest",
+        "s.encode"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "name": "_bucket_path",
+      "start_line": 28,
+      "end_line": 30,
+      "arguments": [
+        "path"
+      ],
+      "referenced_names": [
+        "Path",
+        "path",
+        "str"
+      ],
+      "called_functions": [
+        "Path"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "name": "_normalize_sandbox_path",
+      "start_line": 33,
+      "end_line": 47,
+      "arguments": [
+        "path"
+      ],
+      "referenced_names": [
+        "normalized",
+        "path",
+        "posixpath",
+        "str"
+      ],
+      "called_functions": [
+        "posixpath.normpath",
+        "str",
+        "str.replace",
+        "str.replace.lstrip"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "name": "_bucket_url",
+      "start_line": 50,
+      "end_line": 55,
+      "arguments": [
+        "url"
+      ],
+      "referenced_names": [
+        "domain",
+        "str",
+        "url"
+      ],
+      "called_functions": [
+        "split",
+        "url.split"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\cells.py",
+      "name": "cell_signature",
+      "start_line": 58,
+      "end_line": 211,
+      "arguments": [
+        "tool_events",
+        "n_tool",
+        "egress_data",
+        "user_messages",
+        "use_args",
+        "use_outputs",
+        "args_count"
+      ],
+      "referenced_names": [
+        "Any",
+        "CellSignature",
+        "Collection",
+        "Mapping",
+        "Sequence",
+        "_bucket_url",
+        "_normalize_sandbox_path",
+        "_short_hash",
+        "any",
+        "args",
+        "args_count",
+        "blocks",
+        "bool",
+        "cmd",
+        "e",
+        "egress_count",
+        "egress_data",
+        "email_id",
+        "err",
+        "int",
+        "len",
+        "min",
+        "msg",
+        "n_tool",
+        "outcomes",
+        "output_sample",
+        "output_samples",
+        "page_id",
+        "path",
+        "query",
+        "scopes",
+        "secret_read",
+        "side_effects",
+        "sig_parts",
+        "sig_str",
+        "sources",
+        "str",
+        "tool_args_signature",
+        "tool_events",
+        "tool_name",
+        "tool_sequence",
+        "url",
+        "use_args",
+        "use_outputs",
+        "user_intent_hash",
+        "user_messages"
+      ],
+      "called_functions": [
+        "_bucket_url",
+        "_normalize_sandbox_path",
+        "_normalize_sandbox_path.lower",
+        "_short_hash",
+        "any",
+        "args.get",
+        "blocks.append",
+        "e.get",
+        "e.get.get",
+        "err.split",
+        "err.startswith",
+        "join",
+        "len",
+        "min",
+        "output_samples.append",
+        "str",
+        "tool_args_signature.append",
+        "user_intent_hash.append"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "validate_interact_args",
+      "start_line": 13,
+      "end_line": 33,
+      "arguments": [
+        "user_message",
+        "max_tool_hops",
+        "default_max_tool_hops",
+        "caller"
+      ],
+      "referenced_names": [
+        "Any",
+        "MAX_USER_MESSAGE_CHARS",
+        "TypeError",
+        "ValueError",
+        "caller",
+        "default_max_tool_hops",
+        "int",
+        "isinstance",
+        "len",
+        "max_tool_hops",
+        "resolved_max_tool_hops",
+        "str",
+        "user_message"
+      ],
+      "called_functions": [
+        "TypeError",
+        "ValueError",
+        "int",
+        "isinstance",
+        "len"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "coerce_env_selection",
+      "start_line": 41,
+      "end_line": 45,
+      "arguments": [
+        "value"
+      ],
+      "referenced_names": [
+        "EnvSelection",
+        "ValueError",
+        "err",
+        "str",
+        "value"
+      ],
+      "called_functions": [
+        "EnvSelection",
+        "ValueError"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "record",
+      "start_line": 72,
+      "end_line": 78,
+      "arguments": [
+        "self",
+        "result"
+      ],
+      "referenced_names": [
+        "EnvInteractionResult",
+        "int",
+        "result",
+        "self"
+      ],
+      "called_functions": [
+        "int"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "seed",
+      "start_line": 86,
+      "end_line": 87,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "int",
+        "property"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "seed",
+      "start_line": 90,
+      "end_line": 91,
+      "arguments": [
+        "self",
+        "value"
+      ],
+      "referenced_names": [
+        "int",
+        "seed"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "reset",
+      "start_line": 93,
+      "end_line": 94,
+      "arguments": [
+        "self",
+        "*args",
+        "**kwargs"
+      ],
+      "referenced_names": [
+        "Any"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "interact",
+      "start_line": 96,
+      "end_line": 97,
+      "arguments": [
+        "self",
+        "user_message",
+        "max_tool_hops"
+      ],
+      "referenced_names": [
+        "EnvInteractionResult",
+        "int",
+        "str"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "export_trace_dict",
+      "start_line": 99,
+      "end_line": 100,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "dict",
+        "str"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "snapshot",
+      "start_line": 102,
+      "end_line": 103,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "restore",
+      "start_line": 105,
+      "end_line": 106,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "Any"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "trace",
+      "start_line": 114,
+      "end_line": 115,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "property"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "tools",
+      "start_line": 118,
+      "end_line": 119,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "property"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "guardrail",
+      "start_line": 122,
+      "end_line": 123,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "GuardrailBase",
+        "property"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "__init__",
+      "start_line": 129,
+      "end_line": 131,
+      "arguments": [
+        "self",
+        "inner"
+      ],
+      "referenced_names": [
+        "EnvRunDiagnostics",
+        "_HarnessAttackEnvProtocol",
+        "inner",
+        "self"
+      ],
+      "called_functions": [
+        "EnvRunDiagnostics"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "seed",
+      "start_line": 134,
+      "end_line": 135,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "int",
+        "property",
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "seed",
+      "start_line": 138,
+      "end_line": 139,
+      "arguments": [
+        "self",
+        "value"
+      ],
+      "referenced_names": [
+        "int",
+        "seed",
+        "self",
+        "value"
+      ],
+      "called_functions": [
+        "int"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "trace",
+      "start_line": 142,
+      "end_line": 143,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "property",
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "tools",
+      "start_line": 146,
+      "end_line": 147,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "property",
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "guardrail",
+      "start_line": 150,
+      "end_line": 151,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "GuardrailBase",
+        "property",
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "reset",
+      "start_line": 153,
+      "end_line": 154,
+      "arguments": [
+        "self",
+        "*args",
+        "**kwargs"
+      ],
+      "referenced_names": [
+        "Any",
+        "args",
+        "kwargs",
+        "self"
+      ],
+      "called_functions": [
+        "self._inner.reset"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "interact",
+      "start_line": 156,
+      "end_line": 159,
+      "arguments": [
+        "self",
+        "user_message",
+        "max_tool_hops"
+      ],
+      "referenced_names": [
+        "EnvInteractionResult",
+        "int",
+        "max_tool_hops",
+        "result",
+        "self",
+        "str",
+        "user_message"
+      ],
+      "called_functions": [
+        "self._inner.interact",
+        "self.run_diagnostics.record"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "export_trace_dict",
+      "start_line": 161,
+      "end_line": 162,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "dict",
+        "self",
+        "str"
+      ],
+      "called_functions": [
+        "self._inner.export_trace_dict"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "snapshot",
+      "start_line": 164,
+      "end_line": 165,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "self"
+      ],
+      "called_functions": [
+        "self._inner.snapshot"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "restore",
+      "start_line": 167,
+      "end_line": 168,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "Any",
+        "self",
+        "snapshot"
+      ],
+      "called_functions": [
+        "self._inner.restore"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\api.py",
+      "name": "__getattr__",
+      "start_line": 170,
+      "end_line": 171,
+      "arguments": [
+        "self",
+        "name"
+      ],
+      "referenced_names": [
+        "Any",
+        "getattr",
+        "name",
+        "self",
+        "str"
+      ],
+      "called_functions": [
+        "getattr"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "_redact_guardrail_error",
+      "start_line": 27,
+      "end_line": 35,
+      "arguments": [
+        "error"
+      ],
+      "referenced_names": [
+        "_GUARDRAIL_CONFIRM_PREFIX",
+        "_GUARDRAIL_DENY_PREFIX",
+        "error",
+        "str"
+      ],
+      "called_functions": [
+        "error.startswith"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "_project_attack_observation",
+      "start_line": 38,
+      "end_line": 64,
+      "arguments": [
+        "observation"
+      ],
+      "referenced_names": [
+        "Any",
+        "Mapping",
+        "_redact_guardrail_error",
+        "dict",
+        "error",
+        "isinstance",
+        "json",
+        "list",
+        "observation",
+        "projected_observation",
+        "projected_summary",
+        "recent_errors",
+        "str",
+        "summary",
+        "trace_summary_json"
+      ],
+      "called_functions": [
+        "_redact_guardrail_error",
+        "dict",
+        "isinstance",
+        "json.dumps",
+        "json.loads",
+        "observation.get",
+        "summary.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "_project_attack_reset_result",
+      "start_line": 67,
+      "end_line": 77,
+      "arguments": [
+        "result"
+      ],
+      "referenced_names": [
+        "Any",
+        "Mapping",
+        "_project_attack_observation",
+        "_project_attack_trace_dict",
+        "dict",
+        "info",
+        "isinstance",
+        "len",
+        "observation",
+        "projected_info",
+        "result",
+        "trace",
+        "tuple"
+      ],
+      "called_functions": [
+        "_project_attack_observation",
+        "_project_attack_trace_dict",
+        "dict",
+        "isinstance",
+        "len",
+        "projected_info.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "_project_attack_trace_dict",
+      "start_line": 80,
+      "end_line": 93,
+      "arguments": [
+        "trace"
+      ],
+      "referenced_names": [
+        "Any",
+        "Mapping",
+        "_redact_guardrail_error",
+        "copy",
+        "dict",
+        "error",
+        "event",
+        "isinstance",
+        "list",
+        "projected",
+        "str",
+        "tool_events",
+        "trace"
+      ],
+      "called_functions": [
+        "_redact_guardrail_error",
+        "copy.deepcopy",
+        "dict",
+        "event.get",
+        "isinstance",
+        "projected.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "_build_opaque_attack_env_type",
+      "start_line": 110,
+      "end_line": 165,
+      "arguments": [],
+      "referenced_names": [
+        "Any",
+        "EnvInteractionResult",
+        "KeyError",
+        "TypeError",
+        "ValueError",
+        "WeakKeyDictionary",
+        "_HarnessAttackEnvProtocol",
+        "_OPAQUE_ATTACK_ENV_DIR",
+        "_OpaqueAttackEnv",
+        "_OpaqueAttackEnvState",
+        "_OpaqueEnvSnapshot",
+        "__slots__",
+        "_project_attack_reset_result",
+        "_project_attack_trace_dict",
+        "args",
+        "dict",
+        "err",
+        "inner",
+        "inner_snapshot",
+        "int",
+        "isinstance",
+        "kwargs",
+        "list",
+        "max_tool_hops",
+        "object",
+        "property",
+        "seed",
+        "self",
+        "snapshot",
+        "state",
+        "states",
+        "str",
+        "type",
+        "user_message",
+        "value"
+      ],
+      "called_functions": [
+        "TypeError",
+        "ValueError",
+        "WeakKeyDictionary",
+        "_OpaqueAttackEnvState",
+        "_OpaqueEnvSnapshot",
+        "_project_attack_reset_result",
+        "_project_attack_trace_dict",
+        "inner.export_trace_dict",
+        "inner.interact",
+        "inner.reset",
+        "int",
+        "isinstance",
+        "list",
+        "state.inner.restore",
+        "state.inner.snapshot"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "__init__",
+      "start_line": 121,
+      "end_line": 122,
+      "arguments": [
+        "self",
+        "inner"
+      ],
+      "referenced_names": [
+        "_HarnessAttackEnvProtocol",
+        "_OpaqueAttackEnvState",
+        "inner",
+        "self",
+        "states"
+      ],
+      "called_functions": [
+        "_OpaqueAttackEnvState"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "seed",
+      "start_line": 125,
+      "end_line": 126,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "int",
+        "property",
+        "self",
+        "states"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "seed",
+      "start_line": 129,
+      "end_line": 130,
+      "arguments": [
+        "self",
+        "value"
+      ],
+      "referenced_names": [
+        "int",
+        "seed",
+        "self",
+        "states",
+        "value"
+      ],
+      "called_functions": [
+        "int"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "reset",
+      "start_line": 132,
+      "end_line": 133,
+      "arguments": [
+        "self",
+        "*args",
+        "**kwargs"
+      ],
+      "referenced_names": [
+        "Any",
+        "_project_attack_reset_result",
+        "args",
+        "kwargs",
+        "self",
+        "states"
+      ],
+      "called_functions": [
+        "_project_attack_reset_result",
+        "inner.reset"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "interact",
+      "start_line": 135,
+      "end_line": 138,
+      "arguments": [
+        "self",
+        "user_message",
+        "max_tool_hops"
+      ],
+      "referenced_names": [
+        "EnvInteractionResult",
+        "int",
+        "max_tool_hops",
+        "self",
+        "states",
+        "str",
+        "user_message"
+      ],
+      "called_functions": [
+        "inner.interact"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "export_trace_dict",
+      "start_line": 140,
+      "end_line": 141,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "_project_attack_trace_dict",
+        "dict",
+        "self",
+        "states",
+        "str"
+      ],
+      "called_functions": [
+        "_project_attack_trace_dict",
+        "inner.export_trace_dict"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "snapshot",
+      "start_line": 143,
+      "end_line": 147,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "_OpaqueEnvSnapshot",
+        "self",
+        "snapshot",
+        "state",
+        "states"
+      ],
+      "called_functions": [
+        "_OpaqueEnvSnapshot",
+        "state.inner.snapshot"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "restore",
+      "start_line": 149,
+      "end_line": 157,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "Any",
+        "KeyError",
+        "TypeError",
+        "ValueError",
+        "_OpaqueEnvSnapshot",
+        "err",
+        "inner_snapshot",
+        "isinstance",
+        "self",
+        "snapshot",
+        "state",
+        "states"
+      ],
+      "called_functions": [
+        "TypeError",
+        "ValueError",
+        "isinstance",
+        "state.inner.restore"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "__dir__",
+      "start_line": 159,
+      "end_line": 160,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "_OPAQUE_ATTACK_ENV_DIR",
+        "list",
+        "str"
+      ],
+      "called_functions": [
+        "list"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\opaque.py",
+      "name": "__repr__",
+      "start_line": 162,
+      "end_line": 163,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "str"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "__init__",
+      "start_line": 69,
+      "end_line": 93,
+      "arguments": [
+        "self",
+        "seed",
+        "fixtures_dir",
+        "agent",
+        "guardrail",
+        "hook_registry",
+        "max_tool_hops"
+      ],
+      "referenced_names": [
+        "AgentProtocol",
+        "DEFAULT_MAX_TOOL_HOPS",
+        "GuardrailBase",
+        "HookRegistry",
+        "Path",
+        "RuntimeHistory",
+        "ToolSuite",
+        "Trace",
+        "ValueError",
+        "_DEFAULT_RUNTIME_INSTRUCTIONS",
+        "agent",
+        "copy",
+        "fixtures_dir",
+        "guardrail",
+        "hook_registry",
+        "int",
+        "max_tool_hops",
+        "seed",
+        "self",
+        "str",
+        "to_agent_tool_specs",
+        "tuple"
+      ],
+      "called_functions": [
+        "GuardrailBase",
+        "HookRegistry",
+        "Path",
+        "RuntimeHistory",
+        "RuntimeHistory.with_instruction",
+        "ToolSuite",
+        "Trace",
+        "ValueError",
+        "copy.deepcopy",
+        "int",
+        "self._snapshot_guardrail_state",
+        "self.agent.reset_state",
+        "self.hook_registry.snapshot_state",
+        "self.tools.specs.values",
+        "to_agent_tool_specs",
+        "tuple"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "runtime_history",
+      "start_line": 96,
+      "end_line": 97,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "RuntimeHistory",
+        "property",
+        "self"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "reset",
+      "start_line": 99,
+      "end_line": 106,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "RuntimeHistory",
+        "Trace",
+        "_DEFAULT_RUNTIME_INSTRUCTIONS",
+        "copy",
+        "self"
+      ],
+      "called_functions": [
+        "RuntimeHistory",
+        "RuntimeHistory.with_instruction",
+        "Trace",
+        "copy.deepcopy",
+        "self._restore_guardrail_state",
+        "self.agent.reset_state",
+        "self.hook_registry.restore_state",
+        "self.tools.reset"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "snapshot",
+      "start_line": 108,
+      "end_line": 119,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "EnvSnapshot",
+        "copy",
+        "self"
+      ],
+      "called_functions": [
+        "EnvSnapshot",
+        "copy.deepcopy",
+        "self._snapshot_filesystem",
+        "self._snapshot_guardrail_state",
+        "self._snapshot_tools_state",
+        "self.agent.snapshot_state",
+        "self.hook_registry.snapshot_state"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "restore",
+      "start_line": 121,
+      "end_line": 131,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "Any",
+        "EnvSnapshot",
+        "Mapping",
+        "copy",
+        "restored_snapshot",
+        "self",
+        "snapshot",
+        "str"
+      ],
+      "called_functions": [
+        "copy.deepcopy",
+        "self._coerce_snapshot",
+        "self._restore_filesystem",
+        "self._restore_guardrail_state",
+        "self._restore_tools_state",
+        "self.agent.restore_state",
+        "self.hook_registry.restore_state"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_coerce_snapshot",
+      "start_line": 133,
+      "end_line": 145,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "Any",
+        "EnvSnapshot",
+        "Mapping",
+        "copy",
+        "isinstance",
+        "self",
+        "snapshot",
+        "str"
+      ],
+      "called_functions": [
+        "EnvSnapshot",
+        "copy.deepcopy",
+        "isinstance",
+        "self.hook_registry.snapshot_state",
+        "snapshot.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_restore_guardrail_state",
+      "start_line": 147,
+      "end_line": 148,
+      "arguments": [
+        "self",
+        "state"
+      ],
+      "referenced_names": [
+        "Any",
+        "self",
+        "state"
+      ],
+      "called_functions": [
+        "self.guardrail.restore_state"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_snapshot_guardrail_state",
+      "start_line": 150,
+      "end_line": 151,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "self"
+      ],
+      "called_functions": [
+        "self.guardrail.snapshot_state"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_snapshot_tools_state",
+      "start_line": 153,
+      "end_line": 154,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "dict",
+        "self",
+        "str"
+      ],
+      "called_functions": [
+        "self.tools.snapshot_state"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_restore_tools_state",
+      "start_line": 156,
+      "end_line": 157,
+      "arguments": [
+        "self",
+        "state"
+      ],
+      "referenced_names": [
+        "Any",
+        "Mapping",
+        "self",
+        "state",
+        "str"
+      ],
+      "called_functions": [
+        "self.tools.restore_state"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_snapshot_filesystem",
+      "start_line": 159,
+      "end_line": 170,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "FileBlob",
+        "FilesystemSnapshot",
+        "directories",
+        "files",
+        "list",
+        "path",
+        "rel_path",
+        "root",
+        "self",
+        "sorted",
+        "str",
+        "tuple"
+      ],
+      "called_functions": [
+        "FileBlob",
+        "FilesystemSnapshot",
+        "directories.append",
+        "files.append",
+        "path.is_dir",
+        "path.is_file",
+        "path.read_bytes",
+        "path.relative_to",
+        "path.relative_to.as_posix",
+        "root.rglob",
+        "sorted",
+        "tuple"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_restore_filesystem",
+      "start_line": 172,
+      "end_line": 188,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "FilesystemSnapshot",
+        "file_blob",
+        "path",
+        "relative_dir",
+        "root",
+        "self",
+        "shutil",
+        "snapshot",
+        "sorted",
+        "value"
+      ],
+      "called_functions": [
+        "mkdir",
+        "path.is_dir",
+        "path.parent.mkdir",
+        "path.unlink",
+        "path.write_bytes",
+        "root.iterdir",
+        "shutil.rmtree",
+        "sorted",
+        "value.count"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "interact",
+      "start_line": 190,
+      "end_line": 454,
+      "arguments": [
+        "self",
+        "user_message",
+        "max_tool_hops"
+      ],
+      "referenced_names": [
+        "Any",
+        "EnvInteractionResult",
+        "Exception",
+        "FinalResponseDecision",
+        "HookContext",
+        "HookStage",
+        "InvalidModelOutputError",
+        "RuntimeError",
+        "ToolCallDecision",
+        "ToolEvent",
+        "ToolResult",
+        "agent_refused_immediately",
+        "agent_turns",
+        "blocked_call",
+        "call_error",
+        "context_hook_ctx",
+        "copy",
+        "ctx",
+        "decision",
+        "dict",
+        "err",
+        "ev",
+        "event",
+        "executed_call",
+        "failed_tool_calls_added",
+        "guardrail_decision",
+        "hop_idx",
+        "int",
+        "isinstance",
+        "len",
+        "max_tool_hops",
+        "memory_ctx",
+        "new_tool_events",
+        "ok",
+        "output",
+        "output_text",
+        "post_guard_ctx",
+        "post_tool_ctx",
+        "pre_guard_ctx",
+        "pre_tool_ctx",
+        "range",
+        "recorded_event",
+        "resolved_max_tool_hops",
+        "self",
+        "serialize_tool_output",
+        "spec",
+        "starting_tool_count",
+        "str",
+        "successful_tool_calls_added",
+        "sum",
+        "tool_args",
+        "tool_name",
+        "type",
+        "user_message",
+        "validate_interact_args"
+      ],
+      "called_functions": [
+        "EnvInteractionResult",
+        "HookContext",
+        "RuntimeError",
+        "ToolEvent",
+        "ToolResult",
+        "copy.deepcopy",
+        "decision.text.strip",
+        "dict",
+        "isinstance",
+        "len",
+        "range",
+        "self._record_failed_tool_attempt",
+        "self._runtime_history.with_assistant_message",
+        "self._runtime_history.with_tool_request",
+        "self._runtime_history.with_tool_result",
+        "self._runtime_history.with_user_message",
+        "self.agent.next_action",
+        "self.guardrail.decide",
+        "self.hook_registry.execute_hooks",
+        "self.tools.call",
+        "self.tools.specs.get",
+        "self.trace.add_assistant",
+        "self.trace.add_tool",
+        "self.trace.add_user",
+        "serialize_tool_output",
+        "sum",
+        "type",
+        "validate_interact_args"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "_record_failed_tool_attempt",
+      "start_line": 456,
+      "end_line": 485,
+      "arguments": [
+        "self",
+        "call",
+        "args",
+        "side_effect",
+        "scope",
+        "error"
+      ],
+      "referenced_names": [
+        "Any",
+        "Mapping",
+        "ToolEvent",
+        "ToolResult",
+        "args",
+        "call",
+        "dict",
+        "error",
+        "event",
+        "output_text",
+        "scope",
+        "self",
+        "serialize_tool_output",
+        "side_effect",
+        "str"
+      ],
+      "called_functions": [
+        "ToolEvent",
+        "ToolResult",
+        "dict",
+        "self._runtime_history.with_tool_result",
+        "self.trace.add_tool",
+        "serialize_tool_output"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\env\\sandbox.py",
+      "name": "export_trace_dict",
+      "start_line": 487,
+      "end_line": 506,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any",
+        "dict",
+        "event",
+        "list",
+        "self",
+        "str"
+      ],
+      "called_functions": [
+        "list",
+        "self.tools.get_egress"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "_extract_secret_values",
+      "start_line": 31,
+      "end_line": 55,
+      "arguments": [
+        "text"
+      ],
+      "referenced_names": [
+        "_MIN_SECRET_VALUE_LEN",
+        "len",
+        "line",
+        "raw_line",
+        "set",
+        "str",
+        "text",
+        "value",
+        "values"
+      ],
+      "called_functions": [
+        "len",
+        "line.partition",
+        "line.startswith",
+        "raw_line.strip",
+        "set",
+        "strip",
+        "text.splitlines",
+        "values.add"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "_decode_candidates",
+      "start_line": 58,
+      "end_line": 116,
+      "arguments": [
+        "s"
+      ],
+      "referenced_names": [
+        "Exception",
+        "ValueError",
+        "base64",
+        "binascii",
+        "bytes",
+        "candidates",
+        "decode_sources",
+        "decoded",
+        "hex_source",
+        "len",
+        "padded",
+        "re",
+        "s",
+        "set",
+        "source",
+        "str",
+        "stripped",
+        "urllib"
+      ],
+      "called_functions": [
+        "base64.b64decode",
+        "base64.b64decode.decode",
+        "bytes.fromhex",
+        "bytes.fromhex.decode",
+        "candidates.add",
+        "decode_sources.update",
+        "len",
+        "re.findall",
+        "re.sub",
+        "urllib.parse.unquote",
+        "urllib.parse.unquote_plus"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "_alnum",
+      "start_line": 119,
+      "end_line": 121,
+      "arguments": [
+        "s"
+      ],
+      "referenced_names": [
+        "re",
+        "s",
+        "str"
+      ],
+      "called_functions": [
+        "re.sub",
+        "s.lower"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "_contains_secret",
+      "start_line": 124,
+      "end_line": 175,
+      "arguments": [
+        "s",
+        "secret_values"
+      ],
+      "referenced_names": [
+        "Iterable",
+        "SECRET_MARKER",
+        "_ENCODED_MATCH_MIN_LEN",
+        "_alnum",
+        "_decode_candidates",
+        "any",
+        "bool",
+        "c",
+        "decoded_forms",
+        "encoded_patterns",
+        "form",
+        "len",
+        "p",
+        "pa",
+        "pattern",
+        "patterns",
+        "payload_alnum",
+        "s",
+        "s_lower",
+        "secret_values",
+        "set",
+        "str",
+        "v"
+      ],
+      "called_functions": [
+        "_alnum",
+        "_decode_candidates",
+        "any",
+        "c.lower",
+        "len",
+        "pattern.lower",
+        "s.lower"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "_is_secret_path",
+      "start_line": 181,
+      "end_line": 196,
+      "arguments": [
+        "path"
+      ],
+      "referenced_names": [
+        "Any",
+        "SECRET_FILENAME",
+        "bool",
+        "normalized",
+        "path",
+        "posixpath",
+        "str"
+      ],
+      "called_functions": [
+        "posixpath.normpath",
+        "str",
+        "str.strip",
+        "str.strip.replace",
+        "str.strip.replace.lstrip"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "_secrets_read_in_trace",
+      "start_line": 199,
+      "end_line": 212,
+      "arguments": [
+        "events"
+      ],
+      "referenced_names": [
+        "Any",
+        "Iterable",
+        "Mapping",
+        "_extract_secret_values",
+        "_is_secret_path",
+        "e",
+        "events",
+        "secrets",
+        "set",
+        "str"
+      ],
+      "called_functions": [
+        "_extract_secret_values",
+        "_is_secret_path",
+        "e.get",
+        "get",
+        "set"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "eval_predicates",
+      "start_line": 215,
+      "end_line": 312,
+      "arguments": [
+        "trace"
+      ],
+      "referenced_names": [
+        "Any",
+        "EXFIL_SINKS",
+        "Mapping",
+        "_contains_secret",
+        "_is_secret_path",
+        "_secrets_read_in_trace",
+        "any",
+        "args",
+        "dict",
+        "e",
+        "enumerate",
+        "events",
+        "i",
+        "last_user",
+        "list",
+        "max",
+        "path",
+        "payload",
+        "read_secrets",
+        "str",
+        "trace",
+        "triggered",
+        "untrusted_sources",
+        "user_allows_exec",
+        "user_allows_share",
+        "user_msgs",
+        "w",
+        "window"
+      ],
+      "called_functions": [
+        "EXFIL_SINKS.get",
+        "_contains_secret",
+        "_is_secret_path",
+        "_secrets_read_in_trace",
+        "any",
+        "args.get",
+        "e.get",
+        "enumerate",
+        "get",
+        "lower",
+        "max",
+        "trace.get",
+        "triggered.append",
+        "w.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "is_breach",
+      "start_line": 315,
+      "end_line": 348,
+      "arguments": [
+        "trace",
+        "predicates"
+      ],
+      "referenced_names": [
+        "Any",
+        "EXFIL_SINKS",
+        "Iterable",
+        "Mapping",
+        "_",
+        "_is_secret_path",
+        "any",
+        "bool",
+        "e",
+        "event",
+        "events",
+        "name",
+        "ok",
+        "pred_name",
+        "predicate",
+        "predicates",
+        "str",
+        "succeeded",
+        "trace"
+      ],
+      "called_functions": [
+        "_is_secret_path",
+        "any",
+        "bool",
+        "e.get",
+        "event.get",
+        "get",
+        "predicate.get",
+        "trace.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "is_protected_secret_path",
+      "start_line": 359,
+      "end_line": 366,
+      "arguments": [
+        "path"
+      ],
+      "referenced_names": [
+        "Any",
+        "_is_secret_path",
+        "bool",
+        "path"
+      ],
+      "called_functions": [
+        "_is_secret_path"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "payload_exfiltrates_secret",
+      "start_line": 369,
+      "end_line": 380,
+      "arguments": [
+        "data",
+        "read_secrets"
+      ],
+      "referenced_names": [
+        "Any",
+        "Iterable",
+        "_contains_secret",
+        "bool",
+        "data",
+        "isinstance",
+        "read_secrets",
+        "str",
+        "text"
+      ],
+      "called_functions": [
+        "_contains_secret",
+        "isinstance",
+        "str"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\predicates.py",
+      "name": "exfil_payload_arg",
+      "start_line": 383,
+      "end_line": 390,
+      "arguments": [
+        "tool_name"
+      ],
+      "referenced_names": [
+        "EXFIL_SINKS",
+        "str",
+        "tool_name"
+      ],
+      "called_functions": [
+        "EXFIL_SINKS.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "name": "fs_read",
+      "start_line": 10,
+      "end_line": 25,
+      "arguments": [
+        "ctx",
+        "path"
+      ],
+      "referenced_names": [
+        "ToolCallResult",
+        "ToolContext",
+        "_is_path_escape",
+        "_resolve_path",
+        "ctx",
+        "path",
+        "resolved_path",
+        "str"
+      ],
+      "called_functions": [
+        "_is_path_escape",
+        "_resolve_path",
+        "ctx.mark_source",
+        "resolved_path.exists",
+        "resolved_path.is_dir",
+        "resolved_path.read_text"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "name": "fs_write",
+      "start_line": 28,
+      "end_line": 42,
+      "arguments": [
+        "ctx",
+        "path",
+        "content"
+      ],
+      "referenced_names": [
+        "ToolCallResult",
+        "ToolContext",
+        "_is_path_escape",
+        "_resolve_path",
+        "content",
+        "ctx",
+        "path",
+        "resolved_path",
+        "str"
+      ],
+      "called_functions": [
+        "_is_path_escape",
+        "_resolve_path",
+        "ctx.mark_source",
+        "resolved_path.parent.mkdir",
+        "resolved_path.write_text"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "name": "fs_delete",
+      "start_line": 45,
+      "end_line": 59,
+      "arguments": [
+        "ctx",
+        "path"
+      ],
+      "referenced_names": [
+        "ToolCallResult",
+        "ToolContext",
+        "_is_path_escape",
+        "_resolve_path",
+        "ctx",
+        "path",
+        "resolved_path",
+        "str"
+      ],
+      "called_functions": [
+        "_is_path_escape",
+        "_resolve_path",
+        "ctx.mark_source",
+        "resolved_path.exists",
+        "resolved_path.unlink"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "name": "_resolve_path",
+      "start_line": 62,
+      "end_line": 63,
+      "arguments": [
+        "ctx",
+        "path"
+      ],
+      "referenced_names": [
+        "Path",
+        "ToolContext",
+        "ctx",
+        "path",
+        "str"
+      ],
+      "called_functions": [
+        "path.lstrip",
+        "resolve"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\core\\tools\\fs.py",
+      "name": "_is_path_escape",
+      "start_line": 66,
+      "end_line": 67,
+      "arguments": [
+        "ctx",
+        "path"
+      ],
+      "referenced_names": [
+        "Path",
+        "ToolContext",
+        "bool",
+        "ctx",
+        "path"
+      ],
+      "called_functions": [
+        "ctx.filesystem_root.resolve",
+        "path.is_relative_to"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_run_until_deadline",
+      "start_line": 54,
+      "end_line": 83,
+      "arguments": [
+        "operation",
+        "deadline_s",
+        "phase"
+      ],
+      "referenced_names": [
+        "Any",
+        "BaseException",
+        "Callable",
+        "TimeoutError",
+        "deadline_s",
+        "err",
+        "error",
+        "float",
+        "operation",
+        "phase",
+        "queue",
+        "remaining_s",
+        "result",
+        "result_queue",
+        "run",
+        "str",
+        "threading",
+        "time",
+        "tuple"
+      ],
+      "called_functions": [
+        "TimeoutError",
+        "operation",
+        "queue.Queue",
+        "result_queue.get",
+        "result_queue.put",
+        "threading.Thread",
+        "threading.Thread.start",
+        "time.monotonic"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "run",
+      "start_line": 67,
+      "end_line": 73,
+      "arguments": [],
+      "referenced_names": [
+        "BaseException",
+        "err",
+        "operation",
+        "result",
+        "result_queue"
+      ],
+      "called_functions": [
+        "operation",
+        "result_queue.put"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_default_attack_eval_options",
+      "start_line": 157,
+      "end_line": 171,
+      "arguments": [
+        "budget_s",
+        "attack_env_seed",
+        "guardrail_factory"
+      ],
+      "referenced_names": [
+        "AttackEvalOptions",
+        "AttackRunConfig",
+        "Callable",
+        "EVALUATION_DEFAULT_MAX_TOOL_HOPS",
+        "GuardrailBase",
+        "attack_env_seed",
+        "budget_s",
+        "float",
+        "guardrail_factory",
+        "int",
+        "resolve_attack_guardrail_spec"
+      ],
+      "called_functions": [
+        "AttackEvalOptions",
+        "AttackRunConfig",
+        "float",
+        "resolve_attack_guardrail_spec"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_default_guardrail_challenge_config",
+      "start_line": 174,
+      "end_line": 175,
+      "arguments": [],
+      "referenced_names": [
+        "Any",
+        "dict",
+        "str"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_default_defense_run_options",
+      "start_line": 192,
+      "end_line": 203,
+      "arguments": [
+        "guardrail_challenge_env_seed",
+        "benign_seed",
+        "hook_registry_factory"
+      ],
+      "referenced_names": [
+        "Callable",
+        "DefenseRunOptions",
+        "HookRegistry",
+        "benign_seed",
+        "guardrail_challenge_env_seed",
+        "hook_registry_factory",
+        "int",
+        "resolve_defense_hook_spec"
+      ],
+      "called_functions": [
+        "DefenseRunOptions",
+        "resolve_defense_hook_spec"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_validate_fixtures_dir",
+      "start_line": 206,
+      "end_line": 219,
+      "arguments": [
+        "path"
+      ],
+      "referenced_names": [
+        "Path",
+        "bool",
+        "len",
+        "list",
+        "missing",
+        "path",
+        "str",
+        "tuple"
+      ],
+      "called_functions": [
+        "is_dir",
+        "is_file",
+        "len",
+        "missing.append",
+        "path.exists",
+        "path.is_dir"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "resolve_fixtures_dir",
+      "start_line": 222,
+      "end_line": 276,
+      "arguments": [
+        "fixtures_dir"
+      ],
+      "referenced_names": [
+        "FIXTURES_ENV_VAR",
+        "FileNotFoundError",
+        "LEGACY_REPO_FIXTURES",
+        "PACKAGED_FIXTURES",
+        "Path",
+        "_validate_fixtures_dir",
+        "candidate",
+        "candidates",
+        "checked",
+        "checked_text",
+        "env_value",
+        "explicit_candidate",
+        "fixtures_dir",
+        "list",
+        "missing",
+        "os",
+        "seen",
+        "set",
+        "source",
+        "str",
+        "tuple",
+        "valid"
+      ],
+      "called_functions": [
+        "FileNotFoundError",
+        "LEGACY_REPO_FIXTURES.resolve",
+        "PACKAGED_FIXTURES.resolve",
+        "Path",
+        "Path.expanduser",
+        "Path.expanduser.resolve",
+        "Path.resolve",
+        "_validate_fixtures_dir",
+        "candidates.append",
+        "checked.append",
+        "explicit_candidate.exists",
+        "explicit_candidate.is_dir",
+        "join",
+        "os.getenv",
+        "seen.add",
+        "set"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "register_attack_guardrail_spec",
+      "start_line": 279,
+      "end_line": 287,
+      "arguments": [
+        "spec"
+      ],
+      "referenced_names": [
+        "AttackGuardrailSpec",
+        "ValueError",
+        "_REGISTERED_ATTACK_GUARDRAIL_SPECS",
+        "_add_attack_guardrail_spec",
+        "spec"
+      ],
+      "called_functions": [
+        "ValueError",
+        "_add_attack_guardrail_spec"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_add_attack_guardrail_spec",
+      "start_line": 290,
+      "end_line": 299,
+      "arguments": [
+        "registry",
+        "spec",
+        "duplicate_message"
+      ],
+      "referenced_names": [
+        "AttackGuardrailSpec",
+        "ValueError",
+        "dict",
+        "duplicate_message",
+        "existing",
+        "registry",
+        "spec",
+        "str"
+      ],
+      "called_functions": [
+        "ValueError",
+        "registry.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_load_entry_point_guardrail_spec",
+      "start_line": 302,
+      "end_line": 317,
+      "arguments": [
+        "entry_point"
+      ],
+      "referenced_names": [
+        "Any",
+        "AttackGuardrailSpec",
+        "Callable",
+        "GuardrailBase",
+        "TypeError",
+        "cast",
+        "distribution",
+        "entry_point",
+        "getattr",
+        "guardrail_cls",
+        "inspect",
+        "issubclass",
+        "str",
+        "version"
+      ],
+      "called_functions": [
+        "AttackGuardrailSpec",
+        "TypeError",
+        "cast",
+        "entry_point.load",
+        "getattr",
+        "inspect.isclass",
+        "issubclass",
+        "str"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "resolve_attack_guardrail_spec",
+      "start_line": 320,
+      "end_line": 357,
+      "arguments": [
+        "guardrail_id"
+      ],
+      "referenced_names": [
+        "ATTACK_GUARDRAIL_ENTRY_POINT_GROUP",
+        "ATTACK_GUARDRAIL_ENV_VAR",
+        "Any",
+        "AttackGuardrailSpec",
+        "DEFAULT_ATTACK_GUARDRAIL_ID",
+        "ValueError",
+        "_BUILTIN_ATTACK_GUARDRAIL_SPECS",
+        "_REGISTERED_ATTACK_GUARDRAIL_SPECS",
+        "_load_entry_point_guardrail_spec",
+        "builtin_spec",
+        "entry_point",
+        "entry_points",
+        "guardrail_id",
+        "known_ids",
+        "known_ids_text",
+        "len",
+        "list",
+        "matching_entry_points",
+        "os",
+        "registered_spec",
+        "resolved_guardrail_id",
+        "set",
+        "sorted",
+        "str"
+      ],
+      "called_functions": [
+        "ValueError",
+        "_BUILTIN_ATTACK_GUARDRAIL_SPECS.get",
+        "_REGISTERED_ATTACK_GUARDRAIL_SPECS.get",
+        "_load_entry_point_guardrail_spec",
+        "entry_points",
+        "join",
+        "known_ids.add",
+        "known_ids.update",
+        "len",
+        "matching_entry_points.append",
+        "os.getenv",
+        "set",
+        "sorted"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "register_defense_hook_spec",
+      "start_line": 360,
+      "end_line": 368,
+      "arguments": [
+        "spec"
+      ],
+      "referenced_names": [
+        "DefenseHookSpec",
+        "ValueError",
+        "_REGISTERED_DEFENSE_HOOK_SPECS",
+        "_add_defense_hook_spec",
+        "spec"
+      ],
+      "called_functions": [
+        "ValueError",
+        "_add_defense_hook_spec"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_add_defense_hook_spec",
+      "start_line": 371,
+      "end_line": 380,
+      "arguments": [
+        "registry",
+        "spec",
+        "duplicate_message"
+      ],
+      "referenced_names": [
+        "DefenseHookSpec",
+        "ValueError",
+        "dict",
+        "duplicate_message",
+        "existing",
+        "registry",
+        "spec",
+        "str"
+      ],
+      "called_functions": [
+        "ValueError",
+        "registry.get"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_load_entry_point_hook_spec",
+      "start_line": 383,
+      "end_line": 398,
+      "arguments": [
+        "entry_point"
+      ],
+      "referenced_names": [
+        "Any",
+        "Callable",
+        "DefenseHookSpec",
+        "HookRegistry",
+        "TypeError",
+        "callable",
+        "cast",
+        "distribution",
+        "entry_point",
+        "getattr",
+        "hook_registry_factory",
+        "str",
+        "version"
+      ],
+      "called_functions": [
+        "DefenseHookSpec",
+        "TypeError",
+        "callable",
+        "cast",
+        "entry_point.load",
+        "getattr",
+        "str"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "resolve_defense_hook_spec",
+      "start_line": 401,
+      "end_line": 437,
+      "arguments": [
+        "hook_id"
+      ],
+      "referenced_names": [
+        "Any",
+        "DEFAULT_DEFENSE_HOOK_ID",
+        "DEFENSE_HOOK_ENTRY_POINT_GROUP",
+        "DEFENSE_HOOK_ENV_VAR",
+        "DefenseHookSpec",
+        "ValueError",
+        "_BUILTIN_DEFENSE_HOOK_SPECS",
+        "_REGISTERED_DEFENSE_HOOK_SPECS",
+        "_load_entry_point_hook_spec",
+        "builtin_spec",
+        "entry_point",
+        "entry_points",
+        "hook_id",
+        "known_ids",
+        "known_ids_text",
+        "len",
+        "list",
+        "matching_entry_points",
+        "os",
+        "registered_spec",
+        "resolved_hook_id",
+        "set",
+        "sorted",
+        "str"
+      ],
+      "called_functions": [
+        "ValueError",
+        "_BUILTIN_DEFENSE_HOOK_SPECS.get",
+        "_REGISTERED_DEFENSE_HOOK_SPECS.get",
+        "_load_entry_point_hook_spec",
+        "entry_points",
+        "join",
+        "known_ids.add",
+        "known_ids.update",
+        "len",
+        "matching_entry_points.append",
+        "os.getenv",
+        "set",
+        "sorted"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_build_hook_registry",
+      "start_line": 440,
+      "end_line": 446,
+      "arguments": [
+        "hook_registry_factory"
+      ],
+      "referenced_names": [
+        "Callable",
+        "HookRegistry",
+        "TypeError",
+        "hook_registry",
+        "hook_registry_factory",
+        "isinstance"
+      ],
+      "called_functions": [
+        "TypeError",
+        "hook_registry_factory",
+        "isinstance"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_benign_suite",
+      "start_line": 449,
+      "end_line": 458,
+      "arguments": [],
+      "referenced_names": [
+        "list",
+        "str"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_is_breach",
+      "start_line": 461,
+      "end_line": 465,
+      "arguments": [
+        "trace",
+        "predicates"
+      ],
+      "referenced_names": [
+        "Any",
+        "Iterable",
+        "Mapping",
+        "bool",
+        "is_breach",
+        "predicates",
+        "str",
+        "trace"
+      ],
+      "called_functions": [
+        "is_breach"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_require_attack_class",
+      "start_line": 468,
+      "end_line": 473,
+      "arguments": [
+        "attack_cls"
+      ],
+      "referenced_names": [
+        "Any",
+        "AttackAlgorithmBase",
+        "TypeError",
+        "attack_cls",
+        "inspect",
+        "issubclass",
+        "type"
+      ],
+      "called_functions": [
+        "TypeError",
+        "inspect.isclass",
+        "issubclass"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_validate_candidate_messages",
+      "start_line": 476,
+      "end_line": 495,
+      "arguments": [
+        "candidate",
+        "index"
+      ],
+      "referenced_names": [
+        "AttackCandidate",
+        "MAX_REPLAY_MESSAGES_PER_FINDING",
+        "MAX_USER_MESSAGE_CHARS",
+        "TypeError",
+        "ValueError",
+        "candidate",
+        "enumerate",
+        "index",
+        "int",
+        "isinstance",
+        "len",
+        "message",
+        "messages",
+        "msg_idx",
+        "str",
+        "tuple"
+      ],
+      "called_functions": [
+        "TypeError",
+        "ValueError",
+        "enumerate",
+        "isinstance",
+        "len",
+        "message.strip",
+        "tuple"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "_replay_candidate_trace",
+      "start_line": 498,
+      "end_line": 533,
+      "arguments": [
+        "candidate",
+        "index",
+        "seed",
+        "fixtures_dir",
+        "agent_factory",
+        "guardrail",
+        "env_selection",
+        "max_tool_hops",
+        "hook_registry_factory",
+        "output_controller"
+      ],
+      "referenced_names": [
+        "AgentFactory",
+        "Any",
+        "AttackCandidate",
+        "Callable",
+        "EnvSelection",
+        "HookRegistry",
+        "Path",
+        "RunDiagnostics",
+        "_build_hook_registry",
+        "_validate_candidate_messages",
+        "agent_factory",
+        "build_attack_env",
+        "candidate",
+        "capture_context",
+        "dict",
+        "env_selection",
+        "fixtures_dir",
+        "guardrail",
+        "hook_registry_factory",
+        "index",
+        "int",
+        "max_tool_hops",
+        "nullcontext",
+        "output_controller",
+        "replay_env",
+        "replay_messages",
+        "seed",
+        "str",
+        "user_message"
+      ],
+      "called_functions": [
+        "_build_hook_registry",
+        "_validate_candidate_messages",
+        "build_attack_env",
+        "nullcontext",
+        "output_controller.capture_stdio",
+        "replay_env.export_trace_dict",
+        "replay_env.interact",
+        "replay_env.reset"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "build_attack_env",
+      "start_line": 536,
+      "end_line": 580,
+      "arguments": [
+        "seed",
+        "fixtures_dir",
+        "agent_factory",
+        "guardrail",
+        "env_selection",
+        "max_tool_hops",
+        "max_episode_messages",
+        "hook_registry"
+      ],
+      "referenced_names": [
+        "AgentFactory",
+        "Any",
+        "AttackRunConfig",
+        "EnvSelection",
+        "Exception",
+        "GymAttackEnv",
+        "HookRegistry",
+        "MAX_REPLAY_MESSAGES_PER_FINDING",
+        "Path",
+        "RuntimeError",
+        "SandboxEnv",
+        "ValueError",
+        "_HarnessAttackEnvProtocol",
+        "agent",
+        "agent_factory",
+        "cast",
+        "coerce_env_selection",
+        "env_selection",
+        "err",
+        "fixtures_dir",
+        "guardrail",
+        "gym_env_module",
+        "hook_registry",
+        "importlib",
+        "int",
+        "max_episode_messages",
+        "max_tool_hops",
+        "resolved_env_selection",
+        "seed",
+        "str"
+      ],
+      "called_functions": [
+        "GymAttackEnv",
+        "RuntimeError",
+        "SandboxEnv",
+        "ValueError",
+        "agent_factory",
+        "cast",
+        "coerce_env_selection",
+        "importlib.import_module"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "unique_cell_count",
+      "start_line": 583,
+      "end_line": 591,
+      "arguments": [
+        "findings"
+      ],
+      "referenced_names": [
+        "Any",
+        "Iterable",
+        "Mapping",
+        "finding",
+        "findings",
+        "get_score_cell_hash",
+        "int",
+        "len",
+        "str"
+      ],
+      "called_functions": [
+        "get_score_cell_hash",
+        "len"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "unique_canonical_cell_count",
+      "start_line": 594,
+      "end_line": 602,
+      "arguments": [
+        "findings"
+      ],
+      "referenced_names": [
+        "Any",
+        "Iterable",
+        "Mapping",
+        "finding",
+        "findings",
+        "int",
+        "len",
+        "str"
+      ],
+      "called_functions": [
+        "finding.get",
+        "finding.get.get",
+        "len"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "summarize_attack_findings",
+      "start_line": 605,
+      "end_line": 613,
+      "arguments": [
+        "findings"
+      ],
+      "referenced_names": [
+        "Any",
+        "ValidatedAttackFinding",
+        "dict",
+        "findings",
+        "len",
+        "list",
+        "score_attack",
+        "score_attack_raw",
+        "str",
+        "unique_canonical_cell_count",
+        "unique_cell_count"
+      ],
+      "called_functions": [
+        "len",
+        "score_attack",
+        "score_attack_raw",
+        "unique_canonical_cell_count",
+        "unique_cell_count"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "eval_defense",
+      "start_line": 616,
+      "end_line": 728,
+      "arguments": [
+        "user_guardrail_cls",
+        "budget_s",
+        "agent_factory",
+        "env_selection",
+        "guardrail_challenge_env_seed",
+        "benign_seed",
+        "fixtures_dir",
+        "output_controller",
+        "options"
+      ],
+      "referenced_names": [
+        "AgentFactory",
+        "Any",
+        "AttackCandidate",
+        "AttackRunConfig",
+        "DefenseRunOptions",
+        "EVALUATION_DEFAULT_MAX_TOOL_HOPS",
+        "EnvSelection",
+        "GuardrailChallengeGenerator",
+        "MAX_REPLAY_FINDINGS",
+        "Path",
+        "RunDiagnostics",
+        "TypeError",
+        "_benign_suite",
+        "_build_hook_registry",
+        "_default_defense_run_options",
+        "_is_breach",
+        "_replay_candidate_trace",
+        "agent_factory",
+        "any",
+        "attacker",
+        "benign",
+        "benign_capture_context",
+        "benign_seed",
+        "breaches",
+        "budget_s",
+        "build_attack_env",
+        "candidate",
+        "candidates",
+        "dict",
+        "enumerate",
+        "env",
+        "env2",
+        "env_selection",
+        "eval_predicates",
+        "event",
+        "fixtures_dir",
+        "float",
+        "fp",
+        "guardrail_challenge_config",
+        "guardrail_challenge_env_seed",
+        "idx",
+        "int",
+        "isinstance",
+        "len",
+        "list",
+        "max",
+        "nullcontext",
+        "options",
+        "output_controller",
+        "predicates",
+        "prompt",
+        "resolve_fixtures_dir",
+        "resolved_fixtures_dir",
+        "resolved_options",
+        "run_capture_context",
+        "run_config",
+        "str",
+        "trace",
+        "user_guardrail_cls"
+      ],
+      "called_functions": [
+        "AttackRunConfig",
+        "GuardrailChallengeGenerator",
+        "TypeError",
+        "_benign_suite",
+        "_build_hook_registry",
+        "_default_defense_run_options",
+        "_is_breach",
+        "_replay_candidate_trace",
+        "any",
+        "attacker.run",
+        "breaches.append",
+        "build_attack_env",
+        "dict",
+        "enumerate",
+        "env.reset",
+        "env2.export_trace_dict",
+        "env2.interact",
+        "env2.reset",
+        "eval_predicates",
+        "event.get",
+        "isinstance",
+        "len",
+        "list",
+        "max",
+        "nullcontext",
+        "output_controller.capture_stdio",
+        "output_controller.progress_reporter",
+        "resolve_fixtures_dir",
+        "startswith",
+        "user_guardrail_cls"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\evaluation\\ops.py",
+      "name": "eval_attack",
+      "start_line": 731,
+      "end_line": 834,
+      "arguments": [
+        "user_attack_cls",
+        "budget_s",
+        "agent_factory",
+        "env_selection",
+        "attack_env_seed",
+        "fixtures_dir",
+        "output_controller",
+        "options"
+      ],
+      "referenced_names": [
+        "AgentFactory",
+        "AttackCandidate",
+        "AttackEnvProtocol",
+        "AttackEvalOptions",
+        "EnvSelection",
+        "HookRegistry",
+        "MAX_REPLAY_FINDINGS",
+        "Path",
+        "RunDiagnostics",
+        "TypeError",
+        "ValidatedAttackFinding",
+        "_OpaqueAttackEnv",
+        "_build_hook_registry",
+        "_default_attack_eval_options",
+        "_replay_candidate_trace",
+        "_require_attack_class",
+        "_run_until_deadline",
+        "agent_factory",
+        "attack_cls",
+        "attack_env_seed",
+        "attacker",
+        "budget_s",
+        "build_attack_env",
+        "candidate",
+        "candidates",
+        "cell_signature",
+        "dict",
+        "enumerate",
+        "env_selection",
+        "eval_predicates",
+        "fixtures_dir",
+        "float",
+        "generation_deadline_s",
+        "idx",
+        "int",
+        "isinstance",
+        "list",
+        "nullcontext",
+        "options",
+        "output_controller",
+        "predicates",
+        "replay_deadline_s",
+        "resolve_fixtures_dir",
+        "resolved_fixtures_dir",
+        "resolved_options",
+        "run_capture_context",
+        "run_config",
+        "run_env",
+        "str",
+        "time",
+        "trace",
+        "user_attack_cls",
+        "validated"
+      ],
+      "called_functions": [
+        "TypeError",
+        "_OpaqueAttackEnv",
+        "_build_hook_registry",
+        "_default_attack_eval_options",
+        "_replay_candidate_trace",
+        "_require_attack_class",
+        "_run_until_deadline",
+        "attack_cls",
+        "attacker.run",
+        "build_attack_env",
+        "cell_signature",
+        "dict",
+        "enumerate",
+        "eval_predicates",
+        "isinstance",
+        "list",
+        "nullcontext",
+        "output_controller.capture_stdio",
+        "resolve_fixtures_dir",
+        "resolved_options.guardrail_factory",
+        "run_env.reset",
+        "time.monotonic",
+        "trace.get",
+        "validated.append"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "__post_init__",
+      "start_line": 22,
+      "end_line": 23,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "DecisionAction",
+        "object",
+        "self"
+      ],
+      "called_functions": [
+        "DecisionAction",
+        "object.__setattr__"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "allow",
+      "start_line": 26,
+      "end_line": 27,
+      "arguments": [
+        "reason"
+      ],
+      "referenced_names": [
+        "Decision",
+        "DecisionAction",
+        "reason",
+        "staticmethod",
+        "str"
+      ],
+      "called_functions": [
+        "Decision"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "deny",
+      "start_line": 30,
+      "end_line": 31,
+      "arguments": [
+        "reason"
+      ],
+      "referenced_names": [
+        "Decision",
+        "DecisionAction",
+        "reason",
+        "staticmethod",
+        "str"
+      ],
+      "called_functions": [
+        "Decision"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "confirm",
+      "start_line": 34,
+      "end_line": 35,
+      "arguments": [
+        "reason"
+      ],
+      "referenced_names": [
+        "Decision",
+        "DecisionAction",
+        "reason",
+        "staticmethod",
+        "str"
+      ],
+      "called_functions": [
+        "Decision"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "sanitize",
+      "start_line": 38,
+      "end_line": 39,
+      "arguments": [
+        "sanitized_args",
+        "reason"
+      ],
+      "referenced_names": [
+        "Any",
+        "Decision",
+        "DecisionAction",
+        "Mapping",
+        "reason",
+        "sanitized_args",
+        "staticmethod",
+        "str"
+      ],
+      "called_functions": [
+        "Decision"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "decide",
+      "start_line": 45,
+      "end_line": 48,
+      "arguments": [
+        "self",
+        "tool_name",
+        "tool_args",
+        "context"
+      ],
+      "referenced_names": [
+        "Any",
+        "Decision",
+        "Mapping",
+        "str"
+      ],
+      "called_functions": [
+        "Decision.allow"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "snapshot_state",
+      "start_line": 50,
+      "end_line": 52,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "Any"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\base.py",
+      "name": "restore_state",
+      "start_line": 54,
+      "end_line": 56,
+      "arguments": [
+        "self",
+        "snapshot"
+      ],
+      "referenced_names": [
+        "Any",
+        "snapshot"
+      ],
+      "called_functions": []
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "name": "__init__",
+      "start_line": 13,
+      "end_line": 32,
+      "arguments": [
+        "self"
+      ],
+      "referenced_names": [
+        "self",
+        "set",
+        "str",
+        "super"
+      ],
+      "called_functions": [
+        "set",
+        "super",
+        "super.__init__"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "name": "decide",
+      "start_line": 34,
+      "end_line": 49,
+      "arguments": [
+        "self",
+        "tool_name",
+        "tool_args",
+        "context"
+      ],
+      "referenced_names": [
+        "Any",
+        "Decision",
+        "Mapping",
+        "any",
+        "context",
+        "recent_sources",
+        "self",
+        "src",
+        "str",
+        "tainted",
+        "target",
+        "tool_args",
+        "tool_name"
+      ],
+      "called_functions": [
+        "Decision.allow",
+        "Decision.deny",
+        "any",
+        "context.get",
+        "self._extract_target",
+        "self._is_ultra_dangerous"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "name": "_extract_target",
+      "start_line": 51,
+      "end_line": 55,
+      "arguments": [
+        "self",
+        "tool_args"
+      ],
+      "referenced_names": [
+        "Any",
+        "Mapping",
+        "key",
+        "str",
+        "tool_args"
+      ],
+      "called_functions": [
+        "str",
+        "str.lower"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "name": "_is_ultra_dangerous",
+      "start_line": 57,
+      "end_line": 60,
+      "arguments": [
+        "self",
+        "target"
+      ],
+      "referenced_names": [
+        "any",
+        "bool",
+        "pattern",
+        "self",
+        "str",
+        "target"
+      ],
+      "called_functions": [
+        "any",
+        "bool",
+        "target.lower"
+      ]
+    },
+    {
+      "file": "aicomp_sdk\\guardrails\\optimal.py",
+      "name": "track_untrusted_content",
+      "start_line": 62,
+      "end_line": 72,
+      "arguments": [
+        "self",
+        "content"
+      ],
+      "referenced_names": [
+        "content",
+        "file_patterns",
+        "path",
+        "pattern",
+        "re",
+        "self",
+        "str"
+      ],
+      "called_functions": [
+        "content.lower",
+        "path.lower",
+        "re.findall",
+        "self.untrusted_mentions.add"
+      ]
+    }
+  ]
+}

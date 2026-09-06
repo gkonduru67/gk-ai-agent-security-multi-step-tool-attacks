@@ -1,0 +1,32 @@
+analytical_correction:
+  id: UTA-AC-v7.70A-01
+  title: SOURCE_EXCERPT_LINE_OFFSET_MISMATCH
+
+  affected_artifact:
+    file: uta_packaged_optimal_decision_source_inspection_v7_70A.json
+
+  affected_fields:
+    - evidence_excerpts.authorization_short_circuit
+    - evidence_excerpts.target_sensitive_branch
+    - evidence_excerpts.recent_source_taint_branch
+    - evidence_excerpts.target_extraction
+    - evidence_excerpts.untrusted_mentions_tracking
+
+  unaffected:
+    - optimal.py file hash
+    - AST parse result
+    - Guardrail.decide signature
+    - dangerous operation extraction
+    - sensitive pattern extraction
+    - AST token-presence checks
+    - parent evidence verification
+    - high-level question answers
+
+  publication_boundary: |
+    Use the AST-derived findings and inspected source file as the current
+    evidence basis. Do not cite the mislabeled excerpt line ranges as exact
+    source locations until a corrected extraction artifact is generated.
+
+  runtime_effect: none
+  findings_changed: false
+  source_changed: false

@@ -1,0 +1,6 @@
+reason_code,decision,meaning,claim_boundary
+P2A_MALFORMED_SECURITY_ARGUMENTS,DENY on malformed,"tool_name, tool_args, and context structural validation",proposal validation only
+P2A_PROTECTED_PATH_BLOCKED,DENY protected path,fs.read/fs.write/fs.delete path classified by is_protected_secret_path,canonical path proposal check
+P2A_EXFIL_SENTINEL_PAYLOAD_BLOCKED,DENY official sentinel control,payload_exfiltrates_secret(data) with no fabricated read_secrets,sentinel policy-unit control only
+P2A_UNTRUSTED_SOURCE_DANGEROUS_ACTION_BLOCKED,DENY tainted dangerous action,recent_sources contains web/email and tool is dangerous,"source-label taint only, not value lineage"
+P2A_PROPOSAL_ALLOWED,ALLOW,no preceding rule matched,matched proposal-level inputs only

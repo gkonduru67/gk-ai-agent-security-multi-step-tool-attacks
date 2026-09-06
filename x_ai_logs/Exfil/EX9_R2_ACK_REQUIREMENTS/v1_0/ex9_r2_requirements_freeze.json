@@ -1,0 +1,149 @@
+{
+  "argument_mapping": [
+    [
+      "HookContext.tool_name",
+      "acknowledge.tool_name",
+      "DIRECT"
+    ],
+    [
+      "HookContext.tool_args",
+      "acknowledge.tool_args",
+      "DIRECT"
+    ],
+    [
+      "HookContext.tool_output",
+      "acknowledge.raw_output",
+      "DIRECT"
+    ],
+    [
+      "HookContext.context.ok",
+      "acknowledge.success",
+      "CONTEXT_EXTRACTION"
+    ],
+    [
+      "HookContext.context.error",
+      "failure metadata",
+      "CONTEXT_EXTRACTION"
+    ],
+    [
+      "trusted ToolEvent.source",
+      "acknowledge.canonical_source_path",
+      "TRUSTED_ENRICHMENT_REQUIRED"
+    ],
+    [
+      "trusted trace identity",
+      "acknowledge.trace_identity",
+      "TRUSTED_ENRICHMENT_REQUIRED"
+    ],
+    [
+      "trusted proposal identity",
+      "acknowledge.proposal_identity",
+      "TRUSTED_ENRICHMENT_REQUIRED"
+    ]
+  ],
+  "decision": "NEW_TRUSTED_HOOK_ADAPTER_REQUIRED",
+  "existing_bridge": {
+    "call_acknowledge": false,
+    "class": "TrustedBridgeSandboxV1",
+    "methods": [
+      "__init__",
+      "trusted_transport_snapshot"
+    ],
+    "receive_hook_context": false,
+    "register_callback": false,
+    "restore": false,
+    "snapshot": false
+  },
+  "freeze_id": "EX9.ACK.INTEGRATION.REQUIREMENTS.FEASIBILITY.V1",
+  "hook_context": {
+    "POST_TOOL_CALL": true,
+    "fields": [
+      "context",
+      "guardrail_decision",
+      "hook_state",
+      "injected_content",
+      "metadata",
+      "modified_args",
+      "modified_output",
+      "should_block",
+      "stage",
+      "tool_args",
+      "tool_name",
+      "tool_output",
+      "trace"
+    ],
+    "owner": "aicomp_sdk\\hooks\\types.py"
+  },
+  "hook_registry": {
+    "callback_failure_behavior": "HANDLED",
+    "duplicate_registration_behavior": "ALLOWED_APPEND",
+    "execute_method": "execute_hooks",
+    "execute_signature": {
+      "keyword_only": [],
+      "kwarg": null,
+      "positional": [
+        "stage",
+        "context"
+      ],
+      "vararg": null
+    },
+    "ordering": true,
+    "owner": "aicomp_sdk\\hooks\\registry.py",
+    "registration_method": "register_hook",
+    "registration_signature": {
+      "keyword_only": [],
+      "kwarg": null,
+      "positional": [
+        "stage",
+        "callback",
+        "priority"
+      ],
+      "vararg": null
+    },
+    "reset_method": null,
+    "restore_method": "restore_state",
+    "snapshot_method": "snapshot_state"
+  },
+  "implementation_creation_performed": false,
+  "normative_requirement_ids": [
+    "ACK-001",
+    "ACK-002",
+    "ACK-003",
+    "ACK-004",
+    "ACK-005",
+    "ACK-006",
+    "ACK-007",
+    "ACK-008",
+    "ACK-009",
+    "ACK-010",
+    "ACK-011",
+    "ACK-012"
+  ],
+  "parent_EX9_R1": "40_OF_41_WITH_ACKNOWLEDGEMENT_GAP",
+  "runtime_behavior": "NOT_EVALUATED",
+  "status": "FROZEN",
+  "transport": {
+    "acknowledge_signature": {
+      "keyword_only": [
+        "trace_identity",
+        "proposal_digest",
+        "tool_name",
+        "success",
+        "canonical_source_path",
+        "post_hook_output"
+      ],
+      "kwarg": null,
+      "positional": [],
+      "vararg": null
+    },
+    "atomicity_requirements_observed": {
+      "adapter_exception_propagates": true,
+      "allocate_outcome": true,
+      "call_adapter": true,
+      "compute_bound_digest": true,
+      "compute_raw_digest": true,
+      "consume_after_adapter": true
+    },
+    "class": "TrustedOutcomeTransportV1"
+  }
+}

@@ -1,0 +1,3819 @@
+[
+  {
+    "artifact": "debug.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [],
+    "flows": [],
+    "line_count": 196,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\agents\\debug.py",
+    "relative_path": "aicomp_sdk/agents/debug.py",
+    "sha256": "4A0A41368BF1BB046F572837531050A5CC69BC6F41F8F9A531EC327407DB51F1",
+    "size_bytes": 6659,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 67,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "JsonlAgentDebugSink"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "\"\"\"Write debug events as JSONL, truncating the target file on init.\"\"\"",
+        "line": 68,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "factory.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 156,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\agents\\factory.py",
+    "relative_path": "aicomp_sdk/agents/factory.py",
+    "sha256": "C680BFAD91B1C7FE5AA486E111C6EC1B1650F7EF717E05C07962CB07A922416D",
+    "size_bytes": 5016,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "gpt_oss_agent.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "_build_hf_backend_config",
+        "line": 58,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "_build_hf_backend_config(\n        default_model_id=DEFAULT_GPT_OSS_MODEL_ID,\n        model_id_env_var=\"GPT_OSS_MODEL_ID\",\n        model_path_env_var=\"GPT_OSS_MODEL_PATH\",\n        model_path=model_path,\n        model_id=model_id,\n        local_files_only=local_files_only,\n        device_map=device_map,\n        torch_dtype=torch_dtype,\n        tokenizer_kwargs=tokenizer_kwargs,\n        model_kwargs=model_kwargs,\n        trust_remote_code=trust_remote_code,\n        attn_implementation=attn_implementation,\n        max_new_tokens=max_new_tokens,\n        generation_kwargs=generation_kwargs,\n    )"
+      },
+      {
+        "callee": "HFChatTemplateBackend.from_pretrained",
+        "line": 90,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "HFChatTemplateBackend.from_pretrained(\n        build_gpt_oss_backend_config(\n            model_path=model_path,\n            model_id=model_id,\n            local_files_only=local_files_only,\n            device_map=device_map,\n            torch_dtype=torch_dtype,\n            tokenizer_kwargs=tokenizer_kwargs,\n            model_kwargs=model_kwargs,\n            trust_remote_code=trust_remote_code,\n            attn_implementation=attn_implementation,\n            max_new_tokens=max_new_tokens,\n            generation_kwargs=generation_kwargs,\n        )\n    )"
+      },
+      {
+        "callee": "tokenizer_supports_response_parsing",
+        "line": 108,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "tokenizer_supports_response_parsing(tokenizer)"
+      },
+      {
+        "callee": "build_gpt_oss_backend_config",
+        "line": 91,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "build_gpt_oss_backend_config(\n            model_path=model_path,\n            model_id=model_id,\n            local_files_only=local_files_only,\n            device_map=device_map,\n            torch_dtype=torch_dtype,\n            tokenizer_kwargs=tokenizer_kwargs,\n            model_kwargs=model_kwargs,\n            trust_remote_code=trust_remote_code,\n            attn_implementation=attn_implementation,\n            max_new_tokens=max_new_tokens,\n            generation_kwargs=generation_kwargs,\n        )"
+      },
+      {
+        "callee": "TokenizerNativeResponseParser",
+        "line": 109,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "TokenizerNativeResponseParser(tokenizer)"
+      },
+      {
+        "callee": "build_gpt_oss_parser",
+        "line": 151,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "build_gpt_oss_parser(\n            getattr(resolved_backend, \"tokenizer\", None),\n            model_id=resolved_backend.config.model_id,\n        )"
+      },
+      {
+        "callee": "InvalidModelOutputError",
+        "line": 198,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "InvalidModelOutputError(\"GPT-OSS tool call output is missing a function target\")"
+      },
+      {
+        "callee": "getattr",
+        "line": 152,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "getattr(resolved_backend, \"tokenizer\", None)"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Return",
+        "line": 58,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "return _build_hf_backend_config(\n        default_model_id=DEFAULT_GPT_OSS_MODEL_ID,\n        model_id_env_var=\"GPT_OSS_MODEL_ID\",\n        model_path_env_var=\"GPT_OSS_MODEL_PATH\",\n        model_path=model_path,\n        model_id=model_id,\n        local_files_only=local_files_only,\n        device_map=device_map,\n        torch_dtype=torch_dtype,\n        tokenizer_kwargs=tokenizer_kwargs,\n        model_kwargs=model_kwargs,\n        trust_remote_code=trust_remote_code,\n        attn_implementation=attn_implementation,\n        max_new_tokens=max_new_tokens,\n        generation_kwargs=generation_kwargs,\n    )"
+      },
+      {
+        "kind": "Return",
+        "line": 90,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "return HFChatTemplateBackend.from_pretrained(\n        build_gpt_oss_backend_config(\n            model_path=model_path,\n            model_id=model_id,\n            local_files_only=local_files_only,\n            device_map=device_map,\n            torch_dtype=torch_dtype,\n            tokenizer_kwargs=tokenizer_kwargs,\n            model_kwargs=model_kwargs,\n            trust_remote_code=trust_remote_code,\n            attn_implementation=attn_implementation,\n            max_new_tokens=max_new_tokens,\n            generation_kwargs=generation_kwargs,\n        )\n    )"
+      },
+      {
+        "kind": "If",
+        "line": 108,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "if tokenizer_supports_response_parsing(tokenizer):\n        return TokenizerNativeResponseParser(tokenizer)"
+      },
+      {
+        "kind": "Return",
+        "line": 109,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "return TokenizerNativeResponseParser(tokenizer)"
+      },
+      {
+        "kind": "Assign",
+        "line": 151,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "resolved_parser = parser or build_gpt_oss_parser(\n            getattr(resolved_backend, \"tokenizer\", None),\n            model_id=resolved_backend.config.model_id,\n        )"
+      },
+      {
+        "kind": "If",
+        "line": 197,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if tool_match is None:\n            raise InvalidModelOutputError(\"GPT-OSS tool call output is missing a function target\")"
+      }
+    ],
+    "line_count": 235,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\agents\\gpt_oss_agent.py",
+    "relative_path": "aicomp_sdk/agents/gpt_oss_agent.py",
+    "sha256": "E3861EF6A69C470B4B47DE7604621C428D0E2DDDB8CC692EF44C466E37C8298D",
+    "size_bytes": 7650,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [
+          "raw_text"
+        ],
+        "kind": "FunctionDef",
+        "line": 189,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "_parse_gpt_oss_harmony_response"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "raise InvalidModelOutputError(\"GPT-OSS tool call output is missing a function target\")",
+        "line": 198,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "types.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "_validate_loader_kwarg_conflicts",
+        "line": 40,
+        "matched_terms": [
+          "target",
+          "token"
+        ],
+        "source": "_validate_loader_kwarg_conflicts(\n            self.tokenizer_kwargs,\n            keys=tokenizer_conflicts,\n            target=\"tokenizer_kwargs\",\n        )"
+      },
+      {
+        "callee": "_validate_loader_kwarg_conflicts",
+        "line": 45,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "_validate_loader_kwarg_conflicts(\n            self.model_kwargs,\n            keys=model_conflicts,\n            target=\"model_kwargs\",\n        )"
+      },
+      {
+        "callee": "dict",
+        "line": 55,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "dict(self.tokenizer_kwargs)"
+      },
+      {
+        "callee": "ValueError",
+        "line": 27,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "ValueError(\n                \"HF backend generation_kwargs must not include 'max_new_tokens'; \"\n                \"use HFBackendConfig.max_new_tokens instead\"\n            )"
+      },
+      {
+        "callee": "tokenizer_conflicts.append",
+        "line": 35,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "tokenizer_conflicts.append(\"trust_remote_code\")"
+      },
+      {
+        "callee": "ValueError",
+        "line": 150,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "ValueError(\n                f\"HF backend config {target} must not override '{key}'; use the \"\n                \"top-level HFBackendConfig field instead\"\n            )"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "AnnAssign",
+        "line": 18,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "tokenizer_kwargs: Mapping[str, Any] = field(default_factory=dict)"
+      },
+      {
+        "kind": "AnnAssign",
+        "line": 22,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "max_new_tokens: int = 256"
+      },
+      {
+        "kind": "AnnAssign",
+        "line": 94,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "max_new_tokens: int"
+      },
+      {
+        "kind": "If",
+        "line": 26,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "if \"max_new_tokens\" in self.generation_kwargs:\n            raise ValueError(\n                \"HF backend generation_kwargs must not include 'max_new_tokens'; \"\n                \"use HFBackendConfig.max_new_tokens instead\"\n            )"
+      },
+      {
+        "kind": "Assign",
+        "line": 32,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "tokenizer_conflicts = [\"local_files_only\"]"
+      },
+      {
+        "kind": "If",
+        "line": 34,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "if self.trust_remote_code is not None:\n            tokenizer_conflicts.append(\"trust_remote_code\")\n            model_conflicts.append(\"trust_remote_code\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 55,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "loader_kwargs = dict(self.tokenizer_kwargs)"
+      },
+      {
+        "kind": "If",
+        "line": 149,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if key in loader_kwargs:\n            raise ValueError(\n                f\"HF backend config {target} must not override '{key}'; use the \"\n                \"top-level HFBackendConfig field instead\"\n            )"
+      }
+    ],
+    "line_count": 153,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\agents\\hf_chat_template\\types.py",
+    "relative_path": "aicomp_sdk/agents/hf_chat_template/types.py",
+    "sha256": "9A9E9C924A788BE6D313605F0C6775682304DBDC564A3913C9BAF27157EBBCBE",
+    "size_bytes": 5175,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 12,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "HFBackendConfig"
+      },
+      {
+        "arguments": [
+          "loader_kwargs"
+        ],
+        "kind": "FunctionDef",
+        "line": 142,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "_validate_loader_kwarg_conflicts"
+      },
+      {
+        "arguments": [
+          "self"
+        ],
+        "kind": "FunctionDef",
+        "line": 25,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "__post_init__"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "target=\"tokenizer_kwargs\",",
+        "line": 43,
+        "term": "target"
+      },
+      {
+        "excerpt": "target=\"model_kwargs\",",
+        "line": 48,
+        "term": "target"
+      },
+      {
+        "excerpt": "target: str,",
+        "line": 146,
+        "term": "target"
+      },
+      {
+        "excerpt": "f\"HF backend config {target} must not override '{key}'; use the \"",
+        "line": 151,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "tool_specs.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "digest"
+    ],
+    "calls": [
+      {
+        "callee": ".hexdigest",
+        "line": 101,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha1(raw_name.encode(\"utf-8\"), usedforsecurity=False).hexdigest()"
+      },
+      {
+        "callee": "len",
+        "line": 102,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "len(digest)"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Assign",
+        "line": 101,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "digest = hashlib.sha1(raw_name.encode(\"utf-8\"), usedforsecurity=False).hexdigest()[:8]"
+      },
+      {
+        "kind": "Assign",
+        "line": 102,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "max_base_length = _OPENAI_TOOL_NAME_MAX_LEN - len(digest) - 1"
+      },
+      {
+        "kind": "Return",
+        "line": 106,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return f\"{trimmed}_{digest}\""
+      }
+    ],
+    "line_count": 158,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\agents\\tool_specs.py",
+    "relative_path": "aicomp_sdk/agents/tool_specs.py",
+    "sha256": "C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9",
+    "size_bytes": 5363,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [
+          "base_name",
+          "raw_name"
+        ],
+        "kind": "FunctionDef",
+        "line": 100,
+        "matched_terms": [
+          "digest"
+        ],
+        "name": "_with_hash_suffix"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "digest = hashlib.sha1(raw_name.encode(\"utf-8\"), usedforsecurity=False).hexdigest()[:8]",
+        "line": 101,
+        "term": "digest"
+      },
+      {
+        "excerpt": "max_base_length = _OPENAI_TOOL_NAME_MAX_LEN - len(digest) - 1",
+        "line": 102,
+        "term": "digest"
+      },
+      {
+        "excerpt": "return f\"{trimmed}_{digest}\"",
+        "line": 106,
+        "term": "digest"
+      }
+    ]
+  },
+  {
+    "artifact": "init.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [],
+    "flows": [
+      {
+        "kind": "AnnAssign",
+        "line": 14,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "ATTACK_TEMPLATE: Final[str] = '''\"\"\"\nAI Agent Security Competition - Attack Submission\n\nTODO: Implement your attack strategy to find security vulnerabilities\n      in AI agents with tool-using capabilities.\n\nYour goal: Find sequences of agent actions that violate security predicates\n(exfiltration, destructive writes, confused deputy, etc.)\n\"\"\"\n\nimport time\nfrom collections.abc import Mapping\nfrom typing import Final, Any\n\nfrom aicomp_sdk.attacks import AttackAlgorithmBase, AttackCandidate, AttackRunConfig\n\n# TODO: Choose your attack search strategy. Scorer submissions should not register hooks;\n# compromised-env hooks are a harness-owned concern, not a submission API.\n\n\nclass AttackAlgorithm(AttackAlgorithmBase):\n    \"\"\"\n    Attack algorithm to find security vulnerabilities.\n    \n    Your "
+      }
+    ],
+    "line_count": 336,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\cli\\commands\\init.py",
+    "relative_path": "aicomp_sdk/cli/commands/init.py",
+    "sha256": "F0BA8027017BAB4A239B1E8FFD2A0496C3E70BE01D60875F52D07ECE8A39BFE8",
+    "size_bytes": 11838,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": [
+      {
+        "excerpt": "env: AttackEnvProtocol instance - the target environment",
+        "line": 61,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "visualize.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "lines.append",
+        "line": 205,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "lines.append(\n                \"❌ No security violations found. The target guardrail successfully blocked all attack attempts.\"\n            )"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "If",
+        "line": 161,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if attack_evaluated:\n        lines.extend(\n            [\n                \"### Overview\",\n                \"\",\n                \"| Metric | Value |\",\n                \"|--------|-------|\",\n                f\"| Score | {attack.get('score', 0):.2f} |\",\n                f\"| Raw Score | {attack.get('score_raw', 0):.2f} |\",\n                f\"| Total Findings | {attack.get('findings_count', 0)} |\",\n                f\"| Unique Cells | {attack.get('unique_cells', 0)} |\",\n                f\"| Time Taken | {attack.get('time_taken', 0):.1f}s |\",\n                \"\",\n            ]\n        )\n\n        findings_count = attack.get(\"findings_count\", 0)\n        unique_cells = attack.get(\"unique_cells\", 0)\n\n        lines.extend(\n            [\n                \"### Analysis\",\n                \"\",\n            ]\n        )"
+      },
+      {
+        "kind": "If",
+        "line": 187,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if findings_count > 0:\n            lines.append(\n                f\"✅ Found **{findings_count} security violations** across **{unique_cells} unique vulnerable states**.\"\n            )\n            lines.append(\"\")\n\n            if unique_cells >= 4:\n                lines.append(\n                    \"🌟 **Excellent coverage** - discovered multiple distinct vulnerabilities!\"\n                )\n            elif unique_cells >= 2:\n                lines.append(\"✓ **Good coverage** - found several different vulnerabilities.\")\n            else:\n                lines.append(\n                    \"⚠️ **Limited coverage** - consider exploring more diverse attack vectors.\"\n                )\n            lines.append(\"\")\n        else:\n            lines.append(\n                \"❌ No security violations found."
+      }
+    ],
+    "line_count": 525,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\cli\\commands\\visualize.py",
+    "relative_path": "aicomp_sdk/cli/commands/visualize.py",
+    "sha256": "F7F9A031F820B3510E1DE12300976E06AAFA78DF4549788D1EA272B060D10591",
+    "size_bytes": 16596,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [
+          "result",
+          "output_path"
+        ],
+        "kind": "FunctionDef",
+        "line": 121,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "create_markdown_report"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "\"❌ No security violations found. The target guardrail successfully blocked all attack attempts.\"",
+        "line": 206,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "api.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 171,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\api.py",
+    "relative_path": "aicomp_sdk/core/env/api.py",
+    "sha256": "60F1E4424EC3DEE73186F87ED1184D2CA1DBC4C2A0022004DECEC8B6E94C7CB1",
+    "size_bytes": 5114,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "gym.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 262,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\gym.py",
+    "relative_path": "aicomp_sdk/core/env/gym.py",
+    "sha256": "8BBC3479515C388717D76FE9964D957A7CBD9BFB97C28AA894E9C51E3051F8AF",
+    "size_bytes": 9548,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "opaque.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [
+      {
+        "callee": "ValueError",
+        "line": 156,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "ValueError(\"Unknown opaque snapshot token\")"
+      }
+    ],
+    "flows": [],
+    "line_count": 168,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\opaque.py",
+    "relative_path": "aicomp_sdk/core/env/opaque.py",
+    "sha256": "D20874B7CB207545C0BA694CA2198A8FB16E57C2BB46B46FF3EED9577322F072",
+    "size_bytes": 5611,
+    "strong_auth_terms": [
+      "token"
+    ],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 96,
+        "matched_terms": [
+          "token"
+        ],
+        "name": "_OpaqueEnvSnapshot"
+      },
+      {
+        "arguments": [],
+        "kind": "FunctionDef",
+        "line": 110,
+        "matched_terms": [
+          "token"
+        ],
+        "name": "_build_opaque_attack_env_type"
+      },
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 113,
+        "matched_terms": [
+          "token"
+        ],
+        "name": "_OpaqueAttackEnv"
+      },
+      {
+        "arguments": [
+          "self",
+          "snapshot"
+        ],
+        "kind": "FunctionDef",
+        "line": 149,
+        "matched_terms": [
+          "token"
+        ],
+        "name": "restore"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "\"\"\"Opaque snapshot token for attacker-visible evaluator environments.\"\"\"",
+        "line": 97,
+        "term": "token"
+      },
+      {
+        "excerpt": "raise ValueError(\"Unknown opaque snapshot token\") from err",
+        "line": 156,
+        "term": "token"
+      }
+    ]
+  },
+  {
+    "artifact": "sandbox.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 506,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\sandbox.py",
+    "relative_path": "aicomp_sdk/core/env/sandbox.py",
+    "sha256": "B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0",
+    "size_bytes": 19906,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "trusted_outcome_transport_v1.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "consumed"
+    ],
+    "calls": [
+      {
+        "callee": ".upper",
+        "line": 51,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(_RAW_DOMAIN + b\"\\x00\" + canonical).hexdigest().upper()"
+      },
+      {
+        "callee": ".upper",
+        "line": 60,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(_PROTECTED_DOMAIN + b\"\\x00\" + payload).hexdigest().upper()"
+      },
+      {
+        "callee": "snapshot.get",
+        "line": 90,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "snapshot.get(\"consumed_outcome_identities\")"
+      },
+      {
+        "callee": "compute_protected_value_bound_digest_v1",
+        "line": 110,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "compute_protected_value_bound_digest_v1(trace_identity, proposal_digest, outcome_identity, canonical_source_path, raw_digest)"
+      },
+      {
+        "callee": "self.sequence_state.consume_outcome",
+        "line": 113,
+        "matched_terms": [
+          "consume"
+        ],
+        "source": "self.sequence_state.consume_outcome(outcome_identity)"
+      },
+      {
+        "callee": ".hexdigest",
+        "line": 51,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(_RAW_DOMAIN + b\"\\x00\" + canonical).hexdigest()"
+      },
+      {
+        "callee": ".hexdigest",
+        "line": 60,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(_PROTECTED_DOMAIN + b\"\\x00\" + payload).hexdigest()"
+      },
+      {
+        "callee": "self.consumed_outcome_identities.add",
+        "line": 80,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self.consumed_outcome_identities.add(outcome_event_identity)"
+      },
+      {
+        "callee": "self.consumed_outcome_identities.clear",
+        "line": 100,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self.consumed_outcome_identities.clear()"
+      },
+      {
+        "callee": "ValueError",
+        "line": 79,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "ValueError(\"outcome identity already consumed\")"
+      },
+      {
+        "callee": "sorted",
+        "line": 84,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "sorted(self.consumed_outcome_identities)"
+      },
+      {
+        "callee": "isinstance",
+        "line": 91,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "isinstance(consumed, list)"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Return",
+        "line": 51,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return hashlib.sha256(_RAW_DOMAIN + b\"\\x00\" + canonical).hexdigest().upper()"
+      },
+      {
+        "kind": "Assign",
+        "line": 54,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "fields = [trace_identity, proposal_digest, outcome_event_identity, canonical_source_path, raw_output_sha256]"
+      },
+      {
+        "kind": "Return",
+        "line": 60,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return hashlib.sha256(_PROTECTED_DOMAIN + b\"\\x00\" + payload).hexdigest().upper()"
+      },
+      {
+        "kind": "AnnAssign",
+        "line": 65,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "consumed_outcome_identities: set[str] = field(default_factory=set)"
+      },
+      {
+        "kind": "Assign",
+        "line": 90,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "consumed = snapshot.get(\"consumed_outcome_identities\")"
+      },
+      {
+        "kind": "If",
+        "line": 91,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if not isinstance(counters, dict) or not isinstance(consumed, list):\n            raise ValueError(\"malformed snapshot\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 109,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "raw_digest = compute_raw_output_sha256_v1(post_hook_output)"
+      },
+      {
+        "kind": "Assign",
+        "line": 110,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "bound_digest = compute_protected_value_bound_digest_v1(trace_identity, proposal_digest, outcome_identity, canonical_source_path, raw_digest)"
+      },
+      {
+        "kind": "Assign",
+        "line": 111,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "outcome = {\"success\": bool(success), \"completion_sequence\": int(outcome_identity.rsplit(\":\", 1)[1]), \"canonical_source_path\": canonical_source_path, \"raw_output_sha256\": raw_digest, \"protected_value_sha256_or_bound_digest\": bound_digest}"
+      },
+      {
+        "kind": "If",
+        "line": 78,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if outcome_event_identity in self.consumed_outcome_identities:\n                raise ValueError(\"outcome identity already consumed\")"
+      },
+      {
+        "kind": "Return",
+        "line": 84,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "return {\"schema\": \"P2N.TRANSPORT.STATE.V1\", \"counter_by_trace\": dict(sorted(self.counter_by_trace.items())), \"consumed_outcome_identities\": sorted(self.consumed_outcome_identities)}"
+      },
+      {
+        "kind": "Assign",
+        "line": 95,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self.consumed_outcome_identities = {str(x) for x in consumed}"
+      }
+    ],
+    "line_count": 117,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\trusted_outcome_transport_v1.py",
+    "relative_path": "aicomp_sdk/core/env/trusted_outcome_transport_v1.py",
+    "sha256": "5C7F7D16A37896959C6F4CC769E5F72A6E5E534EE140BA5CAF2FB70661102CE1",
+    "size_bytes": 6170,
+    "strong_auth_terms": [
+      "consumed"
+    ],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 63,
+        "matched_terms": [
+          "consumed"
+        ],
+        "name": "TrustedEventSequenceStateV1"
+      },
+      {
+        "arguments": [
+          "self",
+          "outcome_event_identity"
+        ],
+        "kind": "FunctionDef",
+        "line": 76,
+        "matched_terms": [
+          "consumed"
+        ],
+        "name": "consume_outcome"
+      },
+      {
+        "arguments": [
+          "self",
+          "snapshot"
+        ],
+        "kind": "FunctionDef",
+        "line": 86,
+        "matched_terms": [
+          "consumed"
+        ],
+        "name": "restore"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "raise ValueError(\"outcome identity already consumed\")",
+        "line": 79,
+        "term": "consumed"
+      },
+      {
+        "excerpt": "consumed = snapshot.get(\"consumed_outcome_identities\")",
+        "line": 90,
+        "term": "consumed"
+      },
+      {
+        "excerpt": "if not isinstance(counters, dict) or not isinstance(consumed, list):",
+        "line": 91,
+        "term": "consumed"
+      },
+      {
+        "excerpt": "self.consumed_outcome_identities = {str(x) for x in consumed}",
+        "line": 95,
+        "term": "consumed"
+      }
+    ]
+  },
+  {
+    "artifact": "predicates.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 390,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\predicates.py",
+    "relative_path": "aicomp_sdk/core/predicates.py",
+    "sha256": "9D9DE5118D8883A0074A5405ED85CF2DEC3F68E8516908CBC48F409E3BA56F37",
+    "size_bytes": 16718,
+    "strong_auth_terms": [
+      "token"
+    ],
+    "symbols": [
+      {
+        "arguments": [
+          "s"
+        ],
+        "kind": "FunctionDef",
+        "line": 58,
+        "matched_terms": [
+          "token"
+        ],
+        "name": "_decode_candidates"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "# token runs (real exfil usually wraps the encoded secret inside a JSON body or",
+        "line": 91,
+        "term": "token"
+      },
+      {
+        "excerpt": "# query string rather than sending the bare token).",
+        "line": 92,
+        "term": "token"
+      }
+    ]
+  },
+  {
+    "artifact": "http.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 37,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\tools\\http.py",
+    "relative_path": "aicomp_sdk/core/tools/http.py",
+    "sha256": "CFFE8FBB47EA7BB682CE5965B517B32B16015415F610FF2528FD9ED695C09972",
+    "size_bytes": 1085,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "event_log.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "target.parent.mkdir",
+        "line": 46,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target.parent.mkdir(parents=True, exist_ok=True)"
+      },
+      {
+        "callee": "target.open",
+        "line": 47,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target.open(\"w\", encoding=\"utf-8\")"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Assign",
+        "line": 45,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = Path(path)"
+      },
+      {
+        "kind": "Assign",
+        "line": 47,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "handle = target.open(\"w\", encoding=\"utf-8\")"
+      }
+    ],
+    "line_count": 66,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\evaluation\\diagnostics\\event_log.py",
+    "relative_path": "aicomp_sdk/evaluation/diagnostics/event_log.py",
+    "sha256": "5BD2B5053676E2A701A1E715B478D063A98A1F4209816FAFA30B2CF775D52450",
+    "size_bytes": 2088,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [
+          "path"
+        ],
+        "kind": "FunctionDef",
+        "line": 39,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "open_event_log_sink"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "target = Path(path)",
+        "line": 45,
+        "term": "target"
+      },
+      {
+        "excerpt": "target.parent.mkdir(parents=True, exist_ok=True)",
+        "line": 46,
+        "term": "target"
+      },
+      {
+        "excerpt": "handle = target.open(\"w\", encoding=\"utf-8\")",
+        "line": 47,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "ops.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": ".start",
+        "line": 75,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "threading.Thread(target=run, daemon=True).start()"
+      },
+      {
+        "callee": "threading.Thread",
+        "line": 75,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "threading.Thread(target=run, daemon=True)"
+      }
+    ],
+    "flows": [],
+    "line_count": 834,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\evaluation\\ops.py",
+    "relative_path": "aicomp_sdk/evaluation/ops.py",
+    "sha256": "455A835E0A58ABAB79B24C986A937B99712E69EF83D6068FC68873E3C051FE74",
+    "size_bytes": 30705,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [
+          "operation"
+        ],
+        "kind": "FunctionDef",
+        "line": 54,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "_run_until_deadline"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "threading.Thread(target=run, daemon=True).start()",
+        "line": 75,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "submissions.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "importlib.util.spec_from_file_location",
+        "line": 70,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "importlib.util.spec_from_file_location(module_name, str(target))"
+      },
+      {
+        "callee": "target.exists",
+        "line": 60,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target.exists()"
+      },
+      {
+        "callee": "FileNotFoundError",
+        "line": 61,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "FileNotFoundError(target)"
+      },
+      {
+        "callee": "target.is_file",
+        "line": 62,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target.is_file()"
+      },
+      {
+        "callee": "ValueError",
+        "line": 63,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "ValueError(f\"Expected file, got: {target}\")"
+      },
+      {
+        "callee": "ValueError",
+        "line": 65,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "ValueError(f\"Submission file too large: {target.name}\")"
+      },
+      {
+        "callee": "str",
+        "line": 70,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "str(target)"
+      },
+      {
+        "callee": "ImportError",
+        "line": 72,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "ImportError(f\"Could not load module from {target}\")"
+      },
+      {
+        "callee": "target.write_bytes",
+        "line": 106,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target.write_bytes(source)"
+      },
+      {
+        "callee": "load_module_from_file",
+        "line": 107,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "load_module_from_file(target, module_name)"
+      },
+      {
+        "callee": "target.stat",
+        "line": 64,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target.stat()"
+      },
+      {
+        "callee": "ImportError",
+        "line": 81,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "ImportError(f\"Failed to import module from {target}\")"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Assign",
+        "line": 59,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = Path(filepath).resolve()"
+      },
+      {
+        "kind": "If",
+        "line": 60,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if not target.exists():\n        raise FileNotFoundError(target)"
+      },
+      {
+        "kind": "If",
+        "line": 62,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if not target.is_file():\n        raise ValueError(f\"Expected file, got: {target}\")"
+      },
+      {
+        "kind": "If",
+        "line": 64,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if target.stat().st_size > max_file_bytes:\n        raise ValueError(f\"Submission file too large: {target.name}\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 70,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "spec = importlib.util.spec_from_file_location(module_name, str(target))"
+      },
+      {
+        "kind": "If",
+        "line": 71,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if spec is None or spec.loader is None:\n        exc = ImportError(f\"Could not load module from {target}\")\n        exc.add_note(f\"module_name={module_name}\")\n        raise exc"
+      },
+      {
+        "kind": "Assign",
+        "line": 72,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "exc = ImportError(f\"Could not load module from {target}\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 105,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = tmp_path / file_name"
+      },
+      {
+        "kind": "Assign",
+        "line": 107,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "mod = load_module_from_file(target, module_name)"
+      },
+      {
+        "kind": "Assign",
+        "line": 81,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "exc = ImportError(f\"Failed to import module from {target}\")"
+      }
+    ],
+    "line_count": 167,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\evaluation\\submissions.py",
+    "relative_path": "aicomp_sdk/evaluation/submissions.py",
+    "sha256": "7C38150BAF9854B4C6BA8AC5156D48B8897EC8B090FC359C86FEC82FFC8206F2",
+    "size_bytes": 5611,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [
+          "filepath",
+          "module_name"
+        ],
+        "kind": "FunctionDef",
+        "line": 52,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "load_module_from_file"
+      },
+      {
+        "arguments": [
+          "zip_path",
+          "module_name",
+          "file_name"
+        ],
+        "kind": "FunctionDef",
+        "line": 88,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "load_from_zip"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "target = Path(filepath).resolve()",
+        "line": 59,
+        "term": "target"
+      },
+      {
+        "excerpt": "if not target.exists():",
+        "line": 60,
+        "term": "target"
+      },
+      {
+        "excerpt": "raise FileNotFoundError(target)",
+        "line": 61,
+        "term": "target"
+      },
+      {
+        "excerpt": "if not target.is_file():",
+        "line": 62,
+        "term": "target"
+      },
+      {
+        "excerpt": "raise ValueError(f\"Expected file, got: {target}\")",
+        "line": 63,
+        "term": "target"
+      },
+      {
+        "excerpt": "if target.stat().st_size > max_file_bytes:",
+        "line": 64,
+        "term": "target"
+      },
+      {
+        "excerpt": "raise ValueError(f\"Submission file too large: {target.name}\")",
+        "line": 65,
+        "term": "target"
+      },
+      {
+        "excerpt": "spec = importlib.util.spec_from_file_location(module_name, str(target))",
+        "line": 70,
+        "term": "target"
+      },
+      {
+        "excerpt": "exc = ImportError(f\"Could not load module from {target}\")",
+        "line": 72,
+        "term": "target"
+      },
+      {
+        "excerpt": "exc = ImportError(f\"Failed to import module from {target}\")",
+        "line": 81,
+        "term": "target"
+      },
+      {
+        "excerpt": "target = tmp_path / file_name",
+        "line": 105,
+        "term": "target"
+      },
+      {
+        "excerpt": "target.write_bytes(source)",
+        "line": 106,
+        "term": "target"
+      },
+      {
+        "excerpt": "mod = load_module_from_file(target, module_name)",
+        "line": 107,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "base.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 56,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\base.py",
+    "relative_path": "aicomp_sdk/guardrails/base.py",
+    "sha256": "EC95F45A9BF4202514725690617C91E88F3F1AE889AC7828D423DAAFEA527708",
+    "size_bytes": 1606,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "optimal.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "self._extract_target",
+        "line": 40,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "self._extract_target(tool_args)"
+      },
+      {
+        "callee": "self._is_ultra_dangerous",
+        "line": 41,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "self._is_ultra_dangerous(target)"
+      },
+      {
+        "callee": "context.get",
+        "line": 37,
+        "matched_terms": [
+          "authorize",
+          "authorized",
+          "user_authorized"
+        ],
+        "source": "context.get(\"user_authorized\", False)"
+      },
+      {
+        "callee": "Decision.allow",
+        "line": 38,
+        "matched_terms": [
+          "authorize",
+          "authorized"
+        ],
+        "source": "Decision.allow(\"User explicitly authorized this operation\")"
+      },
+      {
+        "callee": "Decision.deny",
+        "line": 42,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "Decision.deny(f\"Blocked {tool_name} on sensitive target '{target}'\")"
+      },
+      {
+        "callee": "bool",
+        "line": 58,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "bool(target)"
+      },
+      {
+        "callee": "any",
+        "line": 58,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "any(\n            pattern in target.lower() for pattern in self.ultra_dangerous_patterns\n        )"
+      },
+      {
+        "callee": "target.lower",
+        "line": 59,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target.lower()"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Assign",
+        "line": 22,
+        "matched_terms": [
+          "token"
+        ],
+        "source": "self.ultra_dangerous_patterns = {\n            \"secret\",\n            \"password\",\n            \"token\",\n            \"key\",\n            \"credential\",\n            \"private\",\n            \"confidential\",\n            \"api_key\",\n        }"
+      },
+      {
+        "kind": "If",
+        "line": 37,
+        "matched_terms": [
+          "authorize",
+          "authorized",
+          "user_authorized"
+        ],
+        "source": "if context.get(\"user_confirmed_safe\", False) or context.get(\"user_authorized\", False):\n            return Decision.allow(\"User explicitly authorized this operation\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 40,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = self._extract_target(tool_args)"
+      },
+      {
+        "kind": "If",
+        "line": 41,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if self._is_ultra_dangerous(target):\n            return Decision.deny(f\"Blocked {tool_name} on sensitive target '{target}'\")"
+      },
+      {
+        "kind": "Return",
+        "line": 58,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "return bool(target) and any(\n            pattern in target.lower() for pattern in self.ultra_dangerous_patterns\n        )"
+      },
+      {
+        "kind": "Return",
+        "line": 38,
+        "matched_terms": [
+          "authorize",
+          "authorized"
+        ],
+        "source": "return Decision.allow(\"User explicitly authorized this operation\")"
+      },
+      {
+        "kind": "Return",
+        "line": 42,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "return Decision.deny(f\"Blocked {tool_name} on sensitive target '{target}'\")"
+      }
+    ],
+    "line_count": 72,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\optimal.py",
+    "relative_path": "aicomp_sdk/guardrails/optimal.py",
+    "sha256": "6724FEDF7BBF3E67DFCDD564BA8A73463E0F783D5C84E0A70DCEFF40C1BC61ED",
+    "size_bytes": 2502,
+    "strong_auth_terms": [
+      "authorized",
+      "token",
+      "user_authorized"
+    ],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 10,
+        "matched_terms": [
+          "authorized",
+          "target",
+          "token",
+          "user_authorized"
+        ],
+        "name": "Guardrail"
+      },
+      {
+        "arguments": [
+          "self"
+        ],
+        "kind": "FunctionDef",
+        "line": 13,
+        "matched_terms": [
+          "token"
+        ],
+        "name": "__init__"
+      },
+      {
+        "arguments": [
+          "self",
+          "tool_name",
+          "tool_args",
+          "context"
+        ],
+        "kind": "FunctionDef",
+        "line": 34,
+        "matched_terms": [
+          "authorized",
+          "target",
+          "user_authorized"
+        ],
+        "name": "decide"
+      },
+      {
+        "arguments": [
+          "self",
+          "target"
+        ],
+        "kind": "FunctionDef",
+        "line": 57,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "_is_ultra_dangerous"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "\"\"\"Persistent taint-tracking baseline with ultra-dangerous target blocking.\"\"\"",
+        "line": 11,
+        "term": "target"
+      },
+      {
+        "excerpt": "\"token\",",
+        "line": 25,
+        "term": "token"
+      },
+      {
+        "excerpt": "if context.get(\"user_confirmed_safe\", False) or context.get(\"user_authorized\", False):",
+        "line": 37,
+        "term": "user_authorized"
+      },
+      {
+        "excerpt": "return Decision.allow(\"User explicitly authorized this operation\")",
+        "line": 38,
+        "term": "authorized"
+      },
+      {
+        "excerpt": "target = self._extract_target(tool_args)",
+        "line": 40,
+        "term": "target"
+      },
+      {
+        "excerpt": "if self._is_ultra_dangerous(target):",
+        "line": 41,
+        "term": "target"
+      },
+      {
+        "excerpt": "return Decision.deny(f\"Blocked {tool_name} on sensitive target '{target}'\")",
+        "line": 42,
+        "term": "target"
+      },
+      {
+        "excerpt": "return Decision.deny(f\"Blocked {tool_name} on sensitive target '{target}'\")",
+        "line": 42,
+        "term": "target"
+      },
+      {
+        "excerpt": "def _is_ultra_dangerous(self, target: str) -> bool:",
+        "line": 57,
+        "term": "target"
+      },
+      {
+        "excerpt": "return bool(target) and any(",
+        "line": 58,
+        "term": "target"
+      },
+      {
+        "excerpt": "pattern in target.lower() for pattern in self.ultra_dangerous_patterns",
+        "line": 59,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "proposal_aware_optimal.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [],
+    "flows": [],
+    "line_count": 85,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\proposal_aware_optimal.py",
+    "relative_path": "aicomp_sdk/guardrails/proposal_aware_optimal.py",
+    "sha256": "918FFD61CDB9A406C965F06CF2BEC34C297AB231E26B6FC083AE34B00C37D452",
+    "size_bytes": 3621,
+    "strong_auth_terms": [
+      "authorization",
+      "user_authorized"
+    ],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 22,
+        "matched_terms": [
+          "authorization",
+          "user_authorized"
+        ],
+        "name": "ProposalAwareOptimalGuardrail"
+      },
+      {
+        "arguments": [
+          "self",
+          "tool_name",
+          "tool_args",
+          "context"
+        ],
+        "kind": "FunctionDef",
+        "line": 37,
+        "matched_terms": [
+          "authorization",
+          "user_authorized"
+        ],
+        "name": "decide"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "This class intentionally does not implement trusted action-target-proposal",
+        "line": 3,
+        "term": "target"
+      },
+      {
+        "excerpt": "authorization, successful-read value lineage, one-use authorization, post-tool",
+        "line": 4,
+        "term": "authorization"
+      },
+      {
+        "excerpt": "authorization, successful-read value lineage, one-use authorization, post-tool",
+        "line": 4,
+        "term": "authorization"
+      },
+      {
+        "excerpt": "Generic ``user_authorized`` and ``user_confirmed_safe`` Booleans are",
+        "line": 45,
+        "term": "user_authorized"
+      },
+      {
+        "excerpt": "deliberately ignored because P2A has no trusted authorization transport.",
+        "line": 46,
+        "term": "authorization"
+      }
+    ]
+  },
+  {
+    "artifact": "trusted_context_adapter.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "consumed",
+      "expires",
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "self._validate_grant",
+        "line": 69,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "self._validate_grant(record, issuer_capability)"
+      },
+      {
+        "callee": "self._target_digest",
+        "line": 122,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "self._target_digest(tool_name, tool_args)"
+      },
+      {
+        "callee": "self._find_eligible_grant",
+        "line": 123,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "self._find_eligible_grant(\n            tool_name, target_digest, proposal_digest, trace_identity\n        )"
+      },
+      {
+        "callee": "self._consume_grant",
+        "line": 129,
+        "matched_terms": [
+          "consume"
+        ],
+        "source": "self._consume_grant(grant_id)"
+      },
+      {
+        "callee": "self._pending_proposals_by_digest.get",
+        "line": 162,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest.get(proposal_digest)"
+      },
+      {
+        "callee": "deepcopy",
+        "line": 188,
+        "matched_terms": [
+          "consume",
+          "consumed",
+          "digest"
+        ],
+        "source": "deepcopy(\n            {\n                \"schema_version\": 1,\n                \"trusted_grants_by_id\": self._trusted_grants_by_id,\n                \"consumed_grant_ids\": sorted(self._consumed_grant_ids),\n                \"protected_read_records\": self._protected_read_records,\n                \"seen_event_identities\": [list(x) for x in sorted(self._seen_event_identities)],\n                \"pending_proposals_by_digest\": self._pending_proposals_by_digest,\n                \"monotonic_sequence_by_trace\": self._monotonic_sequence_by_trace,\n                \"inner_guardrail_state\": self._inner.snapshot_state(),\n            }\n        )"
+      },
+      {
+        "callee": "set",
+        "line": 205,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "set(validated[\"consumed_grant_ids\"])"
+      },
+      {
+        "callee": ".upper",
+        "line": 262,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(cls._canonicalize_v1(envelope)).hexdigest().upper()"
+      },
+      {
+        "callee": "self._digest_v1",
+        "line": 290,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._digest_v1(grant)"
+      },
+      {
+        "callee": "self._digest_v1",
+        "line": 340,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "self._digest_v1(target)"
+      },
+      {
+        "callee": "self._consumed_grant_ids.add",
+        "line": 345,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self._consumed_grant_ids.add(grant_id)"
+      },
+      {
+        "callee": "outcome.get",
+        "line": 355,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "outcome.get(\"protected_value_sha256_or_bound_digest\")"
+      },
+      {
+        "callee": "ValueError",
+        "line": 72,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "ValueError(\"duplicate or consumed grant_id\")"
+      },
+      {
+        "callee": "self._digest_v1",
+        "line": 105,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._digest_v1(proposal_record)"
+      },
+      {
+        "callee": "all",
+        "line": 277,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "all(\n            isinstance(grant[name], str) and grant[name]\n            for name in required - {\"issued_at_or_sequence\", \"expires_at_or_sequence\"}\n        )"
+      },
+      {
+        "callee": "all",
+        "line": 356,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest))"
+      },
+      {
+        "callee": "isinstance",
+        "line": 383,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "isinstance(candidate[\"consumed_grant_ids\"], list)"
+      },
+      {
+        "callee": "ValueError",
+        "line": 384,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "ValueError(\"invalid consumed grant snapshot\")"
+      },
+      {
+        "callee": "isinstance",
+        "line": 389,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "isinstance(candidate[\"pending_proposals_by_digest\"], dict)"
+      },
+      {
+        "callee": "ValueError",
+        "line": 60,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "ValueError(\"invalid issuer capability entry\")"
+      },
+      {
+        "callee": "all",
+        "line": 157,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "all(\n            isinstance(value, str) and value\n            for value in (proposal_digest, trace_identity, tool_name, tool_args_digest)\n        )"
+      },
+      {
+        "callee": "sorted",
+        "line": 192,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "sorted(self._consumed_grant_ids)"
+      },
+      {
+        "callee": ".hexdigest",
+        "line": 262,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(cls._canonicalize_v1(envelope)).hexdigest()"
+      },
+      {
+        "callee": "isinstance",
+        "line": 267,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "isinstance(issuer_capability, bytes)"
+      },
+      {
+        "callee": "isinstance",
+        "line": 284,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "isinstance(expires, int)"
+      },
+      {
+        "callee": "hmac.compare_digest",
+        "line": 288,
+        "matched_terms": [
+          "capability",
+          "digest"
+        ],
+        "source": "hmac.compare_digest(expected, issuer_capability)"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Assign",
+        "line": 69,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "grant = self._validate_grant(record, issuer_capability)"
+      },
+      {
+        "kind": "If",
+        "line": 71,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if grant_id in self._trusted_grants_by_id or grant_id in self._consumed_grant_ids:\n            raise ValueError(\"duplicate or consumed grant_id\")"
+      },
+      {
+        "kind": "If",
+        "line": 113,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if tool_name not in _PROTECTED_ACTION_TOOLS:\n            self._pending_proposals_by_digest[proposal_digest] = {\n                \"trace_identity\": trace_identity,\n                \"event_key\": event_key,\n                \"tool_name\": tool_name,\n                \"grant_id\": None,\n            }\n            return inner_decision"
+      },
+      {
+        "kind": "Assign",
+        "line": 122,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "target_digest = self._target_digest(tool_name, tool_args)"
+      },
+      {
+        "kind": "Assign",
+        "line": 123,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "grant_id = self._find_eligible_grant(\n            tool_name, target_digest, proposal_digest, trace_identity\n        )"
+      },
+      {
+        "kind": "Assign",
+        "line": 130,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest[proposal_digest] = {\n            \"trace_identity\": trace_identity,\n            \"event_key\": event_key,\n            \"tool_name\": tool_name,\n            \"grant_id\": grant_id,\n        }"
+      },
+      {
+        "kind": "If",
+        "line": 157,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if not all(\n            isinstance(value, str) and value\n            for value in (proposal_digest, trace_identity, tool_name, tool_args_digest)\n        ) or not isinstance(trusted_tool_outcome, Mapping):\n            raise ValueError(self.REASON_MALFORMED)"
+      },
+      {
+        "kind": "Assign",
+        "line": 162,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "pending = self._pending_proposals_by_digest.get(proposal_digest)"
+      },
+      {
+        "kind": "Return",
+        "line": 188,
+        "matched_terms": [
+          "consume",
+          "consumed",
+          "digest"
+        ],
+        "source": "return deepcopy(\n            {\n                \"schema_version\": 1,\n                \"trusted_grants_by_id\": self._trusted_grants_by_id,\n                \"consumed_grant_ids\": sorted(self._consumed_grant_ids),\n                \"protected_read_records\": self._protected_read_records,\n                \"seen_event_identities\": [list(x) for x in sorted(self._seen_event_identities)],\n                \"pending_proposals_by_digest\": self._pending_proposals_by_digest,\n                \"monotonic_sequence_by_trace\": self._monotonic_sequence_by_trace,\n                \"inner_guardrail_state\": self._inner.snapshot_state(),\n            }\n        )"
+      },
+      {
+        "kind": "Assign",
+        "line": 205,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self._consumed_grant_ids = set(validated[\"consumed_grant_ids\"])"
+      },
+      {
+        "kind": "Assign",
+        "line": 210,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest = validated[\"pending_proposals_by_digest\"]"
+      },
+      {
+        "kind": "AnnAssign",
+        "line": 215,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self._consumed_grant_ids: set[str] = set()"
+      },
+      {
+        "kind": "AnnAssign",
+        "line": 218,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest: dict[str, dict[str, Any]] = {}"
+      },
+      {
+        "kind": "Return",
+        "line": 262,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return hashlib.sha256(cls._canonicalize_v1(envelope)).hexdigest().upper()"
+      },
+      {
+        "kind": "If",
+        "line": 267,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "if not isinstance(record, Mapping) or not isinstance(issuer_capability, bytes):\n            raise TypeError(\"invalid grant input\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 269,
+        "matched_terms": [
+          "authorize",
+          "authorized",
+          "digest",
+          "expires",
+          "nonce",
+          "target"
+        ],
+        "source": "required = {\n            \"grant_id\", \"issuer_id\", \"issuer_trust_domain\", \"issued_at_or_sequence\",\n            \"expires_at_or_sequence\", \"authorized_tool\", \"authorized_target_digest\",\n            \"authorized_proposal_digest\", \"nonce\", \"trace_identity\",\n        }"
+      },
+      {
+        "kind": "If",
+        "line": 277,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "if not all(\n            isinstance(grant[name], str) and grant[name]\n            for name in required - {\"issued_at_or_sequence\", \"expires_at_or_sequence\"}\n        ):\n            raise ValueError(\"invalid grant string field\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 283,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "expires = grant[\"expires_at_or_sequence\"]"
+      },
+      {
+        "kind": "If",
+        "line": 284,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or expires <= issued:\n            raise ValueError(\"invalid grant lifetime\")"
+      },
+      {
+        "kind": "If",
+        "line": 288,
+        "matched_terms": [
+          "capability",
+          "digest"
+        ],
+        "source": "if expected is None or not hmac.compare_digest(expected, issuer_capability):\n            raise ValueError(self.REASON_ISSUER)"
+      },
+      {
+        "kind": "Assign",
+        "line": 290,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "grant[\"record_digest\"] = self._digest_v1(grant)"
+      },
+      {
+        "kind": "If",
+        "line": 334,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if tool_name == \"http.post\":\n            target = {\"tool_name\": tool_name, \"url\": tool_args.get(\"url\")}\n        elif tool_name in {\"fs.write\", \"fs.delete\"}:\n            target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}\n        else:\n            target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}"
+      },
+      {
+        "kind": "Return",
+        "line": 340,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "return self._digest_v1(target)"
+      },
+      {
+        "kind": "If",
+        "line": 343,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if grant_id in self._consumed_grant_ids:\n            raise ValueError(self.REASON_REPLAY)"
+      },
+      {
+        "kind": "Assign",
+        "line": 355,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "protected_digest = outcome.get(\"protected_value_sha256_or_bound_digest\")"
+      },
+      {
+        "kind": "If",
+        "line": 356,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if not all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest)):\n            return None"
+      },
+      {
+        "kind": "Return",
+        "line": 358,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return {\n            \"event_identity\": dict(event_identity),\n            \"trace_identity\": trace_identity,\n            \"tool_name\": \"fs.read\",\n            \"canonical_source_path\": path,\n            \"tool_success\": True,\n            \"raw_output_sha256\": raw_output_sha256,\n            \"protected_value_sha256_or_bound_digest\": protected_digest,\n            \"completion_sequence\": outcome[\"completion_sequence\"],\n        }"
+      },
+      {
+        "kind": "Assign",
+        "line": 372,
+        "matched_terms": [
+          "consume",
+          "consumed",
+          "digest"
+        ],
+        "source": "required = {\n            \"schema_version\", \"trusted_grants_by_id\", \"consumed_grant_ids\",\n            \"protected_read_records\", \"seen_event_identities\",\n            \"pending_proposals_by_digest\", \"monotonic_sequence_by_trace\",\n            \"inner_guardrail_state\",\n        }"
+      },
+      {
+        "kind": "If",
+        "line": 383,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if not isinstance(candidate[\"consumed_grant_ids\"], list):\n            raise ValueError(\"invalid consumed grant snapshot\")"
+      },
+      {
+        "kind": "If",
+        "line": 389,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if not isinstance(candidate[\"pending_proposals_by_digest\"], dict):\n            raise ValueError(\"invalid pending proposal snapshot\")"
+      },
+      {
+        "kind": "If",
+        "line": 53,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "if (\n                not isinstance(key, tuple)\n                or len(key) != 2\n                or not all(isinstance(part, str) and part for part in key)\n                or not isinstance(value, bytes)\n                or not value\n            ):\n                raise ValueError(\"invalid issuer capability entry\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 105,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "proposal_digest = self._digest_v1(proposal_record)"
+      },
+      {
+        "kind": "Assign",
+        "line": 114,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest[proposal_digest] = {\n                \"trace_identity\": trace_identity,\n                \"event_key\": event_key,\n                \"tool_name\": tool_name,\n                \"grant_id\": None,\n            }"
+      },
+      {
+        "kind": "If",
+        "line": 323,
+        "matched_terms": [
+          "authorize",
+          "authorized",
+          "consume",
+          "consumed",
+          "digest",
+          "target"
+        ],
+        "source": "if (\n                grant_id not in self._consumed_grant_ids\n                and grant[\"authorized_tool\"] == tool_name\n                and grant[\"authorized_target_digest\"] == target_digest\n                and grant[\"authorized_proposal_digest\"] == proposal_digest\n                and grant[\"trace_identity\"] == trace_identity\n            ):\n                return grant_id"
+      },
+      {
+        "kind": "Assign",
+        "line": 335,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = {\"tool_name\": tool_name, \"url\": tool_args.get(\"url\")}"
+      },
+      {
+        "kind": "If",
+        "line": 336,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "elif tool_name in {\"fs.write\", \"fs.delete\"}:\n            target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}\n        else:\n            target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}"
+      },
+      {
+        "kind": "Assign",
+        "line": 337,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}"
+      },
+      {
+        "kind": "Assign",
+        "line": 339,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}"
+      }
+    ],
+    "line_count": 393,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\trusted_context_adapter.py",
+    "relative_path": "aicomp_sdk/guardrails/trusted_context_adapter.py",
+    "sha256": "AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F",
+    "size_bytes": 16917,
+    "strong_auth_terms": [
+      "capability",
+      "consumed",
+      "expires"
+    ],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 28,
+        "matched_terms": [
+          "capability",
+          "consumed",
+          "expires",
+          "nonce",
+          "target"
+        ],
+        "name": "TrustedGuardrailContextAdapter"
+      },
+      {
+        "arguments": [
+          "self",
+          "inner_guardrail",
+          "issuer_capabilities"
+        ],
+        "kind": "FunctionDef",
+        "line": 42,
+        "matched_terms": [
+          "capability"
+        ],
+        "name": "__init__"
+      },
+      {
+        "arguments": [
+          "self",
+          "record",
+          "issuer_capability"
+        ],
+        "kind": "FunctionDef",
+        "line": 66,
+        "matched_terms": [
+          "consumed"
+        ],
+        "name": "register_trusted_grant"
+      },
+      {
+        "arguments": [
+          "self",
+          "record",
+          "issuer_capability"
+        ],
+        "kind": "FunctionDef",
+        "line": 264,
+        "matched_terms": [
+          "expires",
+          "nonce"
+        ],
+        "name": "_validate_grant"
+      },
+      {
+        "arguments": [
+          "self",
+          "tool_name",
+          "tool_args"
+        ],
+        "kind": "FunctionDef",
+        "line": 333,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "_target_digest"
+      },
+      {
+        "arguments": [
+          "self",
+          "snapshot"
+        ],
+        "kind": "FunctionDef",
+        "line": 369,
+        "matched_terms": [
+          "consumed"
+        ],
+        "name": "_validate_snapshot"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "raise ValueError(\"invalid issuer capability entry\")",
+        "line": 60,
+        "term": "capability"
+      },
+      {
+        "excerpt": "raise ValueError(\"duplicate or consumed grant_id\")",
+        "line": 72,
+        "term": "consumed"
+      },
+      {
+        "excerpt": "\"authorized_proposal_digest\", \"nonce\", \"trace_identity\",",
+        "line": 272,
+        "term": "nonce"
+      },
+      {
+        "excerpt": "expires = grant[\"expires_at_or_sequence\"]",
+        "line": 283,
+        "term": "expires"
+      },
+      {
+        "excerpt": "if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or expires <= issued:",
+        "line": 284,
+        "term": "expires"
+      },
+      {
+        "excerpt": "if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or expires <= issued:",
+        "line": 284,
+        "term": "expires"
+      },
+      {
+        "excerpt": "target = {\"tool_name\": tool_name, \"url\": tool_args.get(\"url\")}",
+        "line": 335,
+        "term": "target"
+      },
+      {
+        "excerpt": "target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}",
+        "line": 337,
+        "term": "target"
+      },
+      {
+        "excerpt": "target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}",
+        "line": 339,
+        "term": "target"
+      },
+      {
+        "excerpt": "return self._digest_v1(target)",
+        "line": 340,
+        "term": "target"
+      },
+      {
+        "excerpt": "raise ValueError(\"invalid consumed grant snapshot\")",
+        "line": 384,
+        "term": "consumed"
+      }
+    ]
+  },
+  {
+    "artifact": "trusted_context_adapter_v1_1.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "consumed",
+      "expires",
+      "target"
+    ],
+    "calls": [
+      {
+        "callee": "self._validate_grant",
+        "line": 70,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "self._validate_grant(record, issuer_capability)"
+      },
+      {
+        "callee": "self._target_digest",
+        "line": 130,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "self._target_digest(tool_name, tool_args)"
+      },
+      {
+        "callee": "self._find_eligible_grant",
+        "line": 131,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "self._find_eligible_grant(\n            tool_name, target_digest, proposal_digest, trace_identity, event_key[1]\n        )"
+      },
+      {
+        "callee": "self._consume_grant",
+        "line": 137,
+        "matched_terms": [
+          "consume"
+        ],
+        "source": "self._consume_grant(grant_id)"
+      },
+      {
+        "callee": "self._pending_proposals_by_digest.get",
+        "line": 171,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest.get(proposal_digest)"
+      },
+      {
+        "callee": "deepcopy",
+        "line": 201,
+        "matched_terms": [
+          "consume",
+          "consumed",
+          "digest"
+        ],
+        "source": "deepcopy(\n            {\n                \"schema_version\": 1,\n                \"trusted_grants_by_id\": self._trusted_grants_by_id,\n                \"consumed_grant_ids\": sorted(self._consumed_grant_ids),\n                \"protected_read_records\": self._protected_read_records,\n                \"seen_event_identities\": [list(x) for x in sorted(self._seen_event_identities)],\n                \"pending_proposals_by_digest\": self._pending_proposals_by_digest,\n                \"monotonic_sequence_by_trace\": self._monotonic_sequence_by_trace,\n                \"inner_guardrail_state\": self._inner.snapshot_state(),\n            }\n        )"
+      },
+      {
+        "callee": "set",
+        "line": 229,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "set(candidate[\"consumed_grant_ids\"])"
+      },
+      {
+        "callee": ".upper",
+        "line": 293,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(cls._canonicalize_v1(envelope)).hexdigest().upper()"
+      },
+      {
+        "callee": "self._digest_v1",
+        "line": 321,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._digest_v1(grant)"
+      },
+      {
+        "callee": "self._digest_v1",
+        "line": 378,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "self._digest_v1(target)"
+      },
+      {
+        "callee": "consumed_grant_ids.add",
+        "line": 384,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "consumed_grant_ids.add(grant_id)"
+      },
+      {
+        "callee": "outcome.get",
+        "line": 394,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "outcome.get(\"protected_value_sha256_or_bound_digest\")"
+      },
+      {
+        "callee": "ValueError",
+        "line": 73,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "ValueError(\"duplicate or consumed grant_id\")"
+      },
+      {
+        "callee": "self._digest_v1",
+        "line": 106,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._digest_v1(proposal_record)"
+      },
+      {
+        "callee": "self._digest_v1",
+        "line": 107,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._digest_v1(dict(tool_args))"
+      },
+      {
+        "callee": "all",
+        "line": 308,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "all(\n            isinstance(grant[name], str) and grant[name]\n            for name in required - {\"issued_at_or_sequence\", \"expires_at_or_sequence\"}\n        )"
+      },
+      {
+        "callee": "all",
+        "line": 395,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest))"
+      },
+      {
+        "callee": "isinstance",
+        "line": 424,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "isinstance(candidate[\"consumed_grant_ids\"], list)"
+      },
+      {
+        "callee": "ValueError",
+        "line": 425,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "ValueError(\"invalid consumed grant snapshot\")"
+      },
+      {
+        "callee": "isinstance",
+        "line": 430,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "isinstance(candidate[\"pending_proposals_by_digest\"], dict)"
+      },
+      {
+        "callee": "ValueError",
+        "line": 61,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "ValueError(\"invalid issuer capability entry\")"
+      },
+      {
+        "callee": "all",
+        "line": 166,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "all(\n            isinstance(value, str) and value\n            for value in (proposal_digest, trace_identity, tool_name, tool_args_digest)\n        )"
+      },
+      {
+        "callee": "sorted",
+        "line": 205,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "sorted(self._consumed_grant_ids)"
+      },
+      {
+        "callee": ".hexdigest",
+        "line": 293,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "hashlib.sha256(cls._canonicalize_v1(envelope)).hexdigest()"
+      },
+      {
+        "callee": "isinstance",
+        "line": 298,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "isinstance(issuer_capability, bytes)"
+      },
+      {
+        "callee": "isinstance",
+        "line": 315,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "isinstance(expires, int)"
+      },
+      {
+        "callee": "hmac.compare_digest",
+        "line": 319,
+        "matched_terms": [
+          "capability",
+          "digest"
+        ],
+        "source": "hmac.compare_digest(expected, issuer_capability)"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Assign",
+        "line": 70,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "grant = self._validate_grant(record, issuer_capability)"
+      },
+      {
+        "kind": "If",
+        "line": 72,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if grant_id in self._trusted_grants_by_id or grant_id in self._consumed_grant_ids:\n            raise ValueError(\"duplicate or consumed grant_id\")"
+      },
+      {
+        "kind": "If",
+        "line": 120,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if tool_name not in _PROTECTED_ACTION_TOOLS:\n            self._pending_proposals_by_digest[proposal_digest] = {\n                \"trace_identity\": trace_identity,\n                \"event_key\": event_key,\n                \"tool_name\": tool_name,\n                \"tool_args_digest\": tool_args_digest,\n                \"grant_id\": None,\n            }\n            return inner_decision"
+      },
+      {
+        "kind": "Assign",
+        "line": 130,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "target_digest = self._target_digest(tool_name, tool_args)"
+      },
+      {
+        "kind": "Assign",
+        "line": 131,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "grant_id = self._find_eligible_grant(\n            tool_name, target_digest, proposal_digest, trace_identity, event_key[1]\n        )"
+      },
+      {
+        "kind": "Assign",
+        "line": 138,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest[proposal_digest] = {\n            \"trace_identity\": trace_identity,\n            \"event_key\": event_key,\n            \"tool_name\": tool_name,\n            \"tool_args_digest\": tool_args_digest,\n            \"grant_id\": grant_id,\n        }"
+      },
+      {
+        "kind": "If",
+        "line": 166,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if not all(\n            isinstance(value, str) and value\n            for value in (proposal_digest, trace_identity, tool_name, tool_args_digest)\n        ) or not isinstance(trusted_tool_outcome, Mapping):\n            raise ValueError(self.REASON_MALFORMED)"
+      },
+      {
+        "kind": "Assign",
+        "line": 171,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "pending = self._pending_proposals_by_digest.get(proposal_digest)"
+      },
+      {
+        "kind": "If",
+        "line": 176,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if pending[\"tool_args_digest\"] != tool_args_digest:\n            raise ValueError(self.REASON_MALFORMED)"
+      },
+      {
+        "kind": "Return",
+        "line": 201,
+        "matched_terms": [
+          "consume",
+          "consumed",
+          "digest"
+        ],
+        "source": "return deepcopy(\n            {\n                \"schema_version\": 1,\n                \"trusted_grants_by_id\": self._trusted_grants_by_id,\n                \"consumed_grant_ids\": sorted(self._consumed_grant_ids),\n                \"protected_read_records\": self._protected_read_records,\n                \"seen_event_identities\": [list(x) for x in sorted(self._seen_event_identities)],\n                \"pending_proposals_by_digest\": self._pending_proposals_by_digest,\n                \"monotonic_sequence_by_trace\": self._monotonic_sequence_by_trace,\n                \"inner_guardrail_state\": self._inner.snapshot_state(),\n            }\n        )"
+      },
+      {
+        "kind": "Assign",
+        "line": 229,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self._consumed_grant_ids = set(candidate[\"consumed_grant_ids\"])"
+      },
+      {
+        "kind": "Assign",
+        "line": 234,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest = candidate[\"pending_proposals_by_digest\"]"
+      },
+      {
+        "kind": "Assign",
+        "line": 239,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "consumed_grant_ids = set()"
+      },
+      {
+        "kind": "Assign",
+        "line": 242,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "pending_proposals_by_digest = {}"
+      },
+      {
+        "kind": "AnnAssign",
+        "line": 245,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "self._consumed_grant_ids: set[str] = consumed_grant_ids"
+      },
+      {
+        "kind": "AnnAssign",
+        "line": 248,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest: dict[str, dict[str, Any]] = pending_proposals_by_digest"
+      },
+      {
+        "kind": "Return",
+        "line": 293,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return hashlib.sha256(cls._canonicalize_v1(envelope)).hexdigest().upper()"
+      },
+      {
+        "kind": "If",
+        "line": 298,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "if not isinstance(record, Mapping) or not isinstance(issuer_capability, bytes):\n            raise TypeError(\"invalid grant input\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 300,
+        "matched_terms": [
+          "authorize",
+          "authorized",
+          "digest",
+          "expires",
+          "nonce",
+          "target"
+        ],
+        "source": "required = {\n            \"grant_id\", \"issuer_id\", \"issuer_trust_domain\", \"issued_at_or_sequence\",\n            \"expires_at_or_sequence\", \"authorized_tool\", \"authorized_target_digest\",\n            \"authorized_proposal_digest\", \"nonce\", \"trace_identity\",\n        }"
+      },
+      {
+        "kind": "If",
+        "line": 308,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "if not all(\n            isinstance(grant[name], str) and grant[name]\n            for name in required - {\"issued_at_or_sequence\", \"expires_at_or_sequence\"}\n        ):\n            raise ValueError(\"invalid grant string field\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 314,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "expires = grant[\"expires_at_or_sequence\"]"
+      },
+      {
+        "kind": "If",
+        "line": 315,
+        "matched_terms": [
+          "expires"
+        ],
+        "source": "if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or expires <= issued:\n            raise ValueError(\"invalid grant lifetime\")"
+      },
+      {
+        "kind": "If",
+        "line": 319,
+        "matched_terms": [
+          "capability",
+          "digest"
+        ],
+        "source": "if expected is None or not hmac.compare_digest(expected, issuer_capability):\n            raise ValueError(self.REASON_ISSUER)"
+      },
+      {
+        "kind": "Assign",
+        "line": 321,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "grant[\"record_digest\"] = self._digest_v1(grant)"
+      },
+      {
+        "kind": "If",
+        "line": 372,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "if tool_name == \"http.post\":\n            target = {\"tool_name\": tool_name, \"url\": tool_args.get(\"url\")}\n        elif tool_name in {\"fs.write\", \"fs.delete\"}:\n            target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}\n        else:\n            target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}"
+      },
+      {
+        "kind": "Return",
+        "line": 378,
+        "matched_terms": [
+          "digest",
+          "target"
+        ],
+        "source": "return self._digest_v1(target)"
+      },
+      {
+        "kind": "Assign",
+        "line": 381,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "consumed_grant_ids = self._consumed_grant_ids"
+      },
+      {
+        "kind": "If",
+        "line": 382,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if grant_id in consumed_grant_ids:\n            raise ValueError(self.REASON_REPLAY)"
+      },
+      {
+        "kind": "Assign",
+        "line": 394,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "protected_digest = outcome.get(\"protected_value_sha256_or_bound_digest\")"
+      },
+      {
+        "kind": "If",
+        "line": 395,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if not all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest)):\n            return None"
+      },
+      {
+        "kind": "Return",
+        "line": 399,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return {\n            \"event_identity\": dict(event_identity),\n            \"trace_identity\": trace_identity,\n            \"tool_name\": \"fs.read\",\n            \"canonical_source_path\": path,\n            \"tool_success\": True,\n            \"raw_output_sha256\": raw_output_sha256,\n            \"protected_value_sha256_or_bound_digest\": protected_digest,\n            \"completion_sequence\": outcome[\"completion_sequence\"],\n        }"
+      },
+      {
+        "kind": "Assign",
+        "line": 413,
+        "matched_terms": [
+          "consume",
+          "consumed",
+          "digest"
+        ],
+        "source": "required = {\n            \"schema_version\", \"trusted_grants_by_id\", \"consumed_grant_ids\",\n            \"protected_read_records\", \"seen_event_identities\",\n            \"pending_proposals_by_digest\", \"monotonic_sequence_by_trace\",\n            \"inner_guardrail_state\",\n        }"
+      },
+      {
+        "kind": "If",
+        "line": 424,
+        "matched_terms": [
+          "consume",
+          "consumed"
+        ],
+        "source": "if not isinstance(candidate[\"consumed_grant_ids\"], list):\n            raise ValueError(\"invalid consumed grant snapshot\")"
+      },
+      {
+        "kind": "If",
+        "line": 430,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if not isinstance(candidate[\"pending_proposals_by_digest\"], dict):\n            raise ValueError(\"invalid pending proposal snapshot\")"
+      },
+      {
+        "kind": "If",
+        "line": 54,
+        "matched_terms": [
+          "capability"
+        ],
+        "source": "if (\n                not isinstance(key, tuple)\n                or len(key) != 2\n                or not all(isinstance(part, str) and part for part in key)\n                or not isinstance(value, bytes)\n                or not value\n            ):\n                raise ValueError(\"invalid issuer capability entry\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 106,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "proposal_digest = self._digest_v1(proposal_record)"
+      },
+      {
+        "kind": "Assign",
+        "line": 107,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "tool_args_digest = self._digest_v1(dict(tool_args))"
+      },
+      {
+        "kind": "Assign",
+        "line": 121,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "self._pending_proposals_by_digest[proposal_digest] = {\n                \"trace_identity\": trace_identity,\n                \"event_key\": event_key,\n                \"tool_name\": tool_name,\n                \"tool_args_digest\": tool_args_digest,\n                \"grant_id\": None,\n            }"
+      },
+      {
+        "kind": "If",
+        "line": 359,
+        "matched_terms": [
+          "authorize",
+          "authorized",
+          "consume",
+          "consumed",
+          "digest",
+          "expires",
+          "target"
+        ],
+        "source": "if (\n                grant_id not in self._consumed_grant_ids\n                and grant[\"authorized_tool\"] == tool_name\n                and grant[\"authorized_target_digest\"] == target_digest\n                and grant[\"authorized_proposal_digest\"] == proposal_digest\n                and grant[\"trace_identity\"] == trace_identity\n                and grant[\"issued_at_or_sequence\"] <= current_sequence\n                and current_sequence < grant[\"expires_at_or_sequence\"]\n            ):\n                return grant_id"
+      },
+      {
+        "kind": "Assign",
+        "line": 373,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = {\"tool_name\": tool_name, \"url\": tool_args.get(\"url\")}"
+      },
+      {
+        "kind": "If",
+        "line": 374,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "elif tool_name in {\"fs.write\", \"fs.delete\"}:\n            target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}\n        else:\n            target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}"
+      },
+      {
+        "kind": "Assign",
+        "line": 375,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}"
+      },
+      {
+        "kind": "Assign",
+        "line": 377,
+        "matched_terms": [
+          "target"
+        ],
+        "source": "target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}"
+      }
+    ],
+    "line_count": 434,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\trusted_context_adapter_v1_1.py",
+    "relative_path": "aicomp_sdk/guardrails/trusted_context_adapter_v1_1.py",
+    "sha256": "BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99",
+    "size_bytes": 18747,
+    "strong_auth_terms": [
+      "capability",
+      "consumed",
+      "expires"
+    ],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 29,
+        "matched_terms": [
+          "capability",
+          "consumed",
+          "expires",
+          "nonce",
+          "target"
+        ],
+        "name": "TrustedGuardrailContextAdapterV1_1"
+      },
+      {
+        "arguments": [
+          "self",
+          "inner_guardrail",
+          "issuer_capabilities"
+        ],
+        "kind": "FunctionDef",
+        "line": 43,
+        "matched_terms": [
+          "capability"
+        ],
+        "name": "__init__"
+      },
+      {
+        "arguments": [
+          "self",
+          "record",
+          "issuer_capability"
+        ],
+        "kind": "FunctionDef",
+        "line": 67,
+        "matched_terms": [
+          "consumed"
+        ],
+        "name": "register_trusted_grant"
+      },
+      {
+        "arguments": [
+          "self",
+          "record",
+          "issuer_capability"
+        ],
+        "kind": "FunctionDef",
+        "line": 295,
+        "matched_terms": [
+          "expires",
+          "nonce"
+        ],
+        "name": "_validate_grant"
+      },
+      {
+        "arguments": [
+          "self",
+          "tool_name",
+          "tool_args"
+        ],
+        "kind": "FunctionDef",
+        "line": 371,
+        "matched_terms": [
+          "target"
+        ],
+        "name": "_target_digest"
+      },
+      {
+        "arguments": [
+          "self",
+          "snapshot"
+        ],
+        "kind": "FunctionDef",
+        "line": 410,
+        "matched_terms": [
+          "consumed"
+        ],
+        "name": "_validate_snapshot"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "raise ValueError(\"invalid issuer capability entry\")",
+        "line": 61,
+        "term": "capability"
+      },
+      {
+        "excerpt": "raise ValueError(\"duplicate or consumed grant_id\")",
+        "line": 73,
+        "term": "consumed"
+      },
+      {
+        "excerpt": "\"authorized_proposal_digest\", \"nonce\", \"trace_identity\",",
+        "line": 303,
+        "term": "nonce"
+      },
+      {
+        "excerpt": "expires = grant[\"expires_at_or_sequence\"]",
+        "line": 314,
+        "term": "expires"
+      },
+      {
+        "excerpt": "if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or expires <= issued:",
+        "line": 315,
+        "term": "expires"
+      },
+      {
+        "excerpt": "if not isinstance(issued, int) or not isinstance(expires, int) or issued < 0 or expires <= issued:",
+        "line": 315,
+        "term": "expires"
+      },
+      {
+        "excerpt": "target = {\"tool_name\": tool_name, \"url\": tool_args.get(\"url\")}",
+        "line": 373,
+        "term": "target"
+      },
+      {
+        "excerpt": "target = {\"tool_name\": tool_name, \"path\": tool_args.get(\"path\")}",
+        "line": 375,
+        "term": "target"
+      },
+      {
+        "excerpt": "target = {\"tool_name\": tool_name, \"tool_args\": dict(tool_args)}",
+        "line": 377,
+        "term": "target"
+      },
+      {
+        "excerpt": "return self._digest_v1(target)",
+        "line": 378,
+        "term": "target"
+      },
+      {
+        "excerpt": "raise ValueError(\"invalid consumed grant snapshot\")",
+        "line": 425,
+        "term": "consumed"
+      }
+    ]
+  },
+  {
+    "artifact": "registry.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 247,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\hooks\\registry.py",
+    "relative_path": "aicomp_sdk/hooks/registry.py",
+    "sha256": "5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B",
+    "size_bytes": 8633,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "types.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 53,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\hooks\\types.py",
+    "relative_path": "aicomp_sdk/hooks/types.py",
+    "sha256": "0D3C7B5921749C22CADC5478532C7FE84B86AA90447FEEA8060ACFA9F44D3C7E",
+    "size_bytes": 1585,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "scoring.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "target"
+    ],
+    "calls": [],
+    "flows": [],
+    "line_count": 168,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\scoring.py",
+    "relative_path": "aicomp_sdk/scoring.py",
+    "sha256": "13A0969EA6C64B257C46D47490B4259ADE3A4965F19D2D6C6FE0ED151F618D4F",
+    "size_bytes": 6018,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": [
+      {
+        "excerpt": "#   - gpt-oss-20b (target agent): TBD based on actual testing",
+        "line": 23,
+        "term": "target"
+      }
+    ]
+  },
+  {
+    "artifact": "integration_factory_v2.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 21,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2\\integration_factory_v2.py",
+    "relative_path": "aicomp_sdk_exfil_v2/integration_factory_v2.py",
+    "sha256": "436C9111DD48C069DDF6FB655C5E40D9A471E4B59890592222CBF8C871E39224",
+    "size_bytes": 1337,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "successful_read_ledger_v2.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "digest"
+    ],
+    "calls": [
+      {
+        "callee": ".upper",
+        "line": 14,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "sha256(value.encode(\"utf-8\", \"surrogatepass\")).hexdigest().upper()"
+      },
+      {
+        "callee": "_tool_args_digest_v2",
+        "line": 70,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_tool_args_digest_v2(args_copy)"
+      },
+      {
+        "callee": "_record_identity_v2",
+        "line": 73,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_record_identity_v2(sequence=sequence, tool_name=tool_name, canonical_path=canonical_path, tool_args_digest=args_digest, output_digest=output_digest)"
+      },
+      {
+        "callee": "SuccessfulReadRecordV2",
+        "line": 74,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "SuccessfulReadRecordV2(RECORD_TAG_V2, sequence, tool_name, MappingProxyType(args_copy), args_digest, canonical_path, True, error_value, raw_output, output_digest, _secret_values_v2(raw_output), identity)"
+      },
+      {
+        "callee": ".hexdigest",
+        "line": 14,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "sha256(value.encode(\"utf-8\", \"surrogatepass\")).hexdigest()"
+      },
+      {
+        "callee": "_tool_args_digest_v2",
+        "line": 104,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_tool_args_digest_v2(args_copy)"
+      },
+      {
+        "callee": "_record_identity_v2",
+        "line": 112,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_record_identity_v2(sequence=expected_sequence, tool_name=\"fs.read\", canonical_path=path, tool_args_digest=args_digest, output_digest=output_digest)"
+      },
+      {
+        "callee": "restored.append",
+        "line": 115,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "restored.append(SuccessfulReadRecordV2(RECORD_TAG_V2, expected_sequence, \"fs.read\", MappingProxyType(args_copy), args_digest, path, True, row.get(\"error_value\"), raw, output_digest, derived, expected_identity))"
+      },
+      {
+        "callee": "ValueError",
+        "line": 106,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "ValueError(\"tool args digest mismatch\")"
+      },
+      {
+        "callee": "ValueError",
+        "line": 108,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "ValueError(\"raw output digest mismatch\")"
+      },
+      {
+        "callee": "SuccessfulReadRecordV2",
+        "line": 115,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "SuccessfulReadRecordV2(RECORD_TAG_V2, expected_sequence, \"fs.read\", MappingProxyType(args_copy), args_digest, path, True, row.get(\"error_value\"), raw, output_digest, derived, expected_identity)"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Return",
+        "line": 14,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return sha256(value.encode(\"utf-8\", \"surrogatepass\")).hexdigest().upper()"
+      },
+      {
+        "kind": "Assign",
+        "line": 41,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "material = f\"{RECORD_TAG_V2}|{sequence}|{tool_name}|{canonical_path}|{tool_args_digest}|{output_digest}\""
+      },
+      {
+        "kind": "Assign",
+        "line": 70,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "args_digest = _tool_args_digest_v2(args_copy)"
+      },
+      {
+        "kind": "Assign",
+        "line": 71,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "output_digest = _sha256_text_v2(raw_output)"
+      },
+      {
+        "kind": "Assign",
+        "line": 73,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "identity = _record_identity_v2(sequence=sequence, tool_name=tool_name, canonical_path=canonical_path, tool_args_digest=args_digest, output_digest=output_digest)"
+      },
+      {
+        "kind": "Assign",
+        "line": 74,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "record = SuccessfulReadRecordV2(RECORD_TAG_V2, sequence, tool_name, MappingProxyType(args_copy), args_digest, canonical_path, True, error_value, raw_output, output_digest, _secret_values_v2(raw_output), identity)"
+      },
+      {
+        "kind": "Assign",
+        "line": 104,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "args_digest = _tool_args_digest_v2(args_copy)"
+      },
+      {
+        "kind": "Assign",
+        "line": 104,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "output_digest = _sha256_text_v2(raw)"
+      },
+      {
+        "kind": "If",
+        "line": 105,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if row.get(\"tool_args_sha256\") != args_digest:\n                raise ValueError(\"tool args digest mismatch\")"
+      },
+      {
+        "kind": "If",
+        "line": 107,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if row.get(\"raw_output_sha256\") != output_digest:\n                raise ValueError(\"raw output digest mismatch\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 112,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "expected_identity = _record_identity_v2(sequence=expected_sequence, tool_name=\"fs.read\", canonical_path=path, tool_args_digest=args_digest, output_digest=output_digest)"
+      }
+    ],
+    "line_count": 122,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2\\successful_read_ledger_v2.py",
+    "relative_path": "aicomp_sdk_exfil_v2/successful_read_ledger_v2.py",
+    "sha256": "609B22AA7ABD3555B24484E2AF313A5460877BA3C446FBE2978C6136D662857E",
+    "size_bytes": 6645,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 59,
+        "matched_terms": [
+          "digest"
+        ],
+        "name": "SuccessfulReadLedgerV2"
+      },
+      {
+        "arguments": [
+          "self",
+          "snapshot"
+        ],
+        "kind": "FunctionDef",
+        "line": 88,
+        "matched_terms": [
+          "digest"
+        ],
+        "name": "restore_state"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "raise ValueError(\"tool args digest mismatch\")",
+        "line": 106,
+        "term": "digest"
+      },
+      {
+        "excerpt": "raise ValueError(\"raw output digest mismatch\")",
+        "line": 108,
+        "term": "digest"
+      }
+    ]
+  },
+  {
+    "artifact": "integration_factory_v2_1.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 21,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\integration_factory_v2_1.py",
+    "relative_path": "aicomp_sdk_exfil_v2_1/integration_factory_v2_1.py",
+    "sha256": "21355E213E0C8AEFCA8851336C64527F49168ACEC7AEFE6EC161441E676AEE1A",
+    "size_bytes": 1339,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "lineage_aware_exfil_guardrail_v2_1.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 17,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\lineage_aware_exfil_guardrail_v2_1.py",
+    "relative_path": "aicomp_sdk_exfil_v2_1/lineage_aware_exfil_guardrail_v2_1.py",
+    "sha256": "2AC1CA55FB0C18460F50B35677F5ECD9EB3477CFB21F9C19F44A48C7AEFD5C26",
+    "size_bytes": 1394,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  },
+  {
+    "artifact": "successful_read_ledger_v2_1.py",
+    "ast_parse": "PASS",
+    "binding_terms": [
+      "digest"
+    ],
+    "calls": [
+      {
+        "callee": ".upper",
+        "line": 14,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "sha256(value.encode(\"utf-8\", \"surrogatepass\")).hexdigest().upper()"
+      },
+      {
+        "callee": "_tool_args_digest_v21",
+        "line": 79,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_tool_args_digest_v21(args_copy)"
+      },
+      {
+        "callee": "_record_identity_v21",
+        "line": 82,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_record_identity_v21(sequence=sequence, tool_name=tool_name, canonical_path=canonical_path, tool_args_digest=args_digest, output_digest=output_digest)"
+      },
+      {
+        "callee": "SuccessfulReadRecordV21",
+        "line": 83,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "SuccessfulReadRecordV21(RECORD_TAG_V2_1, sequence, tool_name, MappingProxyType(args_copy), args_digest, canonical_path, True, error_value, raw_output, output_digest, _secret_values_v21(raw_output), identity)"
+      },
+      {
+        "callee": ".hexdigest",
+        "line": 14,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "sha256(value.encode(\"utf-8\", \"surrogatepass\")).hexdigest()"
+      },
+      {
+        "callee": "_tool_args_digest_v21",
+        "line": 137,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_tool_args_digest_v21(args_copy)"
+      },
+      {
+        "callee": "_record_identity_v21",
+        "line": 147,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "_record_identity_v21(sequence=expected_sequence, tool_name=\"fs.read\", canonical_path=path, tool_args_digest=args_digest, output_digest=output_digest)"
+      },
+      {
+        "callee": "restored.append",
+        "line": 150,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "restored.append(SuccessfulReadRecordV21(RECORD_TAG_V2_1, expected_sequence, \"fs.read\", MappingProxyType(args_copy), args_digest, path, True, _detach_json_value_v21(row.get(\"error_value\")), raw, output_digest, derived, expected_identity))"
+      },
+      {
+        "callee": "ValueError",
+        "line": 140,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "ValueError(\"tool args digest mismatch\")"
+      },
+      {
+        "callee": "ValueError",
+        "line": 142,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "ValueError(\"raw output digest mismatch\")"
+      },
+      {
+        "callee": "SuccessfulReadRecordV21",
+        "line": 150,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "SuccessfulReadRecordV21(RECORD_TAG_V2_1, expected_sequence, \"fs.read\", MappingProxyType(args_copy), args_digest, path, True, _detach_json_value_v21(row.get(\"error_value\")), raw, output_digest, derived, expected_identity)"
+      }
+    ],
+    "flows": [
+      {
+        "kind": "Return",
+        "line": 14,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "return sha256(value.encode(\"utf-8\", \"surrogatepass\")).hexdigest().upper()"
+      },
+      {
+        "kind": "Assign",
+        "line": 48,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "material = f\"{RECORD_TAG_V2_1}|{sequence}|{tool_name}|{canonical_path}|{tool_args_digest}|{output_digest}\""
+      },
+      {
+        "kind": "Assign",
+        "line": 79,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "args_digest = _tool_args_digest_v21(args_copy)"
+      },
+      {
+        "kind": "Assign",
+        "line": 80,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "output_digest = _sha256_text_v21(raw_output)"
+      },
+      {
+        "kind": "Assign",
+        "line": 82,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "identity = _record_identity_v21(sequence=sequence, tool_name=tool_name, canonical_path=canonical_path, tool_args_digest=args_digest, output_digest=output_digest)"
+      },
+      {
+        "kind": "Assign",
+        "line": 83,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "record = SuccessfulReadRecordV21(RECORD_TAG_V2_1, sequence, tool_name, MappingProxyType(args_copy), args_digest, canonical_path, True, error_value, raw_output, output_digest, _secret_values_v21(raw_output), identity)"
+      },
+      {
+        "kind": "Assign",
+        "line": 137,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "args_digest = _tool_args_digest_v21(args_copy)"
+      },
+      {
+        "kind": "Assign",
+        "line": 138,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "output_digest = _sha256_text_v21(raw)"
+      },
+      {
+        "kind": "If",
+        "line": 139,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if row.get(\"tool_args_sha256\") != args_digest:\n                raise ValueError(\"tool args digest mismatch\")"
+      },
+      {
+        "kind": "If",
+        "line": 141,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "if row.get(\"raw_output_sha256\") != output_digest:\n                raise ValueError(\"raw output digest mismatch\")"
+      },
+      {
+        "kind": "Assign",
+        "line": 147,
+        "matched_terms": [
+          "digest"
+        ],
+        "source": "expected_identity = _record_identity_v21(sequence=expected_sequence, tool_name=\"fs.read\", canonical_path=path, tool_args_digest=args_digest, output_digest=output_digest)"
+      }
+    ],
+    "line_count": 159,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\successful_read_ledger_v2_1.py",
+    "relative_path": "aicomp_sdk_exfil_v2_1/successful_read_ledger_v2_1.py",
+    "sha256": "18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C",
+    "size_bytes": 8335,
+    "strong_auth_terms": [],
+    "symbols": [
+      {
+        "arguments": [],
+        "kind": "ClassDef",
+        "line": 66,
+        "matched_terms": [
+          "digest"
+        ],
+        "name": "SuccessfulReadLedgerV21"
+      },
+      {
+        "arguments": [
+          "self",
+          "snapshot"
+        ],
+        "kind": "FunctionDef",
+        "line": 117,
+        "matched_terms": [
+          "digest"
+        ],
+        "name": "restore_state"
+      }
+    ],
+    "term_hits": [
+      {
+        "excerpt": "raise ValueError(\"tool args digest mismatch\")",
+        "line": 140,
+        "term": "digest"
+      },
+      {
+        "excerpt": "raise ValueError(\"raw output digest mismatch\")",
+        "line": 142,
+        "term": "digest"
+      }
+    ]
+  },
+  {
+    "artifact": "integration_factory_v2_2.py",
+    "ast_parse": "PASS",
+    "binding_terms": [],
+    "calls": [],
+    "flows": [],
+    "line_count": 37,
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_2\\integration_factory_v2_2.py",
+    "relative_path": "aicomp_sdk_exfil_v2_2/integration_factory_v2_2.py",
+    "sha256": "8188BFFFFC1EBFE6B4A1E6DAB4C1678B1DE77389EC55BE7A4E4EA705665FCB9E",
+    "size_bytes": 2039,
+    "strong_auth_terms": [],
+    "symbols": [],
+    "term_hits": []
+  }
+]

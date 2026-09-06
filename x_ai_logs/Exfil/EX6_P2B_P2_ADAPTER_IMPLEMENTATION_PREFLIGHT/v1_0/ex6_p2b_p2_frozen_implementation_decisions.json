@@ -1,0 +1,80 @@
+{
+  "canonical_serialization": {
+    "array_order": "preserved",
+    "booleans_and_null": "lowercase JSON tokens",
+    "character_encoding": "UTF-8",
+    "decision": "CANONICAL_JSON_V1",
+    "digest": "SHA-256 over exact UTF-8 bytes",
+    "duplicate_object_keys": "PROHIBITED_FAIL_CLOSED",
+    "floating_point": "PROHIBITED_FAIL_CLOSED",
+    "integers": "base-10, no leading plus or leading zeros except zero",
+    "non_finite_numbers": "PROHIBITED_FAIL_CLOSED",
+    "normalization": "Unicode NFC for strings",
+    "object_key_order": "lexicographic Unicode code-point order",
+    "schema_tag": "aicomp.trusted-context.v1",
+    "separators": [
+      ",",
+      ":"
+    ],
+    "unsupported_values": "PROHIBITED_FAIL_CLOSED",
+    "whitespace": "none"
+  },
+  "event_identity_authority": {
+    "adapter_behavior": [
+      "reject duplicates",
+      "reject unknown identities",
+      "reject out-of-order acknowledgement",
+      "reject cross-trace reuse",
+      "do not derive event identity from agent prose"
+    ],
+    "decision": "TRUSTED_EXECUTION_BOUNDARY_ASSIGNS_TRACE_SCOPED_SEQUENCE",
+    "identity_fields": [
+      "trace_identity",
+      "event_sequence",
+      "event_kind"
+    ],
+    "uniqueness": "trace_identity plus strictly increasing non-negative integer event_sequence"
+  },
+  "grant_consumption": {
+    "decision": "CONSUME_AT_AUTHORIZATION_RELEASE_BEFORE_TOOL_EXECUTION",
+    "rationale": "fail-closed replay resistance; benign retry impact remains a future measured trade-off",
+    "restore_after_downstream_error": false,
+    "restore_after_failure": false,
+    "restore_after_timeout": false,
+    "trigger": "correctly bound protected action is released as allowed by adapter"
+  },
+  "integration": {
+    "decision": "STANDALONE_GUARDRAIL_WRAPPER_WITH_EXPLICIT_TRUSTED_CHANNEL_API",
+    "frozen_source_edits": false,
+    "runtime_integration": "WITHHELD_TO_SEPARATE_INTEGRATION_AND_PARITY_GATE",
+    "sandbox_edit_in_P2": false
+  },
+  "protected_value_derivation": {
+    "boundary": "hash equality alone does not establish provenance or derivation",
+    "decision": "TRUSTED_RUNTIME_COMPARISON_WITH_REDACTED_EVIDENCE",
+    "derivation_check": "runtime component compares candidate sink payload/officially normalized candidate with the protected read value according to a separately frozen matcher contract",
+    "evidence_artifacts": [
+      "source event identity",
+      "sink proposal digest",
+      "protected value SHA-256",
+      "raw sink payload SHA-256",
+      "derivation classification"
+    ],
+    "publication": "no raw protected value",
+    "runtime_provenance": "trusted after_tool record binds fs.read success, canonical source path, trace identity, event identity, raw output bytes, and output digest"
+  },
+  "trusted_issuer_boundary": {
+    "capability_rule": "issuer capability is provided out-of-band by the trusted host and is never serialized into agent-visible context or snapshots",
+    "decision": "EXPLICIT_CONSTRUCTOR_CONFIGURED_ISSUER_REGISTRY",
+    "grant_creation_api": "register_trusted_grant(record, issuer_capability)",
+    "issuer_identity": "immutable issuer_id plus issuer_trust_domain",
+    "prohibited_sources": [
+      "model output",
+      "prompt content",
+      "generic context dictionaries",
+      "arbitrary hook metadata",
+      "recent_sources-only labels"
+    ],
+    "unknown_or_mismatched_issuer": "FAIL_CLOSED"
+  }
+}

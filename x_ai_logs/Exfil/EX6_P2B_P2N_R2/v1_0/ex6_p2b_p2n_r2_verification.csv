@@ -1,0 +1,7 @@
+verification_id,phase,requirement,pass_condition,failure_layer
+VER-001,static,new modules parse and import without executing tools,AST parse PASS; isolated import PASS; no side effects,ADAPTER_PARSE
+VER-002,unit,canonical output encoding deterministic for allowed types,matched inputs reproduce identical bytes/digest; unsupported types fail closed,SECRET_CAPTURE
+VER-003,unit,canonical path aliases converge and escapes reject,frozen positive/boundary/negative matrix passes,ARGUMENT_FIDELITY
+VER-004,unit,"event sequence monotonic, snapshot-safe, and replay-resistant",duplicate/cross-trace/nonmonotonic controls rejected,REPLAY_ORCHESTRATION
+VER-005,synthetic_integration,bridge constructs exact adapter outcome and calls after_tool once,proposal retired once; mismatches fail closed; no tool execution,AUTHORIZATION_TRANSPORT
+VER-006,controlled_runtime_later,real fs.read result produces value-free identities,requires separate authorization; no raw value in artifacts,SOURCE_RETRIEVAL

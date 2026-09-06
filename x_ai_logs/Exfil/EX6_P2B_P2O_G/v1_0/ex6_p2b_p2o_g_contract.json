@@ -1,0 +1,48 @@
+{
+  "contract_id": "P2O-G.LIFECYCLE.CONTRACT.V1",
+  "failure_result": {
+    "consumption": "CONSUMED_AFTER_ADAPTER_ACK",
+    "post_hook_value": {
+      "code": "SYNTHETIC_ONLY",
+      "synthetic_error": "controlled_failure"
+    },
+    "proposal_identity": "g-proposal-failure-001",
+    "source_path": "/synthetic/post-tool.txt",
+    "success_flag": false,
+    "trace_identity": "g-trace-failure"
+  },
+  "ordering": [
+    "snapshot.before",
+    "proposal.allocate",
+    "outcome.allocate",
+    "canonicalize",
+    "raw_digest",
+    "bound_digest",
+    "adapter.after_tool",
+    "outcome.consume",
+    "snapshot.after"
+  ],
+  "retry": {
+    "adapter_exception": "OUTCOME_EVENT_ALLOCATED_NOT_CONSUMED",
+    "retry_after_adapter_exception": "NEW_OUTCOME_EVENT; SUCCESSFUL_RETRY_CONSUMED",
+    "successful_ack_retry": "NEW_OUTCOME_EVENT_AND_NEW_ADAPTER_CALL"
+  },
+  "success": {
+    "consumption": "CONSUMED_AFTER_ADAPTER_ACK",
+    "expected_bound_digest": "F19750D14742CB369753EBC2D744D5AD0292F99B4EB09F52142A1280F356703E",
+    "expected_outcome_identity": "g-trace-success:outcome:2",
+    "expected_raw_output_sha256": "E38848242973D080A12C4AD53413153AAC46A7945A1156682FACEB0793FD2124",
+    "post_hook_value": {
+      "items": [
+        1,
+        "alpha",
+        null
+      ],
+      "synthetic_result": "ok"
+    },
+    "proposal_identity": "g-proposal-success-001",
+    "source_path": "/synthetic/post-tool.txt",
+    "trace_identity": "g-trace-success"
+  },
+  "threaded_execution_authorized": false
+}

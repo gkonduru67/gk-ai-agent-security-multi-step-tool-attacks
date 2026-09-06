@@ -1,0 +1,325 @@
+contract,classification,role,relative_path,source_sha256,line_start,line_end,symbol,signature,rationale,redacted_source
+fs.read ToolDef,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/tools/fs.py,3603244F2E0929E4E0A03281B5AB1901B0E949C551EDB493FA63F2D373663549,71,76,Call,,Canonical registry object names fs.read and binds its handler.,"ToolDef(
+        name=""fs.read"",
+        side_effect=ToolSideEffect.READ,
+        scope=ToolScope.LOCAL,
+        handler=fs_read,
+    )"
+bound handler argument and return contract,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/tools/fs.py,32A01F03739D8B81BD56046505DB87BD9CDD98377078ADA2D1D91A84E532A512,10,25,fs_read,"(ctx, path)->ToolCallResult",Bound handler from fs.read ToolDef with full signature and annotation.,"def fs_read(ctx: ToolContext, path: str) -> ToolCallResult:
+    """"""Read a text file from the sandboxed filesystem by relative file path. Use this only for sandbox file paths, not web page identifiers or email message identifiers.
+
+    Args:
+        path: Relative sandbox file path, such as report.txt or logs/install.txt.
+    """"""
+
+    ctx.mark_source(""file"")
+    resolved_path = _resolve_path(ctx, path)
+    if _is_path_escape(ctx, resolved_path):
+        return False, """", ""path_escape""
+    if not resolved_path.exists():
+        return False, """", ""not_found""
+    if resolved_path.is_dir():
+        return False, """", ""is_directory""
+    return True, resolved_path.read_text(encoding=""utf-8""), None"
+path resolver,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/tools/fs.py,FCBD869AD6CCC690F78A259ABF7AB2D1D9501E0ED7BBDAD8A07861E5C8680D2A,62,63,_resolve_path,"(ctx, path)->Path",Handler-called resolver found.,"def _resolve_path(ctx: ToolContext, path: str) -> Path:
+    return (ctx.filesystem_root / path.lstrip(""/"")).resolve()"
+mark_source exact value,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/tools/fs.py,AAD4E9BDB758691EB596F529EC2BA302D4B721D198D54A03E6C3A9046BEB0E9B,17,17,Call,,Authoritative handler mark_source call and argument frozen.,"ctx.mark_source(""file"")"
+handler return expression and output type,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/tools/fs.py,5E65474397E7A23B870B11EA6CBB18C862DDAE9CB3F410081AF436B112C0271A,24,24,Return,,Return expression frozen; annotation retained in handler signature.,"return False, """", ""is_directory"""
+ToolSuite handler invocation,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/tools/suite.py,473BB031E37CD0AFF70DA0E2DA471C7CF932FF90B019CC16657ED2624088C0E0,98,98,Call,,Runtime suite handler invocation path frozen.,"TOOL_REGISTRY[tool_name].handler(self._context, **dict(args))"
+sandbox success/error handling,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/env/sandbox.py,E9572022EE79142F43D9CB560E82CE0477E1906A38F7CBC9A74B94577B60791A,190,454,interact,"(self, user_message, max_tool_hops)->EnvInteractionResult","Complete interact function freezes invocation, success/error and recording order.","def interact(self, user_message: str, max_tool_hops: int | None = None) -> EnvInteractionResult:
+        """"""Process one user message, updating trace, history, hooks, and tool state.
+
+        Raises:
+            TypeError: If `user_message` is not a string.
+            ValueError: If `user_message` exceeds `MAX_USER_MESSAGE_CHARS`.
+        """"""
+        resolved_max_tool_hops = validate_interact_args(
+            user_message,
+            max_tool_hops,
+            default_max_tool_hops=self._default_max_tool_hops,
+            caller=""SandboxEnv.interact"",
+        )
+        if resolved_max_tool_hops is None:
+            raise RuntimeError(""SandboxEnv.interact requires a concrete max_tool_hops"")
+
+        self.trace.add_user(user_message)
+        self._runtime_history = self._runtime_history.with_user_message(user_message)
+        agent_refused_immediately = False
+        agent_turns = 0
+        starting_tool_count = len(self.trace.tool_events)
+
+        context_hook_ctx = HookContext(
+            stage=HookStage.CONTEXT_BUILD,
+            trace=self.trace,
+            context={""user_message"": user_message, ""seed"": self.seed},
+        )
+        self.hook_registry.execute_hooks(HookStage.CONTEXT_BUILD, context_hook_ctx)
+        if context_hook_ctx.injected_content is not None:
+            self._runtime_history = self._runtime_history.with_user_message(
+                context_hook_ctx.injected_content
+            )
+
+        for hop_idx in range(resolved_max_tool_hops):
+            agent_turns += 1
+            try:
+                decision = self.agent.next_action(
+                    history=self._runtime_history, tools=self._tool_specs
+                )
+            except InvalidModelOutputError:
+                if hop_idx == 0:
+                    agent_refused_immediately = True
+                self._runtime_history = self._runtime_history.with_assistant_message(""(no_tool)"")
+                self.trace.add_assistant(""(no_tool)"")
+                break
+
+            if isinstance(decision, FinalResponseDecision):
+                if not decision.text.strip():
+                    if hop_idx == 0:
+                        agent_refused_immediately = True
+                    self._runtime_history = self._runtime_history.with_assistant_message(
+                        ""(no_tool)""
+                    )
+                    self.trace.add_assistant(""(no_tool)"")
+                else:
+                    self._runtime_history = self._runtime_history.with_assistant_message(
+                        decision.text
+                    )
+                    self.trace.add_assistant(decision.text)
+                break
+
+            if not isinstance(decision, ToolCallDecision):
+                if hop_idx == 0:
+                    agent_refused_immediately = True
+                self._runtime_history = self._runtime_history.with_assistant_message(""(no_tool)"")
+                self.trace.add_assistant(""(no_tool)"")
+                break
+
+            tool_name = decision.call.tool_name
+            tool_args: dict[str, Any] = dict(decision.call.arguments)
+            if decision.assistant_message is not None:
+                self._runtime_history = self._runtime_history.with_assistant_message(
+                    decision.assistant_message
+                )
+                self.trace.add_assistant(decision.assistant_message)
+            spec = self.tools.specs.get(tool_name)
+            if spec is None:
+                self._runtime_history = self._runtime_history.with_tool_request(decision.call)
+                self._record_failed_tool_attempt(
+                    call=decision.call,
+                    args=tool_args,
+                    side_effect=""NONE"",
+                    scope=""public"",
+                    error=""unknown_tool"",
+                )
+                break
+
+            pre_tool_ctx = HookContext(
+                stage=HookStage.PRE_TOOL_CALL,
+                tool_name=tool_name,
+                tool_args=tool_args,
+                trace=self.trace,
+                context={""seed"": self.seed},
+            )
+            self.hook_registry.execute_hooks(HookStage.PRE_TOOL_CALL, pre_tool_ctx)
+
+            if pre_tool_ctx.modified_args is not None:
+                tool_args = pre_tool_ctx.modified_args
+
+            ctx = {
+                ""seed"": self.seed,
+                ""recent_sources"": [event.source for event in self.trace.tool_events[-5:]],
+                ""recent_tools"": [event.name for event in self.trace.tool_events[-5:]],
+                ""last_user"": self.trace.user_messages[-1],
+                ""side_effect"": spec.side_effect,
+                ""scope"": spec.scope,
+            }
+
+            if pre_tool_ctx.should_block:
+                blocked_call = copy.deepcopy(decision.call)
+                if tool_args != blocked_call.arguments:
+                    blocked_call = type(decision.call)(
+                        call_id=decision.call.call_id,
+                        tool_name=decision.call.tool_name,
+                        arguments=tool_args,
+                    )
+                self._runtime_history = self._runtime_history.with_tool_request(blocked_call)
+                self._record_failed_tool_attempt(
+                    call=blocked_call,
+                    args=tool_args,
+                    side_effect=spec.side_effect,
+                    scope=spec.scope,
+                    error=""blocked_by_hook"",
+                )
+                break
+
+            pre_guard_ctx = HookContext(
+                stage=HookStage.PRE_GUARDRAIL,
+                tool_name=tool_name,
+                tool_args=tool_args,
+                trace=self.trace,
+                context=ctx,
+            )
+            self.hook_registry.execute_hooks(HookStage.PRE_GUARDRAIL, pre_guard_ctx)
+
+            guardrail_decision = self.guardrail.decide(tool_name, tool_args, ctx)
+
+            post_guard_ctx = HookContext(
+                stage=HookStage.POST_GUARDRAIL,
+                tool_name=tool_name,
+                tool_args=tool_args,
+                guardrail_decision=guardrail_decision,
+                trace=self.trace,
+                context=ctx,
+            )
+            self.hook_registry.execute_hooks(HookStage.POST_GUARDRAIL, post_guard_ctx)
+
+            if (
+                guardrail_decision.action == ""SANITIZE""
+                and guardrail_decision.sanitized_args is not None
+            ):
+                tool_args = dict(guardrail_decision.sanitized_args)
+
+            executed_call = copy.deepcopy(decision.call)
+            if tool_args != executed_call.arguments:
+                executed_call = type(decision.call)(
+                    call_id=decision.call.call_id,
+                    tool_name=decision.call.tool_name,
+                    arguments=tool_args,
+                )
+
+            self._runtime_history = self._runtime_history.with_tool_request(executed_call)
+
+            if guardrail_decision.action == ""DENY"":
+                self._record_failed_tool_attempt(
+                    call=executed_call,
+                    args=tool_args,
+                    side_effect=spec.side_effect,
+                    scope=spec.scope,
+                    error=""denied:"" + guardrail_decision.reason,
+                )
+                break
+
+            if guardrail_decision.action == ""CONFIRM"":
+                self._record_failed_tool_attempt(
+                    call=executed_call,
+                    args=tool_args,
+                    side_effect=spec.side_effect,
+                    scope=spec.scope,
+                    error=""confirm_required:"" + guardrail_decision.reason,
+                )
+                break
+
+            try:
+                ok, output, err = self.tools.call(tool_name, tool_args)
+            except Exception as call_error:
+                self._record_failed_tool_attempt(
+                    call=executed_call,
+                    args=tool_args,
+                    side_effect=spec.side_effect,
+                    scope=spec.scope,
+                    error=f""tool_call_error:{type(call_error).__name__}:{call_error}"",
+                )
+                break
+
+            post_tool_ctx = HookContext(
+                stage=HookStage.POST_TOOL_CALL,
+                tool_name=tool_name,
+                tool_args=tool_args,
+                tool_output=output,
+                trace=self.trace,
+                context={""ok"": ok, ""error"": err},
+            )
+            self.hook_registry.execute_hooks(HookStage.POST_TOOL_CALL, post_tool_ctx)
+
+            if post_tool_ctx.modified_output is not None:
+                output = post_tool_ctx.modified_output
+            if post_tool_ctx.injected_content is not None:
+                output = serialize_tool_output(output) + post_tool_ctx.injected_content
+
+            ev = ToolEvent(
+                name=tool_name,
+                args=tool_args,
+                ok=ok,
+                output=output,
+                side_effect=spec.side_effect,
+                scope=spec.scope,
+                source=self.tools.last_source,
+                error=err,
+            )
+
+            memory_ctx = HookContext(
+                stage=HookStage.MEMORY_STORE,
+                tool_name=tool_name,
+                tool_args=tool_args,
+                tool_output=output,
+                trace=self.trace,
+                context={""tool_event"": ev},
+            )
+            self.hook_registry.execute_hooks(HookStage.MEMORY_STORE, memory_ctx)
+
+            output_text = serialize_tool_output(output)
+            recorded_event = ToolEvent(
+                name=ev.name,
+                args=ev.args,
+                ok=ev.ok,
+                output=output_text,
+                side_effect=ev.side_effect,
+                scope=ev.scope,
+                source=ev.source,
+                error=ev.error,
+            )
+            self.trace.add_tool(recorded_event)
+            self._last_tool_output = output_text
+            self._runtime_history = self._runtime_history.with_tool_result(
+                ToolResult(
+                    call_id=executed_call.call_id,
+                    tool_name=executed_call.tool_name,
+                    output_text=output_text,
+                    is_error=not ok,
+                )
+            )
+
+        new_tool_events = self.trace.tool_events[starting_tool_count:]
+        successful_tool_calls_added = sum(1 for event in new_tool_events if event.ok)
+        failed_tool_calls_added = sum(1 for event in new_tool_events if not event.ok)
+        return EnvInteractionResult(
+            seed=self.seed,
+            total_tool_events=len(self.trace.tool_events),
+            tool_events_added=len(new_tool_events),
+            agent_refused=agent_refused_immediately,
+            agent_turns=agent_turns,
+            successful_tool_calls=successful_tool_calls_added,
+            failed_tool_calls=failed_tool_calls_added,
+        )"
+pre-hook ordering,NOT_ESTABLISHED,static,aicomp_sdk/core/env/sandbox.py,,,,,,No explicit pre-hook call located.,
+post-hook ordering,NOT_ESTABLISHED,static,aicomp_sdk/core/env/sandbox.py,,,,,,No explicit post-hook call located.,
+raw output before serialization,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/env/sandbox.py,2C605CFD466AC3EC4DCDB15EE89990E08FC426AB4F5419EA6E7CEA59AC9ECA78,400,409,Assign,,Raw handler output assignment located before serialization.,"ev = ToolEvent(
+                name=tool_name,
+                args=tool_args,
+                ok=ok,
+                output=output,
+                side_effect=spec.side_effect,
+                scope=spec.scope,
+                source=self.tools.last_source,
+                error=err,
+            )"
+recorded ToolEvent.output,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/env/sandbox.py,54F42F1DD9B4E027950B19372F00F09CB3E5E2D9CBFD7EBA48B2A4A8497433C0,422,431,Call,,Recorded ToolEvent constructor frozen.,"ToolEvent(
+                name=ev.name,
+                args=ev.args,
+                ok=ev.ok,
+                output=output_text,
+                side_effect=ev.side_effect,
+                scope=ev.scope,
+                source=ev.source,
+                error=ev.error,
+            )"
+serialized output_text,AUTHORITATIVE_PRODUCER_FOUND,producer,aicomp_sdk/core/env/sandbox.py,AE413E6712ECE878C473371D065B339E3398F596ADBDDD5BA5DF61E88ADF93C2,398,398,Call,,Authoritative serialization call frozen.,serialize_tool_output(output)
+after_tool runtime caller,NOT_ESTABLISHED,producer,SDK_SEARCH,,,,,,No runtime after_tool caller found in authoritative reviewed sources.,
+raw_output_sha256 producer,NOT_ESTABLISHED,producer,SDK_SEARCH,,,,,,No authoritative digest computation associated with field found.,
+raw_output_sha256 consumer,AUTHORITATIVE_CONSUMER_FOUND,consumer,aicomp_sdk/guardrails/trusted_context_adapter_v1_1.py,35A30E22F2DEF29906495C7907456D2AAFE0F1E6358C6DE10F5628FF44B99793,405,405,Constant,,Field consumer located.,"""raw_output_sha256"""
+protected_value_sha256_or_bound_digest producer,NOT_ESTABLISHED,producer,SDK_SEARCH,,,,,,No authoritative digest computation associated with field found.,
+protected_value_sha256_or_bound_digest consumer,AUTHORITATIVE_CONSUMER_FOUND,consumer,aicomp_sdk/guardrails/trusted_context_adapter_v1_1.py,295AE3F8B8079F5D09F3567E7034FB702ECDDDA1EC8FBC7AA15093939E905B76,406,406,Constant,,Field consumer located.,"""protected_value_sha256_or_bound_digest"""
+runtime event-sequence allocator,NOT_ESTABLISHED,producer,SDK_SEARCH,,,,,,No authoritative runtime proposal/outcome sequence allocator found.,
+completion-sequence consumer,AUTHORITATIVE_CONSUMER_FOUND,consumer,aicomp_sdk/guardrails/trusted_context_adapter_v1_1.py,508F79012E6A01810B85B7FBB6D87D2876108C29128715482C79FD36D0198627,184,184,Constant,,Completion sequence consumer/validator found.,"""completion_sequence"""
+canonical_source_path producer,NOT_ESTABLISHED,producer,SDK_SEARCH,,,,,,No authoritative runtime producer found.,
+canonical_source_path consumer,AUTHORITATIVE_CONSUMER_FOUND,consumer,aicomp_sdk/guardrails/trusted_context_adapter_v1_1.py,56E109ABA5FB0FAFE0A936BA414340433CB2A1A397814917731F2C46C8810B4C,403,403,Constant,,Adapter consumer found.,"""canonical_source_path"""

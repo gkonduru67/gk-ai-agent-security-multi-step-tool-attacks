@@ -1,0 +1,93 @@
+{
+  "F0": {
+    "bridge_constructor_signature": "(*args, trusted_transport, **kwargs)",
+    "effect_free_constructor_route": "ESTABLISHED_WITHIN_MONITORED_SYNTHETIC_SCOPE",
+    "prohibited_constructor_calls": [],
+    "sandbox_constructor_signature": "(seed: 'int', fixtures_dir: 'Path', agent: 'AgentProtocol', guardrail: 'GuardrailBase | None' = None, hook_registry: 'HookRegistry | None' = None, max_tool_hops: 'int' = 8) -> 'None'"
+  },
+  "F1": {
+    "bridge_instances_created": 2,
+    "empty_snapshot_passed": true,
+    "invalid_transport_rejected_before_sandbox_init": true,
+    "tool_events_after_construction": 0,
+    "trusted_transport_identity_preserved": true
+  },
+  "F2": {
+    "restore_and_replay_resistance_passed": true,
+    "source_identities_unchanged": true,
+    "synthetic_state_lifecycle_passed": true,
+    "two_bridge_instance_isolation_passed": true
+  },
+  "P2O_E_parent_verified": true,
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 16,
+    "total": 16
+  },
+  "claim_boundary": {
+    "allowed": [
+      "controlled bridge construction with synthetic no-tool dependencies",
+      "trusted transport identity and bridge-visible snapshot findings",
+      "synthetic transport-state mutation, restore, replay-resistance, and isolation findings",
+      "invalid transport rejection before Sandbox construction",
+      "eligibility recommendation for separate synthetic post-tool lifecycle qualification"
+    ],
+    "prohibited": [
+      "Sandbox interact behavior",
+      "tool invocation",
+      "actual fs.read behavior",
+      "protected fixture access",
+      "real secret capture",
+      "HTTP sink behavior",
+      "protected-value lineage",
+      "end-to-end authorization transport correctness",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "SYNTHETIC_NO_TOOL_BRIDGE_INSTANCE_LIFECYCLE",
+  "created_at_utc": "2026-08-21T14:46:52.392882+00:00",
+  "execution_boundaries": {
+    "actual_fs_read_executed": false,
+    "authorized_sdk_fixture_root_used": true,
+    "breach_executed": false,
+    "bridge_instantiated": true,
+    "constructor_fixture_files_loaded": true,
+    "external_network_or_process_effects_observed": false,
+    "fixture_inventory_unchanged": true,
+    "fixture_root": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\fixtures",
+    "gym_executed": false,
+    "http_sink_executed": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "protected_fixture_contents_read": false,
+    "real_secret_values_used": false,
+    "sandbox_base_constructor_executed": true,
+    "sandbox_interact_executed": false,
+    "sandbox_tool_event_count": 0,
+    "source_modified": false,
+    "tools_executed": false
+  },
+  "next_gate": "EX6_P2B_P2O_G_SYNTHETIC_POST_TOOL_LIFECYCLE_QUALIFICATION",
+  "readiness": {
+    "Sandbox_interact_qualified": false,
+    "bridge_instance_lifecycle_qualified": true,
+    "controlled_actual_fs_read_eligible": false,
+    "identity_freeze_eligible": false,
+    "synthetic_post_tool_lifecycle_gate_eligible": true
+  },
+  "scientific_verdict": {
+    "Sandbox_interact_behavior": "NOT_EVALUATED",
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "authorization_transport_correctness": "NOT_ESTABLISHED_END_TO_END",
+    "bridge_instance_lifecycle": "ESTABLISHED_WITHIN_SYNTHETIC_NO_TOOL_SCOPE",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "secret_capture": "NOT_ESTABLISHED",
+    "synthetic_post_tool_lifecycle": "NOT_EVALUATED"
+  },
+  "status": "P2O_F_CONTROLLED_BRIDGE_INSTANCE_LIFECYCLE_QUALIFICATION_COMPLETE_PASS",
+  "version": "EX6_P2B_P2O_F_CONTROLLED_BRIDGE_INSTANCE_LIFECYCLE_QUALIFICATION_v1.2"
+}

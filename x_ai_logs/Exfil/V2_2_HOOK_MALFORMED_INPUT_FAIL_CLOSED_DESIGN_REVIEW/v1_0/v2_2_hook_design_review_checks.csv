@@ -1,0 +1,44 @@
+check_id,category,passed,observed,expected,failure_layer
+DR22-001,identity,True,81774B5EFE121BC0F4486F8BF001CE6BDE8058E2F139E7B7C3E5C5110C1029CB,81774B5EFE121BC0F4486F8BF001CE6BDE8058E2F139E7B7C3E5C5110C1029CB,FIXTURE
+DR22-002,identity,True,FA46EAC8B3C103E16C2F1585B61743C59496CF271FAB4330EBA38724DED6011A,FA46EAC8B3C103E16C2F1585B61743C59496CF271FAB4330EBA38724DED6011A,FIXTURE
+DR22-003,identity,True,76289DE07CCABD59E2CAE373B5645853486EFFC5DF9A3B38771CAB2B55E91A26,76289DE07CCABD59E2CAE373B5645853486EFFC5DF9A3B38771CAB2B55E91A26,FIXTURE
+DR22-004,identity,True,D6FCDF28B72EBCF31D6F41DB99B7939C260BCC83600080DF5B622D8B99EDABAC,D6FCDF28B72EBCF31D6F41DB99B7939C260BCC83600080DF5B622D8B99EDABAC,FIXTURE
+DR22-005,identity,True,84669FE36767FFADF75C95B5F1B48448687FF6D46457D368CD27440A2AD98007,84669FE36767FFADF75C95B5F1B48448687FF6D46457D368CD27440A2AD98007,FIXTURE
+DR22-006,identity,True,42FA5A9872EE497045CB6387D03BC1BC311C4DC0B5CC803E63C45BFE14026E5B,42FA5A9872EE497045CB6387D03BC1BC311C4DC0B5CC803E63C45BFE14026E5B,FIXTURE
+DR22-007,identity,True,041CA9C02D614E3A5A238DECA557BE22D5D3F8C63A583D38882F75F10223450D,041CA9C02D614E3A5A238DECA557BE22D5D3F8C63A583D38882F75F10223450D,FIXTURE
+DR22-008,identity,True,911950EFF06AC21695F101372C9C952996DFD94C791CB7F1D42B8C4E23BE7ABC,911950EFF06AC21695F101372C9C952996DFD94C791CB7F1D42B8C4E23BE7ABC,FIXTURE
+DR22-009,identity,True,FE1350E6779772CDAC9CA4C16D058E53398F1EACA6062F2E0DE2D65B2E4D5AB1,FE1350E6779772CDAC9CA4C16D058E53398F1EACA6062F2E0DE2D65B2E4D5AB1,FIXTURE
+DR22-010,identity,True,0D3C7B5921749C22CADC5478532C7FE84B86AA90447FEEA8060ACFA9F44D3C7E,0D3C7B5921749C22CADC5478532C7FE84B86AA90447FEEA8060ACFA9F44D3C7E,FIXTURE
+DR22-011,identity,True,5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B,5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B,FIXTURE
+DR22-012,identity,True,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,FIXTURE
+DR22-013,identity,True,F2DE8D42EE5DBCD3BA4CACD8E98DCCB2EBA63F82EC8683D129C503CCED1CE770,F2DE8D42EE5DBCD3BA4CACD8E98DCCB2EBA63F82EC8683D129C503CCED1CE770,FIXTURE
+DR22-014,identity,True,18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C,18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C,FIXTURE
+DR22-014,parent,True,"{""checks"": {""failed"": 0, ""failed_ids"": [], ""passed"": 24, ""total"": 24}, ""outcome"": ""HOOKRESULT_BLOCKING_NOT_SUPPORTED_AT_POST_TOOL_CALL""}",24/24 and expected outcome,EVIDENCE
+DR22-015,parent,True,"{""V2_1_modification"": ""PROHIBITED"", ""V2_2_required"": true, ""exception_policy"": ""registry swallows callback exceptions into metadata and continues execution"", ""post_tool_blocking"": ""NOT_SUPPORTED_BY_SANDBOX_CONTROL_FLOW"", ""post_tool_malformed_policy"": ""must not be mislabeled as preventing the already executed read"", ""recommended_design"": ""move argument validation to PRE_TOOL_CALL for prevention; keep POST_TOOL_CALL as observation/capture and return a valid HookResult without should_block"", ""supported_pre_tool_blocking"": ""HookResult(continue_execution=False, modified_context=HookContext(..., should_block=True))""}",V2.1 frozen; V2.2 required; no post-tool block,EVIDENCE
+DR22-016,contract,True,"[""continue_execution"", ""modified_context"", ""payload_detected"", ""metadata""]",exact HookResult fields,ADAPTER_PARSE
+DR22-017,contract,True,"{""HookContext"": [""stage"", ""tool_name"", ""tool_args"", ""tool_output"", ""guardrail_decision"", ""trace"", ""context"", ""metadata"", ""hook_state"", ""modified_args"", ""modified_output"", ""injected_content"", ""should_block""], ""HookResult"": [""continue_execution"", ""modified_context"", ""payload_detected"", ""metadata""]}",should_block only in HookContext,ADAPTER_PARSE
+DR22-018,contract,True,"{""apply"": ""def _apply_modified_context(context: HookContext, modified_context: HookContext, *, hook_state: dict[str, Any], trace_snapshot: Any | None) -> None:\n    context.stage = modified_context.stage\n    context.tool_name = modified_context.tool_name\n    context.tool_args = modified_context.tool_args\n    context.tool_output = modified_context.tool_output\n    context.guardrail_decision = modified_context.guardrail_decision\n    context.context = modified_context.context\n    context.metadata = modified_context.metadata\n    context.modified_args = modified_context.modified_args\n    context.modified_output = modified_context.modified_output\n    context.injected_content = modified_context.injected_content\n    context.should_block = modified_context.should_block\n    context.hook_state = hook_state\n    context.trace = trace_snapshot"", ""execute_hooks"": ""def execute_hooks(self, stage: HookStage, context: HookContext) -> list[HookResult]:\n    \""\""\""Execute all callbacks for one stage in descending priority order.\""\""\""\n    results: list[HookResult] = []\n    trace_snapshot = _copy_trace_snapshot(context.trace)\n    context.hook_state = self._hook_state\n    context.trace = trace_snapshot\n    for hook_data in self._hooks[stage]:\n        try:\n            result = hook_data['callback'](context)\n            results.append(result)\n            if result.modified_context:\n                _apply_modified_context(context, result.modified_context, hook_state=self._hook_state, trace_snapshot=trace_snapshot)\n            if not result.continue_execution:\n                break\n        except Exception as err:\n            results.append(HookResult(continue_execution=True, metadata={'error': str(err)}))\n        finally:\n            context.trace = trace_snapshot\n    return results""}",modified context transport; exception swallow; chain stop,AUTHORIZATION_TRANSPORT
+DR22-019,contract,True,"{""post"": 6436, ""postcheck"": -1, ""pre"": 3369, ""precheck"": 3809, ""tool"": 5935}",pre block consumed; post block absent,AUTHORIZATION_TRANSPORT
+DR22-020,V2_1,True,"def __call__(self, context: HookContext) -> HookResult:
+    if context.stage != HookStage.POST_TOOL_CALL or context.tool_name != 'fs.read':
+        return HookResult()
+    evidence = context.context
+    if not isinstance(evidence, Mapping) or evidence.get('ok') is not True:
+        return HookResult()
+    args = context.tool_args
+    if not isinstance(args, Mapping):
+        return HookResult(should_block=True, metadata={'reason': 'EXFIL_V21_MALFORMED_READ_ARGS'})
+    path = args.get('path')
+    if not is_protected_secret_path(path):
+        return HookResult()
+    output = context.tool_output
+    if not isinstance(output, str):
+        return HookResult(should_block=True, metadata={'reason': 'EXFIL_V21_MALFORMED_READ_OUTPUT'})
+    self._ledger.append_successful_read(tool_name='fs.read', tool_args=args, canonical_path=str(path), explicit_ok=True, error_value=evidence.get('error'), raw_output=output)
+    return HookResult(metadata={'successful_protected_read_recorded_v21': True})",two unsupported post-tool block calls,AUTHORIZATION_TRANSPORT
+DR22-021,design,True,"{""SDK_unchanged"": true, ""V2_1_unchanged"": true, ""ledger_unchanged"": true, ""no_HookResult_should_block_keyword"": true, ""no_post_prevention_claim"": true, ""post_metadata_only"": true, ""pre_block_stops_chain"": true, ""pre_block_uses_modified_context"": true, ""raw_before_normalization"": true}",all invariants true,DESIGN
+DR22-022,design,True,"[""tool_args is Mapping"", ""path key exists"", ""path is str"", ""path.strip() is nonempty""]",exact fail-closed validation order,ARGUMENT_FIDELITY
+DR22-023,design,True,"{""behavior"": [""do not append to successful-read ledger"", ""return metadata-only HookResult"", ""preserve reason EXFIL_V22_MALFORMED_READ_OUTPUT"", ""do not set should_block"", ""do not claim read prevention"", ""do not claim successful content lineage""], ""classification"": ""POST_TOOL_OBSERVATION_CONTRACT_VIOLATION"", ""selected_option"": ""OPTION_A_POST_TOOL_OBSERVATION_CONTRACT_VIOLATION""}",Option A selected; metadata only; no ledger append,PROVENANCE
+DR22-024,design,True,"{""reason"": ""positive v1.4 lineage, snapshot, restore, digests, candidates, and identity already established; new diagnostic violations are metadata-only and must not enter successful-read ledger"", ""reuse"": ""SuccessfulReadLedgerV21"", ""schema_change_required"": false}",reuse V2.1 ledger unchanged,PROVENANCE
+DR22-025,design,True,"{""outcome"": ""POST_TOOL_CALL"", ""proposal"": ""PRE_TOOL_CALL""}",exact prevention/observation split,AUTHORIZATION_TRANSPORT
+DR22-026,immutability,True,all bound inputs unchanged,True,FIXTURE

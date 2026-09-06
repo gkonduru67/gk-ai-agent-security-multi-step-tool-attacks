@@ -1,0 +1,56 @@
+{
+  "corrected_expected": "REJECT_FAIL_CLOSED",
+  "four_explicit_invalid_controls": {
+    "tool_args_custom_object": {
+      "control_id": "tool_args_custom_object",
+      "exception_type": "ValueError",
+      "expected": "REJECT",
+      "match": "True",
+      "message": "tool_args are not canonically JSON serializable",
+      "observed": "REJECT"
+    },
+    "tool_args_nan": {
+      "control_id": "tool_args_nan",
+      "exception_type": "ValueError",
+      "expected": "REJECT",
+      "match": "True",
+      "message": "tool_args are not canonically JSON serializable",
+      "observed": "REJECT"
+    },
+    "tool_args_negative_infinity": {
+      "control_id": "tool_args_negative_infinity",
+      "exception_type": "ValueError",
+      "expected": "REJECT",
+      "match": "True",
+      "message": "tool_args are not canonically JSON serializable",
+      "observed": "REJECT"
+    },
+    "tool_args_positive_infinity": {
+      "control_id": "tool_args_positive_infinity",
+      "exception_type": "ValueError",
+      "expected": "REJECT",
+      "match": "True",
+      "message": "tool_args are not canonically JSON serializable",
+      "observed": "REJECT"
+    }
+  },
+  "original_check": {
+    "category": "json_boundary",
+    "check_id": "CV21-020",
+    "expected": "unsupported and nonfinite reject; non-string key behavior recorded",
+    "failure_layer": "ARGUMENT_FIDELITY",
+    "observed": "[{\"control_id\": \"tool_args_custom_object\", \"exception_type\": \"ValueError\", \"expected\": \"REJECT\", \"match\": true, \"message\": \"tool_args are not canonically JSON serializable\", \"observed\": \"REJECT\"}, {\"control_id\": \"tool_args_nan\", \"exception_type\": \"ValueError\", \"expected\": \"REJECT\", \"match\": true, \"message\": \"tool_args are not canonically JSON serializable\", \"observed\": \"REJECT\"}, {\"control_id\": \"tool_args_positive_infinity\", \"exception_type\": \"ValueError\", \"expected\": \"REJECT\", \"match\": true, \"message\": \"tool_args are not canonically JSON serializable\", \"observed\": \"REJECT\"}, {\"control_id\": \"tool_args_negative_infinity\", \"exception_type\": \"ValueError\", \"expected\": \"REJECT\", \"match\": true, \"message\": \"tool_args are not canonically JSON serializable\", \"observed\": \"REJECT\"}, {\"control_id\": \"tool_args_non_string_key\", \"exception_type\": \"ValueError\", \"expected\": \"ACCEPT_JSON_COERCION_OBSERVED\", \"match\": false, \"message\": \"tool_args are not canonically JSON serializable\", \"observed\": \"REJECT\"}]",
+    "passed": "False"
+  },
+  "original_control_row": {
+    "control_id": "tool_args_non_string_key",
+    "exception_type": "ValueError",
+    "expected": "ACCEPT_JSON_COERCION_OBSERVED",
+    "match": "False",
+    "message": "tool_args are not canonically JSON serializable",
+    "observed": "REJECT"
+  },
+  "reviewed_classification": "CV21_020_QUALIFIER_EXPECTATION_GAP_CONFIRMED",
+  "target_check_id": "CV21-020",
+  "target_control_id": "tool_args_non_string_key"
+}

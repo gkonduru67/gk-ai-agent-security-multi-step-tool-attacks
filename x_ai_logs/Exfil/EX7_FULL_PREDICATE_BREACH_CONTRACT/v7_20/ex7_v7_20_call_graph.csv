@@ -1,0 +1,66 @@
+caller,callee,callee_leaf,local_function
+_extract_secret_values,len,len,False
+_extract_secret_values,line.partition,partition,False
+_extract_secret_values,line.partition('=')[2].strip,strip,False
+_extract_secret_values,line.startswith,startswith,False
+_extract_secret_values,raw_line.strip,strip,False
+_extract_secret_values,set,set,False
+_extract_secret_values,text.splitlines,splitlines,False
+_extract_secret_values,values.add,add,False
+_decode_candidates,base64.b64decode,b64decode,False
+_decode_candidates,"base64.b64decode(padded, validate=False).decode",decode,False
+_decode_candidates,bytes.fromhex,fromhex,False
+_decode_candidates,bytes.fromhex(hex_source).decode,decode,False
+_decode_candidates,candidates.add,add,False
+_decode_candidates,decode_sources.update,update,False
+_decode_candidates,len,len,False
+_decode_candidates,re.findall,findall,False
+_decode_candidates,re.sub,sub,False
+_decode_candidates,urllib.parse.unquote,unquote,False
+_decode_candidates,urllib.parse.unquote_plus,unquote_plus,False
+_alnum,re.sub,sub,False
+_alnum,s.lower,lower,False
+_contains_secret,_alnum,_alnum,True
+_contains_secret,_decode_candidates,_decode_candidates,True
+_contains_secret,any,any,False
+_contains_secret,c.lower,lower,False
+_contains_secret,len,len,False
+_contains_secret,pattern.lower,lower,False
+_contains_secret,s.lower,lower,False
+_is_secret_path,posixpath.normpath,normpath,False
+_is_secret_path,str,str,False
+_is_secret_path,str(path).strip,strip,False
+_is_secret_path,str(path).strip().replace,replace,False
+_is_secret_path,"str(path).strip().replace('\\', '/').lstrip",lstrip,False
+_secrets_read_in_trace,_extract_secret_values,_extract_secret_values,True
+_secrets_read_in_trace,_is_secret_path,_is_secret_path,True
+_secrets_read_in_trace,e.get,get,False
+_secrets_read_in_trace,e.get('args') or {}.get,get,False
+_secrets_read_in_trace,set,set,False
+eval_predicates,EXFIL_SINKS.get,get,False
+eval_predicates,_contains_secret,_contains_secret,True
+eval_predicates,_is_secret_path,_is_secret_path,True
+eval_predicates,_secrets_read_in_trace,_secrets_read_in_trace,True
+eval_predicates,any,any,False
+eval_predicates,args.get,get,False
+eval_predicates,e.get,get,False
+eval_predicates,"e.get('args', {}) or {}.get",get,False
+eval_predicates,enumerate,enumerate,False
+eval_predicates,max,max,False
+eval_predicates,trace.get,get,False
+eval_predicates,triggered.append,append,False
+eval_predicates,user_msgs[-1].lower,lower,False
+eval_predicates,w.get,get,False
+is_breach,_is_secret_path,_is_secret_path,True
+is_breach,any,any,False
+is_breach,bool,bool,False
+is_breach,e.get,get,False
+is_breach,event.get,get,False
+is_breach,event.get('args') or {}.get,get,False
+is_breach,predicate.get,get,False
+is_breach,trace.get,get,False
+is_protected_secret_path,_is_secret_path,_is_secret_path,True
+payload_exfiltrates_secret,_contains_secret,_contains_secret,True
+payload_exfiltrates_secret,isinstance,isinstance,False
+payload_exfiltrates_secret,str,str,False
+exfil_payload_arg,EXFIL_SINKS.get,get,False

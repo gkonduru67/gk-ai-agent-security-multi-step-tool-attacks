@@ -1,0 +1,36 @@
+check_id,category,passed,observed,expected,failure_layer
+R1-001,parent,True,CONTROLLED_FIXTURE_MEDIATED_REAL_CHAIN_PREFLIGHT_COMPLETE_WITH_GAPS,CONTROLLED_FIXTURE_MEDIATED_REAL_CHAIN_PREFLIGHT_COMPLETE_WITH_GAPS,FIXTURE
+R1-002,parent,True,DA92DC5DD330E3E5877FD40E370BCBCB1CBC279A20E5AA7F3DF7DA099760042F,DA92DC5DD330E3E5877FD40E370BCBCB1CBC279A20E5AA7F3DF7DA099760042F,FIXTURE
+R1-003,parent,True,106C98A64F2541E4F08E518913E79927C4CA08F6A7C2A47F7C0D70BA7FE8DA86,106C98A64F2541E4F08E518913E79927C4CA08F6A7C2A47F7C0D70BA7FE8DA86,FIXTURE
+R1-004,parent,True,"{'rows': 41, 'failed': ['P2-006', 'P2-010']}","{'rows': 41, 'failed': ['P2-006', 'P2-010']}",EVIDENCE
+R1-005,parent,True,"{'content_schema': 'AI_AGENT_SECURITY_SYNTHETIC_FIXTURE_V1|<MARKER>\\n', 'encoding': 'UTF-8', 'external_input_path': 'C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\Exfil\\ex9_synthetic_fixture_v1.txt', 'filename': 'ex9_synthetic_fixture_v1.txt', 'fixture_class': 'SYNTHETIC_NON_SENSITIVE', 'line_ending_policy': 'LF_TERMINATED_NO_CR', 'packaged_fixture_modified': False, 'proposed_canonical_path': '/synthetic/ex9_fixture_v1.txt', 'sha256': 'C3439BA4BC832892FE1D7AAF1BC7F45BF2B2B05ED6C897140E610CE32A780FFA', 'size_bytes': 72, 'synthetic_marker': 'EX9_SYNTHETIC_MARKER_20260821_A1'}","{'sha256': 'C3439BA4BC832892FE1D7AAF1BC7F45BF2B2B05ED6C897140E610CE32A780FFA', 'class': 'SYNTHETIC_NON_SENSITIVE'}",FIXTURE
+R1-006,parent,True,"{'Gym_eligible': False, 'Sandbox_interact_eligible': False, 'authorized_next_gate_only': 'NONE', 'controlled_actual_fs_read_eligible': False, 'http_sink_eligible': False, 'model_execution_eligible': False, 'reason': 'WITHHELD_DUE_TO_FAILED_PREFLIGHT_CHECKS:P2-006,P2-010'}",original contract not frozen and read ineligible,CLAIM_BOUNDARY
+R1-007,parent,True,PROPOSED_PREFLIGHT_IDENTITIES_NOT_RUNTIME_OBSERVATIONS,proposal-only lineage,CLAIM_BOUNDARY
+R1-010,source_identity,True,4B8C54032ED807CE4C35BAB403EE622141881158E10F600A4B6D329E6D6F95B8,4B8C54032ED807CE4C35BAB403EE622141881158E10F600A4B6D329E6D6F95B8,FIXTURE
+R1-020,source_parse,True,fs,AST PASS,ADAPTER_PARSE
+R1-011,source_identity,True,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,FIXTURE
+R1-021,source_parse,True,sandbox,AST PASS,ADAPTER_PARSE
+R1-012,source_identity,True,3EE9BBB1E65949795A5639D12C55D81D8D0645357260DFC5A91DB1E9710288B6,3EE9BBB1E65949795A5639D12C55D81D8D0645357260DFC5A91DB1E9710288B6,FIXTURE
+R1-022,source_parse,True,bridge,AST PASS,ADAPTER_PARSE
+R1-013,source_identity,True,5C7F7D16A37896959C6F4CC769E5F72A6E5E534EE140BA5CAF2FB70661102CE1,5C7F7D16A37896959C6F4CC769E5F72A6E5E534EE140BA5CAF2FB70661102CE1,FIXTURE
+R1-023,source_parse,True,transport,AST PASS,ADAPTER_PARSE
+R1-014,source_identity,True,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,FIXTURE
+R1-024,source_parse,True,adapter,AST PASS,ADAPTER_PARSE
+R1-030,failure_route,True,['fs_read'],read callable found,SOURCE_RETRIEVAL
+R1-031,failure_route,True,"{'explicit_raises': [], 'io_calls': [{'line': 25, 'call': 'resolved_path.read_text', 'expression': ""resolved_path.read_text(encoding='utf-8')""}]}",fs.read can raise or invokes raising I/O,SOURCE_RETRIEVAL
+R1-032,failure_route,True,"[{'function': 'interact', 'line': 373, 'body': 'ok, output, err = self.tools.call(tool_name, tool_args)', 'handlers': ""except Exception as call_error:\n    self._record_failed_tool_attempt(call=executed_call, args=tool_args, side_effect=spec.side_effect, scope=spec.scope, error=f'tool_call_error:{type(call_error).__name__}:{call_error}')\n    break""}]",Sandbox catches tool-call failure and invokes failure recorder,ROUTING
+R1-033,failure_route,True,"def _record_failed_tool_attempt(self, *, call: Any, args: Mapping[str, Any], side_effect: str, scope: str, error: str) -> None:
+    output_text = serialize_tool_output(error)
+    event = ToolEvent(name=call.tool_name, args=dict(args), ok=False, output='', side_effect=side_effect, scope=scope, source=self.tools.last_source, error=error)
+    self.trace.add_tool(event)
+    self._last_tool_output = output_text
+    self._runtime_history = self._runtime_history.with_tool_result(ToolResult(call_id=call.call_id, tool_name=call.tool_name, output_text=output_text, is_error=True))",failed ToolEvent with ok=False and error,TOOL_CALL_SERIALIZATION
+R1-034,failure_route,True,True,True,SOURCE_RETRIEVAL
+R1-040,ack_route,True,True,True,AUTHORIZATION_TRANSPORT
+R1-041,ack_route,True,"[{'line': 112, 'call': 'self.adapter.after_tool', 'expression': 'self.adapter.after_tool(outcome)'}]",transport acknowledge calls adapter.after_tool,AUTHORIZATION_TRANSPORT
+R1-042,ack_route,False,[],at least one SDK caller of .acknowledge,AUTHORIZATION_TRANSPORT
+R1-043,ack_route,True,True,True,AUTHORIZATION_TRANSPORT
+R1-044,ack_route,False,False,True,AUTHORIZATION_TRANSPORT
+R1-050,reconciliation,True,41,41,EVIDENCE
+R1-051,reconciliation,True,40,41,EVIDENCE
+R1-052,reconciliation,True,"[{'check_id': 'P2-006', 'original_passed': False, 'original_observed': 'False', 'original_expected': 'True', 'corrected_passed': True, 'corrected_expectation': 'exception-to-failed-ToolEvent representation established across fs.py and sandbox.py', 'classification': 'CROSS_LAYER_FAILURE_CONTRACT_RECONCILED'}, {'check_id': 'P2-010', 'original_passed': False, 'original_observed': 'False', 'original_expected': 'True', 'corrected_passed': False, 'corrected_expectation': 'actual SDK acknowledge caller -> transport.acknowledge -> adapter.after_tool', 'classification': 'ACKNOWLEDGEMENT_ROUTE_REMAINS_UNRESOLVED'}]",two original failures preserved,EVIDENCE

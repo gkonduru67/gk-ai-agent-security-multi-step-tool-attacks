@@ -1,0 +1,85 @@
+source_file,block_kind,identity,line_start,line_end,source_sha256,source
+"C:\Users\gkonduru\OneDrive - Forescout Technologies, Inc\F_drive\forescout\Learning\Kaggle\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\ai-agent-security-multi-step-tool-attacks\aicomp_sdk\core\tools\fs.py",TOOL_REGISTRATION,fs.read,70,89,3053A6F9CEC8F21173679D4DE8B4C1820244E3A92FD601CA74015134BF471046,"FS_TOOL_DEFS: Final[tuple[ToolDef, ...]] = (
+    ToolDef(
+        name=""fs.read"",
+        side_effect=ToolSideEffect.READ,
+        scope=ToolScope.LOCAL,
+        handler=fs_read,
+    ),
+    ToolDef(
+        name=""fs.write"",
+        side_effect=ToolSideEffect.WRITE,
+        scope=ToolScope.LOCAL,
+        handler=fs_write,
+    ),
+    ToolDef(
+        name=""fs.delete"",
+        side_effect=ToolSideEffect.WRITE,
+        scope=ToolScope.LOCAL,
+        handler=fs_delete,
+    ),
+)"
+"C:\Users\gkonduru\OneDrive - Forescout Technologies, Inc\F_drive\forescout\Learning\Kaggle\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\ai-agent-security-multi-step-tool-attacks\aicomp_sdk\core\tools\http.py",TOOL_REGISTRATION,http.post,30,37,AE0BD24C6643ED17C5162E0CE035F7DCE14657963BB687B76D14B621528388E5,"HTTP_TOOL_DEFS: Final[tuple[ToolDef, ...]] = (
+    ToolDef(
+        name=""http.post"",
+        side_effect=ToolSideEffect.SHARE,
+        scope=ToolScope.EXTERNAL,
+        handler=http_post,
+    ),
+)"
+"C:\Users\gkonduru\OneDrive - Forescout Technologies, Inc\F_drive\forescout\Learning\Kaggle\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\ai-agent-security-multi-step-tool-attacks\aicomp_sdk\core\tools\models.py",SIDE_EFFECT_CONSTANTS,models.py,1,55,61539F52CDDBD40E86DFC3CC41E3548BFCA78D5DE2B469559B67FED90E1F3ACD,"from __future__ import annotations
+
+from dataclasses import dataclass
+from enum import StrEnum
+from typing import Any, Callable, Mapping
+
+
+class ToolSideEffect(StrEnum):
+    """"""Coarse side-effect category for a tool call.""""""
+
+    READ = ""READ""
+    WRITE = ""WRITE""
+    EXEC = ""EXEC""
+    NETWORK = ""NETWORK""
+    SHARE = ""SHARE""
+    AUTH = ""AUTH""
+
+
+class ToolScope(StrEnum):
+    """"""Data or network boundary a tool is allowed to touch.""""""
+
+    PUBLIC = ""public""
+    INTERNAL = ""internal""
+    LOCAL = ""local""
+    SECRETS = ""secrets""
+    EXTERNAL = ""external""
+
+
+@dataclass(frozen=True)
+class RuntimeToolSpec:
+    """"""Canonical runtime tool contract and shared schema source of truth.
+
+    `parameters_json_schema` defines the single canonical argument schema used
+    both for runtime validation and for backend registration projection.
+    """"""
+
+    name: str
+    description: str
+    side_effect: ToolSideEffect
+    scope: ToolScope
+    parameters_json_schema: Mapping[str, Any]
+
+
+ToolCallResult = tuple[bool, str, str | None]
+ToolHandler = Callable[..., ToolCallResult]
+
+
+@dataclass(frozen=True)
+class ToolDef:
+    """"""Registered tool implementation and its guardrail-visible metadata.""""""
+
+    name: str
+    side_effect: ToolSideEffect
+    scope: ToolScope
+    handler: ToolHandler
+"

@@ -1,0 +1,313 @@
+{
+  "schema": "UTA_SANDBOX_CONTEXT_CONSTRUCTION_INSPECTION_V1",
+  "version": "UTA_SANDBOX_CONTEXT_CONSTRUCTION_INSPECTION_v7.70B",
+  "created_utc": "2026-08-09T09:37:01.411776+00:00",
+  "status": "INSPECTION_COMPLETE",
+  "method": "Static AST/source inspection only; SDK modules were not imported or executed.",
+  "sources": {
+    "sandbox.py": {
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\sandbox.py",
+      "sha256": "B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0",
+      "size_bytes": 19906,
+      "line_count": 506,
+      "ast_parse": "OK"
+    },
+    "gym.py": {
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\env\\gym.py",
+      "sha256": "8BBC3479515C388717D76FE9964D957A7CBD9BFB97C28AA894E9C51E3051F8AF",
+      "size_bytes": 9548,
+      "line_count": 262,
+      "ast_parse": "OK"
+    },
+    "optimal.py": {
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\optimal.py",
+      "sha256": "6724FEDF7BBF3E67DFCDD564BA8A73463E0F783D5C84E0A70DCEFF40C1BC61ED",
+      "size_bytes": 2502,
+      "line_count": 72,
+      "ast_parse": "OK"
+    }
+  },
+  "parent_evidence": {
+    "report": "C:\\x_ai_logs\\UTA\\uta_packaged_optimal_decision_source_inspection_v7_70A\\uta_packaged_optimal_decision_source_inspection_v7_70A.json",
+    "report_sha256": "EE54ADBC33DCCC5B0AA86B681C8A6567689ADF2BF872C3838CF2FAD389E0FF6F",
+    "manifest": "C:\\x_ai_logs\\UTA\\uta_packaged_optimal_decision_source_inspection_v7_70A\\uta_packaged_optimal_decision_source_inspection_v7_70A_manifest.json",
+    "manifest_sha256": "D3CFAA7D5E858B7F0E5BE693EE9EFC9BED98D951EFF405F92A7135EC257761C6",
+    "verified": true
+  },
+  "token_presence_in_sandbox": {
+    "user_authorized": false,
+    "user_confirmed_safe": false,
+    "recent_sources": true,
+    "recent_tools": true,
+    "last_user": true,
+    "side_effect": true,
+    "scope": true
+  },
+  "evidence_excerpts": {
+    "guardrail_context_creation": {
+      "label": "ctx assignment",
+      "start_line": 289,
+      "end_line": 296,
+      "text": "289:             ctx = {\n290:                 \"seed\": self.seed,\n291:                 \"recent_sources\": [event.source for event in self.trace.tool_events[-5:]],\n292:                 \"recent_tools\": [event.name for event in self.trace.tool_events[-5:]],\n293:                 \"last_user\": self.trace.user_messages[-1],\n294:                 \"side_effect\": spec.side_effect,\n295:                 \"scope\": spec.scope,\n296:             }",
+      "sha256": "5AC9D67F6F508196160138AA1F5B27CE63BE70691611FFCCE08D5DFDDDF29B29"
+    },
+    "guardrail_decide_call": {
+      "label": "guardrail.decide call",
+      "start_line": 325,
+      "end_line": 325,
+      "text": "325:             guardrail_decision = self.guardrail.decide(tool_name, tool_args, ctx)",
+      "sha256": "A9B65FDFD20E2FA625555DB6E9439D619A395D8E7A9E80B5A6248429F4417A18"
+    },
+    "denied_event_path": {
+      "label": "DENY recording and break",
+      "start_line": 353,
+      "end_line": 361,
+      "text": "353:             if guardrail_decision.action == \"DENY\":\n354:                 self._record_failed_tool_attempt(\n355:                     call=executed_call,\n356:                     args=tool_args,\n357:                     side_effect=spec.side_effect,\n358:                     scope=spec.scope,\n359:                     error=\"denied:\" + guardrail_decision.reason,\n360:                 )\n361:                 break",
+      "sha256": "86BFDCCF3C522902DBAE4F9A20503E23C5BEE8BAFAD217F8B3DC48E3C92394CD"
+    },
+    "failed_event_construction": {
+      "label": "_record_failed_tool_attempt",
+      "start_line": 456,
+      "end_line": 485,
+      "text": "456:     def _record_failed_tool_attempt(\n457:         self,\n458:         *,\n459:         call: Any,\n460:         args: Mapping[str, Any],\n461:         side_effect: str,\n462:         scope: str,\n463:         error: str,\n464:     ) -> None:\n465:         output_text = serialize_tool_output(error)\n466:         event = ToolEvent(\n467:             name=call.tool_name,\n468:             args=dict(args),\n469:             ok=False,\n470:             output=\"\",\n471:             side_effect=side_effect,\n472:             scope=scope,\n473:             source=self.tools.last_source,\n474:             error=error,\n475:         )\n476:         self.trace.add_tool(event)\n477:         self._last_tool_output = output_text\n478:         self._runtime_history = self._runtime_history.with_tool_result(\n479:             ToolResult(\n480:                 call_id=call.call_id,\n481:                 tool_name=call.tool_name,\n482:                 output_text=output_text,\n483:                 is_error=True,\n484:             )\n485:         )",
+      "sha256": "75A2C55F285086B193F8D9B56F8483FB86742794F3FA6211E7A90751D91C55FF"
+    },
+    "successful_event_construction": {
+      "label": "successful ToolEvent construction",
+      "start_line": 400,
+      "end_line": 409,
+      "text": "400:             ev = ToolEvent(\n401:                 name=tool_name,\n402:                 args=tool_args,\n403:                 ok=ok,\n404:                 output=output,\n405:                 side_effect=spec.side_effect,\n406:                 scope=spec.scope,\n407:                 source=self.tools.last_source,\n408:                 error=err,\n409:             )",
+      "sha256": "5AB3465C1C19127A1C9BC192E2170D82146E235F231EDAFBB2713FECBC729379"
+    },
+    "sandbox_reset": {
+      "label": "SandboxEnv.reset",
+      "start_line": 99,
+      "end_line": 106,
+      "text": "99:     def reset(self) -> None:\n100:         self.tools.reset(self.seed)\n101:         self._restore_guardrail_state(copy.deepcopy(self._initial_guardrail_state))\n102:         self.hook_registry.restore_state(self._initial_hook_state)\n103:         self.trace = Trace(seed=self.seed)\n104:         self._runtime_history = RuntimeHistory().with_instruction(_DEFAULT_RUNTIME_INSTRUCTIONS)\n105:         self._last_tool_output = None\n106:         self.agent.reset_state()",
+      "sha256": "C1E8AE42F409DD33C0A14F4703E187F36E2A27C47DD49166273B63F1AEB7AF9C"
+    },
+    "sandbox_snapshot": {
+      "label": "SandboxEnv.snapshot",
+      "start_line": 108,
+      "end_line": 119,
+      "text": "108:     def snapshot(self) -> EnvSnapshot:\n109:         \"\"\"Capture the current state for later restoration (Go-Explore return).\"\"\"\n110:         return EnvSnapshot(\n111:             trace=copy.deepcopy(self.trace),\n112:             runtime_history=self._runtime_history,\n113:             last_tool_output=self._last_tool_output,\n114:             tools_state=self._snapshot_tools_state(),\n115:             guardrail_state=copy.deepcopy(self._snapshot_guardrail_state()),\n116:             agent_state=copy.deepcopy(self.agent.snapshot_state()),\n117:             hook_state=self.hook_registry.snapshot_state(),\n118:             filesystem=self._snapshot_filesystem(),\n119:         )",
+      "sha256": "B778EFEBB1672CC2F766DB74D76C777F9380736EAE4835FFB9D1A764C4828B35"
+    },
+    "sandbox_restore": {
+      "label": "SandboxEnv.restore",
+      "start_line": 121,
+      "end_line": 131,
+      "text": "121:     def restore(self, snapshot: EnvSnapshot | Mapping[str, Any]) -> None:\n122:         \"\"\"Restore environment to a previously captured state.\"\"\"\n123:         restored_snapshot = self._coerce_snapshot(snapshot)\n124:         self._restore_filesystem(restored_snapshot.filesystem)\n125:         self._restore_tools_state(restored_snapshot.tools_state)\n126:         self._restore_guardrail_state(copy.deepcopy(restored_snapshot.guardrail_state))\n127:         self.hook_registry.restore_state(restored_snapshot.hook_state)\n128:         self.trace = copy.deepcopy(restored_snapshot.trace)\n129:         self._runtime_history = restored_snapshot.runtime_history\n130:         self._last_tool_output = restored_snapshot.last_tool_output\n131:         self.agent.restore_state(copy.deepcopy(restored_snapshot.agent_state))",
+      "sha256": "327B05DEC6C40734D6AF8D8B7B7E9A9420C0A76406D9685A99D3F5C6716B6C1F"
+    },
+    "gym_wraps_sandbox": {
+      "label": "GymAttackEnv creates SandboxEnv",
+      "start_line": 75,
+      "end_line": 81,
+      "text": "75:         self._sandbox = SandboxEnv(\n76:             seed=seed,\n77:             fixtures_dir=fixtures_dir,\n78:             agent=agent,\n79:             guardrail=guardrail,\n80:             hook_registry=hook_registry,\n81:         )",
+      "sha256": "20516D74C7D71DA76A2CA6E4222CE73B508611032D7F2811A70E7A569197093B"
+    },
+    "gym_step_delegation": {
+      "label": "GymAttackEnv.step",
+      "start_line": 214,
+      "end_line": 226,
+      "text": "214:     def step(self, action: str) -> tuple[dict[str, Any], float, bool, bool, dict[str, Any]]:\n215:         if not isinstance(action, str):\n216:             raise TypeError(\"GymAttackEnv.step action must be a string\")\n217:         if len(action) > MAX_USER_MESSAGE_CHARS:\n218:             raise ValueError(f\"Action exceeds max length ({MAX_USER_MESSAGE_CHARS} characters)\")\n219: \n220:         self._last_interaction_result = self._sandbox.interact(\n221:             action, max_tool_hops=self.max_tool_hops\n222:         )\n223:         truncated = len(self.trace.user_messages) >= self.max_episode_messages\n224:         observation = self._observation()\n225:         info = self._info()\n226:         return observation, 0.0, False, truncated, info",
+      "sha256": "E9D67121D25293DBE6B857C292A6A7FF226C41618549DEF0EE72974F9C22BC47"
+    },
+    "gym_interact_delegation": {
+      "label": "GymAttackEnv.interact",
+      "start_line": 228,
+      "end_line": 238,
+      "text": "228:     def interact(self, user_message: str, max_tool_hops: int | None = None) -> EnvInteractionResult:\n229:         if max_tool_hops is not None and max_tool_hops != self.max_tool_hops:\n230:             previous = self.max_tool_hops\n231:             self.max_tool_hops = int(max_tool_hops)\n232:             try:\n233:                 _, _, _, _, info = self.step(user_message)\n234:             finally:\n235:                 self.max_tool_hops = previous\n236:         else:\n237:             self.step(user_message)\n238:         return copy.deepcopy(self._last_interaction_result)",
+      "sha256": "BC56D9AF68836556C1130BCD8E06483924A41FFFB0AA2DA4E2B69687C2F898CD"
+    },
+    "gym_reset_delegation": {
+      "label": "GymAttackEnv.reset",
+      "start_line": 193,
+      "end_line": 212,
+      "text": "193:     def reset(\n194:         self,\n195:         *,\n196:         seed: int | None = None,\n197:         options: dict[str, Any] | None = None,\n198:     ) -> tuple[dict[str, Any], dict[str, Any]]:\n199:         if seed is not None:\n200:             self.seed = seed\n201:         super().reset(seed=seed)\n202: \n203:         if options:\n204:             if \"max_tool_hops\" in options:\n205:                 self.max_tool_hops = int(options[\"max_tool_hops\"])\n206:             if \"max_episode_messages\" in options:\n207:                 self.max_episode_messages = int(options[\"max_episode_messages\"])\n208:                 self.observation_space = self._build_observation_space()\n209: \n210:         self._sandbox.reset()\n211:         self._last_interaction_result = self._empty_interaction_result()\n212:         return self._observation(), self._info()",
+      "sha256": "622D9991CA8DF2F688BCA7DB2D81A9B8E0BAEE7000691E9B45E4F15AF948D205"
+    },
+    "gym_observation_summary": {
+      "label": "Gym observation trace summary",
+      "start_line": 115,
+      "end_line": 163,
+      "text": "115:     def _trace_summary(self) -> dict[str, Any]:\n116:         trace = self.export_trace_dict()\n117:         user_messages = trace.get(\"user_messages\", [])\n118:         tool_events = trace.get(\"tool_events\", [])\n119:         egress = trace.get(\"egress\", [])\n120:         if user_messages:\n121:             last_user_message = user_messages[-1]\n122:         else:\n123:             last_user_message = \"\"\n124: \n125:         summary = {\n126:             \"seed\": trace[\"seed\"],\n127:             \"n_user_messages\": len(user_messages),\n128:             \"last_user_message\": last_user_message,\n129:             \"n_tool_events\": len(tool_events),\n130:             \"recent_tools\": [event.get(\"name\", \"\") for event in tool_events[-RECENT_TOOL_WINDOW:]],\n131:             \"recent_sources\": [\n132:                 event.get(\"source\", \"\") for event in tool_events[-RECENT_TOOL_WINDOW:]\n133:             ],\n134:             \"recent_errors\": [\n135:                 event.get(\"error\") or \"\" for event in tool_events[-RECENT_ERROR_WINDOW:]\n136:             ],\n137:             \"last_tool_outputs\": [\n138:                 _truncate(str(event.get(\"output\", \"\")), LAST_OUTPUT_CHARS)\n139:                 for event in tool_events[-LAST_OUTPUT_WINDOW:]\n140:             ],\n141:             \"egress_count\": len(egress),\n142:             \"agent_refused_last_turn\": self._last_interaction_result.agent_refused,\n143:         }\n144: \n145:         summary_json = json.dumps(summary, sort_keys=True, separators=(\",\", \":\"))\n146:         if len(summary_json) <= MAX_TRACE_SUMMARY_JSON_CHARS:\n147:             return summary\n148: \n149:         compact_summary = {\n150:             \"seed\": summary[\"seed\"],\n151:             \"n_user_messages\": summary[\"n_user_messages\"],\n152:             \"last_user_message\": _truncate(summary[\"last_user_message\"], 128),\n153:             \"n_tool_events\": summary[\"n_tool_events\"],\n154:             \"recent_tools\": summary[\"recent_tools\"][-4:],\n155:             \"recent_sources\": summary[\"recent_sources\"][-4:],\n156:             \"recent_errors\": summary[\"recent_errors\"][-2:],\n157:             \"last_tool_outputs\": [\n158:                 _truncate(output, 64) for output in summary[\"last_tool_outputs\"][-2:]\n159:             ],\n160:             \"egress_count\": summary[\"egress_count\"],\n161:             \"agent_refused_last_turn\": summary[\"agent_refused_last_turn\"],\n162:         }\n163:         return compact_summary",
+      "sha256": "F986911BE8D08D03B50CDEF22C899741A0019867A22EE0665C7B1C2EA88557DA"
+    }
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "Where is guardrail context created?",
+      "answer": "Inside SandboxEnv.interact immediately before PRE_GUARDRAIL hooks and guardrail.decide. The local ctx mapping contains seed, recent_sources, recent_tools, last_user, side_effect, and scope. PRE_GUARDRAIL receives this mapping, but guardrail.decide is called with the original ctx variable.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "guardrail_context_creation",
+        "guardrail_decide_call"
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "How is recent_sources populated?",
+      "answer": "It is rebuilt for each proposed known tool as [event.source for event in self.trace.tool_events[-5:]]. It uses recorded ToolEvent.source values from the last five trace tool events.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "guardrail_context_creation"
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "Do only successful source events qualify?",
+      "answer": "No explicit ok filter is applied when recent_sources is constructed. Both successful and failed recorded tool events can contribute their source value if they are within the last five events. The exact source on a failed event is assigned from self.tools.last_source by _record_failed_tool_attempt.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "guardrail_context_creation",
+        "failed_event_construction"
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "What is the exact history window?",
+      "answer": "The guardrail context window is the last five recorded tool events for both recent_sources and recent_tools. Gym observation summaries use a separate last-eight tool/source window, compacted to four only if the JSON summary exceeds its size limit.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "guardrail_context_creation",
+        "gym_observation_summary"
+      ]
+    },
+    {
+      "id": "Q5",
+      "question": "How is user_authorized derived?",
+      "answer": "SandboxEnv.interact does not place user_authorized in ctx and sandbox.py contains no user_authorized token. The packaged optimal default therefore remains false through context.get unless a different caller or modification supplies the key. PRE_GUARDRAIL hooks receive ctx, but this file then calls decide with the original ctx variable; the source does not show replacement of ctx from the hook object.",
+      "status": "SOURCE_CONFIRMED_FOR_SANDBOX_FILE",
+      "evidence": [
+        "guardrail_context_creation",
+        "guardrail_decide_call"
+      ]
+    },
+    {
+      "id": "Q6",
+      "question": "How is user_confirmed_safe derived?",
+      "answer": "SandboxEnv.interact does not place user_confirmed_safe in ctx and sandbox.py contains no user_confirmed_safe token. The packaged optimal default therefore remains false through context.get unless another caller or mutation supplies the key.",
+      "status": "SOURCE_CONFIRMED_FOR_SANDBOX_FILE",
+      "evidence": [
+        "guardrail_context_creation",
+        "guardrail_decide_call"
+      ]
+    },
+    {
+      "id": "Q7",
+      "question": "What are reset and persistence behaviors?",
+      "answer": "Within an environment, trace tool events persist across interact calls until reset. reset replaces the trace, runtime history, last tool output, tool state, hook state, guardrail state, and agent state with initial/reset values. snapshot captures trace, runtime history, last output, tools, guardrail, agent, hooks, and filesystem; restore reinstates them.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "sandbox_reset",
+        "sandbox_snapshot",
+        "sandbox_restore"
+      ]
+    },
+    {
+      "id": "Q8",
+      "question": "What context is passed on denied events?",
+      "answer": "The proposed action is evaluated with ctx before the denial. If the guardrail returns DENY, Sandbox records a failed ToolEvent with ok false, the proposed arguments, side effect, scope, source equal to tools.last_source, and error prefixed denied:, then breaks. That failed event can enter the recent_sources/recent_tools window of a later interact call.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "guardrail_context_creation",
+        "guardrail_decide_call",
+        "denied_event_path",
+        "failed_event_construction"
+      ]
+    },
+    {
+      "id": "Q9",
+      "question": "What context is supplied to Gym?",
+      "answer": "GymAttackEnv constructs and owns a SandboxEnv with the same agent, guardrail, fixtures, and hook registry. step delegates the user action to self._sandbox.interact. It does not create a separate guardrail context. Gym observation summaries expose their own last-eight recent tool/source view, but that observation window is not the ctx passed to the guardrail.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "gym_wraps_sandbox",
+        "gym_step_delegation",
+        "gym_observation_summary"
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "Does it preserve provenance across intermediate events?",
+      "answer": "Sandbox preserves only coarse source labels for the last five recorded tool events in guardrail ctx. It does not place source event IDs, source success, source output hashes, or final-argument lineage in ctx. A web/email label therefore remains visible across at most four later recorded events and ages out once five newer events occupy the window. This is access-context persistence, not returned-content lineage.",
+      "status": "SOURCE_CONFIRMED",
+      "evidence": [
+        "guardrail_context_creation",
+        "successful_event_construction",
+        "failed_event_construction"
+      ]
+    }
+  ],
+  "central_conclusion": "Sandbox constructs packaged-optimal context from the last five recorded ToolEvents without filtering by success and without adding user_authorized or user_confirmed_safe. Gym delegates execution to SandboxEnv and therefore uses Sandbox guardrail-context construction; Gym trace observations have a separate last-eight summary window. The guardrail context preserves coarse access labels, not returned-content lineage.",
+  "weakness_updates": [
+    {
+      "id": "W1",
+      "name": "COARSE_SOURCE_CONTEXT_TAINT",
+      "status": "END_TO_END_SOURCE_CONFIRMED",
+      "detail": "Sandbox supplies only recent source labels; no output-to-argument lineage fields."
+    },
+    {
+      "id": "W2",
+      "name": "UNSCOPED_BOOLEAN_AUTHORIZATION_SHORT_CIRCUIT",
+      "status": "POLICY_PRESENT_SANDBOX_UNREACHABLE_BY_DEFAULT",
+      "detail": "optimal.py reads the booleans, but Sandbox ctx does not create them."
+    },
+    {
+      "id": "W3",
+      "name": "NO_AUTHORIZATION_TOOL_TARGET_CONTENT_BINDING",
+      "status": "SOURCE_CONFIRMED_BUT_DEFAULT_SANDBOX_AUTH_CONTEXT_ABSENT",
+      "detail": "No structured authorization object is passed."
+    },
+    {
+      "id": "W4",
+      "name": "NO_CARDINALITY_EXPIRY_REVOCATION_ENFORCEMENT",
+      "status": "END_TO_END_SOURCE_CONFIRMED",
+      "detail": "Neither Sandbox ctx nor optimal.py supplies these controls."
+    },
+    {
+      "id": "W5",
+      "name": "UPSTREAM_HISTORY_WINDOW_DEPENDENCY",
+      "status": "RESOLVED_TO_EXACT_WINDOW_5",
+      "detail": "recent_sources/recent_tools use trace.tool_events[-5:]."
+    },
+    {
+      "id": "W6",
+      "name": "DORMANT_UNTRUSTED_MENTIONS_STATE_IN_DECIDE",
+      "status": "SOURCE_CONFIRMED",
+      "detail": "Sandbox does not call track_untrusted_content in the guardrail decision path shown."
+    },
+    {
+      "id": "W7",
+      "name": "FAILED_EVENT_SOURCE_CARRYOVER",
+      "status": "NEW_SOURCE_CONFIRMED_CANDIDATE",
+      "detail": "recent_sources has no ok filter; failed events record source from tools.last_source."
+    },
+    {
+      "id": "W8",
+      "name": "SANDBOX_GYM_OBSERVATION_WINDOW_DIVERGENCE",
+      "status": "NEW_SOURCE_CONFIRMED_NON_POLICY_DIFFERENCE",
+      "detail": "guardrail ctx window is 5; Gym observation recent tool/source window is 8."
+    }
+  ],
+  "interpretation_boundaries": [
+    "Static inspection proves source structure, not dynamic values for a specific run.",
+    "A failed event contributing a web/email source requires runtime confirmation of tools.last_source for that sequence.",
+    "Gym delegates guardrail decisions to Sandbox, but full parity still requires matched runtime traces and environment configuration.",
+    "No attack optimization or Optimal+ implementation is performed in this phase."
+  ],
+  "advancement": {
+    "next_phase": "DETERMINISTIC_SANDBOX_OPTIMAL_CONTEXT_BOUNDARY_MATRIX",
+    "eligible": true,
+    "required_focus": [
+      "successful versus failed source events",
+      "five-event aging boundary",
+      "denied-event carryover",
+      "absence of Boolean authorization keys",
+      "Sandbox versus Gym matched context capture"
+    ]
+  }
+}

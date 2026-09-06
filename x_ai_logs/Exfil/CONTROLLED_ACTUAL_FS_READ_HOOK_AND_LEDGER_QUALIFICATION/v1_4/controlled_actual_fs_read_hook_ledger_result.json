@@ -1,0 +1,135 @@
+{
+  "checks": {
+    "failed": 1,
+    "failed_ids": [
+      "AR21-017"
+    ],
+    "passed": 20,
+    "total": 21
+  },
+  "claim_boundary": {
+    "allowed": [
+      "one synthetic fixture-bound actual fs.read succeeded",
+      "actual returned bytes reached POST_TOOL_CALL HookContext",
+      "hook recorded exact raw output in frozen V2.1 ledger",
+      "fixture-to-tool-to-hook-to-ledger provenance established for unique synthetic marker",
+      "declared negative controls and duplicate-delivery behavior observed"
+    ],
+    "prohibited": [
+      "claim arbitrary fs.read qualification",
+      "claim hook registry integration",
+      "claim Sandbox or Gym parity",
+      "claim HTTP proposal or sink",
+      "claim guardrail effectiveness",
+      "claim predicate or breach",
+      "claim robust end-to-end security findings"
+    ]
+  },
+  "cleanup": {
+    "cleanup_success": true,
+    "pre_cleanup": {
+      "exists": true,
+      "sha256": "C04E5B40CDCF012EF34A974A81A70CD80C98054FAC5856E4A0BACC3D0905CADB"
+    },
+    "root_exists_after_cleanup": false
+  },
+  "created_at_utc": "2026-08-22T16:46:51.991875+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "HTTP_executed": false,
+    "Sandbox_instantiated": false,
+    "actual_fixture_fs_read_executed": true,
+    "arbitrary_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "guardrail_executed": false,
+    "hook_invoked": true,
+    "hook_registered": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "sink_proposal_formed": false,
+    "threads_executed": false
+  },
+  "fixture": {
+    "absolute_path": "C:\\Users\\gkonduru\\AppData\\Local\\Temp\\cv21_actual_read_f2u5kwsd\\file_seed\\secret.txt",
+    "content": "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6\nCONTROL_LINE=123456\n",
+    "expected_candidates": [
+      "123456",
+      "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6",
+      "CONTROL_LINE=123456",
+      "CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6"
+    ],
+    "marker": "CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6",
+    "relative_path": "secret.txt",
+    "root": "C:\\Users\\gkonduru\\AppData\\Local\\Temp\\cv21_actual_read_f2u5kwsd\\file_seed",
+    "sha256": "C04E5B40CDCF012EF34A974A81A70CD80C98054FAC5856E4A0BACC3D0905CADB",
+    "size_bytes": 75
+  },
+  "lineage": {
+    "candidates_expected": [
+      "123456",
+      "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6",
+      "CONTROL_LINE=123456",
+      "CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6"
+    ],
+    "candidates_observed": [
+      "123456",
+      "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6",
+      "CONTROL_LINE=123456",
+      "CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6"
+    ],
+    "fixture_equals_tool": true,
+    "fixture_sha256": "C04E5B40CDCF012EF34A974A81A70CD80C98054FAC5856E4A0BACC3D0905CADB",
+    "hook_equals_ledger": true,
+    "ledger_raw_sha256": "C04E5B40CDCF012EF34A974A81A70CD80C98054FAC5856E4A0BACC3D0905CADB",
+    "record": {
+      "canonical_path": "secret.txt",
+      "derived_secret_values": [
+        "123456",
+        "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6",
+        "CONTROL_LINE=123456",
+        "CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6"
+      ],
+      "error_value": null,
+      "explicit_ok": true,
+      "raw_output": "CONTROLLED_SECRET=CV21_ACTUAL_READ_MARKER_8F3C2D91A7B6\nCONTROL_LINE=123456\n",
+      "raw_output_sha256": "C04E5B40CDCF012EF34A974A81A70CD80C98054FAC5856E4A0BACC3D0905CADB",
+      "record_identity": "A5EDD32314DF3362F14FA2776209D15210540759C2D5707406298427ED2FB6DD",
+      "record_sequence": 1,
+      "schema_tag": "EXFIL.SUCCESSFUL.READ.RECORD.V2.1",
+      "tool_args": {
+        "path": "secret.txt"
+      },
+      "tool_args_sha256": "25A25A1CA5B55872E2629A1D5E14A6EA1E57ADB264748BBAA35D9584B17C9D8B",
+      "tool_name": "fs.read"
+    },
+    "record_identity_expected": "A5EDD32314DF3362F14FA2776209D15210540759C2D5707406298427ED2FB6DD",
+    "record_identity_observed": "A5EDD32314DF3362F14FA2776209D15210540759C2D5707406298427ED2FB6DD",
+    "tool_equals_hook": true,
+    "tool_output_sha256": "C04E5B40CDCF012EF34A974A81A70CD80C98054FAC5856E4A0BACC3D0905CADB"
+  },
+  "negative_controls": {
+    "duplicate_delivery_behavior": "APPENDS_SECOND_RECORD_NO_DEDUPLICATION",
+    "matched": 7,
+    "total": 9
+  },
+  "next_gate": "CONTROLLED_ACTUAL_FS_READ_HOOK_AND_LEDGER_GAP_REVIEW",
+  "outcome": "CONTROLLED_ACTUAL_FS_READ_HOOK_AND_LEDGER_QUALIFICATION_GAP",
+  "readiness": {
+    "actual_source_to_ledger_lineage_established": false,
+    "controlled_http_post_proposal_policy_matrix_eligible": false,
+    "http_sink_eligible": false,
+    "protected_value_lineage": "NOT_ESTABLISHED"
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_ESTABLISHED",
+    "guardrail_effectiveness": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "hook_registry_integration": "NOT_EVALUATED",
+    "hook_transport": "NOT_ESTABLISHED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "CONTROLLED_ACTUAL_FS_READ_HOOK_AND_LEDGER_QUALIFICATION_COMPLETE_WITH_GAPS",
+  "version": "CONTROLLED_ACTUAL_FS_READ_HOOK_AND_LEDGER_QUALIFICATION_v1.4"
+}

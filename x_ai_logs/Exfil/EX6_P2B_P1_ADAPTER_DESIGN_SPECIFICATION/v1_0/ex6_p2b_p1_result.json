@@ -1,0 +1,178 @@
+{
+  "P0_bound_and_verified": true,
+  "adapter_implementation_created": false,
+  "claim_boundary": {
+    "allowed": [
+      "normative adapter design specification",
+      "P0 identity and result binding",
+      "candidate-interface design usage",
+      "explicit design treatment for P0 SDK gaps",
+      "implementation eligibility recommendation"
+    ],
+    "prohibited": [
+      "adapter implementation exists",
+      "adapter imports successfully",
+      "runtime adapter behavior",
+      "deferred requirement satisfaction",
+      "guardrail effectiveness",
+      "security improvement",
+      "policy superiority",
+      "real exfiltration prevention",
+      "Sandbox parity",
+      "Gym parity",
+      "hosted parity",
+      "attack success reduction"
+    ]
+  },
+  "classification": "NORMATIVE_DESIGN_SPECIFICATION_ONLY",
+  "created_at_utc": "2026-08-20T14:23:43.374738+00:00",
+  "design_contract": {
+    "after_tool": {
+      "consumption_rule": "a successful or attempted bound action consumes the eligible one-use grant according to the frozen P2 design policy; exact attempt-versus-success semantics require a dedicated design decision before implementation",
+      "event_binding_rule": "acknowledgement must bind the same trace, proposal digest, and unique event identity",
+      "inputs": [
+        "proposal_digest",
+        "event_identity",
+        "trace_identity",
+        "tool_name",
+        "tool_args_digest",
+        "trusted_tool_outcome"
+      ],
+      "read_acknowledgement_rule": "only successful qualifying fs.read creates a protected-read record",
+      "rejection_rule": "duplicate, out-of-order, unknown, or mismatched acknowledgements fail closed and do not create lineage",
+      "trusted_tool_outcome": {
+        "required_fields": [
+          "success",
+          "error_class_or_none",
+          "raw_output_sha256_or_none",
+          "completion_sequence"
+        ],
+        "source_rule": "must originate from the trusted tool-execution boundary, never agent prose"
+      }
+    },
+    "before_decide": {
+      "inputs": [
+        "tool_name",
+        "tool_args",
+        "untrusted_or_general_context",
+        "trusted_authorization_grant_records",
+        "qualifying_successful_protected_read_records"
+      ],
+      "proposal_binding": {
+        "canonical_fields": [
+          "tool_name",
+          "canonical_tool_args",
+          "trace_identity",
+          "proposal_event_identity"
+        ],
+        "decision_rule": "adapter enriches a new trusted-context namespace and delegates once to inner.decide; absence, ambiguity, expiry, replay, or mismatch fails closed",
+        "digest_algorithm": "SHA-256 over a versioned canonical serialization to be frozen in P2 implementation",
+        "grant_match_rule": "authorized tool, target digest, and proposal digest must all match before the grant is eligible"
+      },
+      "protected_read_record": {
+        "qualification_rule": "tool_name is fs.read, exact protected path classification is qualifying, tool_success is true, and record originates from trusted post-tool acknowledgement",
+        "raw_value_rule": "raw value is not copied into publication artifacts; hashes do not independently establish lineage",
+        "required_fields": [
+          "event_identity",
+          "trace_identity",
+          "tool_name",
+          "canonical_source_path",
+          "tool_success",
+          "raw_output_sha256",
+          "protected_value_sha256_or_bound_digest",
+          "completion_sequence"
+        ]
+      },
+      "trusted_authorization_grant": {
+        "identity_rule": "grant_id plus canonical record digest",
+        "lifetime_rule": "bounded validity plus single-consumption state; expired or consumed grants fail closed",
+        "prohibited_sources": [
+          "model output",
+          "prompt text",
+          "generic context booleans",
+          "recent_sources labels",
+          "arbitrary hook metadata"
+        ],
+        "provenance_rule": "issuer identity and trust-domain binding required",
+        "required_fields": [
+          "grant_id",
+          "issuer_id",
+          "issuer_trust_domain",
+          "issued_at_or_sequence",
+          "expires_at_or_sequence",
+          "authorized_tool",
+          "authorized_target_digest",
+          "authorized_proposal_digest",
+          "nonce"
+        ],
+        "source_rule": "Only a separately configured trusted issuer channel may create a grant."
+      }
+    },
+    "component": {
+      "implementation_status": "NOT_IMPLEMENTED",
+      "proposed_class": "TrustedGuardrailContextAdapter",
+      "recommended_source_file": "aicomp_sdk/guardrails/trusted_context_adapter.py",
+      "role": "TRUSTED_TRANSPORT_AND_LINEAGE_ADAPTER",
+      "source_identity": "NOT_AVAILABLE_DESIGN_ONLY"
+    },
+    "composition": {
+      "inner_guardrail": "ProposalAwareOptimalGuardrail_or_policy_under_test",
+      "packaged_and_P2A_sources_modified": false,
+      "pattern": "WRAP_GUARDRAIL_WITH_TRUSTED_TRANSPORT_BOUNDARY",
+      "rationale": "Design isolates trusted transport state from frozen policy sources; runtime compatibility remains untested."
+    },
+    "non_goals": [
+      "modify Sandbox in P1",
+      "modify packaged OptimalGuardrail",
+      "modify ProposalAwareOptimalGuardrail",
+      "execute policy comparison",
+      "claim runtime effectiveness"
+    ],
+    "state_management": {
+      "determinism_rule": "equal validated state serializations restore to equal future adapter decisions under equal inputs; runtime proof deferred",
+      "reset_state": "clears all grants, lineage records, pending proposals, seen events, and sequence state",
+      "restore_state": "validates schema and invariants before atomically replacing state; malformed state fails closed",
+      "snapshot_state": "returns a deterministic deep-copy-compatible representation with sorted keys and no mutable aliases",
+      "state_fields": [
+        "schema_version",
+        "trusted_grants_by_id",
+        "consumed_grant_ids",
+        "protected_read_records",
+        "seen_event_identities",
+        "pending_proposals_by_digest",
+        "monotonic_sequence"
+      ]
+    }
+  },
+  "execution_boundaries": {
+    "adapter_created": false,
+    "breach_executed": false,
+    "effects_observed": false,
+    "guardrail_executed": false,
+    "gym_executed": false,
+    "predicates_executed": false,
+    "sandbox_executed": false,
+    "sdk_imported": false,
+    "tools_executed": false
+  },
+  "implementation_eligibility": "ELIGIBLE_FOR_P2_SOURCE_IMPLEMENTATION_AFTER_INDEPENDENT_REVIEW_OF_THIS_DESIGN",
+  "next_gate": "EX6_P2B_P1A_INDEPENDENT_DESIGN_QUALIFICATION",
+  "requirement_mapping_summary": {
+    "candidate_based": 7,
+    "gap_designs": 3,
+    "implemented": 0,
+    "runtime_validated": 0,
+    "satisfied": 0,
+    "total": 10
+  },
+  "status": "P2B_P1_ADAPTER_DESIGN_SPECIFICATION_COMPLETE_PASS",
+  "unresolved_design_decisions": [
+    "authoritative trusted issuer provisioning mechanism",
+    "canonical serialization byte specification",
+    "event identity uniqueness authority",
+    "grant consumption on attempted versus successful tool execution",
+    "whether Sandbox can expose trusted before_decide and after_tool channels without direct source modification",
+    "protected-value derivation comparison without exposing raw protected values in evidence artifacts"
+  ],
+  "version": "EX6_P2B_P1_ADAPTER_DESIGN_SPECIFICATION_v1.0"
+}

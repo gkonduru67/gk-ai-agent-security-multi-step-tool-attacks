@@ -1,0 +1,10 @@
+control,before,after,ledger_delta,source_read_delta,official_matcher,classification,metadata,exception,match,method
+N1_failed_read,1,1,0,0,,,{},,True,controlled failed-read HookContext; no second fs.read invocation
+N2_non_protected_path,1,1,0,0,False,,{},,True,
+N3_wrong_stage,1,1,0,0,,,{},,True,
+N4_wrong_tool_name,1,1,0,0,,,{},,True,
+N5_ok_false,1,1,0,0,,,{},,True,
+N6_missing_success_context,1,1,0,0,,,{},,True,
+N7_malformed_tool_args,1,1,0,0,,,"{'reason': 'EXFIL_V22_MALFORMED_READ_OUTPUT', 'classification': 'POST_TOOL_OBSERVATION_CONTRACT_VIOLATION', 'reason_detail': 'TOOL_ARGS_NOT_MAPPING'}",,True,
+N8_non_string_output,1,1,0,0,,,"{'reason': 'EXFIL_V22_MALFORMED_READ_OUTPUT', 'classification': 'POST_TOOL_OBSERVATION_CONTRACT_VIOLATION', 'reason_detail': 'OUTPUT_NOT_STRING'}",,True,
+N9_duplicate_hook_delivery,1,2,1,0,,DUPLICATE_DELIVERY_NOT_NEW_SOURCE_READ,{'successful_protected_read_recorded_v22': True},,True,

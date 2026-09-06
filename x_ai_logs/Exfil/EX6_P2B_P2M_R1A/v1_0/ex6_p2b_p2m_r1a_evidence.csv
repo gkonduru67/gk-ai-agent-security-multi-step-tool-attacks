@@ -1,0 +1,29 @@
+control,classification,relative_path,line_start,line_end,source_block_sha256,basis,redacted_source
+pre_tool_hook_order,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/env/sandbox.py,284,284,8F99D20F1EA0E92A9B2330CA6134DE2B4DEDC1B8A3FE54C0C681AFA7EF796013,PRE_TOOL_CALL execute_hooks occurs before self.tools.call.,"self.hook_registry.execute_hooks(HookStage.PRE_TOOL_CALL, pre_tool_ctx)"
+post_tool_hook_order,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/env/sandbox.py,393,393,E72D9D6287E805A40601B4FC5A40493DC5EC8D519A620AD9F1B306226B27BEBA,POST_TOOL_CALL execute_hooks occurs after self.tools.call.,"self.hook_registry.execute_hooks(HookStage.POST_TOOL_CALL, post_tool_ctx)"
+raw_tool_return_assignment,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/env/sandbox.py,374,374,2227DCCBEFC591E8ADA26EF94B82E34BE49148C5CA24350B770571A8F634A247,"Exact ok, output, err assignment from self.tools.call.","ok, output, err = self.tools.call(tool_name, tool_args)"
+initial_ToolEvent_output,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/env/sandbox.py,400,409,EA2ADE81BAF0F2EB87E55CC63DF714BDF1306FEDE86F6AF216142BB9A351EB8E,Initial ToolEvent receives current raw or post-hook-modified output.,"ToolEvent(
+                name=tool_name,
+                args=tool_args,
+                ok=ok,
+                output=output,
+                side_effect=spec.side_effect,
+                scope=spec.scope,
+                source=self.tools.last_source,
+                error=err,
+            )"
+output_text_serialization,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/env/sandbox.py,421,421,AE413E6712ECE878C473371D065B339E3398F596ADBDDD5BA5DF61E88ADF93C2,serialize_tool_output(output) produces output_text path.,serialize_tool_output(output)
+recorded_ToolEvent_output_text,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/env/sandbox.py,422,431,54F42F1DD9B4E027950B19372F00F09CB3E5E2D9CBFD7EBA48B2A4A8497433C0,Recorded ToolEvent receives output_text.,"ToolEvent(
+                name=ev.name,
+                args=ev.args,
+                ok=ev.ok,
+                output=output_text,
+                side_effect=ev.side_effect,
+                scope=ev.scope,
+                source=ev.source,
+                error=ev.error,
+            )"
+fs_read_return_path_escape,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/tools/fs.py,20,20,4AE3E06E1B43D4CD9FD30EDB187FCB41D1B43BD607AF70269F561037506E7893,Exact return branch frozen and validated.,"return False, """", ""path_escape"""
+fs_read_return_not_found,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/tools/fs.py,22,22,6F51D5D6B357E9D43F8E2F9A8188723114A0C92FCE70C6CBBE9EC7641AE55634,Exact return branch frozen and validated.,"return False, """", ""not_found"""
+fs_read_return_is_directory,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/tools/fs.py,24,24,5E65474397E7A23B870B11EA6CBB18C862DDAE9CB3F410081AF436B112C0271A,Exact return branch frozen and validated.,"return False, """", ""is_directory"""
+fs_read_return_success,AUTHORITATIVE_PRODUCER_FOUND,aicomp_sdk/core/tools/fs.py,25,25,B0FF9652B0B292AC25125DE3DF8CDF812783C236D69070D364420E103EEEAE2D,Exact return branch frozen and validated.,"return True, resolved_path.read_text(encoding=""utf-8""), None"

@@ -1,0 +1,33 @@
+{
+  "aicomp_sdk_modification": false,
+  "components": {
+    "ExfilIntegrationFactoryV1": {
+      "function": "build_exfil_integration_v1(*, hook_registry: HookRegistry, inner: GuardrailBase | None = None) -> Mapping[str, object]",
+      "responsibility": "construct one shared ledger, hook, and guardrail; register POST_TOOL_CALL callback"
+    },
+    "LineageAwareExfilGuardrailV1": {
+      "constructor": "__init__(self, *, ledger: SuccessfulReadLedgerV1, inner: GuardrailBase | None = None) -> None",
+      "decide": "decide(self, tool_name, tool_args, context) -> Decision",
+      "responsibility": "inspect http.post data proposal, consult ledger, call official matcher, return SDK Decision"
+    },
+    "SuccessfulReadLedgerV1": {
+      "constructor": "__init__(self) -> None",
+      "public_lifecycle": [
+        "snapshot_state",
+        "restore_state",
+        "reset"
+      ],
+      "responsibility": "store only qualified successful protected fs.read outcomes"
+    },
+    "TrustedReadOutcomeHookV1": {
+      "callback": "__call__(self, context: HookContext) -> object",
+      "constructor": "__init__(self, *, ledger: SuccessfulReadLedgerV1) -> None",
+      "responsibility": "validate public POST_TOOL_CALL fs.read outcome and append immutable evidence"
+    }
+  },
+  "implementation_created": false,
+  "monkey_patching": false,
+  "private_sdk_access": false,
+  "shared_ledger": "same SuccessfulReadLedgerV1 instance injected into hook and guardrail",
+  "source_root": "aicomp_sdk_exfil"
+}

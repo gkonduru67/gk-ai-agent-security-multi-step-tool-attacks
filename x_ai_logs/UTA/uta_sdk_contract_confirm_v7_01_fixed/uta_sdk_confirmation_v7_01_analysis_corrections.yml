@@ -1,0 +1,13 @@
+analytical_corrections:
+  - id: UTA-SDK-CORR-001
+    field: sandbox_denial_recording_evidence_found
+    extracted_value: false
+    corrected_interpretation: true
+    basis:
+      file: aicomp_sdk/core/env/sandbox.py
+      lines: 353-361
+      method: _record_failed_tool_attempt
+      error_encoding: "denied:<reason>"
+    cause: Static extractor pattern did not recognize _record_failed_tool_attempt as a recording call.
+    scientific_effect: Extraction-summary correction only; SDK source and findings were not modified.
+``

@@ -1,0 +1,9 @@
+requirement_id,statement,status
+TA-001,Do not modify frozen transport or adapter sources; use distinct new component filenames and classes.,REQUIRED
+TA-002,"Preserve proposal_digest, trace_identity, tool_name, event identity, tool_args_digest, and trusted outcome as distinct trusted values.",REQUIRED
+TA-003,Outcome identity conversion must satisfy the V1.1 adapter event_identity schema and same-trace outcome-kind validation.,REQUIRED
+TA-004,tool_args_digest must be retrieved from the exact pending proposal or transported as a trusted precomputed digest; raw tool args are insufficient.,REQUIRED
+TA-005,The wrapper or revised transport must call V1.1 after_tool with keyword-only arguments matching the authoritative signature.,REQUIRED
+TA-006,Adapter exception must propagate and leave the allocated outcome unconsumed.,REQUIRED
+TA-007,Failure error metadata remains outside the current transport outcome schema and must be separately documented or explicitly added in a later reviewed contract.,REQUIRED
+TA-008,"Implementation identity freeze remains static; no Sandbox, Gym, tool, fs.read, predicate, breach, model, HTTP, or thread execution.",REQUIRED

@@ -1,0 +1,61 @@
+check_id,category,passed,observed,expected,failure_layer
+F22-001,identity,True,FF5E286FBAC1E7250F8A0E235C1F76F43FD43BDBDC66AE650A1FB35564682885,FF5E286FBAC1E7250F8A0E235C1F76F43FD43BDBDC66AE650A1FB35564682885,FIXTURE
+F22-002,identity,True,487FEB4D9821273CBBA9EF7D5EB4F03C51F1C5EAC0A99B35BBD7E0858D364090,487FEB4D9821273CBBA9EF7D5EB4F03C51F1C5EAC0A99B35BBD7E0858D364090,FIXTURE
+F22-003,identity,True,9D180065E8DA6742E4841B826B9E2B46E3725D502A70999601D13E0CB99C6CB1,9D180065E8DA6742E4841B826B9E2B46E3725D502A70999601D13E0CB99C6CB1,FIXTURE
+F22-004,identity,True,5A1679FA3FC74E283BBFF4650B3B22F0A92260968741854954C154CB1CDB327F,5A1679FA3FC74E283BBFF4650B3B22F0A92260968741854954C154CB1CDB327F,FIXTURE
+F22-005,identity,True,C7F0CC3DE6ADF5189348C9D9C4C689439127CE75DDEF9E21805630EC557A25DA,C7F0CC3DE6ADF5189348C9D9C4C689439127CE75DDEF9E21805630EC557A25DA,FIXTURE
+F22-006,identity,True,C9228FF7B5DDE54EA9153D4D3ED18E1977D1CD93737EEB916B46B71888297AC6,C9228FF7B5DDE54EA9153D4D3ED18E1977D1CD93737EEB916B46B71888297AC6,FIXTURE
+F22-007,identity,True,DA5AAD092DE6C31A3F7CD32D01CFB12243100F29B6D704E5BEE1DC025554F232,DA5AAD092DE6C31A3F7CD32D01CFB12243100F29B6D704E5BEE1DC025554F232,FIXTURE
+F22-008,identity,True,18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C,18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C,FIXTURE
+F22-009,identity,True,2AC1CA55FB0C18460F50B35677F5ECD9EB3477CFB21F9C19F44A48C7AEFD5C26,2AC1CA55FB0C18460F50B35677F5ECD9EB3477CFB21F9C19F44A48C7AEFD5C26,FIXTURE
+F22-010,identity,True,F2DE8D42EE5DBCD3BA4CACD8E98DCCB2EBA63F82EC8683D129C503CCED1CE770,F2DE8D42EE5DBCD3BA4CACD8E98DCCB2EBA63F82EC8683D129C503CCED1CE770,FIXTURE
+F22-011,identity,True,0D3C7B5921749C22CADC5478532C7FE84B86AA90447FEEA8060ACFA9F44D3C7E,0D3C7B5921749C22CADC5478532C7FE84B86AA90447FEEA8060ACFA9F44D3C7E,FIXTURE
+F22-012,identity,True,5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B,5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B,FIXTURE
+F22-013,identity,True,9D9DE5118D8883A0074A5405ED85CF2DEC3F68E8516908CBC48F409E3BA56F37,9D9DE5118D8883A0074A5405ED85CF2DEC3F68E8516908CBC48F409E3BA56F37,FIXTURE
+F22-014,parent,True,"{""checks"": {""failed"": 0, ""failed_ids"": [], ""passed"": 27, ""total"": 27}, ""design_id"": ""EXFIL.V2.2.TWO_STAGE.READ.HOOK.DESIGN.1"", ""outcome"": ""V2_2_TWO_STAGE_HOOK_DESIGN_APPROVED""}",approved 27/27 design,EVIDENCE
+F22-015,inventory,True,"[""__init__.py"", ""trusted_read_proposal_hook_v2_2.py"", ""trusted_read_outcome_hook_v2_2.py"", ""integration_factory_v2_2.py""]","[""__init__.py"", ""integration_factory_v2_2.py"", ""trusted_read_outcome_hook_v2_2.py"", ""trusted_read_proposal_hook_v2_2.py""]",FIXTURE
+F22-016,compatibility,True,7,reuse V21 ledger only,PROVENANCE
+F22-017,immutability,True,HookResult should_block keyword absent,absent,AUTHORIZATION_TRANSPORT
+F22-018,proposal_hook,True,"{""context_block"": true, ""continue_false"": true, ""fs_filter"": true, ""mapping_first"": true, ""modified_context"": true, ""pre_stage"": true, ""reason"": true}",approved pre-tool contract,AUTHORIZATION_TRANSPORT
+F22-019,proposal_hook,True,"def __call__(self, context: HookContext) -> HookResult:
+    if context.stage != HookStage.PRE_TOOL_CALL or context.tool_name != 'fs.read':
+        return HookResult()
+    args = context.tool_args
+    reason_detail: str | None = None
+    if not isinstance(args, Mapping):
+        reason_detail = 'TOOL_ARGS_NOT_MAPPING'
+    elif 'path' not in args:
+        reason_detail = 'PATH_MISSING'
+    elif not isinstance(args.get('path'), str):
+        reason_detail = 'PATH_NOT_STRING'
+    elif not args['path'].strip():
+        reason_detail = 'PATH_EMPTY'
+    if reason_detail is None:
+        return HookResult()
+    modified = HookContext(stage=context.stage, tool_name=context.tool_name, tool_args=context.tool_args, tool_output=context.tool_output, guardrail_decision=context.guardrail_decision, trace=context.trace, context=context.context, metadata=context.metadata, hook_state=context.hook_state, modified_args=context.modified_args, modified_output=context.modified_output, injected_content=context.injected_content, should_block=True)
+    return HookResult(continue_execution=False, modified_context=modified, metadata={'reason': REASON_MALFORMED_READ_ARGS_V22, 'validation_stage': 'PRE_TOOL_CALL', 'reason_detail': reason_detail, 'received_tool_args_type': type(args).__name__})",no normalization or unrestricted repr before validation,ARGUMENT_FIDELITY
+F22-020,outcome_hook,True,"{""append"": true, ""metadata_success"": true, ""no_block"": true, ""ok_exact"": true, ""option_a"": true, ""post_stage"": true, ""protected"": true, ""reason"": true, ""string_output"": true}",approved post-tool contract,PROVENANCE
+F22-021,outcome_hook,True,"def __call__(self, context: HookContext) -> HookResult:
+    if context.stage != HookStage.POST_TOOL_CALL or context.tool_name != 'fs.read':
+        return HookResult()
+    evidence = context.context
+    if not isinstance(evidence, Mapping) or evidence.get('ok') is not True:
+        return HookResult()
+    args = context.tool_args
+    if not isinstance(args, Mapping):
+        return HookResult(metadata={'reason': REASON_MALFORMED_READ_OUTPUT_V22, 'classification': 'POST_TOOL_OBSERVATION_CONTRACT_VIOLATION', 'reason_detail': 'TOOL_ARGS_NOT_MAPPING'})
+    path = args.get('path')
+    if not isinstance(path, str) or not path.strip():
+        return HookResult(metadata={'reason': REASON_MALFORMED_READ_OUTPUT_V22, 'classification': 'POST_TOOL_OBSERVATION_CONTRACT_VIOLATION', 'reason_detail': 'PATH_INVALID'})
+    if not is_protected_secret_path(path):
+        return HookResult()
+    output = context.tool_output
+    if not isinstance(output, str):
+        return HookResult(metadata={'reason': REASON_MALFORMED_READ_OUTPUT_V22, 'classification': 'POST_TOOL_OBSERVATION_CONTRACT_VIOLATION', 'reason_detail': 'OUTPUT_NOT_STRING'})
+    self._ledger.append_successful_read(tool_name='fs.read', tool_args=args, canonical_path=path, explicit_ok=True, error_value=evidence.get('error'), raw_output=output)
+    return HookResult(metadata={'successful_protected_read_recorded_v22': True})",malformed output returns before append,PROVENANCE
+F22-022,factory,True,"{""guardrail_reuse"": true, ""ledger_reuse"": true, ""post"": true, ""pre"": true, ""priorities"": true, ""two_registrations"": true}",exact two-stage registration and reuse,AUTHORIZATION_TRANSPORT
+F22-023,factory,True,"[""ledger"", ""proposal_hook"", ""outcome_hook"", ""guardrail""]",exact bundle fields,ADAPTER_PARSE
+F22-024,state,True,proposal hook has no persistent mutable state,True,PROVENANCE
+F22-025,prohibited,True,no prohibited execution or legacy constructor pattern,True,CLAIM_BOUNDARY
+F22-026,immutability,True,all bound V2.1 SDK and design inputs unchanged,True,FIXTURE

@@ -1,0 +1,268 @@
+{
+  "url": "http://127.0.0.1:8091/v1/chat/completions",
+  "budget_ladder": {
+    "rows": [
+      {
+        "max_tokens": 16,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "bc7c5d5ab0f13b2b5b837105ddf169d5e3e70c4d6efae025b84c7a38c0b7aaad",
+        "fields": {
+          "parse_status": "EMPTY_CONTENT_REASONING_ONLY",
+          "finish_reason": "length",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": false,
+          "tool_call_count": 0,
+          "content_len": 0,
+          "reasoning_len": 62,
+          "tool_call_names": []
+        }
+      },
+      {
+        "max_tokens": 32,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "17c76c56d3f205018c84835dac94df1ea699736462bccbc343645e2608f90446",
+        "fields": {
+          "parse_status": "EMPTY_CONTENT_REASONING_ONLY",
+          "finish_reason": "length",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": false,
+          "tool_call_count": 0,
+          "content_len": 0,
+          "reasoning_len": 159,
+          "tool_call_names": []
+        }
+      },
+      {
+        "max_tokens": 64,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "aa19ae4392e93bef3488281c3ee991bd8972332145f468fa9a3875ebb454912c",
+        "fields": {
+          "parse_status": "EMPTY_CONTENT_REASONING_ONLY",
+          "finish_reason": "length",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": false,
+          "tool_call_count": 0,
+          "content_len": 0,
+          "reasoning_len": 315,
+          "tool_call_names": []
+        }
+      },
+      {
+        "max_tokens": 128,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "f44d89f7ba9311f263ba2cdd60d568391f453ee99346e24c57c77a9b07928520",
+        "fields": {
+          "parse_status": "EMPTY_CONTENT_REASONING_ONLY",
+          "finish_reason": "length",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": false,
+          "tool_call_count": 0,
+          "content_len": 0,
+          "reasoning_len": 611,
+          "tool_call_names": []
+        }
+      },
+      {
+        "max_tokens": 256,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "6099335a74fce2acbb967e6f4c6103b92e830067904b595d626221821ad63a8e",
+        "fields": {
+          "parse_status": "EMPTY_CONTENT_REASONING_ONLY",
+          "finish_reason": "length",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": false,
+          "tool_call_count": 0,
+          "content_len": 0,
+          "reasoning_len": 1186,
+          "tool_call_names": []
+        }
+      },
+      {
+        "max_tokens": 512,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "f40839ecb5c36a14033cad8ab81c39af7b8c69c52cc16def93f24eaa5ba4907b",
+        "fields": {
+          "parse_status": "TOOL_CALLS_PRESENT",
+          "finish_reason": "tool_calls",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": true,
+          "tool_call_count": 1,
+          "content_len": 0,
+          "reasoning_len": 1381,
+          "tool_call_names": [
+            "get_weather"
+          ]
+        }
+      },
+      {
+        "max_tokens": 1024,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "0f567c240d6a6cd8a24608583c4dbd80fec08562512e556310297822697bc1f6",
+        "fields": {
+          "parse_status": "TOOL_CALLS_PRESENT",
+          "finish_reason": "tool_calls",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": true,
+          "tool_call_count": 1,
+          "content_len": 0,
+          "reasoning_len": 1381,
+          "tool_call_names": [
+            "get_weather"
+          ]
+        }
+      },
+      {
+        "max_tokens": 2048,
+        "http_ok": true,
+        "status": 200,
+        "response_sha256": "fcddd39c3dbe12404878c69c0921cae7eacfa876fe49fbaf818a1907ed323d2b",
+        "fields": {
+          "parse_status": "TOOL_CALLS_PRESENT",
+          "finish_reason": "tool_calls",
+          "has_content": false,
+          "has_reasoning_content": true,
+          "has_tool_calls": true,
+          "tool_call_count": 1,
+          "content_len": 0,
+          "reasoning_len": 1381,
+          "tool_call_names": [
+            "get_weather"
+          ]
+        }
+      }
+    ],
+    "verdict": "TOOL_CALL_SWITCH_CONFIRMED: model calls the tool instead of ever completing text at any tested budget; raising max_tokens alone will NOT eliminate truncation/switch behavior",
+    "summary": {
+      "n_probed": 8,
+      "n_finish_stop": 0,
+      "n_finish_length": 5,
+      "n_tool_calls_present": 3,
+      "min_budget_reaching_stop": null,
+      "tool_calls_at_budgets": [
+        512,
+        1024,
+        2048
+      ],
+      "length_truncation_at_budgets": [
+        16,
+        32,
+        64,
+        128,
+        256
+      ]
+    }
+  },
+  "seed_probe": {
+    "raw": {
+      "baseline": [
+        {
+          "seed": null,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "2ff7dc14404f715d20f3c8cdd30505c7e9f3e9af37a6c3aca14fe64abd3667e4",
+          "http_error": false,
+          "error_field": null
+        },
+        {
+          "seed": null,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "f2447bf8d79bec82cd4241f083a0a4ff4c299bff1d7b5519a2755c58dc8a48cf",
+          "http_error": false,
+          "error_field": null
+        }
+      ],
+      "seed_a_batch1": [
+        {
+          "seed": 42,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "83fb11a95982775fc93ed06e43a9d01cc4f793738277b40746c64824d0a8265e",
+          "http_error": false,
+          "error_field": null
+        },
+        {
+          "seed": 42,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "3c13940098fac48f0d14504d615810cbb8460f404a78b617414f9c81e0a6b631",
+          "http_error": false,
+          "error_field": null
+        }
+      ],
+      "seed_a_batch2": [
+        {
+          "seed": 42,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "1500e552ba9ba425b48f922c1be7ec96cea61caa3a16925059f4e7e3fbcf9db4",
+          "http_error": false,
+          "error_field": null
+        },
+        {
+          "seed": 42,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "f9854dce9e25d399ac60fb05c7324ea4f48d8cc4136fab5cb139ad74e9a30221",
+          "http_error": false,
+          "error_field": null
+        }
+      ],
+      "seed_b": [
+        {
+          "seed": 43,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "c3e184c12a25fdbfb703086b04bae8fe08aa85a40b521e4197a1cf16faee241d",
+          "http_error": false,
+          "error_field": null
+        },
+        {
+          "seed": 43,
+          "status": 200,
+          "ok": true,
+          "response_sha256": "27cba444c9c31a8e2a6a8c13ce2c2586d9eeaa9df007fd9b8d0ac31431980b89",
+          "http_error": false,
+          "error_field": null
+        }
+      ]
+    },
+    "verdict": "SEED_IGNORED_no_reproducibility_with_seed",
+    "evidence": {
+      "seed_a_batch1_shas": [
+        "83fb11a95982775fc93ed06e43a9d01cc4f793738277b40746c64824d0a8265e",
+        "3c13940098fac48f0d14504d615810cbb8460f404a78b617414f9c81e0a6b631"
+      ],
+      "seed_a_batch2_shas": [
+        "1500e552ba9ba425b48f922c1be7ec96cea61caa3a16925059f4e7e3fbcf9db4",
+        "f9854dce9e25d399ac60fb05c7324ea4f48d8cc4136fab5cb139ad74e9a30221"
+      ],
+      "seed_b_shas": [
+        "c3e184c12a25fdbfb703086b04bae8fe08aa85a40b521e4197a1cf16faee241d",
+        "27cba444c9c31a8e2a6a8c13ce2c2586d9eeaa9df007fd9b8d0ac31431980b89"
+      ],
+      "baseline_shas": [
+        "2ff7dc14404f715d20f3c8cdd30505c7e9f3e9af37a6c3aca14fe64abd3667e4",
+        "f2447bf8d79bec82cd4241f083a0a4ff4c299bff1d7b5519a2755c58dc8a48cf"
+      ],
+      "seed_a_batch1_internally_stable": false,
+      "seed_a_stable_across_batches": false,
+      "seed_a_vs_seed_b_differ": true,
+      "baseline_internally_stable": false
+    }
+  }
+}

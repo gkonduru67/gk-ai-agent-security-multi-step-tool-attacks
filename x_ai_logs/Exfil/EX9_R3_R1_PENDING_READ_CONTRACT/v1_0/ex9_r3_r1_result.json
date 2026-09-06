@@ -1,0 +1,185 @@
+{
+  "EX9_R3_parent_verified": true,
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 25,
+    "total": 25
+  },
+  "claim_boundary": {
+    "allowed": [
+      "pending proposal read-view contract",
+      "provider identity and public API",
+      "record schema, population, lifecycle, consumption, and factory bindings",
+      "eligibility recommendation for a separate static implementation gate"
+    ],
+    "prohibited": [
+      "claim implementation exists",
+      "private adapter state access",
+      "SDK source modification",
+      "runtime acknowledgement",
+      "actual fs.read",
+      "Sandbox or Gym execution",
+      "HTTP sink",
+      "predicate or breach execution",
+      "model execution",
+      "protected-value lineage",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_CONTRACT_RECONCILIATION",
+  "created_at_utc": "2026-08-22T08:57:38.845828+00:00",
+  "decision": {
+    "implementation_artifact_count": 4,
+    "new_class_count": 4,
+    "outcome": "NEW_TRUSTED_PENDING_PROPOSAL_READ_VIEW_REQUIRED",
+    "private_adapter_access": false
+  },
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "Sandbox_interact_executed": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "http_sink_executed": false,
+    "implementation_created": false,
+    "models_used": false,
+    "parent_artifacts_modified": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "source_modified": false,
+    "threads_executed": false
+  },
+  "freeze": {
+    "consumption": {
+      "adapter_exception": "do not mark consumed",
+      "lookup": "read-only lookup by exact proposal_digest before V1.1 after_tool",
+      "mark_consumed": "only after V1.1 after_tool returns successfully",
+      "relationship": "provider consumption mirrors successful adapter acknowledgement but does not mutate adapter internals",
+      "replay": "consumed proposal digest cannot be acknowledged again"
+    },
+    "factory_bindings": {
+      "bindings": {
+        "hook_adapter.provider": "TrustedPendingProposalReadViewV1",
+        "hook_adapter.transport": "TrustedOutcomeTransportV1",
+        "transport.adapter": "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper",
+        "wrapper.downstream_adapter": "TrustedGuardrailContextAdapterV1_1",
+        "wrapper.pending_proposal_view": "TrustedPendingProposalReadViewV1",
+        "wrapper.sequence_state": "same trusted sequence_state instance owned by transport integration"
+      },
+      "constructs": [
+        "TrustedPendingProposalReadViewV1",
+        "TrustedPostToolHookAdapterV1",
+        "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper",
+        "TrustedOutcomeTransportV1"
+      ],
+      "frozen_source_modification": false,
+      "function": "build_trusted_acknowledgement_integration_v1",
+      "module": "aicomp_sdk/core/env/trusted_acknowledgement_integration_factory_v1.py",
+      "private_adapter_access": false
+    },
+    "factory_function_count": 1,
+    "freeze_id": "EX9.ACK.PENDING.PROPOSAL.READ.INTERFACE.PLAN.V1",
+    "implementation_artifact_count": 4,
+    "implementation_created": false,
+    "implementation_identity": "NOT_ESTABLISHED",
+    "lifecycle": {
+      "replay": "reject consumed digest and conflicting duplicate outcome identity",
+      "reset": "clear provider-owned records and consumed set only",
+      "restore": "validate schema, unique keys, digest consistency, and consumed subset before replace",
+      "retry": "failed downstream acknowledgement leaves provider record unconsumed",
+      "snapshot": "records, consumed digests, provider schema version, binding identity"
+    },
+    "mapping_correction": {
+      "digests_equal": false,
+      "proposal_digest": "exact proposal_digest identifying the pending record",
+      "tool_args_digest": "exact tool_args_digest field from the same pending proposal record identified by proposal_digest"
+    },
+    "new_class_count": 4,
+    "outcome": "NEW_TRUSTED_PENDING_PROPOSAL_READ_VIEW_REQUIRED",
+    "parent_contract_freeze_id": "EX9.ACK.IMPLEMENTATION.CONTRACT.SOURCE.PLAN.V1",
+    "population": {
+      "duplicate_rule": "same digest and byte-equivalent record is idempotent; conflicting duplicate fails closed",
+      "mutation_of_adapter_private_state": false,
+      "owner": "TrustedPostToolHookAdapterV1 trusted proposal-time integration path",
+      "source_fields": "exact proposal record produced by TrustedGuardrailContextAdapterV1_1.before_decide",
+      "write_time": "immediately after authoritative before_decide returns the proposal record and before tool execution"
+    },
+    "proposed_artifacts": {
+      "factory": {
+        "file": "aicomp_sdk/core/env/trusted_acknowledgement_integration_factory_v1.py",
+        "function": "build_trusted_acknowledgement_integration_v1"
+      },
+      "hook_adapter": {
+        "class": "TrustedPostToolHookAdapterV1",
+        "file": "aicomp_sdk/core/env/trusted_post_tool_hook_adapter_v1.py"
+      },
+      "provider": {
+        "class": "TrustedPendingProposalReadViewV1",
+        "file": "aicomp_sdk/core/env/trusted_pending_proposal_read_view_v1.py",
+        "record_class": "TrustedPendingProposalRecordV1"
+      },
+      "transport_wrapper": {
+        "class": "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper",
+        "file": "aicomp_sdk/core/env/trusted_outcome_transport_v1_to_context_adapter_v1_1_wrapper.py"
+      }
+    },
+    "provider_api": {
+      "append": "append(record: TrustedPendingProposalRecordV1) -> None",
+      "class": "TrustedPendingProposalReadViewV1",
+      "lookup": "lookup_by_proposal_digest(proposal_digest: str) -> TrustedPendingProposalRecordV1 | None",
+      "mark_consumed": "mark_consumed(proposal_digest: str, outcome_event_identity: Mapping[str, Any]) -> None",
+      "private_adapter_access": false,
+      "record_class": "TrustedPendingProposalRecordV1",
+      "reset": "reset() -> None",
+      "restore": "restore_state(snapshot: Mapping[str, Any]) -> None",
+      "snapshot": "snapshot_state() -> dict[str, object]"
+    },
+    "record_schema": {
+      "immutability": "record fields immutable after append",
+      "key": "proposal_digest",
+      "required_fields": [
+        "proposal_digest",
+        "trace_identity",
+        "tool_name",
+        "tool_args_digest",
+        "proposal_event_identity"
+      ],
+      "schema_tag": "EX9.TRUSTED.PENDING.PROPOSAL.RECORD.V1",
+      "validation": [
+        "non-empty proposal_digest",
+        "non-empty trace_identity",
+        "non-empty tool_name",
+        "non-empty tool_args_digest",
+        "proposal_event_identity schema valid"
+      ]
+    },
+    "runtime_behavior": "NOT_EVALUATED",
+    "status": "FROZEN"
+  },
+  "next_gate": "ACKNOWLEDGEMENT_INTEGRATION_IMPLEMENTATION_AND_IDENTITY_FREEZE",
+  "parent_result": {
+    "checks": "25_OF_25",
+    "outcome": "PUBLIC_READ_ONLY_PENDING_PROPOSAL_INTERFACE_REQUIRED",
+    "preserved_immutable": true
+  },
+  "readiness": {
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false,
+    "implementation_creation_eligible": true
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_behavior": "NOT_EVALUATED",
+    "pending_read_interface": "FROZEN",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "EX9_R3_R1_PENDING_PROPOSAL_READ_INTERFACE_AND_PLAN_RECONCILIATION_COMPLETE_PASS",
+  "version": "EX9_R3_R1_PENDING_PROPOSAL_READ_INTERFACE_AND_PLAN_RECONCILIATION_v1.0"
+}

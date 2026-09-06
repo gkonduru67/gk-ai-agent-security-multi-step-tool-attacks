@@ -1,0 +1,9 @@
+symbol_id,file_id,kind,name,signature,responsibility
+SYM-001,AUTH-F01,class,TrustedEventSequenceStateV1,TrustedEventSequenceStateV1(),"per-trace monotonic proposal/outcome allocation, consumption, snapshot, restore, reset"
+SYM-002,AUTH-F01,class,TrustedOutcomeTransportV1,"TrustedOutcomeTransportV1(adapter, sequence_state)",value-free metadata production and exactly-once adapter.after_tool acknowledgement
+SYM-003,AUTH-F02,class,TrustedBridgeSandboxV1,"TrustedBridgeSandboxV1(*args, trusted_transport, **kwargs)",opt-in integration; no packaged SandboxEnv modification
+SYM-004,AUTH-F01,function,canonicalize_post_hook_output_v1,canonicalize_post_hook_output_v1(value: object) -> bytes,implement P2N.CANONICAL_OUTPUT.V1 exactly
+SYM-005,AUTH-F01,function,compute_raw_output_sha256_v1,compute_raw_output_sha256_v1(value: object) -> str,domain-separated uppercase SHA-256 over canonical post-hook output
+SYM-006,AUTH-F01,function,compute_protected_value_bound_digest_v1,"compute_protected_value_bound_digest_v1(trace_identity: str, proposal_digest: str, outcome_event_identity: str, canonical_source_path: str, raw_output_sha256: str) -> str",value-free protected binding
+SYM-007,AUTH-F03,function,canonical_source_path_v1,"canonical_source_path_v1(filesystem_root: Path, requested_path: str, resolved_path: Path) -> str",workspace-relative POSIX path with one leading slash
+SYM-008,AUTH-F01,function,snapshot_trusted_transport_state_v1,"snapshot_trusted_transport_state_v1(sequence_state: TrustedEventSequenceStateV1) -> dict[str, object]",deterministic JSON-compatible state snapshot

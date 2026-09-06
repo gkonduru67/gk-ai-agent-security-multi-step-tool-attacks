@@ -1,0 +1,37 @@
+==========================================================================================
+DESTRUCTIVE_WRITE ABLATION STUDY -- replay-based, real reason-string-confirmed design
+==========================================================================================
+
+--- DW05_target_binding_drift ---
+  control_unmodified_real_class    turn1=ALLOW(Operation allowed           )  turn2=DENY (authorization_consumed)
+  arm_A_consumption_disabled       turn1=ALLOW(Operation allowed           )  turn2=DENY (target_scope_mismatch)
+  arm_B_binding_disabled           turn1=ALLOW(Operation allowed           )  turn2=DENY (authorization_consumed)
+
+--- DW06_content_binding_drift ---
+  control_unmodified_real_class    turn1=ALLOW(Operation allowed           )  turn2=DENY (authorization_consumed)
+  arm_A_consumption_disabled       turn1=ALLOW(Operation allowed           )  turn2=DENY (content_scope_mismatch)
+  arm_B_binding_disabled           turn1=ALLOW(Operation allowed           )  turn2=DENY (authorization_consumed)
+
+--- DW22_write_authorization_reuse ---
+  control_unmodified_real_class    turn1=ALLOW(Operation allowed           )  turn2=DENY (authorization_consumed)
+  arm_A_consumption_disabled       turn1=ALLOW(Operation allowed           )  turn2=ALLOW(Operation allowed)
+  arm_B_binding_disabled           turn1=ALLOW(Operation allowed           )  turn2=DENY (authorization_consumed)
+
+==========================================================================================
+INTERPRETATION
+==========================================================================================
+
+DW05_target_binding_drift:
+  Control (real, unmodified):  turn2=DENY
+  Arm A (no consumption):      turn2=DENY  -> binding ALONE still catches this drift
+  Arm B (no binding):          turn2=DENY  -> consumption ALONE explains this catch (matches real reason strings)
+
+DW06_content_binding_drift:
+  Control (real, unmodified):  turn2=DENY
+  Arm A (no consumption):      turn2=DENY  -> binding ALONE still catches this drift
+  Arm B (no binding):          turn2=DENY  -> consumption ALONE explains this catch (matches real reason strings)
+
+DW22_write_authorization_reuse:
+  Control (real, unmodified):  turn2=DENY
+  Arm A (no consumption):      turn2=ALLOW  -> binding ALONE does NOT catch this -- would be a FALSE-ALLOW without consumption
+  Arm B (no binding):          turn2=DENY  -> consumption ALONE explains this catch (matches real reason strings)

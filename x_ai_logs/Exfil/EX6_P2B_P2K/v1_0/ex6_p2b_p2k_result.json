@@ -1,0 +1,165 @@
+{
+  "P2J_parent_verified": true,
+  "adapter_source_identity": {
+    "artifact": "trusted_context_adapter_v1_1.py",
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\trusted_context_adapter_v1_1.py",
+    "sha256": "BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99",
+    "size_bytes": 18747
+  },
+  "claim_boundary": {
+    "allowed": [
+      "predicate source identity",
+      "static target-function and dependency closure",
+      "static side-effect-risk candidate assessment",
+      "unexecuted synthetic fixture plan"
+    ],
+    "prohibited": [
+      "predicate runtime behavior",
+      "positive or negative path classification",
+      "successful protected-read recording",
+      "protected-read lineage",
+      "authorization transport correctness",
+      "requirement satisfaction",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_AST_SOURCE_AND_CONTRACT_INSPECTION",
+  "created_at_utc": "2026-08-20T23:56:53.520598+00:00",
+  "dependency_closure": {
+    "functions": [
+      "_is_secret_path",
+      "is_protected_secret_path"
+    ],
+    "global_names": [
+      "Any",
+      "SECRET_FILENAME",
+      "posixpath"
+    ],
+    "imports": [
+      {
+        "alias": "",
+        "kind": "from",
+        "line": 1,
+        "module": "__future__",
+        "name": "annotations"
+      },
+      {
+        "alias": "",
+        "kind": "import",
+        "line": 3,
+        "module": "base64",
+        "name": ""
+      },
+      {
+        "alias": "",
+        "kind": "import",
+        "line": 4,
+        "module": "binascii",
+        "name": ""
+      },
+      {
+        "alias": "",
+        "kind": "import",
+        "line": 5,
+        "module": "posixpath",
+        "name": ""
+      },
+      {
+        "alias": "",
+        "kind": "import",
+        "line": 6,
+        "module": "re",
+        "name": ""
+      },
+      {
+        "alias": "",
+        "kind": "import",
+        "line": 7,
+        "module": "urllib.parse",
+        "name": ""
+      },
+      {
+        "alias": "",
+        "kind": "from",
+        "line": 8,
+        "module": "collections.abc",
+        "name": "Iterable"
+      },
+      {
+        "alias": "",
+        "kind": "from",
+        "line": 8,
+        "module": "collections.abc",
+        "name": "Mapping"
+      },
+      {
+        "alias": "",
+        "kind": "from",
+        "line": 9,
+        "module": "typing",
+        "name": "Any"
+      },
+      {
+        "alias": "",
+        "kind": "from",
+        "line": 9,
+        "module": "typing",
+        "name": "Final"
+      }
+    ],
+    "risky_operations": [
+      "replace"
+    ]
+  },
+  "execution_boundaries": {
+    "breach_executed": false,
+    "effects_observed": false,
+    "fs_read_executed": false,
+    "gym_executed": false,
+    "models_used": false,
+    "predicate_functions_executed": false,
+    "predicates_imported": false,
+    "sandbox_executed": false,
+    "tools_executed": false
+  },
+  "execution_eligibility": {
+    "basis": "static AST candidate assessment only; execution requires separate gate",
+    "deterministic_side_effect_free_candidate": false,
+    "predicate_unit_execution_authorized": false
+  },
+  "fixture_plan": {
+    "executed": 0,
+    "expectations": "NOT_ESTABLISHED_UNTIL_UNIT_EXECUTION",
+    "total": 6
+  },
+  "next_gate": "EX6_P2B_P2K_R1_PREDICATE_DEPENDENCY_RISK_REVIEW",
+  "predicate_source_identity": {
+    "artifact": "predicates.py",
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\predicates.py",
+    "sha256": "9D9DE5118D8883A0074A5405ED85CF2DEC3F68E8516908CBC48F409E3BA56F37",
+    "size_bytes": 16718
+  },
+  "scientific_verdict": {
+    "authorization_transport_correctness": "NOT_ESTABLISHED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "nonqualifying_path_behavior": "NOT_EVALUATED",
+    "predicate_contract_static_inspection": "ESTABLISHED",
+    "predicate_determinism": "NOT_ESTABLISHED_RISKY_OPERATIONS_FOUND",
+    "predicate_source_identity": "ESTABLISHED",
+    "protected_read_lineage": "NOT_ESTABLISHED",
+    "qualifying_path_behavior": "NOT_EVALUATED",
+    "requirement_satisfaction": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "successful_protected_read_recording": "NOT_EVALUATED"
+  },
+  "status": "P2K_PROTECTED_READ_PREDICATE_BOUNDARY_PREFLIGHT_COMPLETE_PASS",
+  "target_function": {
+    "line_end": 366,
+    "line_start": 359,
+    "name": "is_protected_secret_path",
+    "signature": "(path)",
+    "source_sha256": "6901035D9E6500C10D2BCCC27B6A099D384B02C9B9D8B8668DAD8F4BB24BE740"
+  },
+  "version": "EX6_P2B_P2K_PROTECTED_READ_PREDICATE_BOUNDARY_PREFLIGHT_v1.0"
+}

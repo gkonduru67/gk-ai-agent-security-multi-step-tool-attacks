@@ -1,0 +1,34 @@
+{
+  "capture_api": {
+    "append_call": "self.pending_proposal_view.append(record)",
+    "append_failure": "propagate exception; do not return proposal result; tool execution remains unauthorized",
+    "before_decide": "before_decide(self, *, tool_name: str, tool_args: Mapping[str, Any], context: Mapping[str, Any]) -> Mapping[str, Any]",
+    "class": "TrustedProposalCaptureAdapterV1",
+    "constructor": "__init__(self, *, downstream_adapter: TrustedGuardrailContextAdapterV1_1, pending_proposal_view: TrustedPendingProposalReadViewV1)",
+    "file": "aicomp_sdk/core/env/trusted_proposal_capture_adapter_v1.py",
+    "ordering": [
+      "call downstream_adapter.before_decide exactly once",
+      "validate returned proposal record contains all frozen fields",
+      "construct immutable TrustedPendingProposalRecordV1",
+      "call pending_proposal_view.append(record)",
+      "return the unmodified authoritative proposal result",
+      "only after successful append may caller proceed toward tool execution"
+    ],
+    "private_adapter_access": false
+  },
+  "ordering_contract": {
+    "prohibited": "provider append after tool execution or reconstruction from post-tool data",
+    "step_1": "authoritative caller invokes capture_adapter.before_decide",
+    "step_2": "capture adapter invokes downstream V1.1 before_decide exactly once",
+    "step_3": "capture adapter validates and appends immutable provider record",
+    "step_4": "capture adapter returns unmodified proposal result",
+    "step_5": "authoritative caller evaluates decision and may proceed toward tool execution"
+  },
+  "record_mapping": {
+    "proposal_digest": "authoritative before_decide result['proposal_digest']",
+    "proposal_event_identity": "authoritative before_decide result['proposal_event_identity']",
+    "tool_args_digest": "authoritative before_decide result['tool_args_digest']",
+    "tool_name": "authoritative before_decide result['tool_name']",
+    "trace_identity": "authoritative before_decide result['trace_identity']"
+  }
+}

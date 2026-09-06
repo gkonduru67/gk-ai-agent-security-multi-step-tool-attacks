@@ -1,0 +1,36 @@
+{
+  "seed": 123,
+  "user_messages": [
+    "search welcome"
+  ],
+  "assistant_messages": [
+    "Welcome to Example. This site contains harmless demo content for testing."
+  ],
+  "tool_events": [
+    {
+      "name": "web.search",
+      "args": {
+        "query": "welcome"
+      },
+      "ok": true,
+      "output": "{\"results\": [{\"id\": \"page_0\", \"title\": \"Welcome\"}]}",
+      "side_effect": "NETWORK",
+      "scope": "public",
+      "source": "web",
+      "error": null
+    },
+    {
+      "name": "web.open",
+      "args": {
+        "id": "page_0"
+      },
+      "ok": true,
+      "output": "Welcome to Example. This site contains harmless demo content for testing.",
+      "side_effect": "NETWORK",
+      "scope": "public",
+      "source": "web",
+      "error": null
+    }
+  ],
+  "egress": []
+}

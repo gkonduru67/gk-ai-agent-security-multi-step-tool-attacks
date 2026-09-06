@@ -1,0 +1,122 @@
+{
+  "schema": "UTA_OPTIMAL_PLUS_POLICY_SPECIFICATION_V1",
+  "version": "UTA_OPTIMAL_PLUS_POLICY_SPECIFICATION_v7.71A",
+  "status": "POLICY_SPECIFICATION_FROZEN",
+  "scope": "RESEARCH_OPTIMAL_PLUS_DETERMINISTIC_POLICY_ONLY",
+  "non_goals": [
+    "modify packaged optimal.py",
+    "parse conversational authority",
+    "evaluate official predicates",
+    "claim breach",
+    "claim hosted parity"
+  ],
+  "correction_of_user_wording": "Unrelated writes MUST NOT be denied solely because a historical web label remains visible. They return to ordinary target/tool policy.",
+  "observed_parent_constraints": {
+    "recent_source_window": "five recorded tool events",
+    "failed_source_label_can_be_web": true,
+    "denied_event_can_duplicate_source_label": true,
+    "successful_source_lineage_can_outlive_recent_source_label": true,
+    "default_boolean_authorization_keys_absent": true
+  },
+  "evidence_layers": {
+    "access_context": "recent source labels; risk signal only",
+    "successful_provenance": "persistent record created only after successful source retrieval",
+    "returned_content_lineage": "comparison of proposed content against persistent successful provenance",
+    "authorization": "trusted structured object bound to action, target, source, content, lifecycle",
+    "effect": "tool success; authorization consumption occurs only here"
+  },
+  "source_provenance_record": {
+    "required_fields": [
+      "source_event_id",
+      "source_tool",
+      "source_identifier",
+      "source_output_sha256",
+      "source_output",
+      "event_index",
+      "succeeded"
+    ],
+    "creation_rule": "Create only after successful web.open or email.read with nonempty returned content.",
+    "failed_lookup_rule": "Do not create a successful provenance record.",
+    "persistence_rule": "Independent of recent_sources window; reset/snapshot/restore with guardrail state."
+  },
+  "lineage_classes": {
+    "EXACT_SOURCE_OUTPUT": "proposed content equals a successful stored source output",
+    "TRANSFORMED_SOURCE_OUTPUT": "proposed content contains a nonempty successful stored source output as a strict substring",
+    "UNRELATED": "proposed content does not equal or contain any successful stored source output",
+    "UNKNOWN": "proposal has no supported content-bearing argument"
+  },
+  "authorization_schema": {
+    "required_fields": [
+      "authorization_id",
+      "version",
+      "principal",
+      "status",
+      "tool_name",
+      "target",
+      "source_event_id",
+      "source_output_sha256",
+      "authorized_argument_sha256",
+      "derivation_mode",
+      "allowed_execution_count",
+      "consumed_execution_count",
+      "valid_from_event",
+      "expires_after_event",
+      "revoked"
+    ],
+    "trusted_transport": "context.structured_authorization supplied by deterministic harness or future frozen runtime adapter; never inferred from conversational text",
+    "valid_status": "ACTIVE",
+    "allowed_derivation_modes": [
+      "EXACT_SOURCE_OUTPUT",
+      "TRANSFORMED_SOURCE_OUTPUT"
+    ]
+  },
+  "decision_order": [
+    "Validate tool and arguments.",
+    "Resolve target and apply sensitive-target policy without Boolean bypass.",
+    "Resolve persistent successful-source lineage for the proposal content.",
+    "If UNRELATED, apply ordinary target/tool policy and ignore historical web label alone.",
+    "If EXACT or TRANSFORMED, require structured authorization.",
+    "Validate status, revocation, time, cardinality, tool, target, source event, source hash, argument hash, and derivation mode.",
+    "Allow the exactly bound action once.",
+    "Consume only after a separately reported successful effect."
+  ],
+  "decision_taxonomy": [
+    "ALLOW_ORDINARY_UNRELATED",
+    "ALLOW_AUTHORIZED_ONCE",
+    "DENY_SENSITIVE_TARGET",
+    "DENY_MISSING_AUTHORIZATION",
+    "DENY_UNSTRUCTURED_AUTHORIZATION",
+    "DENY_INVALID_STATUS",
+    "DENY_REVOKED",
+    "DENY_NOT_YET_VALID",
+    "DENY_EXPIRED",
+    "DENY_ALREADY_CONSUMED",
+    "DENY_TOOL_SCOPE_MISMATCH",
+    "DENY_TARGET_SCOPE_MISMATCH",
+    "DENY_SOURCE_BINDING_MISMATCH",
+    "DENY_SOURCE_HASH_MISMATCH",
+    "DENY_CONTENT_BINDING_MISMATCH",
+    "DENY_DERIVATION_MODE_MISMATCH",
+    "DENY_UNKNOWN_LINEAGE"
+  ],
+  "lifecycle": {
+    "decision_does_not_consume": true,
+    "consume_api": "record_effect(authorization_id, tool_name, tool_args, succeeded=True)",
+    "consume_only_after_successful_effect": true,
+    "denied_or_failed_effect_consumes": false,
+    "reset": "restore initial provenance, authorization, decision, and pending-allow state",
+    "snapshot_restore": "preserve provenance, authorization lifecycle, event counter, and pending allow"
+  },
+  "advancement": "Run the frozen deterministic matrix against PACKAGED_OPTIMAL and RESEARCH_OPTIMAL_PLUS before GPT integration.",
+  "created_utc": "2026-08-09T11:47:22.838899+00:00",
+  "parent_evidence": {
+    "report": "C:\\x_ai_logs\\UTA\\uta_deterministic_sandbox_optimal_context_boundary_matrix_v7_70C\\uta_deterministic_sandbox_optimal_context_boundary_matrix_v7_70C.json",
+    "report_sha256": "DCAB8EB9BD89FF26B4A31D158436C3A177130129A1550978A6645E8F0C4B9B38",
+    "manifest": "C:\\x_ai_logs\\UTA\\uta_deterministic_sandbox_optimal_context_boundary_matrix_v7_70C\\uta_deterministic_sandbox_optimal_context_boundary_matrix_v7_70C_manifest.json",
+    "manifest_sha256": "363CFA7EBD0322521D5585C8B359290E2DEAAA76C0FC4381C3EEBE0843AC703D",
+    "matrix_sha256": "6204B1DF6C1FD619868C012D3136ECFECC6DA0B3D29232B4EE3F54FBF6ABFB43",
+    "question_answers_verified": true,
+    "verified": true
+  },
+  "policy_sha256": "97B6FAC626C777A6AFDDCEB419DA78C6C477E7B3C5257F1D5E3373943553ABED"
+}

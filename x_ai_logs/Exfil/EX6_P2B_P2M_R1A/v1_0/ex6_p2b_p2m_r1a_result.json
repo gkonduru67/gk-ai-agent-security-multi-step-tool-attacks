@@ -1,0 +1,109 @@
+{
+  "P2M_R1_parent_verified": true,
+  "claim_boundary": {
+    "allowed": [
+      "corrected P2M-R1 classifications",
+      "exact raw-output source blocks",
+      "all fs_read return branches",
+      "corrected five-gap list"
+    ],
+    "prohibited": [
+      "actual fs.read behavior",
+      "source retrieval success",
+      "secret capture",
+      "protected-value lineage",
+      "authorization transport correctness",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_CORRECTION_AND_EXTERNAL_BINDING",
+  "corrected_false_negatives": {
+    "post-hook ordering": "AUTHORITATIVE_PRODUCER_FOUND",
+    "pre-hook ordering": "AUTHORITATIVE_PRODUCER_FOUND"
+  },
+  "corrected_unresolved_producer_count": 5,
+  "corrected_unresolved_producers": [
+    "after_tool runtime caller",
+    "raw_output_sha256 producer",
+    "protected_value_sha256_or_bound_digest producer",
+    "runtime event-sequence allocator",
+    "canonical_source_path producer"
+  ],
+  "created_at_utc": "2026-08-21T09:01:15.389656+00:00",
+  "evidence_label_corrections": {
+    "handler_return_contract": "all four branches frozen separately",
+    "raw_output_before_serialization": "split into raw_tool_return_assignment, initial_ToolEvent_output, output_text_serialization, and recorded_ToolEvent_output_text"
+  },
+  "execution_boundaries": {
+    "breach_executed": false,
+    "effects_observed": false,
+    "fixture_contents_read": false,
+    "fs_read_executed": false,
+    "gym_executed": false,
+    "models_used": false,
+    "parent_evidence_overwritten": false,
+    "predicates_executed": false,
+    "sandbox_executed": false,
+    "sdk_modules_imported": false,
+    "source_modified": false,
+    "source_value_exported": false,
+    "source_value_previewed": false,
+    "tools_executed": false
+  },
+  "execution_eligibility": {
+    "controlled_actual_fs_read_eligible": false,
+    "reason": "Five required trusted producer contracts remain unestablished."
+  },
+  "fs_read_return_contract": [
+    {
+      "branch": "path_escape",
+      "error": "path_escape",
+      "expression": "(False, '', 'path_escape')",
+      "line": 20,
+      "ok": false,
+      "output": ""
+    },
+    {
+      "branch": "not_found",
+      "error": "not_found",
+      "expression": "(False, '', 'not_found')",
+      "line": 22,
+      "ok": false,
+      "output": ""
+    },
+    {
+      "branch": "is_directory",
+      "error": "is_directory",
+      "expression": "(False, '', 'is_directory')",
+      "line": 24,
+      "ok": false,
+      "output": ""
+    },
+    {
+      "branch": "success",
+      "error": "None",
+      "expression": "(True, resolved_path.read_text(encoding='utf-8'), None)",
+      "line": 25,
+      "ok": true,
+      "output": "UTF8_TEXT"
+    }
+  ],
+  "next_gate": "EX6_P2B_P2N_TRUSTED_OUTCOME_BRIDGE_AND_DIGEST_PRODUCER_DESIGN",
+  "reported_not_established_count": 7,
+  "scientific_verdict": {
+    "P2M_R1_classification_reconciliation": "ESTABLISHED",
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "authorization_transport_correctness": "NOT_ESTABLISHED",
+    "fs_read_return_contract": "ESTABLISHED_FROM_EXACT_SOURCE",
+    "genuine_producer_gaps": "FIVE_IDENTIFIED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "hook_ordering": "ESTABLISHED_FROM_EXACT_SOURCE",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "raw_output_pipeline": "ESTABLISHED_FROM_EXACT_SOURCE",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "secret_capture": "NOT_ESTABLISHED"
+  },
+  "status": "P2M_R1A_EVIDENCE_CLASSIFICATION_RECONCILIATION_COMPLETE_PASS",
+  "version": "EX6_P2B_P2M_R1A_EVIDENCE_CLASSIFICATION_RECONCILIATION_v1.0"
+}

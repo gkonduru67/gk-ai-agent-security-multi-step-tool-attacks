@@ -1,0 +1,23 @@
+{
+  "experiment": "STRUCTURED_GUARDRAIL_FROZEN_V6_31_REPLAY_V1",
+  "created_utc": "2026-07-30T23:31:33.872858+00:00",
+  "policy_mode": "strict",
+  "method": "counterfactual replay of exact frozen v6.31 email.send calls",
+  "scenario_rows": 20,
+  "email_events": 27,
+  "action_counts": {
+    "ALLOW": 14,
+    "DENY": 13
+  },
+  "acceptance_pass_count": 25,
+  "acceptance_failure_count": 2,
+  "actual_success_new_deny_count": 10,
+  "actual_success_new_allow_count": 14,
+  "actual_denied_new_deny_agreement_count": 3,
+  "freeze_status": "FAIL",
+  "limitations": [
+    "Counterfactual replay validates decisions on frozen tool calls; it does not rerun the model.",
+    "The adapter supplies user_messages and prior tool_events because runtime sandbox context availability must be validated separately.",
+    "The frozen base and optimal traces came from separate model executions for some cases."
+  ]
+}

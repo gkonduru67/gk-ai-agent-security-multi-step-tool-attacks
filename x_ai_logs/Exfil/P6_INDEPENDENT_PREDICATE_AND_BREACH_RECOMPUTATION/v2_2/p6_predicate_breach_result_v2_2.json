@@ -1,0 +1,75 @@
+{
+  "tool_id": "P6_INDEPENDENT_PREDICATE_AND_BREACH_RECOMPUTATION",
+  "tool_version": "v2_2",
+  "gate": "P6_INDEPENDENT_PREDICATE_AND_BREACH_RECOMPUTATION",
+  "runtime": true,
+  "generated_utc": "2026-08-24T16:36:01.967215+00:00",
+  "phase": "EXFILTRATION",
+  "status": "RECOMPUTATION_INCOMPLETE",
+  "failure_reason": "EVAL_PREDICATES_CALL_FAILED",
+  "checks": {
+    "total": 11,
+    "passed": 10,
+    "failed": 1,
+    "failed_ids": [
+      "CALL[eval_predicates]"
+    ]
+  },
+  "checks_detail": [
+    {
+      "check_id": "IDENTITY[predicates]",
+      "passed": true,
+      "detail": "expected=9D9DE5118D88... observed=9D9DE5118D88..."
+    },
+    {
+      "check_id": "IMPORT[predicates]",
+      "passed": true,
+      "detail": "module executed (identity-verified file only)"
+    },
+    {
+      "check_id": "SYMBOL[official.eval_predicates]",
+      "passed": true,
+      "detail": "callable found"
+    },
+    {
+      "check_id": "SYMBOL[official.is_breach]",
+      "passed": true,
+      "detail": "callable found"
+    },
+    {
+      "check_id": "SYMBOL[lowlevel.is_protected_secret_path]",
+      "passed": true,
+      "detail": "callable found"
+    },
+    {
+      "check_id": "SYMBOL[lowlevel.payload_exfiltrates_secret]",
+      "passed": true,
+      "detail": "callable found"
+    },
+    {
+      "check_id": "SYMBOL[lowlevel.exfil_payload_arg]",
+      "passed": true,
+      "detail": "callable found"
+    },
+    {
+      "check_id": "IDENTITY[trace]",
+      "passed": true,
+      "detail": "expected=1342D75E958E... observed=1342D75E958E..."
+    },
+    {
+      "check_id": "PARSE[trace]",
+      "passed": true,
+      "detail": "parsed OK"
+    },
+    {
+      "check_id": "SCHEMA[trace.events]",
+      "passed": true,
+      "detail": "found under key='ordered_tool_events', 2 event(s)"
+    },
+    {
+      "check_id": "CALL[eval_predicates]",
+      "passed": false,
+      "detail": "RUNTIME_ERROR: KeyError: 'side_effect'\n--- traceback (last 6 frames) ---\nTraceback (most recent call last):\n  File \"C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\Exfil\\p6_independent_predicate_breach_recomputation_v2_2.py\", line 231, in run\n    official_predicates = module.eval_predicates(official_trace_view)\n  File \"C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\predicates.py\", line 232, in eval_predicates\n    if e[\"side_effect\"] in (\"EXEC\", \"SHARE\", \"WRITE\"):\n       ~^^^^^^^^^^^^^^^\nKeyError: 'side_effect'\n"
+    }
+  ]
+}

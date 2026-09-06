@@ -1,0 +1,48 @@
+usage: aicomp [-h] {init,validate,evaluate,test,compare,history,visualize} ...
+
+AI Agent Security Competition CLI - Tools for creating and testing submissions
+
+positional arguments:
+  {init,validate,evaluate,test,compare,history,visualize}
+                        Available commands
+    init                Create submission templates
+    validate            Validate submission file
+    evaluate            Run scorer-style evaluation and write artifacts
+    test                Run local dev evaluation and save history
+    compare             Compare evaluation results
+    history             Show evaluation history
+    visualize           Generate visualizations
+
+options:
+  -h, --help            show this help message and exit
+
+Examples:
+  Create attack template:
+    aicomp init attack
+
+  Create guardrail template:
+    aicomp init guardrail
+
+  Validate attack submission:
+    aicomp validate redteam attack.py
+
+  Run scorer-style evaluation and write artifacts:
+    aicomp evaluate redteam attack.py
+
+  Run local dual-track evaluation and save history:
+    aicomp test dual submission.zip
+
+  Show past results:
+    aicomp history
+
+  Compare two runs:
+    aicomp compare run1 run2
+
+  Generate charts:
+    aicomp visualize latest
+
+For more help on a command: aicomp <command> --help
+
+Command choice:
+  Use `aicomp evaluate` for scorer-style runs and stable machine-readable artifacts.
+  Use `aicomp test` for local iteration with saved history, compare, and visualize.

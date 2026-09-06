@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "api_interact_declared": true,
+    "guardrail_decide_declared": true,
+    "guardrail_restore_declared": true,
+    "guardrail_snapshot_declared": true,
+    "literal_after_tool_in_sdk": false,
+    "literal_before_decide_in_sdk": false,
+    "sandbox_guardrail_restore_helper": true,
+    "sandbox_guardrail_snapshot_helper": true,
+    "sandbox_interact_declared": true
+  },
+  "conclusion": "WRAPPER_LIFECYCLE_STATICALLY_AVAILABLE_BUT_TRUSTED_CHANNEL_RUNTIME_INTEGRATION_NOT_ESTABLISHED",
+  "implementation_boundary": "Adapter source will expose explicit trusted before_decide and after_tool methods plus GuardrailBase-compatible decide/snapshot_state/restore_state. No claim is made that current Sandbox invokes the new trusted methods.",
+  "sandbox_modification_plan": "NONE_IN_P2_SOURCE_CREATION; integration adapter/harness changes require a later separately frozen gate if static SDK calls do not expose trusted channels."
+}

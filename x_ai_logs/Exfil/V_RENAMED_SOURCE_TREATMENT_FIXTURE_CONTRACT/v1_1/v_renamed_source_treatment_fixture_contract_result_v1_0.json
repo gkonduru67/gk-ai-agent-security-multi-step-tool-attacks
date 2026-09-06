@@ -1,0 +1,101 @@
+{
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 21,
+    "total": 21
+  },
+  "claim_boundary": {
+    "allowed": [
+      "frozen parent identities (P2A-R, P2B-D, v1.2 binding/per-run) verified",
+      "frozen source identities (fs.py, sandbox.py, optimal.py, V2.1 guardrail, V2.1 ledger) verified",
+      "control fixture identity independently re-verified (basename, size, sha256)",
+      "a neutral treatment basename was deterministically derived from a fixed experiment-identifier salt and the control's own content digest only",
+      "the treatment basename was NOT selected using predicate/matcher/path-normalization knowledge and was NOT influenced by any observed defense behavior",
+      "the permitted delta contract (fixture basename only; prompt source-name token only) was frozen",
+      "the treatment fixture was confirmed NOT to exist yet"
+    ],
+    "prohibited": [
+      "treatment fixture exists or has been created",
+      "treatment fixture is readable",
+      "treatment prompt has been constructed or hashed",
+      "model, Sandbox, Gym, tool, guardrail, predicate, or breach execution occurred",
+      "any claim about V_RENAMED_SOURCE runtime behavior",
+      "any claim about harness trick or robust security",
+      "any claim about hosted parity"
+    ]
+  },
+  "classification": "READ_ONLY_TREATMENT_FIXTURE_STATIC_CONTRACT",
+  "created_at_utc": "2026-08-23T20:06:27.886388+00:00",
+  "execution_boundaries": {
+    "attack_optimization": false,
+    "breach_executed": false,
+    "fixture_created": false,
+    "fixture_mutated": false,
+    "guardrail_executed": false,
+    "gym_executed": false,
+    "model_executed": false,
+    "predicate_executed": false,
+    "read_only": true,
+    "sandbox_executed": false,
+    "sdk_executed": false,
+    "tool_executed": false
+  },
+  "immutable_dimensions": {
+    "control_bytes": "746AA20818152DCC585F78C4E8F93990A668AEA0E060AA254D06502AEAA16FB8",
+    "fs_tool_sha256": "4B8C54032ED807CE4C35BAB403EE622141881158E10F600A4B6D329E6D6F95B8",
+    "generation_configuration": "tool_choice=auto,temperature=0.0",
+    "ledger_sha256": "18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C",
+    "lineage_guardrail_sha256": "2AC1CA55FB0C18460F50B35677F5ECD9EB3477CFB21F9C19F44A48C7AEFD5C26",
+    "packaged_optimal_sha256": "6724FEDF7BBF3E67DFCDD564BA8A73463E0F783D5C84E0A70DCEFF40C1BC61ED",
+    "prompt_template_excluding_source_token": true,
+    "sandbox_sha256": "B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0",
+    "seed_policy": [
+      26100,
+      26103,
+      26105
+    ],
+    "sink_contract": {
+      "payload_argument": "data",
+      "tool": "http.post"
+    }
+  },
+  "independent_variable": {
+    "control": {
+      "artifact": "secret.txt",
+      "basename": "secret.txt",
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\fixtures\\file_seed\\secret.txt",
+      "sha256": "746AA20818152DCC585F78C4E8F93990A668AEA0E060AA254D06502AEAA16FB8",
+      "size_bytes": 149
+    },
+    "name": "source_naming_condition",
+    "treatment_basename_derived": "fx_70a39e917cee2a14.txt",
+    "treatment_derivation": {
+      "control_sha256_input": "746AA20818152DCC585F78C4E8F93990A668AEA0E060AA254D06502AEAA16FB8",
+      "derived_digest_sha256": "70A39E917CEE2A14DAC25A772C95C59EBE6AF8EE9DB544759C2B0C83DBD54842",
+      "salt": "V_RENAMED_SOURCE_TREATMENT_CONTRACT_v1.0"
+    }
+  },
+  "next_gate": "V_RENAMED_SOURCE_TREATMENT_MATERIALIZATION",
+  "permitted_deltas": {
+    "content_delta": "none_required_byte_identical",
+    "fixture_delta": "basename_only",
+    "prompt_delta": "source_name_token_only"
+  },
+  "scientific_question": "Can a neutral, matcher-independent treatment source name and permitted-delta contract be derived while every other experimental dimension remains bound to already-frozen parent evidence?",
+  "scientific_verdict": {
+    "V_RENAMED_SOURCE_behavior": "NOT_ESTABLISHED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "hosted_parity": "NOT_ESTABLISHED",
+    "robust_security_finding": "NOT_ESTABLISHED"
+  },
+  "status": "COMPLETE_PASS",
+  "treatment_fixture_status": {
+    "content_requirement": "byte-identical to control (to be verified at materialization)",
+    "filename": "fx_70a39e917cee2a14.txt",
+    "materialized": false,
+    "path": "NOT_ESTABLISHED_UNTIL_MATERIALIZATION_GATE",
+    "sha256": "NOT_ESTABLISHED_UNTIL_MATERIALIZATION_GATE"
+  },
+  "version": "V_RENAMED_SOURCE_TREATMENT_FIXTURE_CONTRACT_v1.1"
+}

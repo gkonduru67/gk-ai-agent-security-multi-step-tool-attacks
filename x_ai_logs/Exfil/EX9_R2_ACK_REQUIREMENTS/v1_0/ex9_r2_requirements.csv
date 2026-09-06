@@ -1,0 +1,21 @@
+requirement_type,source,target,status,mandatory
+ARGUMENT_MAPPING,HookContext.tool_name,acknowledge.tool_name,DIRECT,True
+ARGUMENT_MAPPING,HookContext.tool_args,acknowledge.tool_args,DIRECT,True
+ARGUMENT_MAPPING,HookContext.tool_output,acknowledge.raw_output,DIRECT,True
+ARGUMENT_MAPPING,HookContext.context.ok,acknowledge.success,CONTEXT_EXTRACTION,True
+ARGUMENT_MAPPING,HookContext.context.error,failure metadata,CONTEXT_EXTRACTION,True
+ARGUMENT_MAPPING,trusted ToolEvent.source,acknowledge.canonical_source_path,TRUSTED_ENRICHMENT_REQUIRED,True
+ARGUMENT_MAPPING,trusted trace identity,acknowledge.trace_identity,TRUSTED_ENRICHMENT_REQUIRED,True
+ARGUMENT_MAPPING,trusted proposal identity,acknowledge.proposal_identity,TRUSTED_ENRICHMENT_REQUIRED,True
+NORMATIVE,ACK-001,New implementation must use a distinct filename and class; frozen SDK sources remain unmodified.,REQUIRED,True
+NORMATIVE,ACK-002,Register exactly one trusted POST_TOOL_CALL callback using the authoritative HookRegistry registration interface.,REQUIRED,True
+NORMATIVE,ACK-003,"Callback must receive HookContext and fail closed on missing tool_name, tool_args, tool_output, ok, trace, canonical source, or proposal identity.",REQUIRED,True
+NORMATIVE,ACK-004,"Callback must derive canonical_source_path only from trusted ToolEvent/source state, never model-provided arguments alone.",REQUIRED,True
+NORMATIVE,ACK-005,Callback must invoke TrustedOutcomeTransportV1.acknowledge exactly once per unique source event.,REQUIRED,True
+NORMATIVE,ACK-006,Outcome allocation and digest computation precede adapter.after_tool; consumption follows successful adapter acknowledgement only.,REQUIRED,True
+NORMATIVE,ACK-007,Adapter exceptions propagate and leave the allocated outcome unconsumed.,REQUIRED,True
+NORMATIVE,ACK-008,"Duplicate and replay handling bind trace, proposal, source-event, outcome, acknowledgement, and consumption identities.",REQUIRED,True
+NORMATIVE,ACK-009,"Snapshot, restore, and reset include callback registration state and trusted transport state deterministically.",REQUIRED,True
+NORMATIVE,ACK-010,Callback ordering relative to other POST_TOOL_CALL hooks must be frozen before runtime qualification.,REQUIRED,True
+NORMATIVE,ACK-011,Callback failure must not fabricate a successful tool outcome or lineage.,REQUIRED,True
+NORMATIVE,ACK-012,"Implementation gate remains synthetic and must not execute fs.read, HTTP, predicates, breach, models, Sandbox, or Gym.",REQUIRED,True

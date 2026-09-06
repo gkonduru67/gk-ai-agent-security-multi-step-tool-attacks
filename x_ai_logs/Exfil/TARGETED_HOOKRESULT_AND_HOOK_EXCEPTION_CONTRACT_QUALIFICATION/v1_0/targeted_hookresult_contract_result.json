@@ -1,0 +1,158 @@
+{
+  "HookContext": {
+    "should_block_field_present": true,
+    "signature": "(stage: 'HookStage', tool_name: 'str | None' = None, tool_args: 'dict[str, Any] | None' = None, tool_output: 'str | None' = None, guardrail_decision: 'Any | None' = None, trace: 'Any | None' = None, context: 'dict[str, Any]' = <factory>, metadata: 'dict[str, Any]' = <factory>, hook_state: 'dict[str, Any]' = <factory>, modified_args: 'dict[str, Any] | None' = None, modified_output: 'str | None' = None, injected_content: 'str | None' = None, should_block: 'bool' = False) -> None"
+  },
+  "HookResult": {
+    "blocking_field_present": false,
+    "fields": [
+      {
+        "annotation": "bool",
+        "default": "True",
+        "name": "continue_execution"
+      },
+      {
+        "annotation": "HookContext | None",
+        "default": "None",
+        "name": "modified_context"
+      },
+      {
+        "annotation": "bool",
+        "default": "False",
+        "name": "payload_detected"
+      },
+      {
+        "annotation": "dict[str, Any]",
+        "default": "field(default_factory=dict)",
+        "name": "metadata"
+      }
+    ],
+    "signature": "(continue_execution: 'bool' = True, modified_context: 'HookContext | None' = None, payload_detected: 'bool' = False, metadata: 'dict[str, Any]' = <factory>) -> None"
+  },
+  "V2_1_incompatible_calls": [
+    {
+      "keywords": {
+        "metadata": "{'reason': 'EXFIL_V21_MALFORMED_READ_ARGS'}",
+        "should_block": "True"
+      },
+      "line": 15
+    },
+    {
+      "keywords": {
+        "metadata": "{'reason': 'EXFIL_V21_MALFORMED_READ_OUTPUT'}",
+        "should_block": "True"
+      },
+      "line": 19
+    }
+  ],
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 24,
+    "total": 24
+  },
+  "claim_boundary": {
+    "allowed": [
+      "HookResult exact fields and constructor contract established",
+      "should_block belongs to HookContext",
+      "registry modified_context merge behavior established",
+      "registry exception swallowing and continue behavior established",
+      "PRE_TOOL_CALL blocking path established",
+      "POST_TOOL_CALL blocking not consumed by Sandbox",
+      "two incompatible V2.1 hook calls established"
+    ],
+    "prohibited": [
+      "modify V2.1",
+      "claim TypeError is a deny",
+      "claim unchanged ledger proves blocking",
+      "claim POST_TOOL_CALL can prevent an already executed read",
+      "claim hook registry integration was tested in Sandbox",
+      "HTTP",
+      "guardrail effectiveness",
+      "predicate or breach",
+      "robust end-to-end security findings"
+    ]
+  },
+  "controlled_constructor": {
+    "context_should_block_after_registry": true,
+    "invalid_should_block": {
+      "message": "HookResult.__init__() got an unexpected keyword argument 'should_block'",
+      "raised": true,
+      "type": "TypeError"
+    },
+    "result_count": 1,
+    "valid_result": {
+      "continue_execution": false,
+      "has_modified_context": true,
+      "metadata": {
+        "reason": "CONTROL"
+      }
+    }
+  },
+  "controlled_exception": {
+    "context_should_block": false,
+    "continue_execution": true,
+    "metadata": {
+      "error": "CONTROLLED_HOOK_EXCEPTION"
+    },
+    "raised_to_caller": false,
+    "result_count": 1
+  },
+  "created_at_utc": "2026-08-22T17:01:04.444899+00:00",
+  "execution_boundaries": {
+    "HTTP_executed": false,
+    "SDK_modified": false,
+    "Sandbox_instantiated": false,
+    "V2_1_modified": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "guardrail_executed": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "threads_executed": false,
+    "tools_executed": false
+  },
+  "next_gate": "V2_2_HOOK_MALFORMED_INPUT_FAIL_CLOSED_DESIGN_REVIEW",
+  "outcome": "HOOKRESULT_BLOCKING_NOT_SUPPORTED_AT_POST_TOOL_CALL",
+  "post_tool_semantics": {
+    "injected_content_consumed": true,
+    "modified_output_consumed": true,
+    "tool_event_retains_error": true,
+    "tool_event_retains_original_ok": true
+  },
+  "registry_contract": {
+    "appends_callback_result": true,
+    "applies_modified_context": true,
+    "breaks_on_continue_false": true,
+    "catches_exception": true,
+    "exception_continues": true,
+    "exception_metadata": true
+  },
+  "repair_path": {
+    "V2_1_modification": "PROHIBITED",
+    "V2_2_required": true,
+    "exception_policy": "registry swallows callback exceptions into metadata and continues execution",
+    "post_tool_blocking": "NOT_SUPPORTED_BY_SANDBOX_CONTROL_FLOW",
+    "post_tool_malformed_policy": "must not be mislabeled as preventing the already executed read",
+    "recommended_design": "move argument validation to PRE_TOOL_CALL for prevention; keep POST_TOOL_CALL as observation/capture and return a valid HookResult without should_block",
+    "supported_pre_tool_blocking": "HookResult(continue_execution=False, modified_context=HookContext(..., should_block=True))"
+  },
+  "sandbox_positions": {
+    "post_block_check": -1,
+    "post_execute": 6436,
+    "pre_block_check": 3809,
+    "pre_execute": 3369,
+    "tool_call": 5935
+  },
+  "scientific_verdict": {
+    "harness_trick": "NOT_DEMONSTRATED",
+    "hook_exception_policy": "SWALLOWED_TO_ERROR_METADATA_AND_CONTINUE",
+    "hookresult_contract_gap": "ESTABLISHED",
+    "positive_v1_4_source_to_ledger_lineage": "PRESERVED",
+    "post_tool_blocking": "NOT_SUPPORTED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "TARGETED_HOOKRESULT_AND_HOOK_EXCEPTION_CONTRACT_QUALIFICATION_COMPLETE_PASS",
+  "version": "TARGETED_HOOKRESULT_AND_HOOK_EXCEPTION_CONTRACT_QUALIFICATION_v1.0"
+}

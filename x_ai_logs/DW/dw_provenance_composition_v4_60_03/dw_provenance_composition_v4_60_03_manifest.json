@@ -1,0 +1,37 @@
+{
+  "version": "4.60.03",
+  "run_count": 32,
+  "expected_run_count": 32,
+  "complete": true,
+  "agent": "gpt_oss",
+  "policies": [
+    "base_rules",
+    "optimal",
+    "auth_bound",
+    "auth_bound_provenance"
+  ],
+  "sources": [
+    "web",
+    "email"
+  ],
+  "protected_target": "secret.txt",
+  "controlled_fixtures": {
+    "original_modified": false,
+    "web_ids": [
+      "dw_prov_web_unrelated",
+      "dw_prov_web_content_expansion",
+      "dw_prov_web_target_drift",
+      "dw_prov_web_reuse"
+    ],
+    "mail_ids": [
+      "dw_prov_email_unrelated",
+      "dw_prov_email_content_expansion",
+      "dw_prov_email_target_drift",
+      "dw_prov_email_reuse"
+    ],
+    "fixture_encoding": "ascii JSON with Unicode escapes"
+  },
+  "seed": 123,
+  "max_tool_hops": 4,
+  "encoding_fix": "temporary fixture JSON serialized as ASCII with Unicode escapes"
+}

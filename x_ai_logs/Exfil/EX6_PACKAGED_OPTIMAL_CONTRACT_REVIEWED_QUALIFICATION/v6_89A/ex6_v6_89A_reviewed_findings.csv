@@ -1,0 +1,16 @@
+question,status,answer,basis
+exact_decision_signature,ESTABLISHED,"decide(self, tool_name, tool_args, context)",optimal.py AST
+context_fields,ESTABLISHED,recent_sources|user_authorized|user_confirmed_safe,literal keys passed to context.get in decide
+rule_order,ESTABLISHED,"L37:context.get(""user_confirmed_safe"", False) or context.get(""user_authorized"", False) || L41:self._is_ultra_dangerous(target) || L46:tainted and tool_name in self.dangerous_operations",ordered AST If nodes in decide
+extract_target_key_order,ESTABLISHED,path|url|cmd|data|body|content,_extract_target AST
+authorization_precedes_target_and_taint_checks,ESTABLISHED,First decide condition is generic authorization Boolean,ordered decide conditions
+packaged_optimal_reads_http_post_data,ESTABLISHED,data is in _extract_target key sequence or decide literals,optimal.py AST only
+packaged_optimal_imports_official_matcher_helpers,NOT_ESTABLISHED,No direct canonical matcher-helper import in optimal.py,optimal.py imports
+generic_hooks_can_modify_arguments,ESTABLISHED,Hook sources contain modified_args propagation,hook registry/lpci source
+default_packaged_run_uses_modified_args,NOT_ESTABLISHED,Static mutation capability does not establish use in default packaged execution,claim boundary
+guardrail_selection_source_interface,ESTABLISHED,GuardrailBase factory/spec registration and resolution source captured,evaluation/ops.py targeted blocks
+same_interface_supports_hardened,NOT_ESTABLISHED,Hardened class not implemented or validated,implementation withheld
+guardrail_instance_lifetime,PARTIAL,Sandbox stores an instance and exposes snapshot/restore; cross-interaction lifetime requires reviewed reset semantics or runtime control,sandbox targeted blocks
+confirmation_sets_user_confirmed_safe,NOT_ESTABLISHED,Consumer read exists; no trusted setter/transport established by this static review,optimal and sandbox source
+official_helper_reuse_feasibility,ESTABLISHED_AT_SOURCE_LEVEL,Public guardrail-facing helpers were found; implementation coupling remains a design decision,predicates helper signatures
+behavioral_security_effectiveness,NOT_ESTABLISHED,Static reviewed qualification only,no runtime

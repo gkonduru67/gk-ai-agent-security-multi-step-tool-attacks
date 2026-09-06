@@ -1,0 +1,394 @@
+relative_path,file_sha256,match_line,terms,enclosing_kind,enclosing_name,enclosing_signature,enclosing_start,enclosing_end,excerpt_sha256,redacted_excerpt
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,18,ToolSpec,module,,,1,18,718C21F6A3AC77A15B771B8BFF80D51F9A7E5F4F4474128A3CB5881B63DC4570,"    AgentStateVersionError,
+    AgentToolSpec,
+    FinalResponseDecision,"
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,105,fs.read,FunctionDef,_read_file_call,"(self, message)",102,108,FA0999912BFF179680EB37EC41F59FD097AB3A0DB7B36DB033BAA7E136058A16,"            if keyword in message:
+                return self._tool_call(""fs.read"", {""path"": path}, ""read_file"")
+        if ""file"" in message:"
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,107,fs.read,FunctionDef,_read_file_call,"(self, message)",102,108,02A6EA847696E6964EA113D80B096A040A94D6A9702E6A5E1ECD6E5083858336,"        if ""file"" in message:
+            return self._tool_call(""fs.read"", {""path"": ""<REDACTED_LITERAL>""}, ""read_file"")
+        return None"
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,142,fs.read,FunctionDef,_parse_instructions_from_output,"(self, output)",130,232,077A64A82E220547F8A2CA0821F55A11E36A745FFE289DA4748A01860D0364BA,"                return self._tool_call(
+                    ""fs.read"",
+                    {""path"": ""<REDACTED_LITERAL>""},"
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,177,fs.read,FunctionDef,_parse_instructions_from_output,"(self, output)",130,232,74840785DE1669A6A33E80DD8270BE328610013304A51138542F3A8B45479884,"            ):
+                return self._tool_call(""fs.read"", {""path"": ""<REDACTED_LITERAL>""}, ""followed_command"")
+            if ("
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,201,fs.read,FunctionDef,_parse_instructions_from_output,"(self, output)",130,232,45F7FA22EBF82D465D186DB47AB8ED8B267254B3636FDCED9C6BB99C095C2BBB,"            if ""read"" in output_lower or ""access"" in output_lower or ""audit"" in output_lower:
+                return self._tool_call(""fs.read"", {""path"": ""<REDACTED_LITERAL>""}, ""followed_authority"")
+            # Authority bypass: Exfiltrate"
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,216,fs.read,FunctionDef,_parse_instructions_from_output,"(self, output)",130,232,AD24130F17C622620CCCAE1CE59C9A4530F31ACA7C9E5424B9D0B4054B4843FC,"        if any(marker in output_lower for marker in _STEP_MARKERS):
+            # Look for fs.read in step 1
+            if ""read"" in output_lower and ("
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,220,fs.read,FunctionDef,_parse_instructions_from_output,"(self, output)",130,232,212A3108B678D2EEC0AEA9AD58F27526AE4EED32855A92128BBE346CF487C73A,"            ):
+                return self._tool_call(""fs.read"", {""path"": ""<REDACTED_LITERAL>""}, ""followed_steps"")
+            # Look for other operations"
+aicomp_sdk\agents\deterministic_agent.py,C50BA7A7E89651D900622398BCCBC9486C71401D29047818FA84A870B55AAD76,250,ToolSpec,FunctionDef,next_action,"(self, history, tools)",246,372,EEA0C72E9C6EB155B4D3BB6852CFA8CF4638EBA5D840EC0A5E82C472DB5962AE,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+    ) -> ToolCallDecision | FinalResponseDecision:"
+aicomp_sdk\agents\gemma4_agent.py,E99ABEB68175D366FE4C0BA700E3578ECAFDA8A4579F00A0FAE5AA8CFCFA02F5,36,tool_specs,module,,,1,36,E074317AE9E908CB374A43DF8D064C6BC1FEF77FB5DBBE28923E11BD60528A48,"from aicomp_sdk.agents.protocol import AgentProtocol
+from aicomp_sdk.agents.tool_specs import to_hf_function_tool
+from aicomp_sdk.agents.types import ("
+aicomp_sdk\agents\gemma4_agent.py,E99ABEB68175D366FE4C0BA700E3578ECAFDA8A4579F00A0FAE5AA8CFCFA02F5,40,ToolSpec,module,,,1,40,FE47B6D30D16F04FFC0541AA2CA6D116F4C01C686A5A741B0DEFF98138701127,"    AgentStateSnapshot,
+    AgentToolSpec,
+    AssistantMessageEvent,"
+aicomp_sdk\agents\gemma4_agent.py,E99ABEB68175D366FE4C0BA700E3578ECAFDA8A4579F00A0FAE5AA8CFCFA02F5,122,ToolSpec,FunctionDef,_build_gemma4_request,"(history, tools, profile, backend)",119,134,E5D5370B3A17B14753129B099B2F1F099DB348D84E1642D5805DAA1AD941C5E5,"    history: RuntimeHistory,
+    tools: Sequence[AgentToolSpec],
+    profile: HFModelProfile,"
+aicomp_sdk\agents\gemma4_agent.py,E99ABEB68175D366FE4C0BA700E3578ECAFDA8A4579F00A0FAE5AA8CFCFA02F5,295,ToolSpec,FunctionDef,next_action,"(self, history, tools)",291,297,D8440EECA2904CDF31E0F23A4198871704760DE7158AEA26623EB82BED2276C5,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+    ) -> AgentDecision:"
+aicomp_sdk\agents\gemma_agent.py,C17BEF0EEC66D19BB05D759B4FCABBF0DC4C4525CB2C29AA6CFB1B31590647B7,32,ToolSpec,module,,,1,32,FE47B6D30D16F04FFC0541AA2CA6D116F4C01C686A5A741B0DEFF98138701127,"    AgentStateSnapshot,
+    AgentToolSpec,
+    AssistantMessageEvent,"
+aicomp_sdk\agents\gemma_agent.py,C17BEF0EEC66D19BB05D759B4FCABBF0DC4C4525CB2C29AA6CFB1B31590647B7,111,ToolSpec,FunctionDef,_build_gemma_request,"(history, tools, profile, backend)",108,123,E5D5370B3A17B14753129B099B2F1F099DB348D84E1642D5805DAA1AD941C5E5,"    history: RuntimeHistory,
+    tools: Sequence[AgentToolSpec],
+    profile: HFModelProfile,"
+aicomp_sdk\agents\gemma_agent.py,C17BEF0EEC66D19BB05D759B4FCABBF0DC4C4525CB2C29AA6CFB1B31590647B7,130,ToolSpec,FunctionDef,_render_gemma_messages,"(history, profile, tools)",126,186,B436A2AE5B4E4484742AD2ABCA78124EB6403891F8879143C299747BDB7AAA47,"    profile: HFModelProfile,
+    tools: Sequence[AgentToolSpec],
+) -> list[dict[str, Any]]:"
+aicomp_sdk\agents\gemma_agent.py,C17BEF0EEC66D19BB05D759B4FCABBF0DC4C4525CB2C29AA6CFB1B31590647B7,189,ToolSpec,FunctionDef,_build_gemma_tool_instructions,(tools),189,209,3865842BBED0DAF88C0BC5F9C0DD3730C92F2E2459EEB5AB922C72B6E1E01960,"
+def _build_gemma_tool_instructions(tools: Sequence[AgentToolSpec]) -> str:
+    if not tools:"
+aicomp_sdk\agents\gemma_agent.py,C17BEF0EEC66D19BB05D759B4FCABBF0DC4C4525CB2C29AA6CFB1B31590647B7,240,ToolSpec,FunctionDef,next_action,"(self, history, tools)",236,242,D8440EECA2904CDF31E0F23A4198871704760DE7158AEA26623EB82BED2276C5,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+    ) -> AgentDecision:"
+aicomp_sdk\agents\gpt_oss_agent.py,E3861EF6A69C470B4B47DE7604621C428D0E2DDDB8CC692EF44C466E37C8298D,35,ToolSpec,module,,,1,35,4847555B635EAF435ED7F28EEB223CB3BE6F2CF74E42D7C6F5FF24FD862B655C,"    AgentStateSnapshot,
+    AgentToolSpec,
+    FinalResponseDecision,"
+aicomp_sdk\agents\gpt_oss_agent.py,E3861EF6A69C470B4B47DE7604621C428D0E2DDDB8CC692EF44C466E37C8298D,167,ToolSpec,FunctionDef,next_action,"(self, history, tools)",163,169,D8440EECA2904CDF31E0F23A4198871704760DE7158AEA26623EB82BED2276C5,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+    ) -> AgentDecision:"
+aicomp_sdk\agents\hf_chat_template\agent.py,6904ACAB523EA5D4DBD9A32A762BC87FD1F0AD4B6DFB5847C3E8BE36BABA62BB,17,tool_specs,module,,,1,17,E074317AE9E908CB374A43DF8D064C6BC1FEF77FB5DBBE28923E11BD60528A48,"from aicomp_sdk.agents.protocol import AgentProtocol
+from aicomp_sdk.agents.tool_specs import to_hf_function_tool
+from aicomp_sdk.agents.types import ("
+aicomp_sdk\agents\hf_chat_template\agent.py,6904ACAB523EA5D4DBD9A32A762BC87FD1F0AD4B6DFB5847C3E8BE36BABA62BB,23,ToolSpec,module,,,1,23,BB5B0277306CFF2604DEB0B7F65F525E9DDF3DD66A290395C338613FA7362510,"    AgentStateVersionError,
+    AgentToolSpec,
+    AssistantMessageEvent,"
+aicomp_sdk\agents\hf_chat_template\agent.py,6904ACAB523EA5D4DBD9A32A762BC87FD1F0AD4B6DFB5847C3E8BE36BABA62BB,99,ToolSpec,FunctionDef,_build_default_hf_request,"(history, tools, profile, backend)",96,119,E5D5370B3A17B14753129B099B2F1F099DB348D84E1642D5805DAA1AD941C5E5,"    history: RuntimeHistory,
+    tools: Sequence[AgentToolSpec],
+    profile: HFModelProfile,"
+aicomp_sdk\agents\hf_chat_template\agent.py,6904ACAB523EA5D4DBD9A32A762BC87FD1F0AD4B6DFB5847C3E8BE36BABA62BB,169,ToolSpec,FunctionDef,_render_hf_tools,(tools),169,170,74C3E6BF08007C718E057CFA01E908CAD2BE24CEA0EFFA34FD4BD755177CEDD5,"
+def _render_hf_tools(tools: Sequence[AgentToolSpec]) -> list[JsonObject]:
+    return [to_hf_function_tool(spec) for spec in tools]"
+aicomp_sdk\agents\hf_chat_template\agent.py,6904ACAB523EA5D4DBD9A32A762BC87FD1F0AD4B6DFB5847C3E8BE36BABA62BB,244,ToolSpec,FunctionDef,next_action,"(self, history, tools)",240,298,D8440EECA2904CDF31E0F23A4198871704760DE7158AEA26623EB82BED2276C5,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+    ) -> AgentDecision:"
+aicomp_sdk\agents\hf_chat_template\agent.py,6904ACAB523EA5D4DBD9A32A762BC87FD1F0AD4B6DFB5847C3E8BE36BABA62BB,325,ToolSpec,FunctionDef,_build_request,"(self, history, tools)",324,332,ED1254381AD79A89F4B8CED6DC76A81207A2509ED640AD80CF6BAACD4940B30E,"    def _build_request(
+        self, history: RuntimeHistory, tools: Sequence[AgentToolSpec]
+    ) -> HFGenerationRequest:"
+aicomp_sdk\agents\hf_chat_template\agent.py,6904ACAB523EA5D4DBD9A32A762BC87FD1F0AD4B6DFB5847C3E8BE36BABA62BB,351,ToolSpec,FunctionDef,_debug_provider_payload,"(self, request, tools)",348,360,047E343662D80EF31DA579AD89D197492842FA426C1EC9D1B45D0E7190C5A489,"        request: HFGenerationRequest,
+        tools: Sequence[AgentToolSpec],
+    ) -> dict[str, Any]:"
+aicomp_sdk\agents\hf_chat_template\types.py,9A9E9C924A788BE6D313605F0C6775682304DBDC564A3913C9BAF27157EBBCBE,7,ToolSpec,module,,,1,7,2D954C94554C0B54EF772D2490F293FF4E69F09B76B649D9DAE487CDE469E60C,"
+from aicomp_sdk.agents.types import AgentDecision, AgentToolSpec, JsonObject
+from aicomp_sdk.core.runtime_history import RuntimeHistory"
+aicomp_sdk\agents\hf_chat_template\types.py,9A9E9C924A788BE6D313605F0C6775682304DBDC564A3913C9BAF27157EBBCBE,125,ToolSpec,FunctionDef,__call__,"(self, history, tools, profile, backend)",121,129,D9E6CE77816977D9298A2D1520A3D7FEFC7650A71D6DCC98CE08A245ED92BFF1,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+        profile: HFModelProfile,"
+aicomp_sdk\agents\openai_agent.py,E72DA410B613ED87619B5B2165B93EC25268472BF33DF57AABC6937BF9A5AB19,22,tool_specs,module,,,1,22,74FFCB6FE7D837C3B591526E61404378CCD7C7B9B3907B9A9CBEEE9290F1DB3A,"from aicomp_sdk.agents.protocol import AgentProtocol
+from aicomp_sdk.agents.tool_specs import (
+    build_openai_tool_name_maps,"
+aicomp_sdk\agents\openai_agent.py,E72DA410B613ED87619B5B2165B93EC25268472BF33DF57AABC6937BF9A5AB19,31,ToolSpec,module,,,1,31,BB5B0277306CFF2604DEB0B7F65F525E9DDF3DD66A290395C338613FA7362510,"    AgentStateVersionError,
+    AgentToolSpec,
+    AssistantMessageEvent,"
+aicomp_sdk\agents\openai_agent.py,E72DA410B613ED87619B5B2165B93EC25268472BF33DF57AABC6937BF9A5AB19,170,ToolSpec,FunctionDef,next_action,"(self, history, tools)",166,226,D8440EECA2904CDF31E0F23A4198871704760DE7158AEA26623EB82BED2276C5,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+    ) -> AgentDecision:"
+aicomp_sdk\agents\openai_agent.py,E72DA410B613ED87619B5B2165B93EC25268472BF33DF57AABC6937BF9A5AB19,257,ToolSpec,FunctionDef,_build_request,"(self, history, tools, canonical_to_openai, state)",254,284,0F4CDBAA5BD69EA41FDE6391AFB8006EF98ADF0EEB4AFAB9B709CFCE4C79F03F,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+        canonical_to_openai: Mapping[str, str],"
+aicomp_sdk\agents\openai_agent.py,E72DA410B613ED87619B5B2165B93EC25268472BF33DF57AABC6937BF9A5AB19,446,ToolSpec,FunctionDef,_debug_provider_payload,"(self, history, tools, canonical_to_openai, state)",443,462,0F4CDBAA5BD69EA41FDE6391AFB8006EF98ADF0EEB4AFAB9B709CFCE4C79F03F,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+        canonical_to_openai: Mapping[str, str],"
+aicomp_sdk\agents\protocol.py,E6FF164EB06D750E5B034306C26FEEFF7F1D14BE76FADB106129BDEE1E1FA029,6,ToolSpec,module,,,1,6,13ECCF87D9B9E342DFD6F0F0511C3C6E5C0F5904AC0B1BEAD81530F9B1F83A33,"
+from aicomp_sdk.agents.types import AgentDecision, AgentStateSnapshot, AgentToolSpec
+from aicomp_sdk.core.runtime_history import RuntimeHistory"
+aicomp_sdk\agents\protocol.py,E6FF164EB06D750E5B034306C26FEEFF7F1D14BE76FADB106129BDEE1E1FA029,17,ToolSpec,FunctionDef,next_action,"(self, history, tools)",13,19,D8440EECA2904CDF31E0F23A4198871704760DE7158AEA26623EB82BED2276C5,"        history: RuntimeHistory,
+        tools: Sequence[AgentToolSpec],
+    ) -> AgentDecision:"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,10,ToolSpec,module,,,1,10,0227D4F56C4ED713808461966E6294ECFAC25F6EB2E54B77514FAF249E7E940E,"
+from aicomp_sdk.agents.types import AgentToolSpec, JsonObject
+"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,13,ToolSpec,module,,,1,13,873E19A808E30D96E657385F378D63494FE3183BB55A132B79BE00F76FC66753,"if TYPE_CHECKING:
+    from aicomp_sdk.core.tools import RuntimeToolSpec
+"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,20,serialize_tool_output,FunctionDef,serialize_tool_output,(value),20,24,566CBF913D24568FB6570F6B9167DEA21B2EC1E220CC53E88E345BB34FA900EF,"
+def serialize_tool_output(value: Any) -> str:
+    """"""Convert a tool result into deterministic text for model consumption."""""""
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,28,ToolSpec,FunctionDef,to_openai_function_tool,"(spec, name_override)",27,38,14009399D32E2C225A9048CA0827DCEBAF6D75AB572A6F51382B7E683F982CBA,"def to_openai_function_tool(
+    spec: AgentToolSpec,
+    *,"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,41,ToolSpec,FunctionDef,to_hf_function_tool,(spec),41,49,6F71F48119F03B645C5004534F6840BDA2E53B56C18C704E56C382688A14B683,"
+def to_hf_function_tool(spec: AgentToolSpec) -> JsonObject:
+    return {"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,52,ToolSpec,FunctionDef,to_agent_tool_spec,(tool),52,64,EF21CED469E40B0E0F8C67B3B7125763FE04A9FC92335A01CC3D6DD948CBFCD4,"
+def to_agent_tool_spec(tool: RuntimeToolSpec) -> AgentToolSpec:
+    """"""Project canonical runtime metadata into the agent-facing registration view."
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,59,ToolSpec,FunctionDef,to_agent_tool_spec,(tool),52,64,8F92964A94DC991E7A881487907A261EF8802EA0099F0EB5EAD5687AE37BB448,"
+    return AgentToolSpec(
+        name=tool.name,"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,67,tool_specs,FunctionDef,to_agent_tool_specs,(tools),67,70,D19153BF1ADBC1904D9A4C6B530CD229112E3BC0C6049199FFCB5C4C2311C01C,"
+def to_agent_tool_specs(
+    tools: Sequence[RuntimeToolSpec],"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,68,ToolSpec,FunctionDef,to_agent_tool_specs,(tools),67,70,3E8637C5567CB2FCD0A263817547199F74248A6FFF0EC97ADA7982BD319C8262,"def to_agent_tool_specs(
+    tools: Sequence[RuntimeToolSpec],
+) -> tuple[AgentToolSpec, ...]:"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,69,ToolSpec,FunctionDef,to_agent_tool_specs,(tools),67,70,0B5FA3AD584FA41C2350A5C9BAF7FE75C165D39B0496D1924F89A8F3897386B1,"    tools: Sequence[RuntimeToolSpec],
+) -> tuple[AgentToolSpec, ...]:
+    return tuple(to_agent_tool_spec(tool) for tool in tools)"
+aicomp_sdk\agents\tool_specs.py,C920AE8E5B73FC0B381A361C57B8352ADC04AAC2171ABE6848CB41BCFACD5EA9,74,ToolSpec,FunctionDef,build_openai_tool_name_maps,(tools),73,88,A756B5A5AC4601D0FA849B0DB44C31E1DAE48B2E2B01E365F495C23DBC8B0230,"def build_openai_tool_name_maps(
+    tools: Sequence[AgentToolSpec],
+) -> tuple[dict[str, str], dict[str, str]]:"
+aicomp_sdk\agents\types.py,448A728BB39466BC5E21A85580AE549B78CBB8148F5D52B9DEB8C8FEFA6AD6E4,15,ToolSpec,ClassDef,AgentToolSpec,,15,21,3A4CF4811F31F895483C7E655E7195855F16F60E09D51ADD36AE9C246419C82A,"@dataclass(frozen=True)
+class AgentToolSpec:
+    """"""Agent-facing tool definition shared across model backends."""""""
+aicomp_sdk\attacks\real_attack_detection.py,3241D957B2344A62381AAC913CC49683C105C031D0E2D20BCB5E37E2AC2C55E0,61,fs.read,FunctionDef,detect_real_attacks,(events),12,248,88872DA8CB11B589E7ABA7390E8D82CC15C85603C487A16DC74B302EF3D28C45,"                if next_event.get(""ok"") and tool_name in [
+                    ""fs.read"",
+                    ""fs.delete"","
+aicomp_sdk\attacks\real_attack_detection.py,3241D957B2344A62381AAC913CC49683C105C031D0E2D20BCB5E37E2AC2C55E0,88,fs.read,FunctionDef,detect_real_attacks,(events),12,248,D6F3718137E7CA0583BB4750EBF07836842D3361B6545D897ACF53CCE20DD970,"                        impact = ""MEDIUM""
+                    elif tool_name == ""fs.read"":
+                        path = str(next_event.get(""args"", {}).get(""path"", """"))"
+aicomp_sdk\attacks\real_attack_detection.py,3241D957B2344A62381AAC913CC49683C105C031D0E2D20BCB5E37E2AC2C55E0,123,fs.read,FunctionDef,detect_real_attacks,(events),12,248,39F8013C6C66D221C4CCF104EC09B9ED0CB87E4A0B0D5EA64A23BD40AEE5AF6D,"    for i, event in enumerate(events):
+        if event.get(""name"") == ""fs.read"" and event.get(""ok""):
+            path = str(event.get(""args"", {}).get(""path"", """"))"
+aicomp_sdk\attacks\real_attack_detection.py,3241D957B2344A62381AAC913CC49683C105C031D0E2D20BCB5E37E2AC2C55E0,222,fs.read,FunctionDef,detect_real_attacks,(events),12,248,A38CAFBE3E5AFC460226DEB1573DBE0C0685202790E70BB2C2BD2A7AE71C28D7,"    has_read_secret = any(
+        event.get(""name"") == ""fs.read""
+        and ""<REDACTED_LITERAL>"" in str(event.get(""args"", {}).get(""path"", """")).lower()"
+aicomp_sdk\cli\commands\init.py,F0BA8027017BAB4A239B1E8FFD2A0496C3E70BE01D60875F52D07ECE8A39BFE8,148,fs.read,module,,,1,148,28757BC97CC61B84BA8763BEEF3B8946ACF53D16F40B8F3432A6E0F2C0CDDF1C,"            # Example checks (customize these!)
+            if name == ""fs.read"":
+                return True"
+aicomp_sdk\cli\commands\init.py,F0BA8027017BAB4A239B1E8FFD2A0496C3E70BE01D60875F52D07ECE8A39BFE8,209,fs.read,module,,,1,209,0239708619E7EBE8D63B2FC2DE8D52FC06EA378B46687CF7B962B60E13A2A9E9,"        Args:
+            tool_name: Name of the tool being called (e.g., 'fs.read', 'http.post')
+            tool_args: Arguments being passed to the tool"
+aicomp_sdk\cli\commands\init.py,F0BA8027017BAB4A239B1E8FFD2A0496C3E70BE01D60875F52D07ECE8A39BFE8,235,fs.read,module,,,1,235,792613681F0B111F7AED7BFE702687FDDCA21968180E77FD8E66525C26568F69,"        # 3. Pattern Detection
+        #    Example: Detect attack sequences like web.search -> fs.read -> http.post
+        #"
+aicomp_sdk\cli\commands\init.py,F0BA8027017BAB4A239B1E8FFD2A0496C3E70BE01D60875F52D07ECE8A39BFE8,247,fs.read,module,,,1,247,31120E539BCAFA8FACFC8D652052EA2A37445C48CCA0DDFFA673E764538FFF15,"        # TODO: Rule 1 - Protect secret files
+        if tool_name == 'fs.read':
+            path = tool_args.get('path', '')"
+aicomp_sdk\cli\commands\init.py,F0BA8027017BAB4A239B1E8FFD2A0496C3E70BE01D60875F52D07ECE8A39BFE8,261,fs.read,module,,,1,261,68D6B00E1C508CB0EF28FF88CC01F436CA471872B62ACE636CAF6DA0E0F1A95B,"            # Check if we recently read files
+            if any(tool == 'fs.read' for tool in recent_tools[-5:]):
+                return Decision.confirm(""HTTP post after file read requires confirmation"")"
+aicomp_sdk\cli\commands\init.py,F0BA8027017BAB4A239B1E8FFD2A0496C3E70BE01D60875F52D07ECE8A39BFE8,267,fs.read,module,,,1,267,C4812340E07D4D7C29E51088E50568EACD7F32E05758CB7F30811B0DA751CBF9,"            # Check if we recently read files
+            if any(tool == 'fs.read' for tool in recent_tools[-5:]):
+                return Decision.confirm(""Email send after file read requires confirmation"")"
+aicomp_sdk\core\__init__.py,E52E3C995B2530A3F4F67AAF243B52BACAA58394EEE720B835FD05FC80CDAF10,30,ToolSpec,module,,,1,30,3340AF7912E1190635316FB896D193407545AB60BB5A64B9BA7D2FFAB22F30D4,"from .tools import (
+    RuntimeToolSpec,
+    ToolContext,"
+aicomp_sdk\core\__init__.py,E52E3C995B2530A3F4F67AAF243B52BACAA58394EEE720B835FD05FC80CDAF10,38,ToolEvent,module,,,1,38,40E634DCB1E64D2CEE9C942D011A7C7738583A004DF5C027C9B2988683309966,")
+from .trace import ToolEvent, Trace
+"
+aicomp_sdk\core\__init__.py,E52E3C995B2530A3F4F67AAF243B52BACAA58394EEE720B835FD05FC80CDAF10,48,ToolSpec,module,,,1,48,D10E5D34C00AC883FA1120099287F8E63FE55EF598FE9A8E40B3F5FBC4AC204A,"    ""SandboxEnv"",
+    ""RuntimeToolSpec"",
+    ""ToolContext"","
+aicomp_sdk\core\__init__.py,E52E3C995B2530A3F4F67AAF243B52BACAA58394EEE720B835FD05FC80CDAF10,51,ToolEvent,module,,,1,51,DE1B97CBD6621901D7485FF9CC593B0B4066AFE8A30175F54637C0DA4E117502,"    ""ToolDef"",
+    ""ToolEvent"",
+    ""ToolHandler"","
+aicomp_sdk\core\cells.py,2FC9CBE5B2488B3F3C472CB31787DE2B6A50AA29DD1ABF2A67366FFD2B9D7369,98,fs.read,FunctionDef,cell_signature,"(tool_events, n_tool, egress_data, user_messages, use_args, use_outputs, args_count)",58,211,3899092575C1DD2DF574D63AE25FE002A29FCD1CEAA6C415BE6A30B4136C4D1C,"    secret_read = any(
+        e.get(""name"") == ""fs.read""
+        and e.get(""ok"")"
+aicomp_sdk\core\cells.py,2FC9CBE5B2488B3F3C472CB31787DE2B6A50AA29DD1ABF2A67366FFD2B9D7369,119,fs.read,FunctionDef,cell_signature,"(tool_events, n_tool, egress_data, user_messages, use_args, use_outputs, args_count)",58,211,859648CCD9B616B6BD83D6A2ACB9F915D27DFDCBB537C40D9CDD2436A832AF7D,"            # archive/config.txt) stay distinct. Mirrors the fs tools' resolver.
+            if tool_name in [""fs.read"", ""fs.write"", ""fs.delete""]:
+                path = _normalize_sandbox_path(str(args.get(""path"", """")))"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,11,serialize_tool_output;tool_specs,module,,,1,11,B5A50B5AB283E80C3663FAD16F7C2354C1E08327262BA88C023D182260247D93,"from aicomp_sdk.agents.protocol import AgentProtocol
+from aicomp_sdk.agents.tool_specs import serialize_tool_output, to_agent_tool_specs
+from aicomp_sdk.agents.types import ("
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,28,ToolEvent,module,,,1,28,17D3260AE6764AB84B06C9198D910CDF8E00D7686452FF69AB1622378BBB1E46,"from ..tools import ToolSuite
+from ..trace import ToolEvent, Trace
+from .api import DEFAULT_MAX_TOOL_HOPS, EnvInteractionResult, validate_interact_args"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,91,tool_specs,FunctionDef,__init__,"(self, seed, fixtures_dir, agent, guardrail, hook_registry, max_tool_hops)",69,93,B0F32CB6AA7431F5D90F2A635E4625355BBEEACCAB93709A93B01FA95370B3D7,"        self.agent = agent
+        self._tool_specs = to_agent_tool_specs(tuple(self.tools.specs.values()))
+        self._default_max_tool_hops = int(max_tool_hops)"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,227,tool_specs,FunctionDef,interact,"(self, user_message, max_tool_hops)",190,454,3E3A46B1C03D48C6C8E231D88E340AA93994F8B53D616C2DE4245FE3BEFB2B22,"                decision = self.agent.next_action(
+                    history=self._runtime_history, tools=self._tool_specs
+                )"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,398,serialize_tool_output,FunctionDef,interact,"(self, user_message, max_tool_hops)",190,454,90FC0F16AA32CE407BEA30781CDBAB51F461A6FCA9629C1AE467FAFB6C2A2733,"            if post_tool_ctx.injected_content is not None:
+                output = serialize_tool_output(output) + post_tool_ctx.injected_content
+"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,400,ToolEvent,FunctionDef,interact,"(self, user_message, max_tool_hops)",190,454,A887197AF151945CE8AC57A046FC31546E94FF4A1BEF8B82AB6C218A12683BC5,"
+            ev = ToolEvent(
+                name=tool_name,"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,407,last_source,FunctionDef,interact,"(self, user_message, max_tool_hops)",190,454,EF17974F1E1FDC77B10CA934212236D9F0024C9BABB111B637AEFA2822CC7954,"                scope=spec.scope,
+                source=self.tools.last_source,
+                error=err,"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,421,serialize_tool_output,FunctionDef,interact,"(self, user_message, max_tool_hops)",190,454,B91680ADC50B0B3E65004A95F267B632008CDF3FC5546CFA8D35D71FFCC81D4D,"
+            output_text = serialize_tool_output(output)
+            recorded_event = ToolEvent("
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,422,ToolEvent,FunctionDef,interact,"(self, user_message, max_tool_hops)",190,454,DBD432CEEEF7E27D9BF3E4ED5A19E02E5B8B29FB01F480E3B8E2F8A834D06CBD,"            output_text = serialize_tool_output(output)
+            recorded_event = ToolEvent(
+                name=ev.name,"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,465,serialize_tool_output,FunctionDef,_record_failed_tool_attempt,"(self, call, args, side_effect, scope, error)",456,485,5F0D8958126E7B64A68078C4FC4AC15D1526CC68F6D636B188B6A9BC1DAD88EA,"    ) -> None:
+        output_text = serialize_tool_output(error)
+        event = ToolEvent("
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,466,ToolEvent,FunctionDef,_record_failed_tool_attempt,"(self, call, args, side_effect, scope, error)",456,485,4E328BA3DF270D21150567316A1B31234ACEAC16FA7C2992EBC1C988F838CD19,"        output_text = serialize_tool_output(error)
+        event = ToolEvent(
+            name=call.tool_name,"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,473,last_source,FunctionDef,_record_failed_tool_attempt,"(self, call, args, side_effect, scope, error)",456,485,48507145CF8BDAB23A4EC62098C51074A71C407412EB4B5FBC4A4E1243AEEDF8,"            scope=scope,
+            source=self.tools.last_source,
+            error=error,"
+aicomp_sdk\core\predicates.py,9D9DE5118D8883A0074A5405ED85CF2DEC3F68E8516908CBC48F409E3BA56F37,208,fs.read,FunctionDef,_secrets_read_in_trace,(events),199,212,74A25601DA5B74FFFDF8518A4F702D7A0B8BFA823E22011B1BE6F6E19E41F853,"    for e in events:
+        if e.get(""ok"") is not True or e.get(""name"") != ""fs.read"":
+            continue"
+aicomp_sdk\core\tools\__init__.py,9107BEC0DEBFB60B712C7A069DCB7E6ACEB93775D0F61FFBD7570F619F3D812E,2,ToolSpec,module,,,1,2,C1E89C4A72C5B41BC2C24424B4863268CCB44BA2BBF97234868C6CE0A10E368B,"from .models import (
+    RuntimeToolSpec,
+    ToolDef,"
+aicomp_sdk\core\tools\__init__.py,9107BEC0DEBFB60B712C7A069DCB7E6ACEB93775D0F61FFBD7570F619F3D812E,12,ToolSpec,module,,,1,12,EF62979D852E8B4F5A39BDA00181B869D79D676D4F2C23FD894D96FB925413F8,"__all__ = [
+    ""RuntimeToolSpec"",
+    ""ToolContext"","
+aicomp_sdk\core\tools\fs.py,4B8C54032ED807CE4C35BAB403EE622141881158E10F600A4B6D329E6D6F95B8,72,fs.read,module,,,1,72,3BBABAE55D9E4068F2126C09D57D1DF22C258AF89969267FC940CCA218F3AECE,"    ToolDef(
+        name=""fs.read"",
+        side_effect=ToolSideEffect.READ,"
+aicomp_sdk\core\tools\models.py,61539F52CDDBD40E86DFC3CC41E3548BFCA78D5DE2B469559B67FED90E1F3ACD,30,ToolSpec,ClassDef,RuntimeToolSpec,,30,41,F6C6468FDED7B9D8A78A3875F7559A872BB3106049B4397F6D7DE0EF32BD3E4E,"@dataclass(frozen=True)
+class RuntimeToolSpec:
+    """"""Canonical runtime tool contract and shared schema source of truth."
+aicomp_sdk\core\tools\schema.py,A1C9C6CB573656376CE297AF7B28288A7E93D8875D86F05D5575DB409EA3C09D,8,ToolSpec,module,,,1,8,6627E3B4838A79154FA382C4B9BED0DD072F3DB56922CB3CB59310493C60833B,"
+from .models import RuntimeToolSpec, ToolDef, ToolHandler
+from .state import ToolContext"
+aicomp_sdk\core\tools\schema.py,A1C9C6CB573656376CE297AF7B28288A7E93D8875D86F05D5575DB409EA3C09D,19,ToolSpec,FunctionDef,build_runtime_tool_spec,(tool_def),19,50,2D4E6442ED60B47F10450E2C46ADD3A6F7A62AA54DC217B0A79EB7C7F6D5383E,"
+def build_runtime_tool_spec(tool_def: ToolDef) -> RuntimeToolSpec:
+    visible_parameters = _get_visible_parameters(tool_def.handler)"
+aicomp_sdk\core\tools\schema.py,A1C9C6CB573656376CE297AF7B28288A7E93D8875D86F05D5575DB409EA3C09D,39,ToolSpec,FunctionDef,build_runtime_tool_spec,(tool_def),19,50,1706448E3CD36AE3B490D28842E5EB4C70A8021C8211CDFB25C720E1CF21899C,"
+    return RuntimeToolSpec(
+        name=tool_def.name,"
+aicomp_sdk\core\tools\state.py,2131CFEFB026396CA5BA9E6B7931D3BF42284D4E8923401175589A93D9823F8E,28,last_source,ClassDef,ToolRuntimeState,,21,29,F4E126F0437708AA57270B70B998666C02DB327C9A7F3DAD609FCEA21BB80501,"    egress_sink: list[dict[str, Any]]
+    last_source: str
+    fs_workspace: TemporaryDirectory | None = None"
+aicomp_sdk\core\tools\state.py,2131CFEFB026396CA5BA9E6B7931D3BF42284D4E8923401175589A93D9823F8E,39,last_source,FunctionDef,mark_source,"(self, source)",38,39,97F89A74064B13CE694BB560C527654F9C2BF829AE1F02828856AF9C13F5AEDA,"    def mark_source(self, source: str) -> None:
+        self._state.last_source = source
+"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,11,ToolSpec,module,,,1,11,596932ACECC144430B4305CC7B2ADEEB7A33A62D3B132679419AE42DAA62DFC4,"
+from .models import RuntimeToolSpec
+from .registry import TOOL_REGISTRY"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,24,ToolSpec,FunctionDef,__init__,"(self, fixtures_dir, isolate_fs)",20,26,AFB12506A039B4B9777725015E6F9D4FF5E79C5878477745AB05877B694126FA,"        self._context = ToolContext(self._state)
+        self.specs: dict[str, RuntimeToolSpec] = {
+            name: build_runtime_tool_spec(tool_def) for name, tool_def in TOOL_REGISTRY.items()"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,45,last_source,FunctionDef,_build_state,"(self, fixtures_dir, isolate_fs)",28,47,4874C1D8834625F6127FBD78911B9460EA2A201B4C0E2413ACD00D706A41CC2F,"            egress_sink=[],
+            last_source=""user"",
+            fs_workspace=fs_workspace,"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,62,last_source,FunctionDef,reset,"(self, seed)",59,74,96C9D0300D56C58D88D48C19F975CE0DA1AA5B25D4A34682005BA866085DD6AC,"        self._state.egress_sink = []
+        self._state.last_source = ""user""
+        self._state.mail = copy.deepcopy(self._state.mail_seed)"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,77,last_source,FunctionDef,last_source,(self),77,78,D8E0E90007EED7A2A7736ACE70C792B4F18B99F4E9B1C5C25E34B97C250E37EF,"    @property
+    def last_source(self) -> str:
+        return self._state.last_source"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,78,last_source,FunctionDef,last_source,(self),77,78,A674C3EF4B7D4DB121D7FD8FFDFBDCB02EF6B40BE21F32F7CDB26AF29F2610DF,"    def last_source(self) -> str:
+        return self._state.last_source
+"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,107,last_source,FunctionDef,snapshot_state,(self),103,108,9BDF042696494AA22469C10CC7C4DADFC7FF6F5C7309FE9688FD5484C0286587,"            ""mail"": copy.deepcopy(self._state.mail),
+            ""last_source"": self._state.last_source,
+        }"
+aicomp_sdk\core\tools\suite.py,23C3BEE3DE98377E0D93AAC16F5D1091839E5D1420E31B78C7F88C28E06867AA,113,last_source,FunctionDef,restore_state,"(self, state)",110,113,34485579A5F325AEF8778CC7F946D047BF02C193723A12F2B3F58CE5CDEE007A,"        self._state.mail = copy.deepcopy(state[""mail""])
+        self._state.last_source = state[""last_source""]
+"
+aicomp_sdk\core\trace.py,9B51BFCC73DB67610C748D580075003F185C58EA2262B9DE1D8716CB719CF2F0,6,ToolEvent,ClassDef,ToolEvent,,6,16,B2F023B80B2AD7AED6BE55E80E46F06BA0EAA5525BE34288CB83B7FC2B83EF2A,"@dataclass
+class ToolEvent:
+    """"""One recorded tool call, including its result and provenance."""""""
+aicomp_sdk\core\trace.py,9B51BFCC73DB67610C748D580075003F185C58EA2262B9DE1D8716CB719CF2F0,25,ToolEvent,ClassDef,Trace,,20,35,76F537ADD1A36F8A796D88CDFCB4D770EB351D5E95642BCA1B5E409EEF7DD4FA,"    user_messages: list[str] = field(default_factory=list)
+    tool_events: list[ToolEvent] = field(default_factory=list)
+    assistant_messages: list[str] = field(default_factory=list)"
+aicomp_sdk\core\trace.py,9B51BFCC73DB67610C748D580075003F185C58EA2262B9DE1D8716CB719CF2F0,31,ToolEvent,FunctionDef,add_tool,"(self, ev)",31,32,44663D3BD6BF58D1314E672F8571E6516C952A590A5221D0B8DDF3B76529697A,"
+    def add_tool(self, ev: ToolEvent):
+        self.tool_events.append(ev)"
+aicomp_sdk\guardrails\proposal_aware_optimal.py,918FFD61CDB9A406C965F06CF2BEC34C297AB231E26B6FC083AE34B00C37D452,31,fs.read,ClassDef,ProposalAwareOptimalGuardrail,,22,85,DEE156BE74121C459A947AD41887D7456B35B678C0F466F1120B66025126E75F,"
+    _PATH_TOOLS = frozenset({""fs.read"", ""fs.write"", ""fs.delete""})
+    _DANGEROUS_AFTER_UNTRUSTED = frozenset("
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,31,after_tool,ClassDef,TrustedGuardrailContextAdapter,,28,393,F16BE72CB01778AEF658A317B035405D72B7607F5C61C446369312D63BAABC17,"
+    `before_decide` and `after_tool` are explicit host-only APIs. They are not
+    read from model output, prompt text, or generic context dictionaries."
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,147,after_tool,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",147,185,3D73108878A39869917D6293EC20F173BDF4AB4330E808764949CE2C0B9C1BCE,"
+    def after_tool(
+        self,"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,171,completion_sequence,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",147,185,728BC20821970E10B1751AFA6E471C56F74E0F67F2D9BA3D9D42BB21406A4DFF,"        success = trusted_tool_outcome.get(""success"")
+        completion_sequence = trusted_tool_outcome.get(""completion_sequence"")
+        if not isinstance(success, bool) or not isinstance(completion_sequence, int):"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,172,completion_sequence,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",147,185,B1A7DA6E162B5539E253D13B141BAFACB235A79B44B7AC89D577B1289002DAD4,"        completion_sequence = trusted_tool_outcome.get(""completion_sequence"")
+        if not isinstance(success, bool) or not isinstance(completion_sequence, int):
+            raise ValueError(self.REASON_MALFORMED)"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,174,completion_sequence,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",147,185,E1648AEB8415397E33EEFBC95FBE42B0ABC3B082D64CEC41E52538CB3F842313,"            raise ValueError(self.REASON_MALFORMED)
+        if completion_sequence != event_key[1]:
+            raise ValueError(self.REASON_MALFORMED)"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,179,fs.read,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",147,185,43F07A81158A0D4CDD2DB23BE5EE303BD8CF60D8C96D6ABC7D0738DF6DEE8F1F,"
+        if tool_name == ""fs.read"" and success:
+            record = self._qualify_protected_read("
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,353,canonical_source_path,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,29AF09FA810AD7CAD1235B82A08F7DBB054A1C851EE8A6391086B3B810418A2E,"    ) -> dict[str, Any] | None:
+        path = outcome.get(""canonical_source_path"")
+        raw_output_sha256 = outcome.get(""raw_output_sha256"")"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,354,raw_output_sha256,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,A530DFB71829F01E0C9536006981E7ACD6A747F9DDDC9D8E04AEE00A20D6FB05,"        path = outcome.get(""canonical_source_path"")
+        raw_output_sha256 = outcome.get(""raw_output_sha256"")
+        protected_digest = outcome.get(""protected_value_sha256_or_bound_digest"")"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,355,protected_value_sha256_or_bound_digest,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,EF0AA38846A78E7076864D3D07F7ECC1FDC1F91102DC0D4E82AE13D764F9324A,"        raw_output_sha256 = outcome.get(""raw_output_sha256"")
+        protected_digest = outcome.get(""protected_value_sha256_or_bound_digest"")
+        if not all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest)):"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,356,raw_output_sha256,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,7F48FD8FFCCBEACC3D27D67EC6F3CCB8605DA56B70DDB2620B7A6381EF7F9D7B,"        protected_digest = outcome.get(""protected_value_sha256_or_bound_digest"")
+        if not all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest)):
+            return None"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,361,fs.read,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,5BEDB13FEDC80566B205F38FDCF1BCF9468B299FEECD0D480822D899446A279A,"            ""trace_identity"": trace_identity,
+            ""tool_name"": ""fs.read"",
+            ""canonical_source_path"": path,"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,362,canonical_source_path,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,C457D0B27F4F442125117146738327A7BA1F00FCF067766B29E75F23ACEB9E85,"            ""tool_name"": ""fs.read"",
+            ""canonical_source_path"": path,
+            ""tool_success"": True,"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,364,raw_output_sha256,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,B72512DA32BD038098D69FDA788E8B023446F63E71DF89E714FA24D52EE4B3A1,"            ""tool_success"": True,
+            ""raw_output_sha256"": raw_output_sha256,
+            ""protected_value_sha256_or_bound_digest"": protected_digest,"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,365,protected_value_sha256_or_bound_digest,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,96EC1314DDDFE9FBD7F21134D29D67978398328E27BB80FC0A95ACD56EB379BE,"            ""raw_output_sha256"": raw_output_sha256,
+            ""protected_value_sha256_or_bound_digest"": protected_digest,
+            ""completion_sequence"": outcome[""completion_sequence""],"
+aicomp_sdk\guardrails\trusted_context_adapter.py,AAA1F40B9717D31A475550FC0F6E26A498942AE63B0AE645DFACB2950CEE405F,366,completion_sequence,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",347,367,46EB1DE9505E1641C869B5C6131D31DF4350756685334B75267310CEFF284E34,"            ""protected_value_sha256_or_bound_digest"": protected_digest,
+            ""completion_sequence"": outcome[""completion_sequence""],
+        }"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,32,after_tool,ClassDef,TrustedGuardrailContextAdapterV1_1,,29,434,F16BE72CB01778AEF658A317B035405D72B7607F5C61C446369312D63BAABC17,"
+    `before_decide` and `after_tool` are explicit host-only APIs. They are not
+    read from model output, prompt text, or generic context dictionaries."
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,156,after_tool,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",156,198,3D73108878A39869917D6293EC20F173BDF4AB4330E808764949CE2C0B9C1BCE,"
+    def after_tool(
+        self,"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,184,completion_sequence,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",156,198,728BC20821970E10B1751AFA6E471C56F74E0F67F2D9BA3D9D42BB21406A4DFF,"        success = trusted_tool_outcome.get(""success"")
+        completion_sequence = trusted_tool_outcome.get(""completion_sequence"")
+        if not isinstance(success, bool) or not isinstance(completion_sequence, int):"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,185,completion_sequence,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",156,198,B1A7DA6E162B5539E253D13B141BAFACB235A79B44B7AC89D577B1289002DAD4,"        completion_sequence = trusted_tool_outcome.get(""completion_sequence"")
+        if not isinstance(success, bool) or not isinstance(completion_sequence, int):
+            raise ValueError(self.REASON_MALFORMED)"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,187,completion_sequence,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",156,198,E1648AEB8415397E33EEFBC95FBE42B0ABC3B082D64CEC41E52538CB3F842313,"            raise ValueError(self.REASON_MALFORMED)
+        if completion_sequence != event_key[1]:
+            raise ValueError(self.REASON_MALFORMED)"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,192,fs.read,FunctionDef,after_tool,"(self, proposal_digest, event_identity, trace_identity, tool_name, tool_args_digest, trusted_tool_outcome)",156,198,43F07A81158A0D4CDD2DB23BE5EE303BD8CF60D8C96D6ABC7D0738DF6DEE8F1F,"
+        if tool_name == ""fs.read"" and success:
+            record = self._qualify_protected_read("
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,392,canonical_source_path,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,29AF09FA810AD7CAD1235B82A08F7DBB054A1C851EE8A6391086B3B810418A2E,"    ) -> dict[str, Any] | None:
+        path = outcome.get(""canonical_source_path"")
+        raw_output_sha256 = outcome.get(""raw_output_sha256"")"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,393,raw_output_sha256,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,A530DFB71829F01E0C9536006981E7ACD6A747F9DDDC9D8E04AEE00A20D6FB05,"        path = outcome.get(""canonical_source_path"")
+        raw_output_sha256 = outcome.get(""raw_output_sha256"")
+        protected_digest = outcome.get(""protected_value_sha256_or_bound_digest"")"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,394,protected_value_sha256_or_bound_digest,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,EF0AA38846A78E7076864D3D07F7ECC1FDC1F91102DC0D4E82AE13D764F9324A,"        raw_output_sha256 = outcome.get(""raw_output_sha256"")
+        protected_digest = outcome.get(""protected_value_sha256_or_bound_digest"")
+        if not all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest)):"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,395,raw_output_sha256,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,7F48FD8FFCCBEACC3D27D67EC6F3CCB8605DA56B70DDB2620B7A6381EF7F9D7B,"        protected_digest = outcome.get(""protected_value_sha256_or_bound_digest"")
+        if not all(isinstance(x, str) and x for x in (path, raw_output_sha256, protected_digest)):
+            return None"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,402,fs.read,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,5BEDB13FEDC80566B205F38FDCF1BCF9468B299FEECD0D480822D899446A279A,"            ""trace_identity"": trace_identity,
+            ""tool_name"": ""fs.read"",
+            ""canonical_source_path"": path,"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,403,canonical_source_path,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,C457D0B27F4F442125117146738327A7BA1F00FCF067766B29E75F23ACEB9E85,"            ""tool_name"": ""fs.read"",
+            ""canonical_source_path"": path,
+            ""tool_success"": True,"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,405,raw_output_sha256,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,B72512DA32BD038098D69FDA788E8B023446F63E71DF89E714FA24D52EE4B3A1,"            ""tool_success"": True,
+            ""raw_output_sha256"": raw_output_sha256,
+            ""protected_value_sha256_or_bound_digest"": protected_digest,"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,406,protected_value_sha256_or_bound_digest,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,96EC1314DDDFE9FBD7F21134D29D67978398328E27BB80FC0A95ACD56EB379BE,"            ""raw_output_sha256"": raw_output_sha256,
+            ""protected_value_sha256_or_bound_digest"": protected_digest,
+            ""completion_sequence"": outcome[""completion_sequence""],"
+aicomp_sdk\guardrails\trusted_context_adapter_v1_1.py,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,407,completion_sequence,FunctionDef,_qualify_protected_read,"(self, trace_identity, event_identity, outcome)",386,408,46EB1DE9505E1641C869B5C6131D31DF4350756685334B75267310CEFF284E34,"            ""protected_value_sha256_or_bound_digest"": protected_digest,
+            ""completion_sequence"": outcome[""completion_sequence""],
+        }"
+aicomp_sdk\hooks\registry.py,5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B,22,ToolEvent,ClassDef,_ToolEventSnapshot,,22,30,7F20E46E82B02CEEC84C5DCD92796005453BF259764107B52D8401B6940CCF31,"@dataclass(frozen=True, slots=True)
+class _ToolEventSnapshot:
+    name: str"
+aicomp_sdk\hooks\registry.py,5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B,37,ToolEvent,ClassDef,_TraceSnapshot,,34,38,CCFF56B22C0AA53642966471D007006D3E944A690325A8E19071EB85321FAEE4,"    user_messages: tuple[str, ...]
+    tool_events: tuple[_ToolEventSnapshot, ...]
+    assistant_messages: tuple[str, ...]"
+aicomp_sdk\hooks\registry.py,5635B45136517CB5B7FBC6BAB6C9440FE7D6D699E484B6D63651AE296D4BB00B,84,ToolEvent,FunctionDef,_copy_trace_snapshot,(trace),72,97,6148B7D43959BCB0F0D7AA34BC063F3E2A3DA6982FE3C1B5AA21B73821062E04,"        tool_events=tuple(
+            _ToolEventSnapshot(
+                name=tool_event.name,"

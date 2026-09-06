@@ -1,0 +1,33 @@
+check_id,category,passed,observed,expected,failure_layer
+F-001,parent,True,EX9_R3_R3_PROJECT_WIDE_CALLER_AND_DECISION_CONTRACT_RECONCILIATION_COMPLETE_PASS,EX9_R3_R3_PROJECT_WIDE_CALLER_AND_DECISION_CONTRACT_RECONCILIATION_COMPLETE_PASS,FIXTURE
+F-002,parent,True,230E80FD1C41724B729BF49CB6A608A8B7207644BF7FA16C38E1D91908DA1F87,230E80FD1C41724B729BF49CB6A608A8B7207644BF7FA16C38E1D91908DA1F87,FIXTURE
+F-003,parent,True,849B6E7D6370ABDF1619C0B2CE3EC60C88DF0C039B21035E3F0A74E2A6C3CBF0,849B6E7D6370ABDF1619C0B2CE3EC60C88DF0C039B21035E3F0A74E2A6C3CBF0,FIXTURE
+F-004,parent,True,AF75BDA0AF970A84FBF6D83D4EEE2EEFE5778B9ED941D661CF4056AC721E2506,AF75BDA0AF970A84FBF6D83D4EEE2EEFE5778B9ED941D661CF4056AC721E2506,FIXTURE
+F-005,parent,True,9ED2AC3C2CEEE3FFEFACFF816EE8003CD3B1FF06B6A33943BBF5691FCB9638EB,9ED2AC3C2CEEE3FFEFACFF816EE8003CD3B1FF06B6A33943BBF5691FCB9638EB,FIXTURE
+F-006,parent,True,BAB9CB1B2309B5DA36E9A38D85132E9ECAA6B430BE5E64DB2C862B387DAF6214,BAB9CB1B2309B5DA36E9A38D85132E9ECAA6B430BE5E64DB2C862B387DAF6214,FIXTURE
+F-007,parent,True,"{'total': 20, 'passed': 20}",20/20,EVIDENCE
+F-008,parent,True,"{'outcome': 'PROJECT_LEVEL_CALLER_ESTABLISHED_BUT_DECISION_FIELDS_INSUFFICIENT', 'modified': False}",negative architecture preserved; SDK unchanged,CLAIM_BOUNDARY
+F-009,parent,True,"{'action': 'DecisionAction', 'reason': 'str', 'sanitized_args': 'Mapping[str, Any] | None'}",Decision remains verdict only,ARGUMENT_FIDELITY
+F-011,discovery,True,['aicomp_sdk\\hooks\\types.py'],exactly one HookContext definition,ADAPTER_PARSE
+F-012,discovery,True,['aicomp_sdk\\hooks\\types.py'],exactly one HookStage definition,ADAPTER_PARSE
+F-013,discovery,True,['aicomp_sdk\\hooks\\registry.py'],exactly one HookRegistry definition,ADAPTER_PARSE
+F-014,discovery,True,['aicomp_sdk\\guardrails\\base.py'],exactly one GuardrailBase definition,ADAPTER_PARSE
+F-015,discovery,True,['aicomp_sdk\\guardrails\\base.py'],Decision definition discovered,ADAPTER_PARSE
+F-016,discovery,True,['aicomp_sdk\\core\\predicates.py'],exactly one authoritative predicates.py,ADAPTER_PARSE
+F-017,source,True,EC95F45A9BF4202514725690617C91E88F3F1AE889AC7828D423DAAFEA527708,EC95F45A9BF4202514725690617C91E88F3F1AE889AC7828D423DAAFEA527708,FIXTURE
+F-020,hook,True,True,True,ROUTING
+F-021,hook,True,"{'candidate_fields': ['tool_name'], 'established': True}",tool name available,ARGUMENT_FIDELITY
+F-022,hook,True,"{'candidate_fields': ['tool_args'], 'established': True}",exact tool arguments available,ARGUMENT_FIDELITY
+F-023,hook,False,"{'candidate_fields': [], 'established': False}",success status available,ARGUMENT_FIDELITY
+F-024,hook,True,"{'candidate_fields': ['tool_output'], 'established': True}",raw output available,SECRET_CAPTURE
+F-025,hook,True,"{'trace_identity': {'candidate_fields': [], 'established': False}, 'event_identity': {'candidate_fields': [], 'established': False}, 'sequence_identity': {'candidate_fields': [], 'established': False}, 'context': {'candidate_fields': ['context'], 'established': True}}",trace/event/sequence identity directly or via context,PROVENANCE
+F-030,registry,True,"['__init__', 'clear_all', 'execute_hooks', 'get_persistent_state', 'register_hook', 'restore_state', 'retrieve_payloads', 'set_persistent_state', 'snapshot_state', 'store_payload', 'unregister_hook']",public register/execute hooks,ROUTING
+F-031,registry,True,"['__init__', 'clear_all', 'execute_hooks', 'get_persistent_state', 'register_hook', 'restore_state', 'retrieve_payloads', 'set_persistent_state', 'snapshot_state', 'store_payload', 'unregister_hook']",snapshot and restore public,REPLAY_ORCHESTRATION
+F-032,registry,True,LEDGER_AND_INTEGRATION_FACTORY_MUST_OWN_RESET,reset ownership classified,REPLAY_ORCHESTRATION
+F-040,guardrail,True,"{'tool_name': True, 'tool_args': True, 'context': True, 'signature': {'positional': [{'name': 'tool_name', 'annotation': 'str'}, {'name': 'tool_args', 'annotation': 'Mapping[str, Any]'}, {'name': 'context', 'annotation': 'Mapping[str, Any]'}], 'keyword_only': [], 'return': 'Decision'}}",ordinary proposal fields available,ARGUMENT_FIDELITY
+F-041,guardrail,True,"{'action': 'DecisionAction', 'reason': 'str', 'sanitized_args': 'Mapping[str, Any] | None'}",ordinary SDK Decision return available,GUARDRAIL
+F-042,guardrail,True,"{'tool': 'http.post', 'payload_argument': 'data', 'tool_name_input': True, 'tool_args_input': True}",http.post data inspectable from ordinary proposal,SINK_FORMATION
+F-050,matcher,True,"['is_protected_secret_path', 'payload_exfiltrates_secret', 'exfil_payload_arg']",at least one public official matcher candidate,PREDICATE
+F-060,architecture,True,"{'path': 'C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil', 'exists': False}",source-root existence classified; this gate creates nothing,FIXTURE
+F-061,architecture,True,"{'hook_registration': {'positional': [{'name': 'stage', 'annotation': 'HookStage'}, {'name': 'callback', 'annotation': 'HookCallback'}, {'name': 'priority', 'annotation': 'int'}], 'keyword_only': [], 'return': 'None'}, 'decide': {'positional': [{'name': 'tool_name', 'annotation': 'str'}, {'name': 'tool_args', 'annotation': 'Mapping[str, Any]'}, {'name': 'context', 'annotation': 'Mapping[str, Any]'}], 'keyword_only': [], 'return': 'Decision'}}",factory can inject one ledger into hook and guardrail without private access,AUTHORIZATION_TRANSPORT
+F-062,architecture,True,"{'ledger_snapshot_required': True, 'registry_snapshot_available': True, 'registry_reset_available': False}",ledger lifecycle contract classified,REPLAY_ORCHESTRATION

@@ -1,0 +1,94 @@
+[
+  {
+    "authorization_read": false,
+    "binding": "NOT_ESTABLISHED",
+    "carrier": "context",
+    "component": "SandboxEnv",
+    "observed_fields": [
+      "last_user",
+      "recent_sources",
+      "recent_tools",
+      "scope",
+      "seed",
+      "side_effect"
+    ],
+    "stage": "before guardrail decision context construction",
+    "validation": "NOT_PRESENT_IN_CTX_CONSTRUCTION"
+  },
+  {
+    "authorization_read": false,
+    "binding": "NONE",
+    "carrier": "decide(tool_name, tool_args, context)",
+    "component": "GuardrailBase",
+    "observed_fields": [
+      "tool_name",
+      "tool_args",
+      "context"
+    ],
+    "stage": "guardrail",
+    "validation": "NONE_DEFAULT_ALLOW"
+  },
+  {
+    "authorization_read": true,
+    "binding": "NOT_BOUND_TO_TOOL_TARGET_PAYLOAD_EXPIRY_REVOCATION_OR_CONSUMPTION_IN_SOURCE",
+    "carrier": "context booleans",
+    "component": "optimal.Guardrail",
+    "observed_fields": [
+      "user_confirmed_safe",
+      "user_authorized"
+    ],
+    "stage": "guardrail early allow",
+    "validation": "TRUTHINESS_ONLY"
+  },
+  {
+    "authorization_read": false,
+    "binding": "NO_AUTHORIZATION_CONSUMPTION_IN_SOURCE",
+    "carrier": "tool_args payload plus ledger",
+    "component": "LineageAwareExfilGuardrailV21",
+    "observed_fields": [
+      "tool_name",
+      "tool_args",
+      "context"
+    ],
+    "stage": "guardrail",
+    "validation": "PAYLOAD_LINEAGE_ONLY"
+  },
+  {
+    "authorization_read": false,
+    "binding": "NOT_ESTABLISHED",
+    "carrier": "context/metadata/hook_state/tool_args",
+    "component": "HookContext",
+    "observed_fields": [
+      "context",
+      "continue_execution",
+      "guardrail_decision",
+      "hook_state",
+      "injected_content",
+      "metadata",
+      "modified_args",
+      "modified_context",
+      "modified_output",
+      "payload_detected",
+      "should_block",
+      "stage",
+      "tool_args",
+      "tool_name",
+      "tool_output",
+      "trace"
+    ],
+    "stage": "multiple hook stages",
+    "validation": "GENERIC_CARRIER_ONLY"
+  },
+  {
+    "authorization_read": false,
+    "binding": "NO_AUTHORIZATION_ARGUMENT",
+    "carrier": "handler arguments",
+    "component": "http.post",
+    "observed_fields": [
+      "url",
+      "data"
+    ],
+    "stage": "tool execution",
+    "validation": "PRIVATE_NETWORK_CHECK_ONLY"
+  }
+]

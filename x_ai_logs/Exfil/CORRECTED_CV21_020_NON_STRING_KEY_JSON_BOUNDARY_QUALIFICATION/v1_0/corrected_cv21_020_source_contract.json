@@ -1,0 +1,20 @@
+{
+  "allow_nan": false,
+  "canonical_args_function": "_canonical_args_json_v21",
+  "canonical_args_source": "def _canonical_args_json_v21(args: Mapping[str, Any]) -> str:\n    detached = _detach_json_value_v21(dict(args))\n    if not isinstance(detached, dict):\n        raise ValueError('tool_args must serialize as an object')\n    return json.dumps(detached, sort_keys=True, separators=(',', ':'), ensure_ascii=False, allow_nan=False)",
+  "detach_function": "_detach_json_value_v21",
+  "detach_source": "def _detach_json_value_v21(value: Any) -> Any:\n    try:\n        encoded = json.dumps(value, sort_keys=True, separators=(',', ':'), ensure_ascii=False, allow_nan=False)\n        return json.loads(encoded)\n    except (TypeError, ValueError) as exc:\n        raise ValueError('tool_args are not canonically JSON serializable') from exc",
+  "ensure_ascii": false,
+  "fail_closed_exceptions": [
+    "TypeError",
+    "ValueError"
+  ],
+  "non_string_key_acceptance_requirement_found": false,
+  "sort_keys": true,
+  "source_file": {
+    "artifact": "successful_read_ledger_v2_1.py",
+    "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\successful_read_ledger_v2_1.py",
+    "sha256": "18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C",
+    "size_bytes": 8335
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "claim_boundary": {
+    "observation": "POST_TOOL_CALL records successful protected-read content or reports observation contract violation",
+    "prevention": "only PRE_TOOL_CALL malformed proposal blocking after registered Sandbox qualification",
+    "prohibited": "post-tool prevention, exception-based enforcement, arbitrary authorization, HTTP or breach claims"
+  },
+  "classification": "TWO_STAGE_PREVENTION_AND_OBSERVATION",
+  "components": {
+    "ExfilIntegrationBundleV22": {
+      "ledger_reuse": "V2.1 ledger reused unchanged",
+      "members": [
+        "SuccessfulReadLedgerV21",
+        "TrustedReadProposalHookV22",
+        "TrustedReadOutcomeHookV22",
+        "LineageAwareExfilGuardrailV21_or_separately_reviewed_successor"
+      ]
+    },
+    "ExfilIntegrationFactoryV22": {
+      "duplicate_registration_policy": "factory must not silently register same hook instance twice; runtime idempotence remains separate qualification",
+      "registrations": [
+        {
+          "hook": "TrustedReadProposalHookV22",
+          "priority": "explicit frozen integer required at implementation freeze",
+          "stage": "PRE_TOOL_CALL"
+        },
+        {
+          "hook": "TrustedReadOutcomeHookV22",
+          "priority": "explicit frozen integer required at implementation freeze",
+          "stage": "POST_TOOL_CALL"
+        }
+      ]
+    },
+    "TrustedReadOutcomeHookV22": {
+      "ignore_when": [
+        "stage is not POST_TOOL_CALL",
+        "tool_name is not fs.read",
+        "context is not Mapping",
+        "context.ok is not exactly True",
+        "path is not protected"
+      ],
+      "malformed_output_policy": {
+        "behavior": [
+          "do not append to successful-read ledger",
+          "return metadata-only HookResult",
+          "preserve reason EXFIL_V22_MALFORMED_READ_OUTPUT",
+          "do not set should_block",
+          "do not claim read prevention",
+          "do not claim successful content lineage"
+        ],
+        "classification": "POST_TOOL_OBSERVATION_CONTRACT_VIOLATION",
+        "selected_option": "OPTION_A_POST_TOOL_OBSERVATION_CONTRACT_VIOLATION"
+      },
+      "purpose": "SUCCESSFUL_READ_OBSERVATION_AND_LEDGER_CAPTURE",
+      "stage": "POST_TOOL_CALL",
+      "success_result": {
+        "continue_execution": true,
+        "metadata": {
+          "successful_protected_read_recorded_v22": true
+        },
+        "modified_context": null
+      },
+      "successful_append_preconditions": [
+        "tool_args is Mapping",
+        "path is str and nonempty",
+        "tool_output is str"
+      ]
+    },
+    "TrustedReadProposalHookV22": {
+      "block_result": {
+        "continue_execution": false,
+        "metadata_schema": {
+          "reason": "EXFIL_V22_MALFORMED_READ_ARGS",
+          "validation_stage": "PRE_TOOL_CALL"
+        },
+        "modified_context": {
+          "copy_from_active_context": [
+            "stage",
+            "tool_name",
+            "tool_args",
+            "tool_output",
+            "guardrail_decision",
+            "trace",
+            "context",
+            "metadata",
+            "hook_state",
+            "modified_args",
+            "modified_output",
+            "injected_content"
+          ],
+          "should_block": true
+        }
+      },
+      "ignore_when": [
+        "stage is not PRE_TOOL_CALL",
+        "tool_name is not fs.read"
+      ],
+      "normalization": "none for enforcement; validate raw proposal before any normalization",
+      "original_arguments": "preserve exact received mapping reference/value in diagnostic metadata only if JSON safe; otherwise preserve type name, not repr-derived secret content",
+      "purpose": "MALFORMED_READ_PROPOSAL_PREVENTION",
+      "stage": "PRE_TOOL_CALL",
+      "validation_order": [
+        "tool_args is Mapping",
+        "path key exists",
+        "path is str",
+        "path.strip() is nonempty"
+      ]
+    }
+  },
+  "design_id": "EXFIL.V2.2.TWO_STAGE.READ.HOOK.DESIGN.1",
+  "duplicate_delivery_policy": {
+    "outcome_hook": "duplicate valid delivery may append duplicate records, preserving observed V2.1 behavior until a separate deduplication design is justified",
+    "proposal_hook": "duplicate malformed proposal callbacks remain blocking results; no ledger mutation"
+  },
+  "ledger_decision": {
+    "reason": "positive v1.4 lineage, snapshot, restore, digests, candidates, and identity already established; new diagnostic violations are metadata-only and must not enter successful-read ledger",
+    "reuse": "SuccessfulReadLedgerV21",
+    "schema_change_required": false
+  },
+  "snapshot_restore_responsibility": "unchanged V2.1 ledger contract; hooks add no independent mutable state in approved design"
+}

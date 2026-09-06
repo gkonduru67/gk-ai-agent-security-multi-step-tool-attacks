@@ -1,0 +1,251 @@
+{
+  "symbols": [
+    {
+      "calls": [
+        "GptOssHarmonyResponseParser",
+        "JsonEnvelopeToolCallParser",
+        "TokenizerNativeResponseParser",
+        "model_id.lower",
+        "replace",
+        "tokenizer_supports_response_parsing"
+      ],
+      "constructors": [],
+      "end_line": 115,
+      "qualified_symbol": "build_gpt_oss_parser",
+      "return_annotation": "HFResponseParser",
+      "return_expressions": [
+        "JsonEnvelopeToolCallParser()",
+        "TokenizerNativeResponseParser(tokenizer)",
+        "GptOssHarmonyResponseParser()"
+      ],
+      "signature_arguments": [
+        {
+          "annotation": "Any",
+          "name": "tokenizer"
+        },
+        {
+          "annotation": "str",
+          "name": "model_id"
+        }
+      ],
+      "source_body": "def build_gpt_oss_parser(tokenizer: Any, *, model_id: str) -> HFResponseParser:\n    if tokenizer_supports_response_parsing(tokenizer):\n        return TokenizerNativeResponseParser(tokenizer)\n\n    normalized_model_id = model_id.lower().replace(\"_\", \"-\")\n    if \"gpt-oss\" in normalized_model_id:\n        return GptOssHarmonyResponseParser()\n\n    return JsonEnvelopeToolCallParser()",
+      "source_file": "gpt_oss_agent.py",
+      "source_sha256": "8D1372A017DC3B1F15D8C223EA6C652F19AFC330A785749A3875D700F909509A",
+      "start_line": 107
+    },
+    {
+      "calls": [
+        "FinalResponseDecision",
+        "InvalidModelOutputError",
+        "_parse_gpt_oss_harmony_response",
+        "normalize_parsed_response",
+        "response.text.strip"
+      ],
+      "constructors": [
+        "FinalResponseDecision",
+        "InvalidModelOutputError"
+      ],
+      "end_line": 135,
+      "qualified_symbol": "GptOssHarmonyResponseParser.parse",
+      "return_annotation": "AgentDecision",
+      "return_expressions": [
+        "normalize_parsed_response(\n                parsed_response,\n                fallback_call_id=fallback_call_id,\n            )",
+        "FinalResponseDecision(text=stripped)"
+      ],
+      "signature_arguments": [
+        {
+          "annotation": "",
+          "name": "self"
+        },
+        {
+          "annotation": "HFGenerationResponse",
+          "name": "response"
+        },
+        {
+          "annotation": "str",
+          "name": "fallback_call_id"
+        }
+      ],
+      "source_body": "def parse(\n        self,\n        response: HFGenerationResponse,\n        *,\n        fallback_call_id: str,\n    ) -> AgentDecision:\n        parsed_response = _parse_gpt_oss_harmony_response(response.raw_text)\n        if parsed_response is not None:\n            return normalize_parsed_response(\n                parsed_response,\n                fallback_call_id=fallback_call_id,\n            )\n\n        stripped = response.text.strip()\n        if stripped:\n            return FinalResponseDecision(text=stripped)\n        raise InvalidModelOutputError(\"Model returned empty output\")",
+      "source_file": "gpt_oss_agent.py",
+      "source_sha256": "0176A068999CEB9C381B3FED4924163EF4F30EA74989AD62B8896B7B878429B3",
+      "start_line": 119
+    },
+    {
+      "calls": [
+        "InvalidModelOutputError",
+        "_GPT_OSS_FINAL_MESSAGE_PATTERN.finditer",
+        "_GPT_OSS_TOOL_CALL_PATTERN.finditer",
+        "join",
+        "match.group",
+        "normalize_tool_arguments",
+        "raw_text.strip",
+        "re.search",
+        "strip",
+        "tool_calls.append",
+        "tool_match.group"
+      ],
+      "constructors": [
+        "InvalidModelOutputError"
+      ],
+      "end_line": 224,
+      "qualified_symbol": "_parse_gpt_oss_harmony_response",
+      "return_annotation": "dict[str, Any] | None",
+      "return_expressions": [
+        "{\n        \"role\": \"assistant\",\n        \"content\": content,\n        \"tool_calls\": tool_calls,\n    }",
+        "None",
+        "None"
+      ],
+      "signature_arguments": [
+        {
+          "annotation": "str",
+          "name": "raw_text"
+        }
+      ],
+      "source_body": "def _parse_gpt_oss_harmony_response(raw_text: str) -> dict[str, Any] | None:\n    if not raw_text.strip():\n        return None\n\n    tool_calls: list[dict[str, Any]] = []\n    for match in _GPT_OSS_TOOL_CALL_PATTERN.finditer(raw_text):\n        header = match.group(\"header\")\n        tool_match = re.search(r\"to=functions\\.([A-Za-z0-9_.-]+)\", header)\n        if tool_match is None:\n            raise InvalidModelOutputError(\"GPT-OSS tool call output is missing a function target\")\n        arguments = normalize_tool_arguments(match.group(\"arguments\").strip())\n        tool_calls.append(\n            {\n                \"type\": \"function\",\n                \"function\": {\n                    \"name\": tool_match.group(1),\n                    \"arguments\": arguments,\n                },\n            }\n        )\n\n    content_chunks = [\n        match.group(\"content\").strip()\n        for match in _GPT_OSS_FINAL_MESSAGE_PATTERN.finditer(raw_text)\n        if match.group(\"content\").strip()\n    ]\n    content = \"\\n\".join(content_chunks)\n\n    if not tool_calls and not content:\n        return None\n\n    return {\n        \"role\": \"assistant\",\n        \"content\": content,\n        \"tool_calls\": tool_calls,\n    }",
+      "source_file": "gpt_oss_agent.py",
+      "source_sha256": "8DA3F9E3D80FB9444DD119E18938E89795D74098F1140262A4AF5EB5916877C6",
+      "start_line": 189
+    },
+    {
+      "calls": [
+        "self._delegate.next_action"
+      ],
+      "constructors": [],
+      "end_line": 169,
+      "qualified_symbol": "GPTOSSAgent.next_action",
+      "return_annotation": "AgentDecision",
+      "return_expressions": [
+        "self._delegate.next_action(history=history, tools=tools)"
+      ],
+      "signature_arguments": [
+        {
+          "annotation": "",
+          "name": "self"
+        },
+        {
+          "annotation": "RuntimeHistory",
+          "name": "history"
+        },
+        {
+          "annotation": "Sequence[AgentToolSpec]",
+          "name": "tools"
+        }
+      ],
+      "source_body": "def next_action(\n        self,\n        *,\n        history: RuntimeHistory,\n        tools: Sequence[AgentToolSpec],\n    ) -> AgentDecision:\n        return self._delegate.next_action(history=history, tools=tools)",
+      "source_file": "gpt_oss_agent.py",
+      "source_sha256": "05549CB6345620655CE5E46C3AB2A71C000B2A83DCFD1D7546FAAE8BFAAC885C",
+      "start_line": 163
+    },
+    {
+      "calls": [
+        "FinalResponseDecision",
+        "InvalidModelOutputError",
+        "ToolCallDecision",
+        "_normalize_assistant_text",
+        "_normalize_tool_call",
+        "isinstance",
+        "len",
+        "parsed_response.get"
+      ],
+      "constructors": [
+        "FinalResponseDecision",
+        "InvalidModelOutputError",
+        "ToolCallDecision"
+      ],
+      "end_line": 120,
+      "qualified_symbol": "normalize_parsed_response",
+      "return_annotation": "AgentDecision",
+      "return_expressions": [
+        "FinalResponseDecision(text=assistant_text)",
+        "ToolCallDecision(\n                call=_normalize_tool_call(\n                    raw_tool_calls[0],\n                    fallback_call_id=fallback_call_id,\n                ),\n                assistant_message=assistant_text or None,\n            )"
+      ],
+      "signature_arguments": [
+        {
+          "annotation": "Any",
+          "name": "parsed_response"
+        },
+        {
+          "annotation": "str",
+          "name": "fallback_call_id"
+        }
+      ],
+      "source_body": "def normalize_parsed_response(\n    parsed_response: Any,\n    *,\n    fallback_call_id: str,\n) -> AgentDecision:\n    if not isinstance(parsed_response, Mapping):\n        raise InvalidModelOutputError(\"Parsed response must be an object\")\n\n    assistant_text = _normalize_assistant_text(parsed_response.get(\"content\"))\n    raw_tool_calls = parsed_response.get(\"tool_calls\")\n    if raw_tool_calls is not None:\n        if not isinstance(raw_tool_calls, Sequence) or isinstance(raw_tool_calls, str):\n            raise InvalidModelOutputError(\"Parsed tool calls must be a list\")\n        if len(raw_tool_calls) > 1:\n            raise InvalidModelOutputError(\"Model returned multiple tool calls\")\n        if len(raw_tool_calls) == 1:\n            return ToolCallDecision(\n                call=_normalize_tool_call(\n                    raw_tool_calls[0],\n                    fallback_call_id=fallback_call_id,\n                ),\n                assistant_message=assistant_text or None,\n            )\n\n    if assistant_text:\n        return FinalResponseDecision(text=assistant_text)\n\n    raise InvalidModelOutputError(\"Parsed response produced neither assistant text nor tool call\")",
+      "source_file": "response_parsing.py",
+      "source_sha256": "2B4E2FECDC74F2DB9B2DA7693112BE05E984AFF7815C881BEDA2C9AFA1A5C665",
+      "start_line": 93
+    },
+    {
+      "calls": [
+        "normalize_parsed_response",
+        "self._parser.parse"
+      ],
+      "constructors": [],
+      "end_line": 346,
+      "qualified_symbol": "HFChatTemplateAgent._parse_response",
+      "return_annotation": "AgentDecision",
+      "return_expressions": [
+        "self._parser.parse(response, fallback_call_id=fallback_call_id)",
+        "normalize_parsed_response(\n                response.parsed_response,\n                fallback_call_id=fallback_call_id,\n            )"
+      ],
+      "signature_arguments": [
+        {
+          "annotation": "",
+          "name": "self"
+        },
+        {
+          "annotation": "HFGenerationResponse",
+          "name": "response"
+        },
+        {
+          "annotation": "HFChatTemplateAgentState",
+          "name": "state"
+        }
+      ],
+      "source_body": "def _parse_response(\n        self,\n        response: HFGenerationResponse,\n        *,\n        state: HFChatTemplateAgentState,\n    ) -> AgentDecision:\n        fallback_call_id = f\"call_{state.next_generated_call_index:06d}\"\n        if response.parsed_response is not None:\n            return normalize_parsed_response(\n                response.parsed_response,\n                fallback_call_id=fallback_call_id,\n            )\n        return self._parser.parse(response, fallback_call_id=fallback_call_id)",
+      "source_file": "agent.py",
+      "source_sha256": "40E93252012276D1736804F8E017D7D1ECE9050AE163E5678574DE331209F727",
+      "start_line": 334
+    },
+    {
+      "calls": [
+        "self._backend.generate",
+        "self._build_request",
+        "self._debug_provider_payload",
+        "self._parse_response",
+        "self._record_debug_event",
+        "self._serialize_payload",
+        "serialize_agent_decision",
+        "state.advance",
+        "str",
+        "time.perf_counter"
+      ],
+      "constructors": [],
+      "end_line": 298,
+      "qualified_symbol": "HFChatTemplateAgent.next_action",
+      "return_annotation": "AgentDecision",
+      "return_expressions": [
+        "decision"
+      ],
+      "signature_arguments": [
+        {
+          "annotation": "",
+          "name": "self"
+        },
+        {
+          "annotation": "RuntimeHistory",
+          "name": "history"
+        },
+        {
+          "annotation": "Sequence[AgentToolSpec]",
+          "name": "tools"
+        }
+      ],
+      "source_body": "def next_action(\n        self,\n        *,\n        history: RuntimeHistory,\n        tools: Sequence[AgentToolSpec],\n    ) -> AgentDecision:\n        request = self._build_request(history, tools)\n        state = self._state\n\n        turn_index = state.next_debug_turn_index\n        provider_payload = self._debug_provider_payload(request, tools)\n        self._record_debug_event(\n            phase=\"request_built\",\n            turn_index=turn_index,\n            history=history,\n            request_payload=self._serialize_payload(request),\n            provider_payload=provider_payload,\n        )\n\n        started_at = time.perf_counter()\n        response = self._backend.generate(request)\n        latency_ms = (time.perf_counter() - started_at) * 1000.0\n\n        response_payload = self._serialize_payload(response)\n        self._record_debug_event(\n            phase=\"response_received\",\n            turn_index=turn_index,\n            history=history,\n            response_payload=response_payload,\n            latency_ms=latency_ms,\n            provider_payload=provider_payload,\n        )\n\n        try:\n            decision = self._parse_response(response, state=state)\n        except InvalidModelOutputError as err:\n            self._record_debug_event(\n                phase=\"parse_error\",\n                turn_index=turn_index,\n                history=history,\n                request_payload=self._serialize_payload(request),\n                response_payload=response_payload,\n                error=str(err),\n                latency_ms=latency_ms,\n                provider_payload=provider_payload,\n            )\n            raise\n\n        self._record_debug_event(\n            phase=\"decision_emitted\",\n            turn_index=turn_index,\n            history=history,\n            decision_payload=serialize_agent_decision(decision),\n            latency_ms=latency_ms,\n            provider_payload=provider_payload,\n        )\n\n        self._state = state.advance(decision)\n        return decision",
+      "source_file": "agent.py",
+      "source_sha256": "0780FAA2E57300B5592F02268FC2A5BF0C41EABDF4BEF4318F36759025A87577",
+      "start_line": 240
+    }
+  ],
+  "version": "EX6F_1D_A_GPT_OSS_PARSER_CONTRACT_RECONCILIATION_v6.66"
+}

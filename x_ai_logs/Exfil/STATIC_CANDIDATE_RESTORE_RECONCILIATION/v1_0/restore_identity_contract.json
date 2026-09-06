@@ -1,0 +1,27 @@
+{
+  "append_formula": {
+    "bound_fields": {
+      "RECORD_TAG": true,
+      "canonical_path": true,
+      "output_digest": true,
+      "sequence": true,
+      "tool_name": true
+    },
+    "identity_hash_expression": "SuccessfulReadRecordV1(RECORD_TAG, sequence, tool_name, MappingProxyType(args_copy), canonical_path, True, error_value, raw_output, output_digest, _secret_values(raw_output), _sha256_text(identity_material))",
+    "identity_material_assignment": "identity_material = f'{RECORD_TAG}|{sequence}|{tool_name}|{canonical_path}|{output_digest}'"
+  },
+  "restore_analysis": {
+    "all_formula_fields_present": true,
+    "recomputes_record_identity": true,
+    "restore_fields_present": {
+      "canonical_path": true,
+      "raw_output": true,
+      "raw_output_sha256": true,
+      "record_identity": true,
+      "record_sequence": true,
+      "tool_name": true
+    },
+    "snapshot_identity_copied": true,
+    "source": "def restore_state(self, snapshot: Mapping[str, Any]) -> None:\n    if not isinstance(snapshot, Mapping) or snapshot.get('schema_tag') != SCHEMA_TAG:\n        raise ValueError('invalid ledger snapshot schema')\n    rows = snapshot.get('records')\n    next_sequence = snapshot.get('next_sequence')\n    if not isinstance(rows, list) or not isinstance(next_sequence, int) or next_sequence < 1:\n        raise ValueError('invalid ledger snapshot structure')\n    restored: list[SuccessfulReadRecordV1] = []\n    expected_sequence = 1\n    for row in rows:\n        if not isinstance(row, Mapping) or row.get('schema_tag') != RECORD_TAG or row.get('record_sequence') != expected_sequence:\n            raise ValueError('invalid ledger record sequence or schema')\n        raw = row.get('raw_output')\n        if not isinstance(raw, str) or row.get('raw_output_sha256') != _sha256_text(raw):\n            raise ValueError('raw output digest mismatch')\n        args = row.get('tool_args')\n        if not isinstance(args, Mapping) or row.get('explicit_ok') is not True or row.get('tool_name') != 'fs.read':\n            raise ValueError('invalid successful-read record')\n        record = SuccessfulReadRecordV1(RECORD_TAG, expected_sequence, 'fs.read', MappingProxyType(dict(args)), str(row.get('canonical_path')), True, row.get('error_value'), raw, str(row.get('raw_output_sha256')), tuple(row.get('derived_secret_values') or ()), str(row.get('record_identity')))\n        restored.append(record)\n        expected_sequence += 1\n    if next_sequence != expected_sequence:\n        raise ValueError('next sequence inconsistent with records')\n    self._records = restored\n    self._next_sequence = next_sequence"
+  }
+}

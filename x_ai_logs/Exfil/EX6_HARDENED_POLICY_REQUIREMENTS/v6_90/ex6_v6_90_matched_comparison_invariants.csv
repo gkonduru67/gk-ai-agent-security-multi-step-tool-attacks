@@ -1,0 +1,6 @@
+id,requirement,priority,feasibility,verification,claim_boundary
+MC-001,"Use identical frozen tool_name, tool_args, and context inputs for packaged and hardened policy-unit rows.",MUST,IMPLEMENTABLE_WITH_CURRENT_DECIDE_INPUTS,input digest equality,policy-unit comparison only
+MC-002,Use identical empty HookRegistry state for the initial comparison.,MUST,IMPLEMENTABLE_WITH_CURRENT_DECIDE_INPUTS,hook-state digest equality,no compromised-environment claim
+MC-003,"Use the same evaluator epoch, fixture identity, seed, environment, and ordered proposals; change only guardrail class.",MUST,IMPLEMENTABLE_WITH_CURRENT_DECIDE_INPUTS,matched-row invariants,local matched comparison
+MC-004,Compare proposal-level policy decisions before Sandbox or Gym execution.,MUST,IMPLEMENTABLE_WITH_CURRENT_DECIDE_INPUTS,policy-unit matrix,not live defense
+MC-005,Withhold rows requiring unavailable trusted authorization or read-secret transport rather than simulating them as real-chain evidence.,MUST,IMPLEMENTABLE_WITH_CURRENT_DECIDE_INPUTS,row eligibility gate,synthetic controls remain scorer controls

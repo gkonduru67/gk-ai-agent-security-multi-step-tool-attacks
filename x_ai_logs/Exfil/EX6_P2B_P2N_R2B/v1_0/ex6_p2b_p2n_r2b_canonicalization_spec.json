@@ -1,0 +1,37 @@
+{
+  "allowed_types_in_precedence_order": [
+    "null",
+    "bool",
+    "int",
+    "str",
+    "bytes",
+    "list",
+    "map"
+  ],
+  "domain_tag_for_raw_digest": "P2N.RAW_OUTPUT.V1",
+  "failure_semantics": "raise before digest production; do not call after_tool; do not create protected-read record",
+  "framing": "ASCII tag + ASCII decimal payload length without leading zeros + ':' + payload bytes",
+  "prohibited": [
+    "float, including NaN and infinities",
+    "tuple",
+    "set and frozenset",
+    "non-string map keys",
+    "duplicate map keys after NFC normalization",
+    "custom objects",
+    "implicit string conversion"
+  ],
+  "raw_digest_bytes": "UTF-8 bytes of domain tag P2N.RAW_OUTPUT.V1, one zero byte separator, then canonical framed bytes",
+  "raw_digest_output": "SHA-256 uppercase hexadecimal, exactly 64 characters",
+  "raw_value_artifact_policy": "canonical payload bytes and raw values must not be written to evidence artifacts",
+  "schema": "P2N.CANONICAL_OUTPUT.V1",
+  "scope": "post-hook-finalized output only, before serialize_tool_output",
+  "type_rules": {
+    "bool": "tag B; payload ASCII 1 or 0; evaluated before int",
+    "bytes": "tag Y; raw bytes unchanged",
+    "int": "tag I; base-10 ASCII, optional leading minus, no plus sign, zero encoded as 0, arbitrary precision",
+    "list": "tag L; ordered concatenation of each recursively framed item; tuple is prohibited",
+    "map": "tag M; string keys only; keys NFC-normalized; duplicate normalized keys rejected; entries sorted by normalized UTF-8 key bytes; each key framed with tag K, followed by recursively framed value",
+    "null": "tag N; empty payload",
+    "str": "tag S; Unicode NFC normalization followed by UTF-8 without BOM"
+  }
+}

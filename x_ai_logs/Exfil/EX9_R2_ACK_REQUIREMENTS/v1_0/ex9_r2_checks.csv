@@ -1,0 +1,39 @@
+check_id,category,passed,observed,expected,failure_layer
+F-001,parent,True,CONTROLLED_FIXTURE_MEDIATED_REAL_CHAIN_PREFLIGHT_R1_RECONCILIATION_COMPLETE_WITH_GAPS,CONTROLLED_FIXTURE_MEDIATED_REAL_CHAIN_PREFLIGHT_R1_RECONCILIATION_COMPLETE_WITH_GAPS,FIXTURE
+F-002,parent,True,08AA82D196B4F30317171CAF59B6E84B6EC81F8E9EED58E997E35CCCB998B3BA,08AA82D196B4F30317171CAF59B6E84B6EC81F8E9EED58E997E35CCCB998B3BA,FIXTURE
+F-003,parent,True,DD281176A55277B5A2A6ED3D8ACF599C195220371503E6A8689E355C213F67D7,DD281176A55277B5A2A6ED3D8ACF599C195220371503E6A8689E355C213F67D7,FIXTURE
+F-004,parent,True,3F269B7778697BD30A3F920FFE236705743AF01D4914F191C282E9CF0B3038C9,3F269B7778697BD30A3F920FFE236705743AF01D4914F191C282E9CF0B3038C9,FIXTURE
+F-005,parent,True,2CA0B8D6F0A23917B6C6CD66E922ABE536853AADB63719B1EB838D6A985E0D4E,2CA0B8D6F0A23917B6C6CD66E922ABE536853AADB63719B1EB838D6A985E0D4E,FIXTURE
+F-006,parent,True,"{'failed': 1, 'failed_ids': ['P2-010'], 'passed': 40, 'total': 41}",40/41; P2-010 only,EVIDENCE
+F-007,parent,True,"{'controlled_actual_fs_read_eligible': False, 'http_sink_eligible': False, 'reason': 'WITHHELD:R1-042,R1-044,P2-010'}",read ineligible,CLAIM_BOUNDARY
+F-008,parent,True,"[{'kind': 'POST_TOOL_REFERENCE', 'relative_path': 'aicomp_sdk\\core\\env\\sandbox.py', 'line': '385', 'symbol': 'HookContext', 'expression': ""HookContext(stage=HookStage.POST_TOOL_CALL, tool_name=tool_name, tool_args=tool_args, tool_output=output, trace=self.trace, context={'ok': ok, 'error': err})""}, {'kind': 'POST_TOOL_REFERENCE', 'relative_path': 'aicomp_sdk\\core\\env\\sandbox.py', 'line': '393', 'symbol': 'self.hook_registry.execute_hooks', 'expression': 'self.hook_registry.execute_hooks(HookStage.POST_TOOL_CALL, post_tool_ctx)'}]",no prior acknowledge caller,AUTHORIZATION_TRANSPORT
+F-010,source,True,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,FIXTURE
+F-020,source,True,sandbox,AST PASS,ADAPTER_PARSE
+F-011,source,True,3EE9BBB1E65949795A5639D12C55D81D8D0645357260DFC5A91DB1E9710288B6,3EE9BBB1E65949795A5639D12C55D81D8D0645357260DFC5A91DB1E9710288B6,FIXTURE
+F-021,source,True,bridge,AST PASS,ADAPTER_PARSE
+F-012,source,True,5C7F7D16A37896959C6F4CC769E5F72A6E5E534EE140BA5CAF2FB70661102CE1,5C7F7D16A37896959C6F4CC769E5F72A6E5E534EE140BA5CAF2FB70661102CE1,FIXTURE
+F-022,source,True,transport,AST PASS,ADAPTER_PARSE
+F-013,source,True,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,BFDE535B805979FF6D13BA0970A9A13466192F1B1111B02CE8B8BB8C670FFA99,FIXTURE
+F-023,source,True,adapter,AST PASS,ADAPTER_PARSE
+F-030,hook,True,['aicomp_sdk\\hooks\\registry.py'],one HookRegistry owner,ADAPTER_PARSE
+F-031,hook,True,['aicomp_sdk\\hooks\\types.py'],one HookContext owner,ADAPTER_PARSE
+F-032,hook,True,['aicomp_sdk\\hooks\\types.py'],one HookStage owner,ADAPTER_PARSE
+F-033,hook,True,register_hook,registration method,ROUTING
+F-034,hook,True,execute_hooks,execution method,ROUTING
+F-035,hook,True,True,True,REPLAY_ORCHESTRATION
+F-036,hook,True,HANDLED,explicit propagate or handle,REPLAY_ORCHESTRATION
+F-037,hook,True,"{'snapshot': 'snapshot_state', 'restore': 'restore_state'}",lifecycle capability explicitly classified,REPLAY_ORCHESTRATION
+F-038,hook,True,REQUIRES_NEW_CODE,reset capability explicitly classified,REPLAY_ORCHESTRATION
+F-039,hook,True,ALLOWED_APPEND,duplicate behavior explicitly classified,REPLAY_ORCHESTRATION
+F-040,mapping,True,"['context', 'guardrail_decision', 'hook_state', 'injected_content', 'metadata', 'modified_args', 'modified_output', 'should_block', 'stage', 'tool_args', 'tool_name', 'tool_output', 'trace']","['context', 'tool_args', 'tool_name', 'tool_output', 'trace']",ARGUMENT_FIDELITY
+F-041,mapping,True,True,True,ROUTING
+F-050,bridge,True,TrustedBridgeSandboxV1,class exists,ADAPTER_PARSE
+F-060,transport,True,"{'positional': [], 'keyword_only': ['trace_identity', 'proposal_digest', 'tool_name', 'success', 'canonical_source_path', 'post_hook_output'], 'vararg': None, 'kwarg': None}",acknowledge method,AUTHORIZATION_TRANSPORT
+F-061,atomicity,True,allocate_outcome,True,AUTHORIZATION_TRANSPORT
+F-062,atomicity,True,compute_raw_digest,True,AUTHORIZATION_TRANSPORT
+F-063,atomicity,True,compute_bound_digest,True,AUTHORIZATION_TRANSPORT
+F-064,atomicity,True,call_adapter,True,AUTHORIZATION_TRANSPORT
+F-065,atomicity,True,consume_after_adapter,True,AUTHORIZATION_TRANSPORT
+F-066,atomicity,True,adapter_exception_propagates,True,AUTHORIZATION_TRANSPORT
+F-070,mapping,True,"[('HookContext.tool_name', 'acknowledge.tool_name', 'DIRECT'), ('HookContext.tool_args', 'acknowledge.tool_args', 'DIRECT'), ('HookContext.tool_output', 'acknowledge.raw_output', 'DIRECT'), ('HookContext.context.ok', 'acknowledge.success', 'CONTEXT_EXTRACTION'), ('HookContext.context.error', 'failure metadata', 'CONTEXT_EXTRACTION'), ('trusted ToolEvent.source', 'acknowledge.canonical_source_path', 'TRUSTED_ENRICHMENT_REQUIRED'), ('trusted trace identity', 'acknowledge.trace_identity', 'TRUSTED_ENRICHMENT_REQUIRED'), ('trusted proposal identity', 'acknowledge.proposal_identity', 'TRUSTED_ENRICHMENT_REQUIRED')]",all mapping requirements classified,ARGUMENT_FIDELITY
+F-080,decision,True,NEW_TRUSTED_HOOK_ADAPTER_REQUIRED,"['CONFIGURATION_WIRING_ONLY', 'NEW_BRIDGE_SUBCLASS_REQUIRED', 'NEW_TRUSTED_HOOK_ADAPTER_REQUIRED', 'NOT_FEASIBLE_WITH_CURRENT_INTERFACES', 'TRANSPORT_INTERFACE_CHANGE_REQUIRED']",AUTHORIZATION_TRANSPORT

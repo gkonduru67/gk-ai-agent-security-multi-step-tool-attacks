@@ -1,0 +1,128 @@
+{
+  "HookContext_fields": [
+    {
+      "annotation": "HookStage",
+      "default": "NO_DEFAULT",
+      "name": "stage"
+    },
+    {
+      "annotation": "str | None",
+      "default": "None",
+      "name": "tool_name"
+    },
+    {
+      "annotation": "dict[str, Any] | None",
+      "default": "None",
+      "name": "tool_args"
+    },
+    {
+      "annotation": "str | None",
+      "default": "None",
+      "name": "tool_output"
+    },
+    {
+      "annotation": "Any | None",
+      "default": "None",
+      "name": "guardrail_decision"
+    },
+    {
+      "annotation": "Any | None",
+      "default": "None",
+      "name": "trace"
+    },
+    {
+      "annotation": "dict[str, Any]",
+      "default": "field(default_factory=dict)",
+      "name": "context"
+    },
+    {
+      "annotation": "dict[str, Any]",
+      "default": "field(default_factory=dict)",
+      "name": "metadata"
+    },
+    {
+      "annotation": "dict[str, Any]",
+      "default": "field(default_factory=dict)",
+      "name": "hook_state"
+    },
+    {
+      "annotation": "dict[str, Any] | None",
+      "default": "None",
+      "name": "modified_args"
+    },
+    {
+      "annotation": "str | None",
+      "default": "None",
+      "name": "modified_output"
+    },
+    {
+      "annotation": "str | None",
+      "default": "None",
+      "name": "injected_content"
+    },
+    {
+      "annotation": "bool",
+      "default": "False",
+      "name": "should_block"
+    }
+  ],
+  "HookResult_fields": [
+    {
+      "annotation": "bool",
+      "default": "True",
+      "name": "continue_execution"
+    },
+    {
+      "annotation": "HookContext | None",
+      "default": "None",
+      "name": "modified_context"
+    },
+    {
+      "annotation": "bool",
+      "default": "False",
+      "name": "payload_detected"
+    },
+    {
+      "annotation": "dict[str, Any]",
+      "default": "field(default_factory=dict)",
+      "name": "metadata"
+    }
+  ],
+  "V2_1_incompatible_calls": [
+    {
+      "keywords": {
+        "metadata": "{'reason': 'EXFIL_V21_MALFORMED_READ_ARGS'}",
+        "should_block": "True"
+      },
+      "line": 15
+    },
+    {
+      "keywords": {
+        "metadata": "{'reason': 'EXFIL_V21_MALFORMED_READ_OUTPUT'}",
+        "should_block": "True"
+      },
+      "line": 19
+    }
+  ],
+  "post_tool_semantics": {
+    "injected_content_consumed": true,
+    "modified_output_consumed": true,
+    "tool_event_retains_error": true,
+    "tool_event_retains_original_ok": true
+  },
+  "registry_contract": {
+    "appends_callback_result": true,
+    "applies_modified_context": true,
+    "breaks_on_continue_false": true,
+    "catches_exception": true,
+    "exception_continues": true,
+    "exception_metadata": true
+  },
+  "sandbox_positions": {
+    "post_block_check": -1,
+    "post_execute": 6436,
+    "pre_block_check": 3809,
+    "pre_execute": 3369,
+    "tool_call": 5935
+  }
+}

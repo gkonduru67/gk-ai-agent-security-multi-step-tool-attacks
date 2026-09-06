@@ -1,0 +1,62 @@
+{
+  "created_at_utc": "2026-08-19T18:47:13.184492+00:00",
+  "field_policies": {
+    "error_field": {
+      "canonical_environment_expression": "err for successful call path; error string for failed-attempt path",
+      "failed_sink_proxy": "EXPLICIT_NON_NULL_SYNTHETIC_FAILURE_LABEL_REQUIRED",
+      "successful_event": null
+    },
+    "output_field": {
+      "canonical_environment_expression": "output_text for recorded successful events",
+      "fs.read": "PRESERVE_FROZEN_SYNTHETIC_READ_OUTPUT_EXACTLY",
+      "http.post": "USE_EMPTY_STRING_FOR_SYNTHETIC_NON_TOOL_EXECUTION_ONLY"
+    },
+    "repair_boundary": "Policies define R1 design requirements only; they do not validate any repaired trace.",
+    "scope_field": {
+      "fs.read": "local",
+      "http.post": "external"
+    },
+    "side_effect_field": {
+      "fs.read": "READ",
+      "http.post": "SHARE",
+      "universal_neutral_value": "NOT_AUTHORIZED"
+    },
+    "source_field": {
+      "allowed_repair_default": null,
+      "canonical_environment_expression": "self.tools.last_source",
+      "reason": "No universal canonical source default is established; source participates in UTA lookback.",
+      "synthetic_policy": "EXPLICIT_PER_EVENT_VALUE_REQUIRED"
+    }
+  },
+  "predicates_executed": false,
+  "repair_authorization": true,
+  "tool_contract": {
+    "fs.read": {
+      "registration_block_sha256": "3053A6F9CEC8F21173679D4DE8B4C1820244E3A92FD601CA74015134BF471046",
+      "registration_line_end": 89,
+      "registration_line_start": 70,
+      "registration_source_file": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\tools\\fs.py",
+      "scope": "local",
+      "scope_expression": "ToolScope.LOCAL",
+      "scope_provenance": "IMPORTED_ATTRIBUTE:ToolScope.LOCAL",
+      "side_effect": "READ",
+      "side_effect_expression": "ToolSideEffect.READ",
+      "side_effect_provenance": "IMPORTED_ATTRIBUTE:ToolSideEffect.READ"
+    },
+    "http.post": {
+      "registration_block_sha256": "AE0BD24C6643ED17C5162E0CE035F7DCE14657963BB687B76D14B621528388E5",
+      "registration_line_end": 37,
+      "registration_line_start": 30,
+      "registration_source_file": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\core\\tools\\http.py",
+      "scope": "external",
+      "scope_expression": "ToolScope.EXTERNAL",
+      "scope_provenance": "IMPORTED_ATTRIBUTE:ToolScope.EXTERNAL",
+      "side_effect": "SHARE",
+      "side_effect_expression": "ToolSideEffect.SHARE",
+      "side_effect_provenance": "IMPORTED_ATTRIBUTE:ToolSideEffect.SHARE"
+    }
+  },
+  "traces_constructed": false,
+  "universal_neutral_side_effect_authorized": false,
+  "version": "EX7_P2_P2R0A_TOOL_SPEC_BINDING_QUALIFICATION_v7.41A"
+}

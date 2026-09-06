@@ -1,0 +1,108 @@
+{
+  "G1": {
+    "expected_bound_digest": "F19750D14742CB369753EBC2D744D5AD0292F99B4EB09F52142A1280F356703E",
+    "expected_outcome_identity": "g-trace-success:outcome:2",
+    "expected_raw_digest": "E38848242973D080A12C4AD53413153AAC46A7945A1156682FACEB0793FD2124",
+    "successful_lifecycle_ordering": true
+  },
+  "G2": {
+    "failed_result_acknowledged": true,
+    "failure_result_consumption_contract": "CONSUMED_AFTER_ADAPTER_ACK"
+  },
+  "G3": {
+    "adapter_exception_contract": "ALLOCATED_NOT_CONSUMED",
+    "recovery_contract": "NEW_OUTCOME_EVENT_CONSUMED",
+    "successful_retry_contract": "NEW_OUTCOME_EVENT_AND_NEW_ADAPTER_CALL"
+  },
+  "G4": {
+    "restore_match": true,
+    "restored_duplicate_rejected": true
+  },
+  "G5": {
+    "trace_separation": true
+  },
+  "G6": {
+    "static_concurrency_review": {
+      "adapter_call_in_acknowledge": true,
+      "allocate_locked": true,
+      "consume_locked": true,
+      "deadlock_behavior": "NOT_EVALUATED",
+      "lock_field_declared": true,
+      "reset_locked": true,
+      "restore_locked": true,
+      "snapshot_locked": true,
+      "threaded_runtime_executed": false,
+      "transport_acknowledge_has_explicit_lock": false
+    },
+    "threaded_runtime_executed": false
+  },
+  "P2O_F_parent_verified": true,
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 18,
+    "total": 18
+  },
+  "claim_boundary": {
+    "allowed": [
+      "instrumented synthetic post-tool lifecycle ordering",
+      "synthetic success and failed-result acknowledgement findings",
+      "bounded retry and adapter-exception recovery findings",
+      "snapshot, restore, replay-resistance, and trace-separation findings",
+      "static concurrency design findings",
+      "eligibility recommendation for independent lifecycle qualification"
+    ],
+    "prohibited": [
+      "real tool-result lifecycle",
+      "Sandbox.interact behavior",
+      "threaded concurrency behavior",
+      "actual fs.read behavior",
+      "protected fixture value use",
+      "real secret capture",
+      "HTTP sink behavior",
+      "protected-value lineage",
+      "end-to-end authorization transport correctness",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "INSTRUMENTED_SYNTHETIC_POST_TOOL_NO_REAL_TOOL",
+  "contract_id": "P2O-G.LIFECYCLE.CONTRACT.V1",
+  "created_at_utc": "2026-08-21T15:00:40.133398+00:00",
+  "execution_boundaries": {
+    "Sandbox_interact_executed": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "gym_executed": false,
+    "http_sink_executed": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "protected_fixture_values_used": false,
+    "real_secret_values_used": false,
+    "real_tools_executed": false,
+    "source_modified": false,
+    "threads_executed": false
+  },
+  "next_gate": "P2O_G_INDEPENDENT_LIFECYCLE_QUALIFICATION_AND_FREEZE",
+  "readiness": {
+    "controlled_actual_fs_read_eligible": false,
+    "identity_freeze_eligible": false,
+    "independent_lifecycle_qualification_eligible": true,
+    "real_post_tool_lifecycle_qualified": false,
+    "synthetic_post_tool_lifecycle_qualified": true
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "authorization_transport_correctness": "NOT_ESTABLISHED_END_TO_END",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "real_post_tool_lifecycle": "NOT_EVALUATED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "secret_capture": "NOT_ESTABLISHED",
+    "synthetic_post_tool_lifecycle": "ESTABLISHED_WITHIN_INSTRUMENTED_SYNTHETIC_SCOPE",
+    "threaded_concurrency": "NOT_EVALUATED"
+  },
+  "status": "P2O_G_SYNTHETIC_POST_TOOL_LIFECYCLE_QUALIFICATION_COMPLETE_PASS",
+  "version": "EX6_P2B_P2O_G_SYNTHETIC_POST_TOOL_LIFECYCLE_QUALIFICATION_v1.0"
+}

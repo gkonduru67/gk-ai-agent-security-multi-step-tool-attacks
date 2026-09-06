@@ -1,0 +1,121 @@
+{
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 33,
+    "total": 33
+  },
+  "claim_boundary": {
+    "allowed": [
+      "new isolated source implementation exists",
+      "AST syntax and required static contracts passed",
+      "exact implementation and parent identities frozen",
+      "frozen aicomp_sdk identities preserved"
+    ],
+    "prohibited": [
+      "claim importability",
+      "claim runtime behavior",
+      "claim successful fs.read capture",
+      "claim http.post denial",
+      "claim guardrail effectiveness",
+      "claim protected-value lineage",
+      "claim predicate or breach behavior",
+      "claim real exfiltration prevention"
+    ]
+  },
+  "classification": "STATIC_IMPLEMENTATION_CREATION_AND_IDENTITY_FREEZE",
+  "created_at_utc": "2026-08-22T12:46:23.167460+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "actual_fs_read_executed": false,
+    "aicomp_sdk_exfil_created": true,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "frozen_aicomp_sdk_modified": false,
+    "http_sink_executed": false,
+    "implementation_created": true,
+    "implementation_imported": false,
+    "implementation_instantiated": false,
+    "models_used": false,
+    "parent_artifacts_modified": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "threads_executed": false
+  },
+  "implementation": {
+    "classes": [
+      "SuccessfulReadRecordV1",
+      "SuccessfulReadLedgerV1",
+      "TrustedReadOutcomeHookV1",
+      "LineageAwareExfilGuardrailV1",
+      "ExfilIntegrationBundleV1",
+      "ExfilIntegrationFactoryV1"
+    ],
+    "factory_function": "build_exfil_integration_v1",
+    "files": [
+      {
+        "artifact": "__init__.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil\\__init__.py",
+        "relative_path": "aicomp_sdk_exfil\\__init__.py",
+        "role": "NEW_IMPLEMENTATION",
+        "sha256": "DB60398BBEEAAE411C62FB915F2EAE5C7CDEBA9A2100D278BF2399190ED3094A",
+        "size_bytes": 557
+      },
+      {
+        "artifact": "successful_read_ledger_v1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil\\successful_read_ledger_v1.py",
+        "relative_path": "aicomp_sdk_exfil\\successful_read_ledger_v1.py",
+        "role": "NEW_IMPLEMENTATION",
+        "sha256": "3560FD4B7533C5B9B2622B84B1AD9BEC4A5562C1BBFF4FE06279EC7206DB73A6",
+        "size_bytes": 4793
+      },
+      {
+        "artifact": "trusted_read_outcome_hook_v1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil\\trusted_read_outcome_hook_v1.py",
+        "relative_path": "aicomp_sdk_exfil\\trusted_read_outcome_hook_v1.py",
+        "role": "NEW_IMPLEMENTATION",
+        "sha256": "2B979C6B652358EAC1E0275A16607AD3A4750CC05C3AC64B6861EFC990B051CD",
+        "size_bytes": 1657
+      },
+      {
+        "artifact": "lineage_aware_exfil_guardrail_v1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil\\lineage_aware_exfil_guardrail_v1.py",
+        "relative_path": "aicomp_sdk_exfil\\lineage_aware_exfil_guardrail_v1.py",
+        "role": "NEW_IMPLEMENTATION",
+        "sha256": "0D20934AD62E7191498F795F1D9BFDB008A749CD134A0842582DED1322F5A1DE",
+        "size_bytes": 1619
+      },
+      {
+        "artifact": "integration_factory_v1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil\\integration_factory_v1.py",
+        "relative_path": "aicomp_sdk_exfil\\integration_factory_v1.py",
+        "role": "NEW_IMPLEMENTATION",
+        "sha256": "8220A3AF5601BA660AAD7EA8A1F6893646A8DB764C88BA8F859A35C12733C431",
+        "size_bytes": 1440
+      }
+    ],
+    "runtime_behavior": "NOT_EVALUATED",
+    "source_root": "aicomp_sdk_exfil"
+  },
+  "next_gate": "INDEPENDENT_STATEFUL_GUARDRAIL_STATIC_QUALIFICATION",
+  "parent_verified": true,
+  "readiness": {
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false,
+    "independent_static_qualification_eligible": true
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "guardrail_effectiveness": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_behavior": "NOT_EVALUATED",
+    "implementation_identity": "ESTABLISHED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "EXFIL_STATEFUL_GUARDRAIL_IMPLEMENTATION_AND_IDENTITY_FREEZE_COMPLETE_PASS",
+  "version": "EXFIL_STATEFUL_GUARDRAIL_IMPLEMENTATION_AND_IDENTITY_FREEZE_v1.0"
+}

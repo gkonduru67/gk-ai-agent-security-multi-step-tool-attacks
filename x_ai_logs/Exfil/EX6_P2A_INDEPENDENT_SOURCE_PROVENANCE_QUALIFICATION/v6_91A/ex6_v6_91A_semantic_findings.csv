@@ -1,0 +1,11 @@
+check_id,finding,status,direct_evidence,claim_boundary
+SRC-001,Exact class and GuardrailBase inheritance,PASS,ProposalAwareOptimalGuardrail bases=['GuardrailBase'],static source only
+SRC-002,Exact decide signature,PASS,"['self', 'tool_name', 'tool_args', 'context']",static source only
+SRC-003,All return branches captured,PASS,return_count=8,"return expressions captured, behavior not executed"
+SRC-004,Generic authorization fields absent,PASS,no user_authorized or user_confirmed_safe token,absence in frozen source
+SRC-005,URL and official payload retrieved independently,PASS,url=True data=True,proposal input handling only
+SRC-006,No first-present-key extraction loop,PASS,no qualifying loop detected,AST heuristic plus exact source blocks
+SRC-007,No fabricated read_secrets argument,PASS,payload_exfiltrates_secret has no read_secrets argument,real lineage remains unavailable
+SRC-008,No private matcher import,PASS,private import and matcher hit lists empty,frozen source imports only
+SRC-009,No mutable instance state,PASS,no assignments to self.*,AST-visible assignments only
+SRC-010,"No Sandbox, wrapper, or adapter dependency",PASS,dependency list empty,direct imports only

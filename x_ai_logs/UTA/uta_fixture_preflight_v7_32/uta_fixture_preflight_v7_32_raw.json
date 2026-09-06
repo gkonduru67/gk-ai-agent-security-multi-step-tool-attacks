@@ -1,0 +1,443 @@
+{
+  "schema": "UTA_FIXTURE_PREFLIGHT_V2",
+  "version": "UTA_FIXTURE_PREFLIGHT_v7.32",
+  "status": "PASS",
+  "classification": "FIXTURE_PREFLIGHT_PASS",
+  "normalization_records": [
+    {
+      "file": "isolated_fixtures/file_seed/config.json",
+      "source_sha256": "C3644F5BBA357E96E4ED770F98A5A63638242B5A9F67DE2B06DEC45121411E29",
+      "normalized_sha256": "FD738C9439D7C4D830ED7FEF47856B8429D34B50E8F4597BFCF3AA44B94E8642",
+      "ascii_safe": true
+    },
+    {
+      "file": "isolated_fixtures/file_seed/credentials.json",
+      "source_sha256": "7D399B3E76221EB24D5C610B456B31E1B8549F9B62A74FAB2EA13124A722C115",
+      "normalized_sha256": "65C94239D7C566D8FB1BF5372C15B8F017A869F87C200AC586029DE425500563",
+      "ascii_safe": true
+    },
+    {
+      "file": "isolated_fixtures/mail_seed.json",
+      "source_sha256": "7ADDD4ED7972C265F7356B96EF10F1A7EBD1761256674B92CAA308AD02D41809",
+      "normalized_sha256": "BE6C822E7E1551D7B06EF6362B174160C8FF138ECB0081AAE9CE4E12AE1BFA00",
+      "ascii_safe": true
+    },
+    {
+      "file": "isolated_fixtures/web_corpus.json",
+      "source_sha256": "E272A01121B38BE8101721678ACB6F58BA5248D9C66FB21AFB97B3B9AAAEE4BE",
+      "normalized_sha256": "8EBB955FEA2503037507A3995EDEDEEDBB76FF9E7A6A5826E89CFA66789F925F",
+      "ascii_safe": true
+    }
+  ],
+  "constructor": {
+    "class": "aicomp_sdk.core.tools.suite.ToolSuite",
+    "signature": "(fixtures_dir: 'Path', *, isolate_fs: 'bool' = False)",
+    "form": "positional_isolate",
+    "prior_type_errors": []
+  },
+  "calls": {
+    "web_exact": {
+      "tool": "web.open",
+      "arguments": {
+        "id": "UTA_WEB_V732_001"
+      },
+      "result": {
+        "ok": true,
+        "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+        "error": null,
+        "raw": [
+          true,
+          "Controlled UTA_WEB_MARKER_V732_7F3C91",
+          null
+        ]
+      },
+      "source": "web",
+      "adapter": {
+        "method": "call",
+        "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+        "form": "dict",
+        "prior_type_errors": [
+          {
+            "method": "call",
+            "form": "kwargs",
+            "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+          }
+        ]
+      }
+    },
+    "web_other": {
+      "tool": "web.open",
+      "arguments": {
+        "id": "UTA_WEB_UNRELATED_V732_001"
+      },
+      "result": {
+        "ok": true,
+        "output": "Unrelated UTA_WEB_UNRELATED_MARKER_V732_91BE20",
+        "error": null,
+        "raw": [
+          true,
+          "Unrelated UTA_WEB_UNRELATED_MARKER_V732_91BE20",
+          null
+        ]
+      },
+      "source": "web",
+      "adapter": {
+        "method": "call",
+        "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+        "form": "dict",
+        "prior_type_errors": [
+          {
+            "method": "call",
+            "form": "kwargs",
+            "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+          }
+        ]
+      }
+    },
+    "web_missing": {
+      "tool": "web.open",
+      "arguments": {
+        "id": "UTA_WEB_MISSING_V732_404"
+      },
+      "result": {
+        "ok": false,
+        "output": "",
+        "error": "not_found",
+        "raw": [
+          false,
+          "",
+          "not_found"
+        ]
+      },
+      "source": "web",
+      "adapter": {
+        "method": "call",
+        "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+        "form": "dict",
+        "prior_type_errors": [
+          {
+            "method": "call",
+            "form": "kwargs",
+            "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+          }
+        ]
+      }
+    },
+    "email_exact": {
+      "tool": "email.read",
+      "arguments": {
+        "id": "UTA_EMAIL_V732_001"
+      },
+      "result": {
+        "ok": true,
+        "output": "{\"id\": \"UTA_EMAIL_V732_001\", \"from\": \"controlled@example.invalid\", \"subject\": \"UTA_EMAIL_SUBJECT_V732\", \"body\": \"Controlled UTA_EMAIL_MARKER_V732_2A8D64\"}",
+        "error": null,
+        "raw": [
+          true,
+          "{\"id\": \"UTA_EMAIL_V732_001\", \"from\": \"controlled@example.invalid\", \"subject\": \"UTA_EMAIL_SUBJECT_V732\", \"body\": \"Controlled UTA_EMAIL_MARKER_V732_2A8D64\"}",
+          null
+        ]
+      },
+      "source": "email",
+      "adapter": {
+        "method": "call",
+        "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+        "form": "dict",
+        "prior_type_errors": [
+          {
+            "method": "call",
+            "form": "kwargs",
+            "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+          }
+        ]
+      }
+    },
+    "email_other": {
+      "tool": "email.read",
+      "arguments": {
+        "id": "UTA_EMAIL_UNRELATED_V732_001"
+      },
+      "result": {
+        "ok": true,
+        "output": "{\"id\": \"UTA_EMAIL_UNRELATED_V732_001\", \"from\": \"unrelated@example.invalid\", \"subject\": \"UTA_EMAIL_UNRELATED_SUBJECT_V732\", \"body\": \"Unrelated UTA_EMAIL_UNRELATED_MARKER_V732_C45A72\"}",
+        "error": null,
+        "raw": [
+          true,
+          "{\"id\": \"UTA_EMAIL_UNRELATED_V732_001\", \"from\": \"unrelated@example.invalid\", \"subject\": \"UTA_EMAIL_UNRELATED_SUBJECT_V732\", \"body\": \"Unrelated UTA_EMAIL_UNRELATED_MARKER_V732_C45A72\"}",
+          null
+        ]
+      },
+      "source": "email",
+      "adapter": {
+        "method": "call",
+        "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+        "form": "dict",
+        "prior_type_errors": [
+          {
+            "method": "call",
+            "form": "kwargs",
+            "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+          }
+        ]
+      }
+    },
+    "email_missing": {
+      "tool": "email.read",
+      "arguments": {
+        "id": "UTA_EMAIL_MISSING_V732_404"
+      },
+      "result": {
+        "ok": false,
+        "output": "",
+        "error": "not_found",
+        "raw": [
+          false,
+          "",
+          "not_found"
+        ]
+      },
+      "source": "email",
+      "adapter": {
+        "method": "call",
+        "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+        "form": "dict",
+        "prior_type_errors": [
+          {
+            "method": "call",
+            "form": "kwargs",
+            "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+          }
+        ]
+      }
+    }
+  },
+  "checks": [
+    {
+      "check_id": "ID_ABSENT_UTA_WEB_V732_001",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "ID_ABSENT_UTA_WEB_UNRELATED_V732_001",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "ID_ABSENT_UTA_EMAIL_V732_001",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "ID_ABSENT_UTA_EMAIL_UNRELATED_V732_001",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "MARKER_ABSENT_UTA_WEB_MARKER_V732_7F3C91",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "MARKER_ABSENT_UTA_WEB_UNRELATED_MARKER_V732_91BE20",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "MARKER_ABSENT_UTA_EMAIL_MARKER_V732_2A8D64",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "MARKER_ABSENT_UTA_EMAIL_UNRELATED_MARKER_V732_C45A72",
+      "passed": true,
+      "expected": 0,
+      "observed": 0,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "WEB_PRESENT_AFTER_INIT",
+      "passed": true,
+      "expected": 1,
+      "observed": 1,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "EMAIL_PRESENT_AFTER_INIT",
+      "passed": true,
+      "expected": 1,
+      "observed": 1,
+      "failure_classification": ""
+    },
+    {
+      "check_id": "WEB_EXACT",
+      "passed": true,
+      "expected": {
+        "ok": true,
+        "marker": "UTA_WEB_MARKER_V732_7F3C91",
+        "source": "web"
+      },
+      "observed": {
+        "tool": "web.open",
+        "arguments": {
+          "id": "UTA_WEB_V732_001"
+        },
+        "result": {
+          "ok": true,
+          "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+          "error": null,
+          "raw": [
+            true,
+            "Controlled UTA_WEB_MARKER_V732_7F3C91",
+            null
+          ]
+        },
+        "source": "web",
+        "adapter": {
+          "method": "call",
+          "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+          "form": "dict",
+          "prior_type_errors": [
+            {
+              "method": "call",
+              "form": "kwargs",
+              "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+            }
+          ]
+        }
+      },
+      "failure_classification": ""
+    },
+    {
+      "check_id": "WEB_OTHER",
+      "passed": true,
+      "expected": "UTA_WEB_UNRELATED_MARKER_V732_91BE20",
+      "observed": "Unrelated UTA_WEB_UNRELATED_MARKER_V732_91BE20",
+      "failure_classification": ""
+    },
+    {
+      "check_id": "WEB_MISSING",
+      "passed": true,
+      "expected": "not_found",
+      "observed": {
+        "ok": false,
+        "output": "",
+        "error": "not_found",
+        "raw": [
+          false,
+          "",
+          "not_found"
+        ]
+      },
+      "failure_classification": ""
+    },
+    {
+      "check_id": "EMAIL_EXACT",
+      "passed": true,
+      "expected": {
+        "ok": true,
+        "marker": "UTA_EMAIL_MARKER_V732_2A8D64",
+        "subject": "UTA_EMAIL_SUBJECT_V732",
+        "source": "email"
+      },
+      "observed": {
+        "tool": "email.read",
+        "arguments": {
+          "id": "UTA_EMAIL_V732_001"
+        },
+        "result": {
+          "ok": true,
+          "output": "{\"id\": \"UTA_EMAIL_V732_001\", \"from\": \"controlled@example.invalid\", \"subject\": \"UTA_EMAIL_SUBJECT_V732\", \"body\": \"Controlled UTA_EMAIL_MARKER_V732_2A8D64\"}",
+          "error": null,
+          "raw": [
+            true,
+            "{\"id\": \"UTA_EMAIL_V732_001\", \"from\": \"controlled@example.invalid\", \"subject\": \"UTA_EMAIL_SUBJECT_V732\", \"body\": \"Controlled UTA_EMAIL_MARKER_V732_2A8D64\"}",
+            null
+          ]
+        },
+        "source": "email",
+        "adapter": {
+          "method": "call",
+          "signature": "(tool_name: 'str', args: 'Mapping[str, Any]') -> 'tuple[bool, str, str | None]'",
+          "form": "dict",
+          "prior_type_errors": [
+            {
+              "method": "call",
+              "form": "kwargs",
+              "error": "ToolSuite.call() got an unexpected keyword argument 'id'"
+            }
+          ]
+        }
+      },
+      "failure_classification": ""
+    },
+    {
+      "check_id": "EMAIL_OTHER",
+      "passed": true,
+      "expected": "UTA_EMAIL_UNRELATED_MARKER_V732_C45A72",
+      "observed": "{\"id\": \"UTA_EMAIL_UNRELATED_V732_001\", \"from\": \"unrelated@example.invalid\", \"subject\": \"UTA_EMAIL_UNRELATED_SUBJECT_V732\", \"body\": \"Unrelated UTA_EMAIL_UNRELATED_MARKER_V732_C45A72\"}",
+      "failure_classification": ""
+    },
+    {
+      "check_id": "EMAIL_MISSING",
+      "passed": true,
+      "expected": "not_found",
+      "observed": {
+        "ok": false,
+        "output": "",
+        "error": "not_found",
+        "raw": [
+          false,
+          "",
+          "not_found"
+        ]
+      },
+      "failure_classification": ""
+    },
+    {
+      "check_id": "PACKAGED_WEB_UNCHANGED",
+      "passed": true,
+      "expected": "E272A01121B38BE8101721678ACB6F58BA5248D9C66FB21AFB97B3B9AAAEE4BE",
+      "observed": "E272A01121B38BE8101721678ACB6F58BA5248D9C66FB21AFB97B3B9AAAEE4BE",
+      "failure_classification": ""
+    },
+    {
+      "check_id": "PACKAGED_MAIL_UNCHANGED",
+      "passed": true,
+      "expected": "7ADDD4ED7972C265F7356B96EF10F1A7EBD1761256674B92CAA308AD02D41809",
+      "observed": "7ADDD4ED7972C265F7356B96EF10F1A7EBD1761256674B92CAA308AD02D41809",
+      "failure_classification": ""
+    }
+  ],
+  "summary": {
+    "checks": 18,
+    "passed": 18,
+    "failed": 0
+  },
+  "packaged_before": {
+    "web": "E272A01121B38BE8101721678ACB6F58BA5248D9C66FB21AFB97B3B9AAAEE4BE",
+    "mail": "7ADDD4ED7972C265F7356B96EF10F1A7EBD1761256674B92CAA308AD02D41809"
+  },
+  "packaged_after": {
+    "web": "E272A01121B38BE8101721678ACB6F58BA5248D9C66FB21AFB97B3B9AAAEE4BE",
+    "mail": "7ADDD4ED7972C265F7356B96EF10F1A7EBD1761256674B92CAA308AD02D41809"
+  },
+  "limitations": [
+    "Direct ToolSuite fixture preflight only.",
+    "No model, agent, guardrail, predicate, breach, Sandbox, Gym, hosted, or production claim.",
+    "Isolated JSON was semantically normalized with ensure_ascii=True because SDK Path.read_text() used the Windows default codec."
+  ]
+}

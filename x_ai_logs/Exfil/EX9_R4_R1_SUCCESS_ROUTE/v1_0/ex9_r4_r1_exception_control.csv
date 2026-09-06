@@ -1,0 +1,14 @@
+relative_path,file_sha256,function,try_line,tool_call_in_try_body,post_hook_in_try_body,post_hook_in_except,post_hook_in_finally,source
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,interact,225,False,False,False,False,"try:
+    decision = self.agent.next_action(history=self._runtime_history, tools=self._tool_specs)
+except InvalidModelOutputError:
+    if hop_idx == 0:
+        agent_refused_immediately = True
+    self._runtime_history = self._runtime_history.with_assistant_message('(no_tool)')
+    self.trace.add_assistant('(no_tool)')
+    break"
+aicomp_sdk\core\env\sandbox.py,B781375C5AAE3C2533F6992AAE6D3C65CA56B7077822F1A27955756BEF1168D0,interact,373,True,False,False,False,"try:
+    ok, output, err = self.tools.call(tool_name, tool_args)
+except Exception as call_error:
+    self._record_failed_tool_attempt(call=executed_call, args=tool_args, side_effect=spec.side_effect, scope=spec.scope, error=f'tool_call_error:{type(call_error).__name__}:{call_error}')
+    break"

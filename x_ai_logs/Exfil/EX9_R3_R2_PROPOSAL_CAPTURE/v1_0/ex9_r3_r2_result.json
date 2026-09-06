@@ -1,0 +1,177 @@
+{
+  "EX9_R3_R1_parent_verified": true,
+  "checks": {
+    "failed": 1,
+    "failed_ids": [
+      "C-022"
+    ],
+    "passed": 23,
+    "total": 24
+  },
+  "claim_boundary": {
+    "allowed": [
+      "static before_decide caller inventory",
+      "proposal capture ownership and API",
+      "provider append ordering and failure semantics",
+      "final constructor, factory binding, class, and file plan",
+      "eligibility recommendation for separate static implementation gate"
+    ],
+    "prohibited": [
+      "claim implementation exists",
+      "private adapter access",
+      "SDK source modification",
+      "runtime proposal capture",
+      "runtime acknowledgement",
+      "actual fs.read",
+      "Sandbox or Gym execution",
+      "HTTP sink",
+      "predicate or breach execution",
+      "model execution",
+      "protected-value lineage",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_STATIC_CALL_GRAPH_AND_INTERFACE_RECONCILIATION",
+  "created_at_utc": "2026-08-22T09:19:12.898106+00:00",
+  "decision": {
+    "capture_owner": "NOT_ESTABLISHED",
+    "final_inventory": {
+      "classes": 5,
+      "factory_functions": 1,
+      "files": 5
+    },
+    "outcome": "NOT_FEASIBLE_WITHOUT_FROZEN_SOURCE_CHANGE"
+  },
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "Sandbox_interact_executed": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "http_sink_executed": false,
+    "implementation_created": false,
+    "models_used": false,
+    "parent_artifacts_modified": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "source_modified": false,
+    "threads_executed": false
+  },
+  "freeze": {
+    "authoritative_candidate_count": 0,
+    "before_decide_authoritative_signature": {
+      "keyword_only": [
+        "trace_identity",
+        "proposal_event_identity"
+      ],
+      "positional": [
+        "tool_name",
+        "tool_args",
+        "context"
+      ],
+      "return": "Decision"
+    },
+    "caller_count": 0,
+    "capture_api": {
+      "append_call": "self.pending_proposal_view.append(record)",
+      "append_failure": "propagate exception; do not return proposal result; tool execution remains unauthorized",
+      "before_decide": "before_decide(self, *, tool_name: str, tool_args: Mapping[str, Any], context: Mapping[str, Any]) -> Mapping[str, Any]",
+      "class": "TrustedProposalCaptureAdapterV1",
+      "constructor": "__init__(self, *, downstream_adapter: TrustedGuardrailContextAdapterV1_1, pending_proposal_view: TrustedPendingProposalReadViewV1)",
+      "file": "aicomp_sdk/core/env/trusted_proposal_capture_adapter_v1.py",
+      "ordering": [
+        "call downstream_adapter.before_decide exactly once",
+        "validate returned proposal record contains all frozen fields",
+        "construct immutable TrustedPendingProposalRecordV1",
+        "call pending_proposal_view.append(record)",
+        "return the unmodified authoritative proposal result",
+        "only after successful append may caller proceed toward tool execution"
+      ],
+      "private_adapter_access": false
+    },
+    "capture_owner": "NOT_ESTABLISHED",
+    "constructors": {
+      "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper": "__init__(self, *, downstream_adapter: TrustedGuardrailContextAdapterV1_1, pending_proposal_view: TrustedPendingProposalReadViewV1, sequence_state: TrustedSequenceStateV1) -> None",
+      "TrustedPendingProposalReadViewV1": "__init__(self) -> None",
+      "TrustedPostToolHookAdapterV1": "__init__(self, *, hook_registry: HookRegistry, transport: TrustedOutcomeTransportV1) -> None",
+      "TrustedProposalCaptureAdapterV1": "__init__(self, *, downstream_adapter: TrustedGuardrailContextAdapterV1_1, pending_proposal_view: TrustedPendingProposalReadViewV1)",
+      "build_trusted_acknowledgement_integration_v1": "build_trusted_acknowledgement_integration_v1(*, hook_registry: HookRegistry, downstream_adapter: TrustedGuardrailContextAdapterV1_1, sequence_state: TrustedSequenceStateV1) -> Mapping[str, object]"
+    },
+    "factory_bindings": {
+      "authoritative_guardrail_entry": "capture_adapter.before_decide",
+      "capture_adapter.downstream_adapter": "TrustedGuardrailContextAdapterV1_1",
+      "capture_adapter.pending_proposal_view": "TrustedPendingProposalReadViewV1",
+      "hook_adapter.hook_registry": "HookRegistry",
+      "hook_adapter.transport": "TrustedOutcomeTransportV1",
+      "transport.adapter": "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper",
+      "wrapper.downstream_adapter": "TrustedGuardrailContextAdapterV1_1",
+      "wrapper.pending_proposal_view": "TrustedPendingProposalReadViewV1",
+      "wrapper.sequence_state": "same TrustedSequenceStateV1 instance supplied to transport"
+    },
+    "final_inventory": {
+      "classes": 5,
+      "factory_functions": 1,
+      "files": 5
+    },
+    "freeze_id": "EX9.ACK.PROPOSAL.CAPTURE.POPULATION.ROUTE.V1",
+    "implementation_created": false,
+    "implementation_identity": "NOT_ESTABLISHED",
+    "ordering_contract": {
+      "prohibited": "provider append after tool execution or reconstruction from post-tool data",
+      "step_1": "authoritative caller invokes capture_adapter.before_decide",
+      "step_2": "capture adapter invokes downstream V1.1 before_decide exactly once",
+      "step_3": "capture adapter validates and appends immutable provider record",
+      "step_4": "capture adapter returns unmodified proposal result",
+      "step_5": "authoritative caller evaluates decision and may proceed toward tool execution"
+    },
+    "outcome": "NOT_FEASIBLE_WITHOUT_FROZEN_SOURCE_CHANGE",
+    "parent_freeze_id": "EX9.ACK.PENDING.PROPOSAL.READ.INTERFACE.PLAN.V1",
+    "planned_classes": [
+      "TrustedPendingProposalReadViewV1",
+      "TrustedPendingProposalRecordV1",
+      "TrustedPostToolHookAdapterV1",
+      "TrustedOutcomeTransportV1ToContextAdapterV1_1Wrapper",
+      "TrustedProposalCaptureAdapterV1"
+    ],
+    "planned_files": [
+      "aicomp_sdk/core/env/trusted_pending_proposal_read_view_v1.py",
+      "aicomp_sdk/core/env/trusted_post_tool_hook_adapter_v1.py",
+      "aicomp_sdk/core/env/trusted_outcome_transport_v1_to_context_adapter_v1_1_wrapper.py",
+      "aicomp_sdk/core/env/trusted_acknowledgement_integration_factory_v1.py",
+      "aicomp_sdk/core/env/trusted_proposal_capture_adapter_v1.py"
+    ],
+    "record_mapping": {
+      "proposal_digest": "authoritative before_decide result['proposal_digest']",
+      "proposal_event_identity": "authoritative before_decide result['proposal_event_identity']",
+      "tool_args_digest": "authoritative before_decide result['tool_args_digest']",
+      "tool_name": "authoritative before_decide result['tool_name']",
+      "trace_identity": "authoritative before_decide result['trace_identity']"
+    },
+    "runtime_behavior": "NOT_EVALUATED",
+    "status": "NOT_FROZEN"
+  },
+  "next_gate": "EX9_R3_R3_PROPOSAL_CAPTURE_ROUTE_REVIEW",
+  "parent_result": {
+    "checks": "25_OF_25",
+    "preserved_immutable": true
+  },
+  "readiness": {
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false,
+    "implementation_creation_eligible": false
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_behavior": "NOT_EVALUATED",
+    "proposal_capture_route": "GAPS_IDENTIFIED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "EX9_R3_R2_PROPOSAL_CAPTURE_AND_PROVIDER_POPULATION_ROUTE_FREEZE_COMPLETE_WITH_GAPS",
+  "version": "EX9_R3_R2_PROPOSAL_CAPTURE_AND_PROVIDER_POPULATION_ROUTE_FREEZE_v1.0"
+}

@@ -1,0 +1,101 @@
+{
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 25,
+    "total": 25
+  },
+  "claim_boundary": {
+    "allowed": [
+      "research provenance is user-reported and preserved separately",
+      "V1 and V1.1 structured authorization contracts are statically present",
+      "V1.1 contains identifiable repair extensions",
+      "current V2.2 factory does not instantiate the trusted adapter or transport",
+      "base Sandbox does not call before_decide or after_tool",
+      "opt-in trusted bridge is static and runtime-unqualified",
+      "grant producer and issuer-capability provisioning are not established in inspected scope",
+      "trusted outcome transport and V1.1 adapter expose a static call-signature mismatch"
+    ],
+    "prohibited": [
+      "claim current V2.2 authorization enforcement",
+      "claim Sandbox runtime integration",
+      "claim grant issuance or runtime validation",
+      "claim allowed proposal identity survives routing",
+      "claim HTTP execution, sink success, predicate, breach, hosted parity, or robust security"
+    ]
+  },
+  "classification": "READ_ONLY_TARGETED_SOURCE_AND_CALL_GRAPH_RECONCILIATION",
+  "created_at_utc": "2026-08-23T09:35:59.463040+00:00",
+  "execution_boundaries": {
+    "AST_parsed": 10,
+    "Gym_instantiated": false,
+    "HTTP_executed": false,
+    "Sandbox_instantiated": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "grants_issued": 0,
+    "guardrail_decisions": 0,
+    "models_used": false,
+    "parent_evidence_read": true,
+    "parent_modified": false,
+    "predicates_executed": false,
+    "project_modules_imported": false,
+    "source_files_read": 10,
+    "sources_modified": false,
+    "tools_executed": false
+  },
+  "integration_reconciliation": {
+    "V2_2_factory_authorization_wiring": false,
+    "base_Sandbox_trusted_adapter_calls": false,
+    "grant_producer": "NOT_ESTABLISHED",
+    "issuer_capability_supplier": "NOT_ESTABLISHED",
+    "opt_in_bridge_static_presence": true,
+    "trusted_outcome_adapter_signature": "STATIC_INTERFACE_MISMATCH"
+  },
+  "next_gate": "REVIEWED_HARDENED_AUTHORIZATION_INTEGRATION_DESIGN",
+  "outcome": "EXISTING_STRUCTURED_AUTHORIZATION_COMPONENTS_NOT_CURRENTLY_WIRED",
+  "question_answers": {
+    "Sandbox_wrapping": "Base Sandbox calls guardrail.decide directly; opt-in bridge stores transport but does not show before_decide/after_tool routing",
+    "allowed_proposal_identity_routing": "NOT_ESTABLISHED",
+    "component_status": "USER_REPORTED_RESEARCH_IMPLEMENTATIONS; source docstrings state source-implementation or opt-in static scope",
+    "denial_before_dispatch": "Sandbox source places DENY handling before tools.call",
+    "factory_instantiation": "No inspected V2/V2.1/V2.2 factory instantiates adapters or trusted transport",
+    "grant_consumption": "before_decide consumes eligible grant before returning inner ALLOW",
+    "grant_producer": "NOT_ESTABLISHED_IN_INSPECTED_SCOPE",
+    "http_post_grant_binding": "Static V1/V1.1 target and proposal digest binding present",
+    "identity_transport": "Defined statically across adapters/transport, not wired through current Sandbox/V2.2 factory",
+    "issuer_capability_supplier": "NOT_ESTABLISHED_IN_INSPECTED_SCOPE",
+    "scientifically_relevant_version": "V1.1 is the repair candidate; runtime relevance remains not established",
+    "snapshot_restore": "V1.1 transactional rollback present; V1 lacks that explicit rollback pattern",
+    "trusted_outcome_role": "Static source-lineage/outcome binding; not shown as authorization grant producer",
+    "version_relationship": "Repair lineage, not parity; V1.1 adds event-consumption, tool-args binding, sequence-window, protected-path, and transactional-restore checks"
+  },
+  "scientific_verdict": {
+    "current_V2_2_integration": "NOT_ESTABLISHED_NOT_WIRED_IN_INSPECTED_FACTORY",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "runtime_authorization_enforcement": "NOT_ESTABLISHED",
+    "structured_authorization_contract": "STATICALLY_ESTABLISHED"
+  },
+  "status": "REVIEWED_TRUSTED_CONTEXT_AUTHORIZATION_CONTRACT_AND_INTEGRATION_QUALIFICATION_COMPLETE_PASS",
+  "user_reported_provenance": {
+    "claim_limit": "provenance only; does not establish correctness, authoritativeness, integration, or runtime behavior",
+    "classification": "USER_REPORTED_RESEARCH_IMPLEMENTATIONS_CREATED_WITH_COPILOT_ASSISTANCE",
+    "components": [
+      "proposal_aware_optimal.py",
+      "trusted_context_adapter.py",
+      "trusted_context_adapter_v1_1.py",
+      "aicomp_sdk_exfil",
+      "aicomp_sdk_exfil_v2",
+      "aicomp_sdk_exfil_v2_1",
+      "aicomp_sdk_exfil_v2_2"
+    ]
+  },
+  "version": "REVIEWED_TRUSTED_CONTEXT_AUTHORIZATION_CONTRACT_AND_INTEGRATION_QUALIFICATION_v1.0",
+  "version_reconciliation": {
+    "V1": "STATIC_CONTRACT_PRESENT",
+    "V1_1": "STATIC_REPAIR_CANDIDATE_PRESENT",
+    "current_runtime_relevance": "NOT_ESTABLISHED",
+    "relationship": "REPAIR_LINEAGE"
+  }
+}

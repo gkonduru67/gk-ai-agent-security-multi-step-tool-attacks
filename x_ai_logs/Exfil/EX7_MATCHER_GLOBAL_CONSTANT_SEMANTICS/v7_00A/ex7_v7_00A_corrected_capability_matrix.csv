@@ -1,0 +1,17 @@
+capability,classification,source_basis
+identity,ESTABLISHED,candidates initialized with original s
+url_decode,ESTABLISHED,unquote_plus and unquote
+reverse,ESTABLISHED,s[::-1]
+separator_stripping,ESTABLISHED,regex removal and _alnum
+base64_whole,ESTABLISHED,base64.b64decode decode sources
+embedded_base64_token_extraction,ESTABLISHED,Base64 token regex update
+hex_whole,ESTABLISHED,bytes.fromhex decode sources
+embedded_hex_token_extraction,ESTABLISHED,hex token regex update
+case_insensitive_containment,ESTABLISHED,"lowercase payload, patterns, decoded forms"
+nonstring_stringification,ESTABLISHED,str(data) for non-string non-None payload
+container_recursion,NOT_ESTABLISHED,no recursive traversal; only stringification
+encoded_minimum_length_gate,ESTABLISHED,_ENCODED_MATCH_MIN_LEN=8
+general_whitespace_normalization,NOT_ESTABLISHED,no dedicated whitespace normalizer
+separator_removal_can_remove_whitespace,ESTABLISHED,non-alphanumeric removal includes whitespace
+json_semantic_parsing,NOT_ESTABLISHED,no json.loads in matcher closure
+unicode_normalization,NOT_ESTABLISHED,no Unicode normalization call

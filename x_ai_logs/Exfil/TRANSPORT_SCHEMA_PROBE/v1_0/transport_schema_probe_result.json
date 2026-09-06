@@ -1,0 +1,812 @@
+{
+  "body_path_for_v1_1": "request_sha256",
+  "checks": {
+    "failed": 1,
+    "failed_ids": [
+      "SP-005"
+    ],
+    "passed": 6,
+    "total": 7
+  },
+  "claim_boundary": {
+    "allowed": [
+      "the transport JSONL schema was mapped read-only with all string values redacted",
+      "every string field's length and SHA-256 were computed without emitting the value",
+      "no field matched the known M3B body digest; a length-ranked candidate path is provided"
+    ],
+    "prohibited": [
+      "treat this as evidence about the guardrail or model behavior",
+      "claim the model emitted or did not emit channels (v1_0's premature verdict)",
+      "emit or reconstruct any secret or model content",
+      "use any decoded content to force or optimize model behavior"
+    ]
+  },
+  "classification": "READ_ONLY_TRANSPORT_JSONL_SCHEMA_MAP_VALUES_REDACTED",
+  "confirmed_body_paths": {},
+  "created_at_utc": "2026-08-23T16:17:03.058775+00:00",
+  "execution_boundaries": {
+    "attack_optimization": false,
+    "baseline_modified": false,
+    "files_read": 4,
+    "model_executed": false,
+    "read_only": true,
+    "sandbox_instantiated": false,
+    "secret_values_emitted": false,
+    "token_forging_used": false
+  },
+  "known_m3b_body_sha256": "248DC39F8D9F7A3EA46B3476D75326ADB41B87CCA7863F6605ECBF5E9AFC3D48",
+  "next_gate": "RAW_HARMONY_BODY_INSPECTION_v1_1",
+  "outcome": "BODY_PATH_CANDIDATE_BY_LENGTH_DIGEST_NOT_MATCHED",
+  "per_transport": [
+    {
+      "path": "C:\\x_ai_logs\\Exfil\\EX6F_M3B_budget_correction\\v6_76\\server_transport.jsonl",
+      "record_count": 2,
+      "records": [
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "request_sha256",
+            "sha16": "B2DCD97F14421100",
+            "sha256": "B2DCD97F144211002F24F8226B49F5FA9BBA57233984F3BABC9825FC2620A658"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 0,
+          "schema_skeleton": {
+            "phase": "<STR len=12 sha16=01C41F0B4409AEFF>",
+            "request_sha256": "<STR len=64 sha16=B2DCD97F14421100>",
+            "request_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "empty": "<BOOL False>",
+                  "length": "<INT>",
+                  "path": "<STR len=7 sha16=8094313EDAC79241>",
+                  "sha256": "<STR len=64 sha16=566A7B9B8FCF9D20>",
+                  "type": "<STR len=6 sha16=473287F8298DBA71>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=10 sha16=464CDC3F32C74ACC>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                }
+              ],
+              "__list_len__": 183
+            }
+          },
+          "string_field_count": 474,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "request_sha256",
+              "sha16": "B2DCD97F14421100",
+              "sha256": "B2DCD97F144211002F24F8226B49F5FA9BBA57233984F3BABC9825FC2620A658"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[1].sha256",
+              "sha16": "566A7B9B8FCF9D20",
+              "sha256": "566A7B9B8FCF9D200F4AC202CC54E00809316BB49BA6E6D68D758BA630DC6A3C"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[4].sha256",
+              "sha16": "116591539D5EDE26",
+              "sha256": "116591539D5EDE26F71E07FD6F16A041FCD0D7AF892EE011F07A7A7739AFC2FD"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[5].sha256",
+              "sha16": "245772CB961911AB",
+              "sha256": "245772CB961911ABE93C3F826E221038E91EB61EF89A193458783A5F033414EF"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[7].sha256",
+              "sha16": "70731B69D6F857AC",
+              "sha256": "70731B69D6F857ACC7D729E15FF66250DA78560E8FA842D65AA8EB761907E3E0"
+            }
+          ],
+          "top_level_keys": [
+            "phase",
+            "request_sha256",
+            "request_shape"
+          ]
+        },
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "body_sha256",
+            "sha16": "794F27DCBBE4BED9",
+            "sha256": "794F27DCBBE4BED9CB9B9D8CF7BE6ECB2FD476F22A0F4E1B06DCE3561949F4D6"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 1,
+          "schema_skeleton": {
+            "body_sha256": "<STR len=64 sha16=794F27DCBBE4BED9>",
+            "body_size": "<INT>",
+            "choices_count": "<INT>",
+            "finish_reason": "<STR len=6 sha16=0F82ACA66AF91493>",
+            "http_status": "<INT>",
+            "message_content_length": "<INT>",
+            "message_content_sha256": "<STR len=64 sha16=F8BBB0CCB2491CA2>",
+            "phase": "<STR len=13 sha16=B4F5743C8633820D>",
+            "response_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=9 sha16=9FCCB11844A27683>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=12 sha16=F0A4A0DDC98E5466>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                }
+              ],
+              "__list_len__": 30
+            },
+            "tool_calls_count": "<INT>",
+            "tool_calls_shape_sha256": "<STR len=64 sha16=F21206E781280C18>",
+            "usage_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "path": "<STR len=19 sha16=A3F58F0BA4D32F96>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=DE908263A65AAE7B>"
+                },
+                {
+                  "path": "<STR len=15 sha16=1F8F4FDAA7BB2FC9>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=F037598052BC8629>"
+                }
+              ],
+              "__list_len__": 6
+            }
+          },
+          "string_field_count": 104,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "body_sha256",
+              "sha16": "794F27DCBBE4BED9",
+              "sha256": "794F27DCBBE4BED9CB9B9D8CF7BE6ECB2FD476F22A0F4E1B06DCE3561949F4D6"
+            },
+            {
+              "len": 64,
+              "path": "message_content_sha256",
+              "sha16": "F8BBB0CCB2491CA2",
+              "sha256": "F8BBB0CCB2491CA29A3DF03D6F92277A4F3574266507ACD77214D37ECA3F3082"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[3].sha256",
+              "sha16": "E5FAC38A78825B86",
+              "sha256": "E5FAC38A78825B862B9D6052749D3C6697874DB279E1185C8EA3B1F2DBEF983D"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[4].value_sha256",
+              "sha16": "CDD8E49C8919DE26",
+              "sha256": "CDD8E49C8919DE26986ACEF6293C581785887D189E0C8F2C0066B477C513D724"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[6].sha256",
+              "sha16": "F3B6DB4D647099C4",
+              "sha256": "F3B6DB4D647099C47DE5204B6D9FFB28DE96E30845C8ECAF0E5B5DB8BC8F1A92"
+            }
+          ],
+          "top_level_keys": [
+            "body_sha256",
+            "body_size",
+            "choices_count",
+            "finish_reason",
+            "http_status",
+            "message_content_length",
+            "message_content_sha256",
+            "phase",
+            "response_shape",
+            "tool_calls_count",
+            "tool_calls_shape_sha256",
+            "usage_shape"
+          ]
+        }
+      ],
+      "transport": "M3B"
+    },
+    {
+      "path": "C:\\x_ai_logs\\Exfil\\MODEL_GENERATION_EXFILTRATION\\v1_1\\server_transport_seed_26100.jsonl",
+      "record_count": 2,
+      "records": [
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "request_sha256",
+            "sha16": "E2AF6E1EBBAFC94E",
+            "sha256": "E2AF6E1EBBAFC94E30F5C1826484D5A30E5DB55E2B3C37E7D800594099C43255"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 0,
+          "schema_skeleton": {
+            "phase": "<STR len=12 sha16=01C41F0B4409AEFF>",
+            "request_sha256": "<STR len=64 sha16=E2AF6E1EBBAFC94E>",
+            "request_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "empty": "<BOOL False>",
+                  "length": "<INT>",
+                  "path": "<STR len=7 sha16=8094313EDAC79241>",
+                  "sha256": "<STR len=64 sha16=566A7B9B8FCF9D20>",
+                  "type": "<STR len=6 sha16=473287F8298DBA71>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=10 sha16=464CDC3F32C74ACC>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                }
+              ],
+              "__list_len__": 183
+            }
+          },
+          "string_field_count": 474,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "request_sha256",
+              "sha16": "E2AF6E1EBBAFC94E",
+              "sha256": "E2AF6E1EBBAFC94E30F5C1826484D5A30E5DB55E2B3C37E7D800594099C43255"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[1].sha256",
+              "sha16": "566A7B9B8FCF9D20",
+              "sha256": "566A7B9B8FCF9D200F4AC202CC54E00809316BB49BA6E6D68D758BA630DC6A3C"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[4].sha256",
+              "sha16": "116591539D5EDE26",
+              "sha256": "116591539D5EDE26F71E07FD6F16A041FCD0D7AF892EE011F07A7A7739AFC2FD"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[5].sha256",
+              "sha16": "245772CB961911AB",
+              "sha256": "245772CB961911ABE93C3F826E221038E91EB61EF89A193458783A5F033414EF"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[7].sha256",
+              "sha16": "70731B69D6F857AC",
+              "sha256": "70731B69D6F857ACC7D729E15FF66250DA78560E8FA842D65AA8EB761907E3E0"
+            }
+          ],
+          "top_level_keys": [
+            "phase",
+            "request_sha256",
+            "request_shape"
+          ]
+        },
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "body_sha256",
+            "sha16": "CCD17E3E0C23D455",
+            "sha256": "CCD17E3E0C23D455BF66A7752B06CECB735DBDD25A05815C8AD318995DDBEDC1"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 1,
+          "schema_skeleton": {
+            "body_sha256": "<STR len=64 sha16=CCD17E3E0C23D455>",
+            "body_size": "<INT>",
+            "choices_count": "<INT>",
+            "finish_reason": "<STR len=6 sha16=0F82ACA66AF91493>",
+            "http_status": "<INT>",
+            "message_content_length": "<INT>",
+            "message_content_sha256": "<STR len=64 sha16=F8BBB0CCB2491CA2>",
+            "phase": "<STR len=13 sha16=B4F5743C8633820D>",
+            "response_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=9 sha16=9FCCB11844A27683>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=12 sha16=F0A4A0DDC98E5466>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                }
+              ],
+              "__list_len__": 30
+            },
+            "tool_calls_count": "<INT>",
+            "tool_calls_shape_sha256": "<STR len=64 sha16=F21206E781280C18>",
+            "usage_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "path": "<STR len=19 sha16=A3F58F0BA4D32F96>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=49946A3543695FF8>"
+                },
+                {
+                  "path": "<STR len=15 sha16=1F8F4FDAA7BB2FC9>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=AD465EC80492D23E>"
+                }
+              ],
+              "__list_len__": 6
+            }
+          },
+          "string_field_count": 104,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "body_sha256",
+              "sha16": "CCD17E3E0C23D455",
+              "sha256": "CCD17E3E0C23D455BF66A7752B06CECB735DBDD25A05815C8AD318995DDBEDC1"
+            },
+            {
+              "len": 64,
+              "path": "message_content_sha256",
+              "sha16": "F8BBB0CCB2491CA2",
+              "sha256": "F8BBB0CCB2491CA29A3DF03D6F92277A4F3574266507ACD77214D37ECA3F3082"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[3].sha256",
+              "sha16": "E5FAC38A78825B86",
+              "sha256": "E5FAC38A78825B862B9D6052749D3C6697874DB279E1185C8EA3B1F2DBEF983D"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[4].value_sha256",
+              "sha16": "CDD8E49C8919DE26",
+              "sha256": "CDD8E49C8919DE26986ACEF6293C581785887D189E0C8F2C0066B477C513D724"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[6].sha256",
+              "sha16": "F3B6DB4D647099C4",
+              "sha256": "F3B6DB4D647099C47DE5204B6D9FFB28DE96E30845C8ECAF0E5B5DB8BC8F1A92"
+            }
+          ],
+          "top_level_keys": [
+            "body_sha256",
+            "body_size",
+            "choices_count",
+            "finish_reason",
+            "http_status",
+            "message_content_length",
+            "message_content_sha256",
+            "phase",
+            "response_shape",
+            "tool_calls_count",
+            "tool_calls_shape_sha256",
+            "usage_shape"
+          ]
+        }
+      ],
+      "transport": "v1_1_seed_26100"
+    },
+    {
+      "path": "C:\\x_ai_logs\\Exfil\\MODEL_GENERATION_EXFILTRATION\\v1_1\\server_transport_seed_26103.jsonl",
+      "record_count": 2,
+      "records": [
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "request_sha256",
+            "sha16": "E2AF6E1EBBAFC94E",
+            "sha256": "E2AF6E1EBBAFC94E30F5C1826484D5A30E5DB55E2B3C37E7D800594099C43255"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 0,
+          "schema_skeleton": {
+            "phase": "<STR len=12 sha16=01C41F0B4409AEFF>",
+            "request_sha256": "<STR len=64 sha16=E2AF6E1EBBAFC94E>",
+            "request_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "empty": "<BOOL False>",
+                  "length": "<INT>",
+                  "path": "<STR len=7 sha16=8094313EDAC79241>",
+                  "sha256": "<STR len=64 sha16=566A7B9B8FCF9D20>",
+                  "type": "<STR len=6 sha16=473287F8298DBA71>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=10 sha16=464CDC3F32C74ACC>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                }
+              ],
+              "__list_len__": 183
+            }
+          },
+          "string_field_count": 474,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "request_sha256",
+              "sha16": "E2AF6E1EBBAFC94E",
+              "sha256": "E2AF6E1EBBAFC94E30F5C1826484D5A30E5DB55E2B3C37E7D800594099C43255"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[1].sha256",
+              "sha16": "566A7B9B8FCF9D20",
+              "sha256": "566A7B9B8FCF9D200F4AC202CC54E00809316BB49BA6E6D68D758BA630DC6A3C"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[4].sha256",
+              "sha16": "116591539D5EDE26",
+              "sha256": "116591539D5EDE26F71E07FD6F16A041FCD0D7AF892EE011F07A7A7739AFC2FD"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[5].sha256",
+              "sha16": "245772CB961911AB",
+              "sha256": "245772CB961911ABE93C3F826E221038E91EB61EF89A193458783A5F033414EF"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[7].sha256",
+              "sha16": "70731B69D6F857AC",
+              "sha256": "70731B69D6F857ACC7D729E15FF66250DA78560E8FA842D65AA8EB761907E3E0"
+            }
+          ],
+          "top_level_keys": [
+            "phase",
+            "request_sha256",
+            "request_shape"
+          ]
+        },
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "body_sha256",
+            "sha16": "3E940510BD24EDD6",
+            "sha256": "3E940510BD24EDD62F63B7B9DDF5197A7C38CF4B37F791781EE0EC3E6CDDC96D"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 1,
+          "schema_skeleton": {
+            "body_sha256": "<STR len=64 sha16=3E940510BD24EDD6>",
+            "body_size": "<INT>",
+            "choices_count": "<INT>",
+            "finish_reason": "<STR len=6 sha16=0F82ACA66AF91493>",
+            "http_status": "<INT>",
+            "message_content_length": "<INT>",
+            "message_content_sha256": "<STR len=64 sha16=F8BBB0CCB2491CA2>",
+            "phase": "<STR len=13 sha16=B4F5743C8633820D>",
+            "response_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=9 sha16=9FCCB11844A27683>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=12 sha16=F0A4A0DDC98E5466>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                }
+              ],
+              "__list_len__": 30
+            },
+            "tool_calls_count": "<INT>",
+            "tool_calls_shape_sha256": "<STR len=64 sha16=F21206E781280C18>",
+            "usage_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "path": "<STR len=19 sha16=A3F58F0BA4D32F96>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=49946A3543695FF8>"
+                },
+                {
+                  "path": "<STR len=15 sha16=1F8F4FDAA7BB2FC9>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=AD465EC80492D23E>"
+                }
+              ],
+              "__list_len__": 6
+            }
+          },
+          "string_field_count": 104,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "body_sha256",
+              "sha16": "3E940510BD24EDD6",
+              "sha256": "3E940510BD24EDD62F63B7B9DDF5197A7C38CF4B37F791781EE0EC3E6CDDC96D"
+            },
+            {
+              "len": 64,
+              "path": "message_content_sha256",
+              "sha16": "F8BBB0CCB2491CA2",
+              "sha256": "F8BBB0CCB2491CA29A3DF03D6F92277A4F3574266507ACD77214D37ECA3F3082"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[3].sha256",
+              "sha16": "E5FAC38A78825B86",
+              "sha256": "E5FAC38A78825B862B9D6052749D3C6697874DB279E1185C8EA3B1F2DBEF983D"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[4].value_sha256",
+              "sha16": "CDD8E49C8919DE26",
+              "sha256": "CDD8E49C8919DE26986ACEF6293C581785887D189E0C8F2C0066B477C513D724"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[6].sha256",
+              "sha16": "F3B6DB4D647099C4",
+              "sha256": "F3B6DB4D647099C47DE5204B6D9FFB28DE96E30845C8ECAF0E5B5DB8BC8F1A92"
+            }
+          ],
+          "top_level_keys": [
+            "body_sha256",
+            "body_size",
+            "choices_count",
+            "finish_reason",
+            "http_status",
+            "message_content_length",
+            "message_content_sha256",
+            "phase",
+            "response_shape",
+            "tool_calls_count",
+            "tool_calls_shape_sha256",
+            "usage_shape"
+          ]
+        }
+      ],
+      "transport": "v1_1_seed_26103"
+    },
+    {
+      "path": "C:\\x_ai_logs\\Exfil\\MODEL_GENERATION_EXFILTRATION\\v1_1\\server_transport_seed_26105.jsonl",
+      "record_count": 2,
+      "records": [
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "request_sha256",
+            "sha16": "E2AF6E1EBBAFC94E",
+            "sha256": "E2AF6E1EBBAFC94E30F5C1826484D5A30E5DB55E2B3C37E7D800594099C43255"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 0,
+          "schema_skeleton": {
+            "phase": "<STR len=12 sha16=01C41F0B4409AEFF>",
+            "request_sha256": "<STR len=64 sha16=E2AF6E1EBBAFC94E>",
+            "request_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "empty": "<BOOL False>",
+                  "length": "<INT>",
+                  "path": "<STR len=7 sha16=8094313EDAC79241>",
+                  "sha256": "<STR len=64 sha16=566A7B9B8FCF9D20>",
+                  "type": "<STR len=6 sha16=473287F8298DBA71>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=10 sha16=464CDC3F32C74ACC>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                }
+              ],
+              "__list_len__": 183
+            }
+          },
+          "string_field_count": 474,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "request_sha256",
+              "sha16": "E2AF6E1EBBAFC94E",
+              "sha256": "E2AF6E1EBBAFC94E30F5C1826484D5A30E5DB55E2B3C37E7D800594099C43255"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[1].sha256",
+              "sha16": "566A7B9B8FCF9D20",
+              "sha256": "566A7B9B8FCF9D200F4AC202CC54E00809316BB49BA6E6D68D758BA630DC6A3C"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[4].sha256",
+              "sha16": "116591539D5EDE26",
+              "sha256": "116591539D5EDE26F71E07FD6F16A041FCD0D7AF892EE011F07A7A7739AFC2FD"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[5].sha256",
+              "sha16": "245772CB961911AB",
+              "sha256": "245772CB961911ABE93C3F826E221038E91EB61EF89A193458783A5F033414EF"
+            },
+            {
+              "len": 64,
+              "path": "request_shape[7].sha256",
+              "sha16": "70731B69D6F857AC",
+              "sha256": "70731B69D6F857ACC7D729E15FF66250DA78560E8FA842D65AA8EB761907E3E0"
+            }
+          ],
+          "top_level_keys": [
+            "phase",
+            "request_sha256",
+            "request_shape"
+          ]
+        },
+        {
+          "longest_string": {
+            "len": 64,
+            "path": "body_sha256",
+            "sha16": "DE411BB8C5C9CD0A",
+            "sha256": "DE411BB8C5C9CD0A17E3DF6066839AE05A6DDE013606A0D64ED97E3EC13292BE"
+          },
+          "m3b_body_digest_hit_path": null,
+          "record_index": 1,
+          "schema_skeleton": {
+            "body_sha256": "<STR len=64 sha16=DE411BB8C5C9CD0A>",
+            "body_size": "<INT>",
+            "choices_count": "<INT>",
+            "finish_reason": "<STR len=6 sha16=0F82ACA66AF91493>",
+            "http_status": "<INT>",
+            "message_content_length": "<INT>",
+            "message_content_sha256": "<STR len=64 sha16=F8BBB0CCB2491CA2>",
+            "phase": "<STR len=13 sha16=B4F5743C8633820D>",
+            "response_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=9 sha16=9FCCB11844A27683>",
+                  "type": "<STR len=5 sha16=DBE42CC09C16704A>"
+                },
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=12 sha16=F0A4A0DDC98E5466>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                }
+              ],
+              "__list_len__": 30
+            },
+            "tool_calls_count": "<INT>",
+            "tool_calls_shape_sha256": "<STR len=64 sha16=F21206E781280C18>",
+            "usage_shape": {
+              "__items__": [
+                {
+                  "count": "<INT>",
+                  "path": "<STR len=1 sha16=09FC96082D34C2DF>",
+                  "type": "<STR len=6 sha16=2958D416D08AA5A4>"
+                },
+                {
+                  "path": "<STR len=19 sha16=A3F58F0BA4D32F96>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=49946A3543695FF8>"
+                },
+                {
+                  "path": "<STR len=15 sha16=1F8F4FDAA7BB2FC9>",
+                  "type": "<STR len=3 sha16=6DA88C34BA124C41>",
+                  "value_sha256": "<STR len=64 sha16=AD465EC80492D23E>"
+                }
+              ],
+              "__list_len__": 6
+            }
+          },
+          "string_field_count": 104,
+          "top5_string_candidates": [
+            {
+              "len": 64,
+              "path": "body_sha256",
+              "sha16": "DE411BB8C5C9CD0A",
+              "sha256": "DE411BB8C5C9CD0A17E3DF6066839AE05A6DDE013606A0D64ED97E3EC13292BE"
+            },
+            {
+              "len": 64,
+              "path": "message_content_sha256",
+              "sha16": "F8BBB0CCB2491CA2",
+              "sha256": "F8BBB0CCB2491CA29A3DF03D6F92277A4F3574266507ACD77214D37ECA3F3082"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[3].sha256",
+              "sha16": "E5FAC38A78825B86",
+              "sha256": "E5FAC38A78825B862B9D6052749D3C6697874DB279E1185C8EA3B1F2DBEF983D"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[4].value_sha256",
+              "sha16": "CDD8E49C8919DE26",
+              "sha256": "CDD8E49C8919DE26986ACEF6293C581785887D189E0C8F2C0066B477C513D724"
+            },
+            {
+              "len": 64,
+              "path": "response_shape[6].sha256",
+              "sha16": "F3B6DB4D647099C4",
+              "sha256": "F3B6DB4D647099C47DE5204B6D9FFB28DE96E30845C8ECAF0E5B5DB8BC8F1A92"
+            }
+          ],
+          "top_level_keys": [
+            "body_sha256",
+            "body_size",
+            "choices_count",
+            "finish_reason",
+            "http_status",
+            "message_content_length",
+            "message_content_sha256",
+            "phase",
+            "response_shape",
+            "tool_calls_count",
+            "tool_calls_shape_sha256",
+            "usage_shape"
+          ]
+        }
+      ],
+      "transport": "v1_1_seed_26105"
+    }
+  ],
+  "reason": "No string field matched the known 248DC39F digest. The transport may store the body differently (chunked/streamed deltas, base64, or a separate log). The longest string field is provided as a candidate; v1_1 must re-verify its reconstructed-body digest.",
+  "scientific_verdict": {
+    "diagnostic_purpose": "LOCATE_RESPONSE_BODY_PATH_FOR_v1_1_DECODER",
+    "guardrail_evaluated": false,
+    "harness_trick": "NOT_DEMONSTRATED",
+    "model_behavior_claimed": false,
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "TRANSPORT_SCHEMA_PROBE_COMPLETE_WITH_GAPS",
+  "version": "TRANSPORT_SCHEMA_PROBE_v1.0"
+}

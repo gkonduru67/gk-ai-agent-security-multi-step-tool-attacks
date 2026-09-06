@@ -1,0 +1,175 @@
+{
+  "EX9_R2_R1_parent_verified": true,
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 25,
+    "total": 25
+  },
+  "claim_boundary": {
+    "allowed": [
+      "static transport constructor and adapter expectation",
+      "exact transport after_tool call shape",
+      "exact V1.1 adapter after_tool signature",
+      "transport-to-adapter compatibility classification",
+      "minimum implementation outcome and requirements"
+    ],
+    "prohibited": [
+      "implementation creation",
+      "SDK source modification",
+      "runtime acknowledgement behavior",
+      "actual fs.read",
+      "Sandbox or Gym execution",
+      "HTTP sink",
+      "predicate or breach execution",
+      "model execution",
+      "protected-value lineage",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_STATIC_INTERFACE_AND_CALL_GRAPH_RECONCILIATION",
+  "compatibility": {
+    "compatible_adapter_interfaces_found": 0,
+    "decision": "NEW_HOOK_ADAPTER_PLUS_TRANSPORT_WRAPPER_REQUIRED",
+    "tool_args_digest_path": "NOT_AVAILABLE_TO_CURRENT_TRANSPORT",
+    "transport_to_V1_1_adapter_direct": false
+  },
+  "created_at_utc": "2026-08-21T21:05:34.619759+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "Sandbox_interact_executed": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "http_sink_executed": false,
+    "implementation_created": false,
+    "models_used": false,
+    "parent_artifacts_modified": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "source_modified": false,
+    "threads_executed": false
+  },
+  "freeze": {
+    "adapter_v1_1_after_tool_signature": {
+      "keyword_only": [
+        {
+          "annotation": "str",
+          "name": "proposal_digest"
+        },
+        {
+          "annotation": "Mapping[str, Any]",
+          "name": "event_identity"
+        },
+        {
+          "annotation": "str",
+          "name": "trace_identity"
+        },
+        {
+          "annotation": "str",
+          "name": "tool_name"
+        },
+        {
+          "annotation": "str",
+          "name": "tool_args_digest"
+        },
+        {
+          "annotation": "Mapping[str, Any]",
+          "name": "trusted_tool_outcome"
+        }
+      ],
+      "positional": [],
+      "return": "None"
+    },
+    "compatible_after_tool_interfaces": [],
+    "decision": "NEW_HOOK_ADAPTER_PLUS_TRANSPORT_WRAPPER_REQUIRED",
+    "direct_compatibility": false,
+    "freeze_id": "EX9.TRANSPORT.ADAPTER.INTERFACE.RECONCILIATION.V1",
+    "implementation_created": false,
+    "mapping": [
+      {
+        "adapter_parameter": "proposal_digest",
+        "source": "acknowledge.proposal_digest",
+        "status": "AVAILABLE"
+      },
+      {
+        "adapter_parameter": "event_identity",
+        "source": "acknowledge local outcome_identity",
+        "status": "AVAILABLE_REQUIRES_IDENTITY_SCHEMA_CONVERSION"
+      },
+      {
+        "adapter_parameter": "trace_identity",
+        "source": "acknowledge.trace_identity",
+        "status": "AVAILABLE"
+      },
+      {
+        "adapter_parameter": "tool_name",
+        "source": "acknowledge.tool_name",
+        "status": "AVAILABLE"
+      },
+      {
+        "adapter_parameter": "tool_args_digest",
+        "source": "pending proposal record or new trusted transport input",
+        "status": "NOT_AVAILABLE_TO_CURRENT_TRANSPORT"
+      },
+      {
+        "adapter_parameter": "trusted_tool_outcome",
+        "source": "acknowledge local outcome mapping",
+        "status": "AVAILABLE"
+      }
+    ],
+    "parent_mapping_freeze_id": "EX9.ACK.INTEGRATION.CORRECTED.MAPPING.REQUIREMENTS.V1",
+    "runtime_behavior": "NOT_EVALUATED",
+    "status": "FROZEN",
+    "transport_adapter_parameter": {
+      "annotation": "NOT_ANNOTATED",
+      "name": "adapter"
+    },
+    "transport_after_tool_call": {
+      "keywords": {},
+      "positional": [
+        "outcome"
+      ],
+      "positional_count": 1
+    },
+    "transport_construction_sites": [],
+    "transport_constructor_signature": {
+      "keyword_only": [],
+      "positional": [
+        {
+          "annotation": "NOT_ANNOTATED",
+          "name": "adapter"
+        },
+        {
+          "annotation": "NOT_ANNOTATED",
+          "name": "sequence_state"
+        }
+      ],
+      "return": "NOT_ANNOTATED"
+    }
+  },
+  "next_gate": "ACKNOWLEDGEMENT_INTEGRATION_IMPLEMENTATION_AND_IDENTITY_FREEZE",
+  "parent_result": {
+    "checks": "24_OF_24",
+    "preserved_immutable": true
+  },
+  "readiness": {
+    "acknowledgement_integration_implementation_gate_eligible": true,
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false
+  },
+  "scientific_verdict": {
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "runtime_behavior": "NOT_EVALUATED",
+    "transport_to_adapter_contract": "RECONCILED"
+  },
+  "status": "EX9_R2_R2_TRANSPORT_TO_ADAPTER_INTERFACE_RECONCILIATION_COMPLETE_PASS",
+  "version": "EX9_R2_R2_TRANSPORT_TO_ADAPTER_INTERFACE_RECONCILIATION_v1.0"
+}

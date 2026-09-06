@@ -1,0 +1,28 @@
+relative_path,file_sha256,line,kind,bases,decorators,fields,methods,source
+aicomp_sdk\guardrails\base.py,EC95F45A9BF4202514725690617C91E88F3F1AE889AC7828D423DAAFEA527708,17,CLASS,[],"[""dataclass(frozen=True, slots=True)""]","[{""name"": ""action"", ""annotation"": ""DecisionAction""}, {""name"": ""reason"", ""annotation"": ""str""}, {""name"": ""sanitized_args"", ""annotation"": ""Mapping[str, Any] | None""}]","[""__post_init__"", ""allow"", ""deny"", ""confirm"", ""sanitize""]","@dataclass(frozen=True, slots=True)
+class Decision:
+    action: DecisionAction
+    reason: str = ''
+    sanitized_args: Mapping[str, Any] | None = None
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, 'action', DecisionAction(self.action))
+
+    @staticmethod
+    def allow(reason: str='') -> 'Decision':
+        return Decision(DecisionAction.ALLOW, reason)
+
+    @staticmethod
+    def deny(reason: str='') -> 'Decision':
+        return Decision(DecisionAction.DENY, reason)
+
+    @staticmethod
+    def confirm(reason: str='') -> 'Decision':
+        return Decision(DecisionAction.CONFIRM, reason)
+
+    @staticmethod
+    def sanitize(sanitized_args: Mapping[str, Any], reason: str='') -> 'Decision':
+        return Decision(DecisionAction.SANITIZE, reason, sanitized_args=sanitized_args)"
+Exfil\ex6_p2b_p2i_controlled_proposal_bind_fail_close_d_preflight_v1_0.py,4DFC7A2AD7A8301D777F92327835708FC62AD33596C84A39A7D8FF2BB18511C8,190,TYPE_ALIAS_OR_ASSIGNMENT,[],[],[],[],"Decision = getattr(base_module, 'Decision')"
+Exfil\ex6_p2b_p2i_r1_v1_0.py,38256C1B3725F5E97096F70F0C1626368835FFD8D411B8EED4DB950C99B35BFE,91,TYPE_ALIAS_OR_ASSIGNMENT,[],[],[],[],Decision = bm.Decision
+Exfil\ex6_p2b_p2j_v1_0.py,49B98D1151BE19BF6D716B9140B1E5500B5BEE15BC5821393F9F42A6DDAA804C,202,TYPE_ALIAS_OR_ASSIGNMENT,[],[],[],[],"Decision = getattr(base_module, 'Decision')"

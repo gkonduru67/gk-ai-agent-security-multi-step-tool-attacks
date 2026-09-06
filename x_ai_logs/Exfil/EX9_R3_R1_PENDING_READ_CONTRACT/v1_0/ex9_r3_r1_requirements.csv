@@ -1,0 +1,11 @@
+id,statement,status
+PR-001,Create TrustedPendingProposalReadViewV1 and immutable TrustedPendingProposalRecordV1 in aicomp_sdk/core/env/trusted_pending_proposal_read_view_v1.py.,REQUIRED
+PR-002,Never read or mutate TrustedGuardrailContextAdapterV1_1 private pending-proposal fields.,REQUIRED
+PR-003,Store proposal_digest and tool_args_digest as distinct fields from the exact same authoritative proposal record.,REQUIRED
+PR-004,Populate the read view only from the trusted proposal-time path before tool execution.,REQUIRED
+PR-005,Lookup is by exact proposal_digest and returns an immutable record or None; missing state fails closed.,REQUIRED
+PR-006,Mark consumed only after successful V1.1 after_tool; exceptions leave the record unconsumed.,REQUIRED
+PR-007,"Provider snapshot, restore, reset, duplicate, retry, and replay behavior follow the frozen contract.",REQUIRED
+PR-008,"Factory binds provider, hook adapter, transport, wrapper, downstream adapter, and sequence state exactly as frozen.",REQUIRED
+PR-009,"Implementation comprises four planned files, four new classes, and one factory function; no frozen source modification.",REQUIRED
+PR-010,"Implementation identity freeze remains static and executes no SDK modules, Sandbox, Gym, tools, fs.read, HTTP, predicates, breach, models, or threads.",REQUIRED

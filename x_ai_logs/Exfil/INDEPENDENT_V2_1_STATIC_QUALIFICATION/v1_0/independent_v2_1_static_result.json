@@ -1,0 +1,95 @@
+{
+  "boundaries": {
+    "error_value": {
+      "append_error_value": "NOT_DETACHED_BEFORE_RECORD_STORAGE",
+      "contract": "ERROR_VALUE_JSON_SAFE_FOR_SNAPSHOT_AND_RESTORE; APPEND_MAY_HOLD_NON_JSON_VALUE_UNTIL_SNAPSHOT_FAILS_CLOSED",
+      "restore_error_value": "JSON_DETACHED",
+      "snapshot_error_value": "JSON_DETACHED"
+    },
+    "nested_mutability": {
+      "caller_alias_isolation": "STRUCTURALLY_INDICATED_BY_JSON_ROUND_TRIP",
+      "nested_record_graph_immutability": "NOT_IMPLEMENTED",
+      "outer_record_mapping": "MAPPING_PROXY",
+      "reason": "nested dict/list values remain mutable through record.tool_args references"
+    },
+    "snapshot_compatibility": {
+      "V21_snapshot_accepted_by_V2": "REJECT_BY_LEDGER_SCHEMA_TAG",
+      "V2_snapshot_accepted_by_V21": "REJECT_BY_LEDGER_SCHEMA_TAG",
+      "classification": "MUTUALLY_INCOMPATIBLE_BY_DESIGN",
+      "same_field_names_imply_compatibility": false
+    }
+  },
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 58,
+    "total": 58
+  },
+  "claim_boundary": {
+    "allowed": [
+      "independent V2.1 identity and inventory qualification",
+      "static import contract qualification",
+      "exact snapshot schema frozen",
+      "recursive detachment source contract qualified",
+      "caller alias isolation structurally indicated",
+      "nested record graph mutability explicitly classified",
+      "error_value JSON boundary explicitly classified",
+      "restore recomputation and atomicity design qualified statically",
+      "V2/V2.1 incompatibility qualified statically"
+    ],
+    "prohibited": [
+      "claim V2.1 importability by execution",
+      "claim runtime snapshot success",
+      "claim runtime nested-copy isolation",
+      "claim runtime tamper rejection",
+      "claim actual fs.read",
+      "claim protected-value lineage",
+      "claim guardrail effectiveness",
+      "claim robust security findings"
+    ]
+  },
+  "classification": "READ_ONLY_INDEPENDENT_V2_1_STATIC_SOURCE_QUALIFICATION",
+  "created_at_utc": "2026-08-22T15:48:56.456062+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "V1_modified": false,
+    "V2_1_imported": false,
+    "V2_1_instantiated": false,
+    "V2_1_modified": false,
+    "V2_modified": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "candidate_extraction_executed": false,
+    "external_effects_observed": false,
+    "frozen_aicomp_sdk_modified": false,
+    "guardrail_executed": false,
+    "hook_registered": false,
+    "http_sink_executed": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "restore_executed": false,
+    "snapshot_executed": false,
+    "threads_executed": false
+  },
+  "next_gate": "CONTROLLED_V2_1_SUCCESSFUL_READ_LEDGER_QUALIFICATION",
+  "outcome": "INDEPENDENT_V2_1_STATIC_QUALIFICATION_PASS",
+  "readiness": {
+    "controlled_V2_1_successful_read_ledger_qualification_eligible": true,
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false
+  },
+  "scientific_verdict": {
+    "V2_1_identity": "ESTABLISHED",
+    "V2_1_runtime_behavior": "NOT_EVALUATED",
+    "V2_1_static_contract": "ESTABLISHED",
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "guardrail_effectiveness": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "nested_record_graph_immutability": "NOT_IMPLEMENTED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "INDEPENDENT_V2_1_STATIC_QUALIFICATION_COMPLETE_PASS",
+  "version": "INDEPENDENT_V2_1_STATIC_QUALIFICATION_v1.0"
+}

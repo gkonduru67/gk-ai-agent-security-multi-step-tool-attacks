@@ -1,0 +1,157 @@
+{
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 41,
+    "total": 41
+  },
+  "claim_boundary": {
+    "allowed": [
+      "failed V2 run identity and semantics frozen",
+      "V2.1 source and identities frozen",
+      "explicit snapshot serialization present statically",
+      "recursive JSON detachment present statically",
+      "restore atomicity ordering present statically",
+      "V2/V2.1 snapshot incompatibility classified"
+    ],
+    "prohibited": [
+      "claim V2.1 importability",
+      "claim V2.1 runtime snapshot success",
+      "claim runtime nested-copy isolation",
+      "claim runtime tamper rejection",
+      "claim actual fs.read",
+      "claim protected-value lineage",
+      "claim guardrail effectiveness"
+    ]
+  },
+  "classification": "STATIC_V2_1_REPAIR_CREATION_AND_IDENTITY_FREEZE",
+  "created_at_utc": "2026-08-22T15:38:44.124679+00:00",
+  "execution_boundaries": {
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "V1_modified": false,
+    "V2_1_created": true,
+    "V2_1_imported": false,
+    "V2_1_instantiated": false,
+    "V2_modified": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "candidate_extraction_executed": false,
+    "external_effects_observed": false,
+    "frozen_aicomp_sdk_modified": false,
+    "http_sink_executed": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "restore_executed": false,
+    "snapshot_executed": false,
+    "threads_executed": false
+  },
+  "frozen_failure": {
+    "CL_017_candidate_control": {
+      "category": "candidate",
+      "check_id": "CL-017",
+      "expected": "12 membership matches and deterministic order",
+      "failure_layer": "SECRET_CAPTURE",
+      "observed": "[{\"id\": \"CV2-001\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-002\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-003\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-004\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-005\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-006\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-007\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-008\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-009\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-010\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-011\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}, {\"id\": \"CV2-012\", \"match\": true, \"order\": \"SORTED_DETERMINISTIC\"}]",
+      "passed": true
+    },
+    "CL_018_append_control": {
+      "category": "append",
+      "check_id": "CL-018",
+      "expected": "all positive append controls",
+      "failure_layer": "PROVENANCE",
+      "observed": "{\"args_copied\": false, \"args_digest_match\": true, \"candidates_match\": true, \"identity_match\": true, \"raw_digest_match\": true, \"raw_preserved\": true, \"sequence\": 1}",
+      "passed": false
+    },
+    "artifact": {
+      "artifact": "CONTROLLED_V2_LEDGER_FAILED.json",
+      "path": "C:\\x_ai_logs\\Exfil\\CONTROLLED_SUCCESSFUL_FS_READ_LEDGER_QUALIFICATION\\v1_0\\CONTROLLED_V2_LEDGER_FAILED.json",
+      "sha256": "AF6C0BEB687AE221E33B37224EA5316ADCEA6AA10BAB004E4F1B4A4E1CF0C054",
+      "size_bytes": 8587
+    },
+    "error": "cannot pickle 'mappingproxy' object",
+    "reviewed_defects": [
+      "SNAPSHOT_ASDICT_MAPPINGPROXY_RUNTIME_FAILURE",
+      "SHALLOW_TOOL_ARGS_COPY_NESTED_ALIASING"
+    ]
+  },
+  "implementation": {
+    "classes": [
+      "SuccessfulReadRecordV21",
+      "SuccessfulReadLedgerV21",
+      "TrustedReadOutcomeHookV21",
+      "LineageAwareExfilGuardrailV21",
+      "ExfilIntegrationBundleV21",
+      "ExfilIntegrationFactoryV21"
+    ],
+    "files": [
+      {
+        "artifact": "__init__.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\__init__.py",
+        "relative_path": "aicomp_sdk_exfil_v2_1\\__init__.py",
+        "role": "NEW_V2_1_IMPLEMENTATION",
+        "sha256": "8EA5CE3B3548A8545677D635F7360652B992FCB36616D55C3EDBF9DC254CFD48",
+        "size_bytes": 637
+      },
+      {
+        "artifact": "successful_read_ledger_v2_1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\successful_read_ledger_v2_1.py",
+        "relative_path": "aicomp_sdk_exfil_v2_1\\successful_read_ledger_v2_1.py",
+        "role": "NEW_V2_1_IMPLEMENTATION",
+        "sha256": "18146742E6866C491A032AA96EFC248FFED05706895D32FDE724145D0878009C",
+        "size_bytes": 8335
+      },
+      {
+        "artifact": "trusted_read_outcome_hook_v2_1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\trusted_read_outcome_hook_v2_1.py",
+        "relative_path": "aicomp_sdk_exfil_v2_1\\trusted_read_outcome_hook_v2_1.py",
+        "role": "NEW_V2_1_IMPLEMENTATION",
+        "sha256": "F2DE8D42EE5DBCD3BA4CACD8E98DCCB2EBA63F82EC8683D129C503CCED1CE770",
+        "size_bytes": 1532
+      },
+      {
+        "artifact": "lineage_aware_exfil_guardrail_v2_1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\lineage_aware_exfil_guardrail_v2_1.py",
+        "relative_path": "aicomp_sdk_exfil_v2_1\\lineage_aware_exfil_guardrail_v2_1.py",
+        "role": "NEW_V2_1_IMPLEMENTATION",
+        "sha256": "2AC1CA55FB0C18460F50B35677F5ECD9EB3477CFB21F9C19F44A48C7AEFD5C26",
+        "size_bytes": 1394
+      },
+      {
+        "artifact": "integration_factory_v2_1.py",
+        "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\integration_factory_v2_1.py",
+        "relative_path": "aicomp_sdk_exfil_v2_1\\integration_factory_v2_1.py",
+        "role": "NEW_V2_1_IMPLEMENTATION",
+        "sha256": "21355E213E0C8AEFCA8851336C64527F49168ACEC7AEFE6EC161441E676AEE1A",
+        "size_bytes": 1339
+      }
+    ],
+    "record_tag": "EXFIL.SUCCESSFUL.READ.RECORD.V2.1",
+    "schema_tag": "EXFIL.SUCCESSFUL.READ.LEDGER.V2.1",
+    "snapshot_compatibility": {
+      "V21_snapshot_accepted_by_V2": "REJECT_BY_LEDGER_SCHEMA_TAG",
+      "V2_snapshot_accepted_by_V21": "REJECT_BY_LEDGER_SCHEMA_TAG",
+      "classification": "MUTUALLY_INCOMPATIBLE_BY_DESIGN",
+      "same_field_names_imply_compatibility": false
+    },
+    "source_root": "aicomp_sdk_exfil_v2_1"
+  },
+  "next_gate": "INDEPENDENT_V2_1_STATIC_QUALIFICATION",
+  "readiness": {
+    "controlled_V2_1_ledger_qualification_eligible": false,
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false,
+    "independent_V2_1_static_qualification_eligible": true
+  },
+  "scientific_verdict": {
+    "V2_1_identity": "ESTABLISHED",
+    "V2_1_runtime_behavior": "NOT_EVALUATED",
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "guardrail_effectiveness": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "V2_1_SNAPSHOT_SERIALIZATION_REPAIR_AND_IDENTITY_FREEZE_COMPLETE_PASS",
+  "version": "V2_1_SNAPSHOT_SERIALIZATION_REPAIR_AND_IDENTITY_FREEZE_v1.0"
+}

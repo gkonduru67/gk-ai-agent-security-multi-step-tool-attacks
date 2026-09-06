@@ -1,0 +1,90 @@
+{
+  "P2O_C_parent_verified": true,
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 7,
+    "total": 7
+  },
+  "claim_boundary": {
+    "allowed": [
+      "static dataclass declaration and field-default findings",
+      "zero-required-argument constructor contract clarification",
+      "eligibility recommendation for controlled import and pure-unit qualification"
+    ],
+    "prohibited": [
+      "runtime constructor signature",
+      "importability",
+      "runtime behavior",
+      "runtime canonicalization correctness",
+      "actual fs.read behavior",
+      "source retrieval success",
+      "secret capture",
+      "protected-value lineage",
+      "authorization transport correctness",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_CONTRACT_RECONCILIATION",
+  "created_at_utc": "2026-08-21T13:36:16.502186+00:00",
+  "execution_boundaries": {
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "effects_observed": false,
+    "generated_modules_imported": false,
+    "generated_symbols_executed": false,
+    "gym_executed": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "sandbox_executed": false,
+    "sandbox_instantiated": false,
+    "source_modified": false,
+    "tools_executed": false
+  },
+  "next_gate": "EX6_P2B_P2O_D_CONTROLLED_IMPORT_AND_PURE_UNIT_QUALIFICATION",
+  "readiness": {
+    "controlled_actual_fs_read_eligible": false,
+    "controlled_import_and_pure_unit_gate_eligible": true,
+    "generated_modules_imported": false,
+    "generated_symbols_executed": false,
+    "identity_freeze_eligible": false,
+    "implementation_runtime_qualified": false,
+    "source_modification_required": false
+  },
+  "reconciliation": {
+    "constructor_contract": {
+      "authorized_call_form": "TrustedEventSequenceStateV1()",
+      "class": "TrustedEventSequenceStateV1",
+      "contract_id": "P2O-C-R1.DATACLASS.CONSTRUCTOR.V1",
+      "explicit_init_required": false,
+      "future_control": "P2O-D must import in a controlled environment and confirm zero-argument callability plus actual runtime signature before broader runtime claims",
+      "meaning": "zero arguments are required for construction; dataclass-generated optional parameters corresponding to init=True fields with defaults or default_factory are permitted",
+      "runtime_signature_observed": false,
+      "source_modification_required": false,
+      "static_basis": {
+        "dataclass_declared": true,
+        "explicit_init_present": false,
+        "permitted_optional_generated_parameters": [
+          "counter_by_trace",
+          "consumed_outcome_identities",
+          "_lock"
+        ],
+        "required_generated_parameters": []
+      },
+      "strictly_no_optional_parameters_required": false
+    },
+    "outcome": "RECONCILED"
+  },
+  "scientific_verdict": {
+    "authorization_transport_correctness": "NOT_ESTABLISHED",
+    "constructor_contract": "ESTABLISHED_AS_STATIC_SEMANTIC_CLARIFICATION",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_runtime_behavior": "NOT_EVALUATED",
+    "importability": "NOT_EVALUATED",
+    "robust_security_findings": "NOT_ESTABLISHED",
+    "runtime_constructor_signature": "NOT_EVALUATED"
+  },
+  "status": "P2O_C_R1_DATACLASS_CONSTRUCTOR_CONTRACT_RECONCILIATION_COMPLETE_PASS",
+  "version": "EX6_P2B_P2O_C_R1_DATACLASS_CONSTRUCTOR_CONTRACT_RECONCILIATION_v1.0"
+}

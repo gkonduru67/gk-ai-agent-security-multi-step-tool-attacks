@@ -1,0 +1,277 @@
+{
+  "tool_id": "P6B_I_STATIC_GUARDRAIL_DECIDE_CONTRACT_COMPARISON",
+  "tool_version": "v1_0",
+  "gate": "P6B_I_STATIC_GUARDRAIL_DECIDE_CONTRACT_COMPARISON",
+  "execution_type": "READ_ONLY_STATIC_SOURCE_COMPARISON",
+  "runtime": false,
+  "generated_utc": "2026-08-24T19:06:25.648977+00:00",
+  "phase": "EXFILTRATION",
+  "status": "COMPARISON_COMPLETE",
+  "checks": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "failed_ids": []
+  },
+  "identities": {
+    "optimal_py": {
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk\\guardrails\\optimal.py",
+      "sha256": "6724FEDF7BBF3E67DFCDD564BA8A73463E0F783D5C84E0A70DCEFF40C1BC61ED"
+    },
+    "custom_guardrail": {
+      "path": "C:\\Users\\gkonduru\\OneDrive - Forescout Technologies, Inc\\F_drive\\forescout\\Learning\\Kaggle\\ai-agent-security-multi-step-tool-attacks-Jun11-Sep1\\ai-agent-security-multi-step-tool-attacks\\aicomp_sdk_exfil_v2_1\\lineage_aware_exfil_guardrail_v2_1.py",
+      "sha256": "2AC1CA55FB0C18460F50B35677F5ECD9EB3477CFB21F9C19F44A48C7AEFD5C26"
+    }
+  },
+  "comparison_matrix": {
+    "bypass_user_confirmed": {
+      "description": "Bypass: explicit user-confirmed-safe override",
+      "optimal_py_present": true,
+      "optimal_py_match_count": 1,
+      "custom_guardrail_present": false,
+      "custom_guardrail_match_count": 0
+    },
+    "bypass_user_authorized": {
+      "description": "Bypass: explicit user-authorized override",
+      "optimal_py_present": true,
+      "optimal_py_match_count": 1,
+      "custom_guardrail_present": false,
+      "custom_guardrail_match_count": 0
+    },
+    "direct_secret_matcher": {
+      "description": "Direct call to the official secret-payload matcher",
+      "optimal_py_present": false,
+      "optimal_py_match_count": 0,
+      "custom_guardrail_present": true,
+      "custom_guardrail_match_count": 2
+    },
+    "direct_secret_path_check": {
+      "description": "Direct call to the official secret-path name-gate",
+      "optimal_py_present": false,
+      "optimal_py_match_count": 0,
+      "custom_guardrail_present": false,
+      "custom_guardrail_match_count": 0
+    },
+    "pattern_based_deny": {
+      "description": "Pattern/keyword-based dangerous-operation check",
+      "optimal_py_present": true,
+      "optimal_py_match_count": 5,
+      "custom_guardrail_present": false,
+      "custom_guardrail_match_count": 0
+    },
+    "lineage_provenance_check": {
+      "description": "Lineage/provenance-aware check (tracks source->sink derivation)",
+      "optimal_py_present": true,
+      "optimal_py_match_count": 2,
+      "custom_guardrail_present": true,
+      "custom_guardrail_match_count": 5
+    },
+    "explicit_deny_reason_literal": {
+      "description": "Explicit, named deny-reason string or deny() call",
+      "optimal_py_present": true,
+      "optimal_py_match_count": 2,
+      "custom_guardrail_present": true,
+      "custom_guardrail_match_count": 2
+    }
+  },
+  "raw_scan_detail": {
+    "optimal_py": {
+      "bypass_user_confirmed": {
+        "description": "Bypass: explicit user-confirmed-safe override",
+        "match_count": 1,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 37,
+            "raw": "        if context.get(\"user_confirmed_safe\", False) or context.get(\"user_authorized\", False):"
+          }
+        ]
+      },
+      "bypass_user_authorized": {
+        "description": "Bypass: explicit user-authorized override",
+        "match_count": 1,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 37,
+            "raw": "        if context.get(\"user_confirmed_safe\", False) or context.get(\"user_authorized\", False):"
+          }
+        ]
+      },
+      "direct_secret_matcher": {
+        "description": "Direct call to the official secret-payload matcher",
+        "match_count": 0,
+        "present": false,
+        "matches": []
+      },
+      "direct_secret_path_check": {
+        "description": "Direct call to the official secret-path name-gate",
+        "match_count": 0,
+        "present": false,
+        "matches": []
+      },
+      "pattern_based_deny": {
+        "description": "Pattern/keyword-based dangerous-operation check",
+        "match_count": 5,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 15,
+            "raw": "        self.dangerous_operations = {"
+          },
+          {
+            "lineno": 22,
+            "raw": "        self.ultra_dangerous_patterns = {"
+          },
+          {
+            "lineno": 46,
+            "raw": "        if tainted and tool_name in self.dangerous_operations:"
+          },
+          {
+            "lineno": 59,
+            "raw": "            pattern in target.lower() for pattern in self.ultra_dangerous_patterns"
+          },
+          {
+            "lineno": 70,
+            "raw": "        for pattern in self.ultra_dangerous_patterns:"
+          }
+        ]
+      },
+      "lineage_provenance_check": {
+        "description": "Lineage/provenance-aware check (tracks source->sink derivation)",
+        "match_count": 2,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 44,
+            "raw": "        recent_sources = context.get(\"recent_sources\", [])"
+          },
+          {
+            "lineno": 45,
+            "raw": "        tainted = any(src in [\"web\", \"email\"] for src in recent_sources)"
+          }
+        ]
+      },
+      "explicit_deny_reason_literal": {
+        "description": "Explicit, named deny-reason string or deny() call",
+        "match_count": 2,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 42,
+            "raw": "            return Decision.deny(f\"Blocked {tool_name} on sensitive target '{target}'\")"
+          },
+          {
+            "lineno": 47,
+            "raw": "            return Decision.deny(f\"Blocked {tool_name} after accessing untrusted source\")"
+          }
+        ]
+      }
+    },
+    "custom_guardrail": {
+      "bypass_user_confirmed": {
+        "description": "Bypass: explicit user-confirmed-safe override",
+        "match_count": 0,
+        "present": false,
+        "matches": []
+      },
+      "bypass_user_authorized": {
+        "description": "Bypass: explicit user-authorized override",
+        "match_count": 0,
+        "present": false,
+        "matches": []
+      },
+      "direct_secret_matcher": {
+        "description": "Direct call to the official secret-payload matcher",
+        "match_count": 2,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 4,
+            "raw": "from aicomp_sdk.core.predicates import exfil_payload_arg, payload_exfiltrates_secret"
+          },
+          {
+            "lineno": 16,
+            "raw": "        if secrets and payload_exfiltrates_secret(tool_args[payload_arg],read_secrets=secrets): return Decision.deny(\"EXFIL_V21_SUCCESSFUL_READ_VALUE_MATCH\")"
+          }
+        ]
+      },
+      "direct_secret_path_check": {
+        "description": "Direct call to the official secret-path name-gate",
+        "match_count": 0,
+        "present": false,
+        "matches": []
+      },
+      "pattern_based_deny": {
+        "description": "Pattern/keyword-based dangerous-operation check",
+        "match_count": 0,
+        "present": false,
+        "matches": []
+      },
+      "lineage_provenance_check": {
+        "description": "Lineage/provenance-aware check (tracks source->sink derivation)",
+        "match_count": 5,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 6,
+            "raw": "from .successful_read_ledger_v2_1 import SuccessfulReadLedgerV21"
+          },
+          {
+            "lineno": 8,
+            "raw": "    def __init__(self, *, ledger: SuccessfulReadLedgerV21, inner: GuardrailBase | None=None) -> None:"
+          },
+          {
+            "lineno": 9,
+            "raw": "        if not isinstance(ledger, SuccessfulReadLedgerV21): raise TypeError(\"ledger must be SuccessfulReadLedgerV21\")"
+          },
+          {
+            "lineno": 10,
+            "raw": "        self._ledger=ledger; self._inner=inner"
+          },
+          {
+            "lineno": 15,
+            "raw": "        secrets=self._ledger.qualifying_secret_values()"
+          }
+        ]
+      },
+      "explicit_deny_reason_literal": {
+        "description": "Explicit, named deny-reason string or deny() call",
+        "match_count": 2,
+        "present": true,
+        "matches": [
+          {
+            "lineno": 14,
+            "raw": "        if not isinstance(tool_args,Mapping) or payload_arg not in tool_args: return Decision.deny(\"EXFIL_V21_MALFORMED_SINK_PROPOSAL\")"
+          },
+          {
+            "lineno": 16,
+            "raw": "        if secrets and payload_exfiltrates_secret(tool_args[payload_arg],read_secrets=secrets): return Decision.deny(\"EXFIL_V21_SUCCESSFUL_READ_VALUE_MATCH\")"
+          }
+        ]
+      }
+    }
+  },
+  "known_documented_asymmetry": {
+    "statement": "Prior source inspection (SDK Core Contract document) established that optimal.py does NOT call payload_exfiltrates_secret directly, unlike the base rules-guardrail (guardrail_rules.py), which does. optimal.py instead relies on ultra_dangerous_patterns + tainted-source/dangerous_operations checks. Any comparison of optimal.py vs a secret-matcher-based guardrail must control for this asymmetry rather than treating them as interchangeable.",
+    "carried_forward_from": "AI_Agent_Security_SDK_Core_Contract_Understanding.docx"
+  },
+  "claim_boundary": {
+    "allowed_claims": [
+      "Static symbol presence/absence for each decision-relevant category, in each guardrail's source text, with exact line numbers.",
+      "The documented asymmetry (optimal.py lacks direct secret-matcher call) is carried forward explicitly, not silently dropped."
+    ],
+    "prohibited_claims": [
+      "optimal.py is WEAKER or STRONGER than the custom guardrail (runtime behavior)",
+      "either guardrail would ALLOW or DENY any specific real proposal",
+      "this comparison establishes robust_security_findings",
+      "this comparison establishes official_exfiltration or hosted_parity"
+    ]
+  },
+  "not_established": {
+    "runtime_decide_behavior_of_either_guardrail": "NOT_ESTABLISHED",
+    "which_guardrail_denies_more_real_proposals": "NOT_ESTABLISHED",
+    "official_exfiltration": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  }
+}

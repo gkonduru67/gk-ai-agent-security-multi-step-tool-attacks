@@ -1,0 +1,21 @@
+check_id,area,description,passed,severity,evidence
+S-001,IDENTITY,Required class inherits GuardrailBase,True,BLOCKING,GuardrailBase
+S-002,INTERFACE,All planned public methods present,True,BLOCKING,[]
+S-003,INTERFACE,All planned private helpers present,True,BLOCKING,[]
+S-004,IMPORTS,No prohibited network/process import roots,True,BLOCKING,[]
+S-005,EXECUTION,No prohibited dynamic/file execution calls,True,BLOCKING,[]
+S-006,FAIL_CLOSED,Direct decide denies and requires trusted before_decide,False,BLOCKING,['deny']
+S-007,ISSUER,Grant validation binds issuer identity/trust domain and constant-time capability,True,BLOCKING,"['compare_digest', 'issuer_id', 'issuer_trust_domain']"
+S-008,CANONICALIZATION,"Canonicalization specifies NFC, sorted keys, compact separators, UTF-8 and rejects floats",False,BLOCKING,"['NFC', 'floating point prohibited', 'utf-8']"
+S-009,EVENT_IDENTITY,Event validation binds trace sequence kind and monotonic rejection,False,BLOCKING,"['event_kind', 'event_sequence', 'trace_identity']"
+S-010,ONE_USE,Grant consumed on authorization release before return,False,BLOCKING,['_consume_grant']
+S-011,STATE,Snapshot includes all frozen state domains,True,BLOCKING,[]
+S-012,STATE,Restore validates before replacing adapter state,True,BLOCKING,['_validate_snapshot']
+S-013,STATE,Reset clears all adapter-owned mutable domains,False,BLOCKING,"['consumed_grant_ids', 'monotonic_sequence_by_trace', 'pending_proposals_by_digest', 'protected_read_records', 'seen_event_identities', 'trusted_grants_by_id']"
+S-014,AFTER_TOOL,"After-tool binds proposal, trace, event, tool and tool-args digest fields",True,BLOCKING,"['event_identity', 'proposal_digest', 'tool_args_digest', 'tool_name', 'trace_identity']"
+Q-001,GRANT_LIFETIME,"Grant lifetime is enforced at authorization decision, not only schema-validated",False,BLOCKING,before_decide does not reference issued_at_or_sequence or expires_at_or_sequence
+Q-002,PROPOSAL_REPLAY,Proposal event identity is committed or rejected before a second identical proposal can be accepted,False,BLOCKING,before_decide validates but does not commit proposal event identity
+Q-003,OUTCOME_BINDING,after_tool verifies pending tool_name equals acknowledged tool_name,False,BLOCKING,no pending[tool_name] comparison found
+Q-004,ARGUMENT_BINDING,after_tool verifies tool_args_digest against the pending proposal,False,BLOCKING,tool_args_digest is type-checked but no equality comparison found
+Q-005,READ_QUALIFICATION,Protected read is independently classified as protected rather than accepted from supplied path/digests,False,BLOCKING,no protected-path classifier call found
+Q-006,RESTORE_ATOMICITY,Inner and adapter state restore is atomic or rolls back on adapter assignment failure,False,BLOCKING,restore_state has no rollback/transaction try block

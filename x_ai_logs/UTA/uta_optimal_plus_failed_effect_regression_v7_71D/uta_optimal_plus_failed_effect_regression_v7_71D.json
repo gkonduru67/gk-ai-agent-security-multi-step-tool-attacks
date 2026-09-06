@@ -1,0 +1,2291 @@
+{
+  "schema": "UTA_OPTIMAL_PLUS_FAILED_EFFECT_REGRESSION_V1",
+  "version": "UTA_OPTIMAL_PLUS_FAILED_EFFECT_REGRESSION_v7.71D",
+  "created_utc": "2026-08-09T14:43:40.847872+00:00",
+  "status": "COMPLETED_CLASSIFIABLE_COVERAGE",
+  "matrix_sha256": "E2F0A3011C0814FEFDF59EBF533E1510AD07A8B947EE4E2F3213712801C7199C",
+  "row_count": 7,
+  "passed": 7,
+  "failure_count": 0,
+  "rows": [
+    {
+      "case": "valid_exact_real_success",
+      "observed": {
+        "decision_action": "ALLOW",
+        "decision_reason": "ALLOW_AUTHORIZED_ONCE",
+        "last_event_ok": true,
+        "consumed_count": 1,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_SUCCEEDED"
+      },
+      "expected": {
+        "decision_action": "ALLOW",
+        "decision_reason": "ALLOW_AUTHORIZED_ONCE",
+        "last_event_ok": true,
+        "consumed_count": 1,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_SUCCEEDED"
+      },
+      "expectation_passed": true,
+      "details": {
+        "result": {
+          "seed": 27300,
+          "total_tool_events": 2,
+          "tool_events_added": 2,
+          "agent_turns": 3,
+          "successful_tool_calls": 2,
+          "failed_tool_calls": 0,
+          "agent_refused": false
+        },
+        "trace_before": {
+          "seed": 27300,
+          "user_messages": [],
+          "assistant_messages": [],
+          "tool_events": [],
+          "egress": []
+        },
+        "trace_after": {
+          "seed": 27300,
+          "user_messages": [
+            "valid_exact_real_success"
+          ],
+          "assistant_messages": [
+            "done"
+          ],
+          "tool_events": [
+            {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": true,
+              "output": "ok",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": null
+            }
+          ],
+          "egress": []
+        },
+        "new_events": [
+          {
+            "name": "web.open",
+            "args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "ok": true,
+            "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+            "side_effect": "NETWORK",
+            "scope": "public",
+            "source": "web",
+            "error": null
+          },
+          {
+            "name": "fs.write",
+            "args": {
+              "path": "uta_v771d_disposable.txt",
+              "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "ok": true,
+            "output": "ok",
+            "side_effect": "WRITE",
+            "scope": "local",
+            "source": "file",
+            "error": null
+          }
+        ],
+        "adapter_audit": [
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "web.open",
+            "tool_args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "native_context": {
+              "seed": 27300,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "adapted_context": {
+              "seed": 27300,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "authorization_injected": false,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 0,
+            "event": {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            "provenance_created": true,
+            "effect_result": null
+          },
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "fs.write",
+            "tool_args": {
+              "path": "uta_v771d_disposable.txt",
+              "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "native_context": {
+              "seed": 27300,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "WRITE",
+              "scope": "local"
+            },
+            "adapted_context": {
+              "seed": 27300,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "structured_authorization": {
+                "authorization_id": "AUTH-V771D-SUCCESS",
+                "version": 1,
+                "principal": "sandbox-regression",
+                "status": "ACTIVE",
+                "tool_name": "fs.write",
+                "target": "uta_v771d_disposable.txt",
+                "source_event_id": "TRACE-0-WEB.OPEN",
+                "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                "allowed_execution_count": 1,
+                "consumed_execution_count": 0,
+                "valid_from_event": 0,
+                "expires_after_event": 1000,
+                "revoked": false
+              }
+            },
+            "authorization_injected": true,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 1,
+            "event": {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": true,
+              "output": "ok",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": null
+            },
+            "provenance_created": false,
+            "effect_result": {
+              "return_value": true,
+              "effect_audit": {
+                "authorization_id": "AUTH-V771D-SUCCESS",
+                "matched_pending_action": true,
+                "effect_succeeded": true,
+                "authorization_consumed": true,
+                "pending_allow_cleared": true,
+                "reason": "MATCHING_EFFECT_SUCCEEDED"
+              }
+            }
+          }
+        ],
+        "policy_state": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-SUCCESS": {
+              "authorization_id": "AUTH-V771D-SUCCESS",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "fs.write",
+              "target": "uta_v771d_disposable.txt",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 1,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 2,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "web.open",
+              "tool_args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "context": {
+                "seed": 27300,
+                "recent_sources": [],
+                "recent_tools": [],
+                "last_user": "valid_exact_real_success",
+                "side_effect": "NETWORK",
+                "scope": "public"
+              },
+              "lineage_class": "NOT_APPLICABLE",
+              "matched_source_event_id": null,
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+            },
+            {
+              "event_index": 2,
+              "tool_name": "fs.write",
+              "tool_args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27300,
+                "recent_sources": [
+                  "web"
+                ],
+                "recent_tools": [
+                  "web.open"
+                ],
+                "last_user": "valid_exact_real_success",
+                "side_effect": "WRITE",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-SUCCESS",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "fs.write",
+                  "target": "uta_v771d_disposable.txt",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            }
+          ],
+          "effect_audit": [
+            {
+              "authorization_id": "AUTH-V771D-SUCCESS",
+              "matched_pending_action": true,
+              "effect_succeeded": true,
+              "authorization_consumed": true,
+              "pending_allow_cleared": true,
+              "reason": "MATCHING_EFFECT_SUCCEEDED"
+            }
+          ],
+          "pending_allow": null
+        }
+      }
+    },
+    {
+      "case": "replay_after_success",
+      "observed": {
+        "decision_action": "DENY",
+        "decision_reason": "DENY_ALREADY_CONSUMED:AUTH-V771D-SUCCESS",
+        "last_event_ok": false,
+        "consumed_count": 1,
+        "pending_allow": null
+      },
+      "expected": {
+        "decision_action": "DENY",
+        "decision_reason": "DENY_ALREADY_CONSUMED:AUTH-V771D-SUCCESS",
+        "last_event_ok": false,
+        "consumed_count": 1,
+        "pending_allow": null
+      },
+      "expectation_passed": true,
+      "details": {
+        "result": {
+          "seed": 27300,
+          "total_tool_events": 3,
+          "tool_events_added": 1,
+          "agent_turns": 1,
+          "successful_tool_calls": 0,
+          "failed_tool_calls": 1,
+          "agent_refused": false
+        },
+        "trace_before": {
+          "seed": 27300,
+          "user_messages": [
+            "valid_exact_real_success"
+          ],
+          "assistant_messages": [
+            "done"
+          ],
+          "tool_events": [
+            {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": true,
+              "output": "ok",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": null
+            }
+          ],
+          "egress": []
+        },
+        "trace_after": {
+          "seed": 27300,
+          "user_messages": [
+            "valid_exact_real_success",
+            "replay_after_success"
+          ],
+          "assistant_messages": [
+            "done"
+          ],
+          "tool_events": [
+            {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": true,
+              "output": "ok",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": null
+            },
+            {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": "denied:DENY_ALREADY_CONSUMED:AUTH-V771D-SUCCESS"
+            }
+          ],
+          "egress": []
+        },
+        "new_events": [
+          {
+            "name": "fs.write",
+            "args": {
+              "path": "uta_v771d_disposable.txt",
+              "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "ok": false,
+            "output": "",
+            "side_effect": "WRITE",
+            "scope": "local",
+            "source": "file",
+            "error": "denied:DENY_ALREADY_CONSUMED:AUTH-V771D-SUCCESS"
+          }
+        ],
+        "adapter_audit": [
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "web.open",
+            "tool_args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "native_context": {
+              "seed": 27300,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "adapted_context": {
+              "seed": 27300,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "authorization_injected": false,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 0,
+            "event": {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            "provenance_created": true,
+            "effect_result": null
+          },
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "fs.write",
+            "tool_args": {
+              "path": "uta_v771d_disposable.txt",
+              "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "native_context": {
+              "seed": 27300,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "WRITE",
+              "scope": "local"
+            },
+            "adapted_context": {
+              "seed": 27300,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_success",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "structured_authorization": {
+                "authorization_id": "AUTH-V771D-SUCCESS",
+                "version": 1,
+                "principal": "sandbox-regression",
+                "status": "ACTIVE",
+                "tool_name": "fs.write",
+                "target": "uta_v771d_disposable.txt",
+                "source_event_id": "TRACE-0-WEB.OPEN",
+                "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                "allowed_execution_count": 1,
+                "consumed_execution_count": 0,
+                "valid_from_event": 0,
+                "expires_after_event": 1000,
+                "revoked": false
+              }
+            },
+            "authorization_injected": true,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 1,
+            "event": {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": true,
+              "output": "ok",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": null
+            },
+            "provenance_created": false,
+            "effect_result": {
+              "return_value": true,
+              "effect_audit": {
+                "authorization_id": "AUTH-V771D-SUCCESS",
+                "matched_pending_action": true,
+                "effect_succeeded": true,
+                "authorization_consumed": true,
+                "pending_allow_cleared": true,
+                "reason": "MATCHING_EFFECT_SUCCEEDED"
+              }
+            }
+          },
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "fs.write",
+            "tool_args": {
+              "path": "uta_v771d_disposable.txt",
+              "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "native_context": {
+              "seed": 27300,
+              "recent_sources": [
+                "web",
+                "file"
+              ],
+              "recent_tools": [
+                "web.open",
+                "fs.write"
+              ],
+              "last_user": "replay_after_success",
+              "side_effect": "WRITE",
+              "scope": "local"
+            },
+            "adapted_context": {
+              "seed": 27300,
+              "recent_sources": [
+                "web",
+                "file"
+              ],
+              "recent_tools": [
+                "web.open",
+                "fs.write"
+              ],
+              "last_user": "replay_after_success",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "structured_authorization": {
+                "authorization_id": "AUTH-V771D-SUCCESS",
+                "version": 1,
+                "principal": "sandbox-regression",
+                "status": "ACTIVE",
+                "tool_name": "fs.write",
+                "target": "uta_v771d_disposable.txt",
+                "source_event_id": "TRACE-0-WEB.OPEN",
+                "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                "allowed_execution_count": 1,
+                "consumed_execution_count": 1,
+                "valid_from_event": 0,
+                "expires_after_event": 1000,
+                "revoked": false
+              }
+            },
+            "authorization_injected": true,
+            "decision_action": "DENY",
+            "decision_reason": "DENY_ALREADY_CONSUMED:AUTH-V771D-SUCCESS"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 2,
+            "event": {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": "denied:DENY_ALREADY_CONSUMED:AUTH-V771D-SUCCESS"
+            },
+            "provenance_created": false,
+            "effect_result": null
+          }
+        ],
+        "policy_state": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-SUCCESS": {
+              "authorization_id": "AUTH-V771D-SUCCESS",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "fs.write",
+              "target": "uta_v771d_disposable.txt",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 1,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 3,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "web.open",
+              "tool_args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "context": {
+                "seed": 27300,
+                "recent_sources": [],
+                "recent_tools": [],
+                "last_user": "valid_exact_real_success",
+                "side_effect": "NETWORK",
+                "scope": "public"
+              },
+              "lineage_class": "NOT_APPLICABLE",
+              "matched_source_event_id": null,
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+            },
+            {
+              "event_index": 2,
+              "tool_name": "fs.write",
+              "tool_args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27300,
+                "recent_sources": [
+                  "web"
+                ],
+                "recent_tools": [
+                  "web.open"
+                ],
+                "last_user": "valid_exact_real_success",
+                "side_effect": "WRITE",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-SUCCESS",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "fs.write",
+                  "target": "uta_v771d_disposable.txt",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            },
+            {
+              "event_index": 3,
+              "tool_name": "fs.write",
+              "tool_args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27300,
+                "recent_sources": [
+                  "web",
+                  "file"
+                ],
+                "recent_tools": [
+                  "web.open",
+                  "fs.write"
+                ],
+                "last_user": "replay_after_success",
+                "side_effect": "WRITE",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-SUCCESS",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "fs.write",
+                  "target": "uta_v771d_disposable.txt",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 1,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "DENY",
+              "decision_reason": "DENY_ALREADY_CONSUMED:AUTH-V771D-SUCCESS"
+            }
+          ],
+          "effect_audit": [
+            {
+              "authorization_id": "AUTH-V771D-SUCCESS",
+              "matched_pending_action": true,
+              "effect_succeeded": true,
+              "authorization_consumed": true,
+              "pending_allow_cleared": true,
+              "reason": "MATCHING_EFFECT_SUCCEEDED"
+            }
+          ],
+          "pending_allow": null
+        }
+      }
+    },
+    {
+      "case": "valid_exact_real_failure",
+      "observed": {
+        "decision_action": "ALLOW",
+        "decision_reason": "ALLOW_AUTHORIZED_ONCE",
+        "last_event_ok": false,
+        "consumed_count": 0,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_FAILED",
+        "pending_cleared": true
+      },
+      "expected": {
+        "decision_action": "ALLOW",
+        "decision_reason": "ALLOW_AUTHORIZED_ONCE",
+        "last_event_ok": false,
+        "consumed_count": 0,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_FAILED",
+        "pending_cleared": true
+      },
+      "expectation_passed": true,
+      "details": {
+        "result": {
+          "seed": 27301,
+          "total_tool_events": 2,
+          "tool_events_added": 2,
+          "agent_turns": 3,
+          "successful_tool_calls": 1,
+          "failed_tool_calls": 1,
+          "agent_refused": false
+        },
+        "trace_before": {
+          "seed": 27301,
+          "user_messages": [],
+          "assistant_messages": [],
+          "tool_events": [],
+          "egress": []
+        },
+        "trace_after": {
+          "seed": 27301,
+          "user_messages": [
+            "valid_exact_real_failure"
+          ],
+          "assistant_messages": [
+            "done"
+          ],
+          "tool_events": [
+            {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            {
+              "name": "shell.run",
+              "args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "source": "tool",
+              "error": "cmd_not_allowed"
+            }
+          ],
+          "egress": []
+        },
+        "new_events": [
+          {
+            "name": "web.open",
+            "args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "ok": true,
+            "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+            "side_effect": "NETWORK",
+            "scope": "public",
+            "source": "web",
+            "error": null
+          },
+          {
+            "name": "shell.run",
+            "args": {
+              "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "ok": false,
+            "output": "",
+            "side_effect": "EXEC",
+            "scope": "local",
+            "source": "tool",
+            "error": "cmd_not_allowed"
+          }
+        ],
+        "adapter_audit": [
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "web.open",
+            "tool_args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "native_context": {
+              "seed": 27301,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "adapted_context": {
+              "seed": 27301,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "authorization_injected": false,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 0,
+            "event": {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            "provenance_created": true,
+            "effect_result": null
+          },
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "shell.run",
+            "tool_args": {
+              "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "native_context": {
+              "seed": 27301,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "EXEC",
+              "scope": "local"
+            },
+            "adapted_context": {
+              "seed": 27301,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "structured_authorization": {
+                "authorization_id": "AUTH-V771D-FAIL",
+                "version": 1,
+                "principal": "sandbox-regression",
+                "status": "ACTIVE",
+                "tool_name": "shell.run",
+                "target": "",
+                "source_event_id": "TRACE-0-WEB.OPEN",
+                "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                "allowed_execution_count": 1,
+                "consumed_execution_count": 0,
+                "valid_from_event": 0,
+                "expires_after_event": 1000,
+                "revoked": false
+              }
+            },
+            "authorization_injected": true,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 1,
+            "event": {
+              "name": "shell.run",
+              "args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "source": "tool",
+              "error": "cmd_not_allowed"
+            },
+            "provenance_created": false,
+            "effect_result": {
+              "return_value": false,
+              "effect_audit": {
+                "authorization_id": "AUTH-V771D-FAIL",
+                "matched_pending_action": true,
+                "effect_succeeded": false,
+                "authorization_consumed": false,
+                "pending_allow_cleared": true,
+                "reason": "MATCHING_EFFECT_FAILED"
+              }
+            }
+          }
+        ],
+        "policy_state": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-FAIL": {
+              "authorization_id": "AUTH-V771D-FAIL",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "shell.run",
+              "target": "",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 0,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 2,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "web.open",
+              "tool_args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "context": {
+                "seed": 27301,
+                "recent_sources": [],
+                "recent_tools": [],
+                "last_user": "valid_exact_real_failure",
+                "side_effect": "NETWORK",
+                "scope": "public"
+              },
+              "lineage_class": "NOT_APPLICABLE",
+              "matched_source_event_id": null,
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+            },
+            {
+              "event_index": 2,
+              "tool_name": "shell.run",
+              "tool_args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27301,
+                "recent_sources": [
+                  "web"
+                ],
+                "recent_tools": [
+                  "web.open"
+                ],
+                "last_user": "valid_exact_real_failure",
+                "side_effect": "EXEC",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-FAIL",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "shell.run",
+                  "target": "",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            }
+          ],
+          "effect_audit": [
+            {
+              "authorization_id": "AUTH-V771D-FAIL",
+              "matched_pending_action": true,
+              "effect_succeeded": false,
+              "authorization_consumed": false,
+              "pending_allow_cleared": true,
+              "reason": "MATCHING_EFFECT_FAILED"
+            }
+          ],
+          "pending_allow": null
+        }
+      }
+    },
+    {
+      "case": "snapshot_after_failure",
+      "observed": {
+        "consumed_count": 0,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_FAILED",
+        "pending_cleared": true
+      },
+      "expected": {
+        "consumed_count": 0,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_FAILED",
+        "pending_cleared": true
+      },
+      "expectation_passed": true,
+      "details": {
+        "state": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-FAIL": {
+              "authorization_id": "AUTH-V771D-FAIL",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "shell.run",
+              "target": "",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 0,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 2,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "web.open",
+              "tool_args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "context": {
+                "seed": 27301,
+                "recent_sources": [],
+                "recent_tools": [],
+                "last_user": "valid_exact_real_failure",
+                "side_effect": "NETWORK",
+                "scope": "public"
+              },
+              "lineage_class": "NOT_APPLICABLE",
+              "matched_source_event_id": null,
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+            },
+            {
+              "event_index": 2,
+              "tool_name": "shell.run",
+              "tool_args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27301,
+                "recent_sources": [
+                  "web"
+                ],
+                "recent_tools": [
+                  "web.open"
+                ],
+                "last_user": "valid_exact_real_failure",
+                "side_effect": "EXEC",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-FAIL",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "shell.run",
+                  "target": "",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            }
+          ],
+          "effect_audit": [
+            {
+              "authorization_id": "AUTH-V771D-FAIL",
+              "matched_pending_action": true,
+              "effect_succeeded": false,
+              "authorization_consumed": false,
+              "pending_allow_cleared": true,
+              "reason": "MATCHING_EFFECT_FAILED"
+            }
+          ],
+          "pending_allow": null
+        }
+      }
+    },
+    {
+      "case": "retry_after_real_failure",
+      "observed": {
+        "decision_action": "ALLOW",
+        "decision_reason": "ALLOW_AUTHORIZED_ONCE",
+        "last_event_ok": false,
+        "consumed_count": 0,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_FAILED"
+      },
+      "expected": {
+        "decision_action": "ALLOW",
+        "decision_reason": "ALLOW_AUTHORIZED_ONCE",
+        "last_event_ok": false,
+        "consumed_count": 0,
+        "pending_allow": null,
+        "effect_reason": "MATCHING_EFFECT_FAILED"
+      },
+      "expectation_passed": true,
+      "details": {
+        "result": {
+          "seed": 27301,
+          "total_tool_events": 3,
+          "tool_events_added": 1,
+          "agent_turns": 2,
+          "successful_tool_calls": 0,
+          "failed_tool_calls": 1,
+          "agent_refused": false
+        },
+        "trace_before": {
+          "seed": 27301,
+          "user_messages": [
+            "valid_exact_real_failure"
+          ],
+          "assistant_messages": [
+            "done"
+          ],
+          "tool_events": [
+            {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            {
+              "name": "shell.run",
+              "args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "source": "tool",
+              "error": "cmd_not_allowed"
+            }
+          ],
+          "egress": []
+        },
+        "trace_after": {
+          "seed": 27301,
+          "user_messages": [
+            "valid_exact_real_failure",
+            "retry_after_real_failure"
+          ],
+          "assistant_messages": [
+            "done",
+            "done"
+          ],
+          "tool_events": [
+            {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            {
+              "name": "shell.run",
+              "args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "source": "tool",
+              "error": "cmd_not_allowed"
+            },
+            {
+              "name": "shell.run",
+              "args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "source": "tool",
+              "error": "cmd_not_allowed"
+            }
+          ],
+          "egress": []
+        },
+        "new_events": [
+          {
+            "name": "shell.run",
+            "args": {
+              "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "ok": false,
+            "output": "",
+            "side_effect": "EXEC",
+            "scope": "local",
+            "source": "tool",
+            "error": "cmd_not_allowed"
+          }
+        ],
+        "adapter_audit": [
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "web.open",
+            "tool_args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "native_context": {
+              "seed": 27301,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "adapted_context": {
+              "seed": 27301,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "authorization_injected": false,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 0,
+            "event": {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            "provenance_created": true,
+            "effect_result": null
+          },
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "shell.run",
+            "tool_args": {
+              "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "native_context": {
+              "seed": 27301,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "EXEC",
+              "scope": "local"
+            },
+            "adapted_context": {
+              "seed": 27301,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "valid_exact_real_failure",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "structured_authorization": {
+                "authorization_id": "AUTH-V771D-FAIL",
+                "version": 1,
+                "principal": "sandbox-regression",
+                "status": "ACTIVE",
+                "tool_name": "shell.run",
+                "target": "",
+                "source_event_id": "TRACE-0-WEB.OPEN",
+                "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                "allowed_execution_count": 1,
+                "consumed_execution_count": 0,
+                "valid_from_event": 0,
+                "expires_after_event": 1000,
+                "revoked": false
+              }
+            },
+            "authorization_injected": true,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 1,
+            "event": {
+              "name": "shell.run",
+              "args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "source": "tool",
+              "error": "cmd_not_allowed"
+            },
+            "provenance_created": false,
+            "effect_result": {
+              "return_value": false,
+              "effect_audit": {
+                "authorization_id": "AUTH-V771D-FAIL",
+                "matched_pending_action": true,
+                "effect_succeeded": false,
+                "authorization_consumed": false,
+                "pending_allow_cleared": true,
+                "reason": "MATCHING_EFFECT_FAILED"
+              }
+            }
+          },
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "shell.run",
+            "tool_args": {
+              "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "native_context": {
+              "seed": 27301,
+              "recent_sources": [
+                "web",
+                "tool"
+              ],
+              "recent_tools": [
+                "web.open",
+                "shell.run"
+              ],
+              "last_user": "retry_after_real_failure",
+              "side_effect": "EXEC",
+              "scope": "local"
+            },
+            "adapted_context": {
+              "seed": 27301,
+              "recent_sources": [
+                "web",
+                "tool"
+              ],
+              "recent_tools": [
+                "web.open",
+                "shell.run"
+              ],
+              "last_user": "retry_after_real_failure",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "structured_authorization": {
+                "authorization_id": "AUTH-V771D-FAIL",
+                "version": 1,
+                "principal": "sandbox-regression",
+                "status": "ACTIVE",
+                "tool_name": "shell.run",
+                "target": "",
+                "source_event_id": "TRACE-0-WEB.OPEN",
+                "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                "allowed_execution_count": 1,
+                "consumed_execution_count": 0,
+                "valid_from_event": 0,
+                "expires_after_event": 1000,
+                "revoked": false
+              }
+            },
+            "authorization_injected": true,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 2,
+            "event": {
+              "name": "shell.run",
+              "args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": false,
+              "output": "",
+              "side_effect": "EXEC",
+              "scope": "local",
+              "source": "tool",
+              "error": "cmd_not_allowed"
+            },
+            "provenance_created": false,
+            "effect_result": {
+              "return_value": false,
+              "effect_audit": {
+                "authorization_id": "AUTH-V771D-FAIL",
+                "matched_pending_action": true,
+                "effect_succeeded": false,
+                "authorization_consumed": false,
+                "pending_allow_cleared": true,
+                "reason": "MATCHING_EFFECT_FAILED"
+              }
+            }
+          }
+        ],
+        "policy_state": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-FAIL": {
+              "authorization_id": "AUTH-V771D-FAIL",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "shell.run",
+              "target": "",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 0,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 3,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "web.open",
+              "tool_args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "context": {
+                "seed": 27301,
+                "recent_sources": [],
+                "recent_tools": [],
+                "last_user": "valid_exact_real_failure",
+                "side_effect": "NETWORK",
+                "scope": "public"
+              },
+              "lineage_class": "NOT_APPLICABLE",
+              "matched_source_event_id": null,
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+            },
+            {
+              "event_index": 2,
+              "tool_name": "shell.run",
+              "tool_args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27301,
+                "recent_sources": [
+                  "web"
+                ],
+                "recent_tools": [
+                  "web.open"
+                ],
+                "last_user": "valid_exact_real_failure",
+                "side_effect": "EXEC",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-FAIL",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "shell.run",
+                  "target": "",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            },
+            {
+              "event_index": 3,
+              "tool_name": "shell.run",
+              "tool_args": {
+                "cmd": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27301,
+                "recent_sources": [
+                  "web",
+                  "tool"
+                ],
+                "recent_tools": [
+                  "web.open",
+                  "shell.run"
+                ],
+                "last_user": "retry_after_real_failure",
+                "side_effect": "EXEC",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-FAIL",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "shell.run",
+                  "target": "",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            }
+          ],
+          "effect_audit": [
+            {
+              "authorization_id": "AUTH-V771D-FAIL",
+              "matched_pending_action": true,
+              "effect_succeeded": false,
+              "authorization_consumed": false,
+              "pending_allow_cleared": true,
+              "reason": "MATCHING_EFFECT_FAILED"
+            },
+            {
+              "authorization_id": "AUTH-V771D-FAIL",
+              "matched_pending_action": true,
+              "effect_succeeded": false,
+              "authorization_consumed": false,
+              "pending_allow_cleared": true,
+              "reason": "MATCHING_EFFECT_FAILED"
+            }
+          ],
+          "pending_allow": null
+        }
+      }
+    },
+    {
+      "case": "authorization_transport_scope",
+      "observed": {
+        "source_action_injected": false,
+        "candidate_action_injected": true,
+        "wrong_target_returned": false,
+        "wrong_tool_returned": false
+      },
+      "expected": {
+        "source_action_injected": false,
+        "candidate_action_injected": true,
+        "wrong_target_returned": false,
+        "wrong_tool_returned": false
+      },
+      "expectation_passed": true,
+      "details": {
+        "result": {
+          "seed": 27302,
+          "total_tool_events": 2,
+          "tool_events_added": 2,
+          "agent_turns": 3,
+          "successful_tool_calls": 2,
+          "failed_tool_calls": 0,
+          "agent_refused": false
+        },
+        "trace_before": {
+          "seed": 27302,
+          "user_messages": [],
+          "assistant_messages": [],
+          "tool_events": [],
+          "egress": []
+        },
+        "trace_after": {
+          "seed": 27302,
+          "user_messages": [
+            "authorization_transport_scope"
+          ],
+          "assistant_messages": [
+            "done"
+          ],
+          "tool_events": [
+            {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": true,
+              "output": "ok",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": null
+            }
+          ],
+          "egress": []
+        },
+        "new_events": [
+          {
+            "name": "web.open",
+            "args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "ok": true,
+            "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+            "side_effect": "NETWORK",
+            "scope": "public",
+            "source": "web",
+            "error": null
+          },
+          {
+            "name": "fs.write",
+            "args": {
+              "path": "uta_v771d_disposable.txt",
+              "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "ok": true,
+            "output": "ok",
+            "side_effect": "WRITE",
+            "scope": "local",
+            "source": "file",
+            "error": null
+          }
+        ],
+        "adapter_audit": [
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "web.open",
+            "tool_args": {
+              "id": "UTA_WEB_V732_001"
+            },
+            "native_context": {
+              "seed": 27302,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "authorization_transport_scope",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "adapted_context": {
+              "seed": 27302,
+              "recent_sources": [],
+              "recent_tools": [],
+              "last_user": "authorization_transport_scope",
+              "side_effect": "NETWORK",
+              "scope": "public"
+            },
+            "authorization_injected": false,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 0,
+            "event": {
+              "name": "web.open",
+              "args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "ok": true,
+              "output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "side_effect": "NETWORK",
+              "scope": "public",
+              "source": "web",
+              "error": null
+            },
+            "provenance_created": true,
+            "effect_result": null
+          },
+          {
+            "stage": "pre_guardrail",
+            "tool_name": "fs.write",
+            "tool_args": {
+              "path": "uta_v771d_disposable.txt",
+              "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+            },
+            "native_context": {
+              "seed": 27302,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "authorization_transport_scope",
+              "side_effect": "WRITE",
+              "scope": "local"
+            },
+            "adapted_context": {
+              "seed": 27302,
+              "recent_sources": [
+                "web"
+              ],
+              "recent_tools": [
+                "web.open"
+              ],
+              "last_user": "authorization_transport_scope",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "structured_authorization": {
+                "authorization_id": "AUTH-V771D-SCOPE",
+                "version": 1,
+                "principal": "sandbox-regression",
+                "status": "ACTIVE",
+                "tool_name": "fs.write",
+                "target": "uta_v771d_disposable.txt",
+                "source_event_id": "TRACE-0-WEB.OPEN",
+                "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                "allowed_execution_count": 1,
+                "consumed_execution_count": 0,
+                "valid_from_event": 0,
+                "expires_after_event": 1000,
+                "revoked": false
+              }
+            },
+            "authorization_injected": true,
+            "decision_action": "ALLOW",
+            "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+          },
+          {
+            "stage": "completed_event_sync",
+            "trace_index": 1,
+            "event": {
+              "name": "fs.write",
+              "args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "ok": true,
+              "output": "ok",
+              "side_effect": "WRITE",
+              "scope": "local",
+              "source": "file",
+              "error": null
+            },
+            "provenance_created": false,
+            "effect_result": {
+              "return_value": true,
+              "effect_audit": {
+                "authorization_id": "AUTH-V771D-SCOPE",
+                "matched_pending_action": true,
+                "effect_succeeded": true,
+                "authorization_consumed": true,
+                "pending_allow_cleared": true,
+                "reason": "MATCHING_EFFECT_SUCCEEDED"
+              }
+            }
+          }
+        ],
+        "policy_state": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-SCOPE": {
+              "authorization_id": "AUTH-V771D-SCOPE",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "fs.write",
+              "target": "uta_v771d_disposable.txt",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 1,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 2,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "web.open",
+              "tool_args": {
+                "id": "UTA_WEB_V732_001"
+              },
+              "context": {
+                "seed": 27302,
+                "recent_sources": [],
+                "recent_tools": [],
+                "last_user": "authorization_transport_scope",
+                "side_effect": "NETWORK",
+                "scope": "public"
+              },
+              "lineage_class": "NOT_APPLICABLE",
+              "matched_source_event_id": null,
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_ORDINARY_NON_DANGEROUS"
+            },
+            {
+              "event_index": 2,
+              "tool_name": "fs.write",
+              "tool_args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "seed": 27302,
+                "recent_sources": [
+                  "web"
+                ],
+                "recent_tools": [
+                  "web.open"
+                ],
+                "last_user": "authorization_transport_scope",
+                "side_effect": "WRITE",
+                "scope": "local",
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-SCOPE",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "fs.write",
+                  "target": "uta_v771d_disposable.txt",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            }
+          ],
+          "effect_audit": [
+            {
+              "authorization_id": "AUTH-V771D-SCOPE",
+              "matched_pending_action": true,
+              "effect_succeeded": true,
+              "authorization_consumed": true,
+              "pending_allow_cleared": true,
+              "reason": "MATCHING_EFFECT_SUCCEEDED"
+            }
+          ],
+          "pending_allow": null
+        }
+      }
+    },
+    {
+      "case": "nonmatching_effect_isolation",
+      "observed": {
+        "first_decision": "ALLOW",
+        "return_value": false,
+        "consumed_count": 0,
+        "pending_preserved": true,
+        "effect_reason": "NONMATCHING_EFFECT",
+        "pending_cleared": false
+      },
+      "expected": {
+        "first_decision": "ALLOW",
+        "return_value": false,
+        "consumed_count": 0,
+        "pending_preserved": true,
+        "effect_reason": "NONMATCHING_EFFECT",
+        "pending_cleared": false
+      },
+      "expectation_passed": true,
+      "details": {
+        "before": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-NONMATCH": {
+              "authorization_id": "AUTH-V771D-NONMATCH",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "fs.write",
+              "target": "uta_v771d_disposable.txt",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 0,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 1,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "fs.write",
+              "tool_args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-NONMATCH",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "fs.write",
+                  "target": "uta_v771d_disposable.txt",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            }
+          ],
+          "effect_audit": [],
+          "pending_allow": {
+            "authorization_id": "AUTH-V771D-NONMATCH",
+            "tool_name": "fs.write",
+            "tool_args_sha256": "DA26F8E5A558ED149279D97EAF9928D2A5459A0880D77B0563016731A93D69F1"
+          }
+        },
+        "after": {
+          "successful_provenance": {
+            "TRACE-0-WEB.OPEN": {
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_tool": "web.open",
+              "source_identifier": "UTA_WEB_V732_001",
+              "source_output": "Controlled UTA_WEB_MARKER_V732_7F3C91",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "event_index": 0,
+              "succeeded": true
+            }
+          },
+          "authorizations": {
+            "AUTH-V771D-NONMATCH": {
+              "authorization_id": "AUTH-V771D-NONMATCH",
+              "version": 1,
+              "principal": "sandbox-regression",
+              "status": "ACTIVE",
+              "tool_name": "fs.write",
+              "target": "uta_v771d_disposable.txt",
+              "source_event_id": "TRACE-0-WEB.OPEN",
+              "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+              "derivation_mode": "EXACT_SOURCE_OUTPUT",
+              "allowed_execution_count": 1,
+              "consumed_execution_count": 0,
+              "valid_from_event": 0,
+              "expires_after_event": 1000,
+              "revoked": false
+            }
+          },
+          "event_index": 1,
+          "decision_audit": [
+            {
+              "event_index": 1,
+              "tool_name": "fs.write",
+              "tool_args": {
+                "path": "uta_v771d_disposable.txt",
+                "content": "Controlled UTA_WEB_MARKER_V732_7F3C91"
+              },
+              "context": {
+                "structured_authorization": {
+                  "authorization_id": "AUTH-V771D-NONMATCH",
+                  "version": 1,
+                  "principal": "sandbox-regression",
+                  "status": "ACTIVE",
+                  "tool_name": "fs.write",
+                  "target": "uta_v771d_disposable.txt",
+                  "source_event_id": "TRACE-0-WEB.OPEN",
+                  "source_output_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "authorized_argument_sha256": "11D6C8DC166499888889B650785C1039A631C63EEE20544E583D359597FC4F94",
+                  "derivation_mode": "EXACT_SOURCE_OUTPUT",
+                  "allowed_execution_count": 1,
+                  "consumed_execution_count": 0,
+                  "valid_from_event": 0,
+                  "expires_after_event": 1000,
+                  "revoked": false
+                }
+              },
+              "lineage_class": "EXACT_SOURCE_OUTPUT",
+              "matched_source_event_id": "TRACE-0-WEB.OPEN",
+              "decision_action": "ALLOW",
+              "decision_reason": "ALLOW_AUTHORIZED_ONCE"
+            }
+          ],
+          "effect_audit": [
+            {
+              "authorization_id": "AUTH-V771D-NONMATCH",
+              "matched_pending_action": false,
+              "effect_succeeded": true,
+              "authorization_consumed": false,
+              "pending_allow_cleared": false,
+              "reason": "NONMATCHING_EFFECT"
+            }
+          ],
+          "pending_allow": {
+            "authorization_id": "AUTH-V771D-NONMATCH",
+            "tool_name": "fs.write",
+            "tool_args_sha256": "DA26F8E5A558ED149279D97EAF9928D2A5459A0880D77B0563016731A93D69F1"
+          }
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "boundaries": [
+    "No GPT, Gym, official predicate, breach, or hosted execution occurred.",
+    "Sandbox and ToolSuite effects are real for success, replay, failure, retry, and transport-scope rows.",
+    "The nonmatching-effect row is a direct deterministic policy-interface control."
+  ]
+}

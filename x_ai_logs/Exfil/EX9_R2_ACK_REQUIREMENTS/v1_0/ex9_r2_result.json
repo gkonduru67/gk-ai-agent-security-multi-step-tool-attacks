@@ -1,0 +1,228 @@
+{
+  "EX9_R1_parent_verified": true,
+  "SDK_scan": {
+    "acknowledge_callers_found": 0,
+    "hook_classes_found": 6,
+    "hook_registration_calls_found": 1,
+    "parsed_files": 91,
+    "python_files_scanned": 91
+  },
+  "checks": {
+    "failed": 0,
+    "failed_ids": [],
+    "passed": 38,
+    "total": 38
+  },
+  "claim_boundary": {
+    "allowed": [
+      "authoritative hook registration, callback, lifecycle, and transport-interface feasibility findings",
+      "minimum trusted acknowledgement integration requirements",
+      "implementation outcome classification",
+      "eligibility recommendation for a separate implementation and identity-freeze gate"
+    ],
+    "prohibited": [
+      "implementation creation",
+      "SDK source modification",
+      "runtime acknowledgement behavior",
+      "actual fs.read",
+      "Sandbox or Gym execution",
+      "HTTP sink",
+      "predicate or breach execution",
+      "model execution",
+      "protected-value lineage",
+      "guardrail effectiveness",
+      "real exfiltration prevention"
+    ]
+  },
+  "classification": "READ_ONLY_INTERFACE_REQUIREMENTS_AND_FEASIBILITY_REVIEW",
+  "created_at_utc": "2026-08-21T20:13:25.962425+00:00",
+  "execution_boundaries": {
+    "EX9_artifacts_modified": false,
+    "Gym_executed": false,
+    "Sandbox_instantiated": false,
+    "Sandbox_interact_executed": false,
+    "actual_fs_read_executed": false,
+    "breach_executed": false,
+    "external_effects_observed": false,
+    "http_sink_executed": false,
+    "implementation_created": false,
+    "models_used": false,
+    "predicates_executed": false,
+    "real_tools_executed": false,
+    "sdk_modules_executed": false,
+    "sdk_modules_imported": false,
+    "source_modified": false,
+    "threads_executed": false
+  },
+  "feasibility": {
+    "decision": "NEW_TRUSTED_HOOK_ADAPTER_REQUIRED",
+    "existing_bridge_complete": false,
+    "hook_interface_feasible": true,
+    "transport_interface_feasible": true
+  },
+  "freeze": {
+    "argument_mapping": [
+      [
+        "HookContext.tool_name",
+        "acknowledge.tool_name",
+        "DIRECT"
+      ],
+      [
+        "HookContext.tool_args",
+        "acknowledge.tool_args",
+        "DIRECT"
+      ],
+      [
+        "HookContext.tool_output",
+        "acknowledge.raw_output",
+        "DIRECT"
+      ],
+      [
+        "HookContext.context.ok",
+        "acknowledge.success",
+        "CONTEXT_EXTRACTION"
+      ],
+      [
+        "HookContext.context.error",
+        "failure metadata",
+        "CONTEXT_EXTRACTION"
+      ],
+      [
+        "trusted ToolEvent.source",
+        "acknowledge.canonical_source_path",
+        "TRUSTED_ENRICHMENT_REQUIRED"
+      ],
+      [
+        "trusted trace identity",
+        "acknowledge.trace_identity",
+        "TRUSTED_ENRICHMENT_REQUIRED"
+      ],
+      [
+        "trusted proposal identity",
+        "acknowledge.proposal_identity",
+        "TRUSTED_ENRICHMENT_REQUIRED"
+      ]
+    ],
+    "decision": "NEW_TRUSTED_HOOK_ADAPTER_REQUIRED",
+    "existing_bridge": {
+      "call_acknowledge": false,
+      "class": "TrustedBridgeSandboxV1",
+      "methods": [
+        "__init__",
+        "trusted_transport_snapshot"
+      ],
+      "receive_hook_context": false,
+      "register_callback": false,
+      "restore": false,
+      "snapshot": false
+    },
+    "freeze_id": "EX9.ACK.INTEGRATION.REQUIREMENTS.FEASIBILITY.V1",
+    "hook_context": {
+      "POST_TOOL_CALL": true,
+      "fields": [
+        "context",
+        "guardrail_decision",
+        "hook_state",
+        "injected_content",
+        "metadata",
+        "modified_args",
+        "modified_output",
+        "should_block",
+        "stage",
+        "tool_args",
+        "tool_name",
+        "tool_output",
+        "trace"
+      ],
+      "owner": "aicomp_sdk\\hooks\\types.py"
+    },
+    "hook_registry": {
+      "callback_failure_behavior": "HANDLED",
+      "duplicate_registration_behavior": "ALLOWED_APPEND",
+      "execute_method": "execute_hooks",
+      "execute_signature": {
+        "keyword_only": [],
+        "kwarg": null,
+        "positional": [
+          "stage",
+          "context"
+        ],
+        "vararg": null
+      },
+      "ordering": true,
+      "owner": "aicomp_sdk\\hooks\\registry.py",
+      "registration_method": "register_hook",
+      "registration_signature": {
+        "keyword_only": [],
+        "kwarg": null,
+        "positional": [
+          "stage",
+          "callback",
+          "priority"
+        ],
+        "vararg": null
+      },
+      "reset_method": null,
+      "restore_method": "restore_state",
+      "snapshot_method": "snapshot_state"
+    },
+    "implementation_creation_performed": false,
+    "normative_requirement_ids": [
+      "ACK-001",
+      "ACK-002",
+      "ACK-003",
+      "ACK-004",
+      "ACK-005",
+      "ACK-006",
+      "ACK-007",
+      "ACK-008",
+      "ACK-009",
+      "ACK-010",
+      "ACK-011",
+      "ACK-012"
+    ],
+    "parent_EX9_R1": "40_OF_41_WITH_ACKNOWLEDGEMENT_GAP",
+    "runtime_behavior": "NOT_EVALUATED",
+    "status": "FROZEN",
+    "transport": {
+      "acknowledge_signature": {
+        "keyword_only": [
+          "trace_identity",
+          "proposal_digest",
+          "tool_name",
+          "success",
+          "canonical_source_path",
+          "post_hook_output"
+        ],
+        "kwarg": null,
+        "positional": [],
+        "vararg": null
+      },
+      "atomicity_requirements_observed": {
+        "adapter_exception_propagates": true,
+        "allocate_outcome": true,
+        "call_adapter": true,
+        "compute_bound_digest": true,
+        "compute_raw_digest": true,
+        "consume_after_adapter": true
+      },
+      "class": "TrustedOutcomeTransportV1"
+    }
+  },
+  "next_gate": "ACKNOWLEDGEMENT_INTEGRATION_IMPLEMENTATION_AND_IDENTITY_FREEZE",
+  "readiness": {
+    "acknowledgement_integration_implementation_gate_eligible": true,
+    "controlled_actual_fs_read_eligible": false,
+    "http_sink_eligible": false
+  },
+  "scientific_verdict": {
+    "acknowledgement_integration_requirements": "FROZEN",
+    "actual_source_retrieval": "NOT_EVALUATED",
+    "harness_trick": "NOT_DEMONSTRATED",
+    "implementation_behavior": "NOT_EVALUATED",
+    "protected_value_lineage": "NOT_ESTABLISHED",
+    "robust_security_findings": "NOT_ESTABLISHED"
+  },
+  "status": "EX9_R2_ACKNOWLEDGEMENT_INTEGRATION_REQUIREMENTS_AND_FEASIBILITY_FREEZE_COMPLETE_PASS",
+  "version": "EX9_R2_ACKNOWLEDGEMENT_INTEGRATION_REQUIREMENTS_AND_FEASIBILITY_FREEZE_v1.0"
+}

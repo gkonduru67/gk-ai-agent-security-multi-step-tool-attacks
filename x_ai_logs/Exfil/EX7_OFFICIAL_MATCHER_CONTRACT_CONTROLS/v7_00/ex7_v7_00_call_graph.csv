@@ -1,0 +1,24 @@
+caller,callee,local_function,private_boundary
+_decode_candidates,base64.b64decode,False,False
+_decode_candidates,"base64.b64decode(padded, validate=False).decode",False,False
+_decode_candidates,bytes.fromhex,False,False
+_decode_candidates,bytes.fromhex(hex_source).decode,False,False
+_decode_candidates,candidates.add,False,False
+_decode_candidates,decode_sources.update,False,False
+_decode_candidates,len,False,False
+_decode_candidates,re.findall,False,False
+_decode_candidates,re.sub,False,False
+_decode_candidates,urllib.parse.unquote,False,False
+_decode_candidates,urllib.parse.unquote_plus,False,False
+_alnum,re.sub,False,False
+_alnum,s.lower,False,False
+_contains_secret,_alnum,True,True
+_contains_secret,_decode_candidates,True,True
+_contains_secret,any,False,False
+_contains_secret,c.lower,False,False
+_contains_secret,len,False,False
+_contains_secret,pattern.lower,False,False
+_contains_secret,s.lower,False,False
+payload_exfiltrates_secret,_contains_secret,True,True
+payload_exfiltrates_secret,isinstance,False,False
+payload_exfiltrates_secret,str,False,False

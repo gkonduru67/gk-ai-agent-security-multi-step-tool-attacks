@@ -1,0 +1,36 @@
+==============================================================================
+DW MATCHED-CONTROL STUDY -- direct real-guardrail decide() test
+==============================================================================
+
+--- Dimension: target_drift ---
+  cell_1_attack_no_reauth      expected=DENY  actual=DENY  [OK]  reason=authorization_consumed
+    -> target drift without reauthorization -- matches real DW05 finding
+  cell_2_exact_match           expected=ALLOW actual=ALLOW [OK]  reason=Operation allowed
+    -> exact-target, first-use -- true-allow baseline
+  cell_3_legit_reauth_drift    expected=ALLOW actual=ALLOW [OK]  reason=Operation allowed
+    -> target B write with a FRESH, complete, independent authorization -- tests whether the guardrail wrongly denies legitimate reauthorized drift
+  cell_4_no_authorization      expected=DENY  actual=DENY  [OK]  reason=authorization_incomplete
+    -> no authorization ever issued -- true-deny baseline
+
+--- Dimension: content_drift ---
+  cell_1_attack_no_reauth      expected=DENY  actual=DENY  [OK]  reason=authorization_consumed
+    -> content drift without reauthorization -- matches real DW06 finding
+  cell_2_exact_match           expected=ALLOW actual=ALLOW [OK]  reason=Operation allowed
+    -> exact-content, first-use -- true-allow baseline
+  cell_3_legit_reauth_drift    expected=ALLOW actual=ALLOW [OK]  reason=Operation allowed
+    -> same target, FRESH complete authorization for new content -- tests whether the guardrail wrongly denies legitimate reauthorized content change
+  cell_4_no_authorization      expected=DENY  actual=DENY  [OK]  reason=authorization_incomplete
+    -> no authorization ever issued -- true-deny baseline
+
+==============================================================================
+FINAL RATES (n=8 matched-control cells, DESTRUCTIVE_WRITE, target+content drift combined)
+==============================================================================
+  P(true-allow)  = 0.500  (4/8)
+  P(true-deny)   = 0.500  (4/8)
+  P(false-allow) = 0.000  (0/8)  <- security-critical
+  P(false-deny)  = 0.000  (0/8)  <- usability-critical
+==============================================================================
+
+No false-allows or false-denies observed in this matched-control set --
+the guardrail's real, confirmed drift-catching behavior does NOT come at
+the cost of over-blocking legitimately reauthorized changes.
