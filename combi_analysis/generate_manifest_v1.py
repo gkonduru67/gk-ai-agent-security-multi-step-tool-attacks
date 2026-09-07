@@ -17,6 +17,13 @@ e.g. this project's own P10/P11 EXFILTRATION traces may contain the
 literal test secret string in intermediate JSON, which is fine locally but
 worth a conscious check before going public.
 
+RE-RUN NOTE: safe and idempotent to re-run after updating any files (e.g.
+three_way_comparison_table.csv, false_positive_negative_rates_table.csv,
+or the DW live_dual_guardrail_dw_result.json) -- it always recomputes every
+hash fresh from current file content and fully overwrites the previous
+manifest_v1.sha256.json / manifest_v1_summary.txt, so there is no stale
+data carried over between runs.
+
 USAGE:
     python generate_manifest_v1.py --content-root "C:\\...\\combi_analysis" --out-dir "C:\\...\\combi_analysis"
 
@@ -141,7 +148,9 @@ def build_manifest(content_root: Path) -> dict:
             "EXFILTRATION traces are the most likely source of a real flag here, since some "
             "intermediate JSON may contain the literal test secret string used in those "
             "experiments -- confirm whether that's acceptable to publish as-is, or should be "
-            "redacted/excluded, before pushing."
+            "redacted/excluded, before pushing. (Previously confirmed by the user: secret.txt "
+            "and api_keys.txt fixtures are dummy/placeholder values, e.g. AWS's own official "
+            "EXAMPLE credentials -- not real secrets.)"
         ),
     }
     return manifest
