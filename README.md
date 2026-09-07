@@ -264,9 +264,7 @@ If you use this code, data, or findings, please cite:
 }
 ```
 
-A full IEEE-formatted manuscript (target: WCCI 2026, 6 pages plus
-references/appendices, up to 2 additional paid pages, double-blind where
-applicable) is in preparation and will be linked here once available.
+A full IEEE-formatted manuscript is in preparation and will be linked here once available.
 
 This work is a research extension of the underlying Kaggle competition and
 its SDK/test environment; please also cite the original competition:
